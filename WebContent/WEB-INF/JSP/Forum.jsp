@@ -25,7 +25,7 @@
         <button name="action" value="login" type="submit">Login</button>
     </div>
     <div class="right">
-        <button name="action" value="registrationShow" type="submit" onclick="registerFcn()">Registration</button>
+        <button name="action" value="registrationShow" type="button" onclick="registerFcn()">Registration</button>
     </div>
     <div class="clear"></div>
     </form>

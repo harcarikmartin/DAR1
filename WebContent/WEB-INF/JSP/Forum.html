@@ -27,9 +27,18 @@
     <div class="clear"></div>
 </div>
 
+<div class="content">
+    <div class="left">
+        <p>Prihlásený ako </p>
+    </div>
+    <div class="right">
+        <button name="action" value="logout" type="submit">Logout</button>
+    </div>
+</div>
+
 <div id="register" class="content">
     <div>
-    <form method="post">
+    <form method="post" onsubmit="return checkRequiredReg()">
         <div class="leftRegistration">
             <label for="userNameReg">Name:</label>
         </div>
@@ -52,10 +61,10 @@
         </div>
         <div class="clear"></div>
         <div class="leftRegistration">
-            <label for="Birthdate">Birthdate:</label>
+            <label for="birthdate">Birthdate:</label>
         </div>
         <div class="rightRegistration">
-            <input id="Birthdate" class="Birthdate" type="date" name="Birthdate">
+            <input id="birthdate" class="birthdate" type="date" name="birthdate">
         </div>
         <div class="clear"></div>
         <div class="leftRegistration"></div>
@@ -88,6 +97,15 @@ document.getElementById("register").style.display = "none";
 function registerFcn(){
 	document.getElementById("login").style.display = "none";
 	document.getElementById("register").style.display = "inline";
+}
+
+var checkRequiredReg = function(){
+	var fail = false;
+	var userNameReg
+	var userPassReg
+	var userPassRegCheck
+	var birthdate
+	
 }
 
 </script>
