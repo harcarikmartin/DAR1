@@ -7,10 +7,22 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
+		
 			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
+			<!--
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/> 
+          	-->
+          	
 			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@//localhost:1521/XE" />
-			<property name="hibernate.connection.username" value="gamestudiouser" />
-			<property name="hibernate.connection.password" value="gamestudiouser" />
+			<property name="hibernate.connection.username" value="forum" />
+			<property name="hibernate.connection.password" value="forum" />
+			
+			<!-- 
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/gamecenter"/>
+            <property name="hibernate.connection.username" value="forum"/>
+            <property name="hibernate.connection.password" value="forum"/>
+            -->
+			
 			<!--<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/> -->
 			<!--<property name="hibernate.connection.charSet" value="UTF-8"/> -->
 
@@ -18,7 +30,7 @@
 				to modify an existing database; value="create-drop" means the same as "create" 
 				but also drops tables when Hibernate closes; value="validate" makes no changes 
 				to the database -->
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop"/>  -->
 
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
