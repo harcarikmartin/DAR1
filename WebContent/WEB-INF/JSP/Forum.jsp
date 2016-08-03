@@ -80,14 +80,22 @@
             <label for="userPassReg">Password:</label>
         </div>
         <div class="rightRegistration">
-            <input id="userPassReg" class="registrationForm" type="text" name="userPassword" placeholder="password (at least 8 characters)..."><p id="rfPass" class="requiredField">Required field</p>
+            <input id="userPassReg" class="registrationForm" type="password" name="userPassword" 
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" 
+            oninvalid="alert('Password is not valid')" placeholder="password"><p id="rfPass" class="requiredField">Required field</p>
+        </div>
+        <div class="clear"></div>
+        <div class="leftRegistration">
+        </div>
+        <div class="rightRegistration">
+          	<p>* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special Character</p>
         </div>
         <div class="clear"></div>
         <div class="leftRegistration">
             <label for="userPassRegCheck">Password for check:</label>
         </div>
         <div class="rightRegistration">
-            <input id="userPassRegCheck" class="registrationForm" type="text" name="userPasswordCheck" placeholder="password again ..."><p id="rfPassCheck" class="requiredField">Required field</p>
+            <input id="userPassRegCheck" class="registrationForm" type="password" name="userPasswordCheck" placeholder="password again ..."><p id="rfPassCheck" class="requiredField">Required field</p>
         </div>
         <div class="clear"></div>
         <div class="leftRegistration">
