@@ -11,7 +11,7 @@
 <body>
 <div class="centerAlign"><a href="google.com"><h3>Forum</h3></a></div>
 
-<div class="content">
+<div id="login" class="content">
 <form method="post">
     <div class="left">
         <label for="userName">Name:</label>
@@ -21,13 +21,13 @@
         <button name="action" value="login" type="submit">Login</button>
     </div>
     <div class="right">
-        <button name="action" value="registrationShow" type="submit">Registration</button>
+        <button name="action" value="registrationShow" type="button" onclick="registerFcn()">Registration</button>
     </div>
     </form>
     <div class="clear"></div>
 </div>
 
-<div class="content">
+<div id="register" class="content">
     <div>
     <form method="post">
         <div class="leftRegistration">
@@ -60,12 +60,12 @@
         <div class="clear"></div>
         <div class="leftRegistration"></div>
         <div class="rightRegistration">
-            <button name="action" value="registration" type="submit">Registration</button>
+            <button name="action" value="registration" type="submit">Registration</button><br>
+            <button type="refresh">Back</button>
         </div>
         <div class="clear"></div>
         
         </form>
-        <div class="clear"></div>
     </div>
 </div>
 
@@ -80,4 +80,16 @@
     </table>
 </div>
 </body>
+
+<script type="text/javascript">
+document.getElementById("login").style.display = "inline";
+document.getElementById("register").style.display = "none";
+
+function registerFcn(){
+	document.getElementById("login").style.display = "none";
+	document.getElementById("register").style.display = "inline";
+}
+
+</script>
+
 </html>

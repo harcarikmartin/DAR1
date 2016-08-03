@@ -14,26 +14,41 @@
 <body>
 <div class="centerAlign"><a href="google.com"><h3>Forum</h3></a></div>
 
-<div class="content">
+<c:if test="${user == null}">
+<div id="login" class="content">
 <form method="post">
     <div class="left">
-        <label for="userName">Name:</label>
+        <label for="userName"><h4>Name:</h4></label>
         <input id="userName" class="userName" type="text" name="userName" placeholder="name ...">
         <label for="userPassword">Password:</label>
         <input id="userPassword" class="userPassword" type="text" name="userPassword" placeholder="password ...">
         <button name="action" value="login" type="submit">Login</button>
     </div>
     <div class="right">
-        <button name="action" value="registrationShow" type="submit">Registration</button>
+        <button name="action" value="registrationShow" type="submit" onclick="registerFcn()">Registration</button>
     </div>
-    </form>
     <div class="clear"></div>
+    </form>
 </div>
+</c:if>
 
+<c:if test="${user != null}">
 <div class="content">
+    <div class="left">
+        <p>Prihlásený ako </p>
+    </div>
+    <div class="right">
+        <button name="action" value="logout" type="submit">Logout</button>
+    </div>
+</div>
+</c:if>
+
+<div id="register" class="content">
 
     <div>
     <form method="post">
+    	<input type="hidden" name="role" value="user">
+    	<input type="hidden" name="status" value="pending">
         <div class="leftRegistration">
             <label for="userNameReg">Name:</label>
         </div>
@@ -62,14 +77,15 @@
             <input id="Birthdate" class="Birthdate" type="date" name="Birthdate">
         </div>
         <div class="clear"></div>
-        <div class="leftRegistration"></div>
+        <div class="leftRegistration">
+        </div>
         <div class="rightRegistration">
-            <button name="action" value="registration" type="submit">Registration</button>
+            <button name="action" value="registration" type="submit">Registration</button><br>
+            <button type="refresh">Back</button>
         </div>
         <div class="clear"></div>
         
         </form>
-        <div class="clear"></div>
     </div>
 </div>
 
@@ -84,4 +100,16 @@
     </table>
 </div>
 </body>
+
+<script type="text/javascript">
+document.getElementById("login").style.display = "inline";
+document.getElementById("register").style.display = "none";
+
+function registerFcn(){
+	document.getElementById("login").style.display = "none";
+	document.getElementById("register").style.display = "inline";
+}
+
+</script>
+
 </html>
