@@ -61,42 +61,42 @@
 								</c:if>
 								
     <div>
-    <form method="post">
+    <form method="post" onsubmit="return checkRequiredReg()">
     	<input type="hidden" name="role" value="user">
     	<input type="hidden" name="status" value="pending">
+        
         <div class="leftRegistration">
             <label for="userNameReg">Name:</label>
         </div>
         <div class="rightRegistration">
-            <input id="userNameReg" class="userName" type="text" name="userName" placeholder="name ...">
+            <input id="userNameReg" class="registrationForm" type="text" name="userName" placeholder="name ..."><p id="rfName" class="requiredField">Required field</p>
         </div>
         <div class="clear"></div>
         <div class="leftRegistration">
             <label for="userPassReg">Password:</label>
         </div>
         <div class="rightRegistration">
-            <input id="userPassReg" class="userPassword" type="text" name="userPassword" placeholder="password ...">
+            <input id="userPassReg" class="registrationForm" type="text" name="userPassword" placeholder="password (at least 8 characters)..."><p id="rfPass" class="requiredField">Required field</p>
         </div>
         <div class="clear"></div>
         <div class="leftRegistration">
             <label for="userPassRegCheck">Password for check:</label>
         </div>
         <div class="rightRegistration">
-            <input id="userPassRegCheck" class="userPasswordCheck" type="text" name="userPasswordCheck" placeholder="password again ...">
+            <input id="userPassRegCheck" class="registrationForm" type="text" name="userPasswordCheck" placeholder="password again ..."><p id="rfPassCheck" class="requiredField">Required field</p>
         </div>
         <div class="clear"></div>
         <div class="leftRegistration">
-            <label for="Birthdate">Birthdate:</label>
+            <label for="birthdate">Birthdate:</label>
         </div>
         <div class="rightRegistration">
-            <input id="Birthdate" class="Birthdate" type="date" name="Birthdate">
+            <input id="birthdate" class="registrationForm" type="date" name="birthdate"><p id="rfBirthdate" class="requiredField">Required field</p>
         </div>
         <div class="clear"></div>
-        <div class="leftRegistration">
-        </div>
+        <div class="leftRegistration"></div>
         <div class="rightRegistration">
             <button name="action" value="registration" type="submit">Registration</button><br>
-            <button type="refresh">Back</button>
+            <button type="button" onClick="window.location.reload()">Back</button>
         </div>
         <div class="clear"></div>
         
@@ -124,6 +124,72 @@ function registerFcn(){
 	document.getElementById("login").style.display = "none";
 	document.getElementById("register").style.display = "inline";
 }
+
+rfName.style.display = "none";
+rfPass.style.display = "none";
+rfPassCheck.style.display = "none";
+rfBirthdate.style.display = "none";
+
+function clearFcn(){
+	if (userNameReg.value != ""){
+		rfName.style.display = "none";
+		userNameReg.style.border = "solid 1px #D3D3D3"
+	}
+	if (userPassReg.value != ""){
+		rfPass.style.display = "none";
+		userPassReg.style.border = "solid 1px #D3D3D3"
+	}
+	if (userPassRegCheck.value != ""){
+		rfPassCheck.style.display = "none";
+		userPassRegCheck.style.border = "solid 1px #D3D3D3"
+	}
+	if (birthdate.value != ""){
+		rfBirthdate.style.display = "none";
+		birthdate.style.border = "solid 1px #D3D3D3"
+	}
+}
+
+var checkRequiredReg = function(){
+	var fail = false;
+	var userNameReg = document.getElementById('userNameReg');
+	var userPassReg = document.getElementById('userPassReg');
+	var userPassRegCheck = document.getElementById('userPassRegCheck');
+	var birthdate = document.getElementById('birthdate');
+	
+	var rfName = document.getElementById('rfName');
+	var rfPass = document.getElementById('rfPass');
+	var rfPassCheck = document.getElementById('rfPassCheck');
+	var rfBirthdate = document.getElementById('rfBirthdate');
+	
+	if (userNameReg.value == ""){
+		rfName.style.display = "inline";
+		userNameReg.style.border = "solid 1px red"
+		fail = true;
+	}
+	if (userPassReg.value == ""){
+		rfPass.style.display = "inline";
+		userPassReg.style.border = "solid 1px red"
+		fail = true;
+	}
+	if (userPassRegCheck.value == ""){
+		rfPassCheck.style.display = "inline";
+		userPassRegCheck.style.border = "solid 1px red"
+		fail = true;
+	}
+	if (birthdate.value == ""){
+		rfBirthdate.style.display = "inline";
+		birthdate.style.border = "solid 1px red"
+		fail = true;
+	}
+	 if (fail == true){
+	      alert("Required field was not set!");}
+			return !fail;
+
+	
+}
+
+setInterval('clearFcn()',100); 
+
 <%= request.getAttribute("regWrong") %>
 
 </script>
