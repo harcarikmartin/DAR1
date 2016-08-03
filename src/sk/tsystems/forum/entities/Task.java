@@ -19,10 +19,10 @@ public class Task {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
 	
-	private String taskName;
+	private String task;
 
 	public Task(String taskName, Topic topic, User user) {
-		this.taskName = taskName;
+		this.task = taskName;
 		this.topic = topic;
 		this.user = user;
 	}
@@ -40,11 +40,11 @@ public class Task {
 	}
 
 	public String getTaskName() {
-		return taskName;
+		return task;
 	}
 
 	public void setTaskName(String taskName) {
-		this.taskName = taskName;
+		this.task = taskName;
 	}
 
 	public Topic getTopic() {
@@ -65,7 +65,7 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task [taskID=" + taskID + ", taskName=" + taskName + ", topic=" + topic + ", user=" + user + "]";
+		return "Task [taskID=" + taskID + ", taskName=" + task + ", topic=" + topic + ", user=" + user + "]";
 	}
 
 }

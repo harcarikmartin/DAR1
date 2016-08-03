@@ -21,13 +21,13 @@ public class Topic {
 	private User subscriber;
 	
 	private String visibility;
-	private String topicName;
+	private String topic;
 	
 	public Topic(User creator, User subscriber, String visibility, String topicName) {
 		this.creator = creator;
 		this.subscriber = subscriber;
 		this.visibility = visibility;
-		this.topicName = topicName;
+		this.topic = topicName;
 	}
 
 	public Topic() {
@@ -67,17 +67,17 @@ public class Topic {
 	}
 
 	public String getTopicName() {
-		return topicName;
+		return topic;
 	}
 
 	public void setTopicName(String topicName) {
-		this.topicName = topicName;
+		this.topic = topicName;
 	}
 
 	@Override
 	public String toString() {
 		return "Topic [topicID=" + topicID + ", creator=" + creator + ", subscriber=" + subscriber + ", visibility="
-				+ visibility + ", topicName=" + topicName + "]";
+				+ visibility + ", topicName=" + topic + "]";
 	}
 	
 }

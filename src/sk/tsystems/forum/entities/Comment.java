@@ -1,12 +1,15 @@
 package sk.tsystems.forum.entities;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Coment")
 public class Comment {
 	
 	@Id
@@ -19,6 +22,7 @@ public class Comment {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Task task;
 	
+	@Column(name = "coment")
 	private String comment;
 	
 	public Comment(String comment, Task task, User user) {
