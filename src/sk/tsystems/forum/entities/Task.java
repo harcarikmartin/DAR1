@@ -1,8 +1,10 @@
 package sk.tsystems.forum.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Task {
@@ -10,10 +12,14 @@ public class Task {
 	@Id
 	@GeneratedValue
 	private int taskID;
-
-	private String taskName;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Topic topic;
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
+	
+	private String taskName;
 
 	public Task(String taskName, Topic topic, User user) {
 		this.taskName = taskName;

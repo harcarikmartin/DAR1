@@ -1,8 +1,11 @@
 package sk.tsystems.forum.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Topic {
@@ -11,14 +14,20 @@ public class Topic {
 	@GeneratedValue
 	private int topicID;
 
-	private String topicName;
-	private User user;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private User creator;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	private User subscriber;
+	
 	private String visibility;
-
-	public Topic(String topicName, User user, String visibility) {
-		this.topicName = topicName;
-		this.user = user;
+	private String topicName;
+	
+	public Topic(User creator, User subscriber, String visibility, String topicName) {
+		this.creator = creator;
+		this.subscriber = subscriber;
 		this.visibility = visibility;
+		this.topicName = topicName;
 	}
 
 	public Topic() {
@@ -33,20 +42,20 @@ public class Topic {
 		this.topicID = topicID;
 	}
 
-	public String getTopicName() {
-		return topicName;
+	public User getCreator() {
+		return creator;
 	}
 
-	public void setTopicName(String topicName) {
-		this.topicName = topicName;
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
-	public User getUser() {
-		return user;
+	public User getSubscriber() {
+		return subscriber;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setSubscriber(User subscriber) {
+		this.subscriber = subscriber;
 	}
 
 	public String getVisibility() {
@@ -57,10 +66,18 @@ public class Topic {
 		this.visibility = visibility;
 	}
 
-	@Override
-	public String toString() {
-		return "Topic [topicID=" + topicID + ", topicName=" + topicName + ", user=" + user + ", visibility="
-				+ visibility + "]";
+	public String getTopicName() {
+		return topicName;
 	}
 
+	public void setTopicName(String topicName) {
+		this.topicName = topicName;
+	}
+
+	@Override
+	public String toString() {
+		return "Topic [topicID=" + topicID + ", creator=" + creator + ", subscriber=" + subscriber + ", visibility="
+				+ visibility + ", topicName=" + topicName + "]";
+	}
+	
 }
