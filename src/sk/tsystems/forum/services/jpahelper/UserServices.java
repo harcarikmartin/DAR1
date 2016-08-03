@@ -2,7 +2,7 @@ package sk.tsystems.forum.services.jpahelper;
 
 import java.sql.Date;
 import javax.persistence.EntityManager;
-//import sk.tsystems.forum.entities.User;
+import sk.tsystems.forum.entities.User;
 
 public class UserServices {
 
@@ -14,10 +14,16 @@ public class UserServices {
 		EntityManager em = JpaHelper.getEntityManager();
 		
 		JpaHelper.beginTransaction();
-//		em.persist(new User());
+		em.persist(new User(userName,userPassword,birthDate));
 		JpaHelper.commitTransaction();
 
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 }
