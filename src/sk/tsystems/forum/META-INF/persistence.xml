@@ -22,6 +22,7 @@
             <property name="hibernate.connection.username" value="forum"/>
             <property name="hibernate.connection.password" value="forum"/>
             -->
+            
 			
 			<!--<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/> -->
 			<!--<property name="hibernate.connection.charSet" value="UTF-8"/> -->
