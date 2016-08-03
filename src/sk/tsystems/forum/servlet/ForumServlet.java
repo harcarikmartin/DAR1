@@ -97,10 +97,6 @@ public class ForumServlet extends HttpServlet {
 //		new RatingJpa().addRating(new Rating(Integer.parseInt(request.getParameter("rating")), player, game1));
 //	}
 //
-//	private void login(HttpServletRequest request) {
-//		request.setAttribute("showLogin", 1);
-//		request.setAttribute("login", 1);
-//	}
 
 //	private void logout(HttpServletRequest request) {
 //		session.setAttribute("player", null);
@@ -108,18 +104,18 @@ public class ForumServlet extends HttpServlet {
 //	}
 //
 	private void existingUser(HttpServletRequest request) {
-		request.setAttribute("showLogin", 1);
 		request.setAttribute("error", 3);
+		request.setAttribute("regWrong", "registerFcn()");
 	}
 
 	private void lenghtenPassword(HttpServletRequest request) {
-		request.setAttribute("showLogin", 1);
 		request.setAttribute("error", 2);
+		request.setAttribute("regWrong", "registerFcn()");
 	}
 
 	private void matchPasswords(HttpServletRequest request) {
-		request.setAttribute("showLogin", 1);
 		request.setAttribute("error", 1);
+		request.setAttribute("regWrong", "registerFcn()");
 	}
 
 	private void doLogin(HttpServletRequest request) {
@@ -129,7 +125,6 @@ public class ForumServlet extends HttpServlet {
 	}
 
 	private void incorrectPassword(HttpServletRequest request) {
-//		login(request);
 		request.setAttribute("error", 5);
 	}
 
