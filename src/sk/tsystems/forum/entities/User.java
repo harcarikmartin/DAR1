@@ -30,6 +30,10 @@ public class User {
 		this.status = status;
 	}
 
+	public User() {
+
+	}
+
 	public int getUserID() {
 		return userID;
 	}
