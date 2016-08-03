@@ -55,4 +55,15 @@ h3{
     padding-left: 1%;
     min-height: 5vh;
     background-color: darkseagreen;
+    display: inline-block;
 }
+
+.requiredField{
+	padding: 0;
+	margin: 0;
+	font: 12px Arial;
+	color: red;
+}
+
+
+

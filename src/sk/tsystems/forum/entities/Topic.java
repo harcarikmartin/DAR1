@@ -19,7 +19,7 @@ public class Topic {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User creator;
 	
-//	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 //	@ManyToMany(mappedBy="" cascade = CascadeType.ALL)
 //	@JoinTable(name="subscriber_topic", joinColumns=@JoinColumn(name="topicID"), inverseJoinColumns=@JoinColumn(name="userID")) 
 	private User subscriber;
