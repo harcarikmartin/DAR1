@@ -19,22 +19,17 @@ public class UserServices {
 		
 		addUser(new User(userName, userPassword,birthDate,role,status));
 		
-		return setPresentPlayer(userName, userPassword);
-		
+		return setPresentUser(userName, userPassword);
 	}
 	
-	
-	
-	
-	
-	public User setPresentPlayer(String userName, String userPassword) {
+
+	public User setPresentUser(String userName, String userPassword) {
 		int userID = getUserID(userName);
 		if(userID > 0) {
 			EntityManager em = JpaHelper.getEntityManager();
 			return em.find(User.class, userID);
 		 } 
 		else {
-			
 			return null;
 		 }
 	}
@@ -63,11 +58,11 @@ public class UserServices {
 		query.setParameter("userName", userName);
 		query.setParameter("userPassword", userPassword);
 	
-		
 		if(query.getResultList().isEmpty()) {
 			em.close();
 			return false;
-		} else {
+		} 
+		else {
 			return true;
 		}
 	}
