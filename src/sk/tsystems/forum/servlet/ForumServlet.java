@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.jpahelper.UserServices;
 /**
  * Hlavny rozhodovaci servlet
@@ -14,7 +16,8 @@ import sk.tsystems.forum.services.jpahelper.UserServices;
 @WebServlet("/Forum")
 public class ForumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	User user;
+    HttpSession session;   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,25 +35,25 @@ public class ForumServlet extends HttpServlet {
 				
 			} else if(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword"))){
 				//do login
-//				doLogin(request);
+				doLogin(request);
 			} else if(!(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")))){
 				//bad login details
 				incorrectPassword(request);
 			}
-		} else if("login".equals(action)) {
-			login(request);
+//		} else if("login".equals(action)) {
+//			login(request);
 //		} else if("register".equals(action)) {
 //			register(request);
-//		} else  if("registerMe".equals(action) && "user" != null && "password" != null && "passwordR" != null) {
-//			if(! (request.getParameter("password")).equals(request.getParameter("passwordR"))) {
-//				matchPasswords(request);
-//			} else if (request.getParameter("password").length() < 8) {
-//				lenghtenPassword(request);
-//			} else if (new PlayerJpa().getId(request.getParameter("user")) != 0) {
-//				existingUser(request);
-//			} else {
-//				doLogin(request);
-//			}
+		} else  if("registration".equals(action) && "userName" != null && "userPassword" != null && "userPasswordCheck" != null && "Birthdate" != null) {
+			if(! (request.getParameter("userPassword")).equals(request.getParameter("userPasswordCheck"))) {
+				matchPasswords(request);
+			} else if (request.getParameter("userPassword").length() < 8) {
+				lenghtenPassword(request);
+			} else if (new UserServices().getUserID(request.getParameter("userName")) != 0) {
+				existingUser(request);
+			} else {
+				doLogin(request);
+			}
 //		} else if("logout".equals(action)) {
 //			logout(request);
 //		} else if("play".equals(action) && request.getParameter("game") != null){
@@ -94,46 +97,39 @@ public class ForumServlet extends HttpServlet {
 //		new RatingJpa().addRating(new Rating(Integer.parseInt(request.getParameter("rating")), player, game1));
 //	}
 //
-	private void login(HttpServletRequest request) {
-		request.setAttribute("showLogin", 1);
-		request.setAttribute("login", 1);
-	}
-//
-//	private void register(HttpServletRequest request) {
-//		request.setAttribute("register", 1);
+//	private void login(HttpServletRequest request) {
+//		request.setAttribute("showLogin", 1);
+//		request.setAttribute("login", 1);
 //	}
-//
+
 //	private void logout(HttpServletRequest request) {
 //		session.setAttribute("player", null);
 //		request.setAttribute("defaultLog", 1);
 //	}
 //
-//	private void existingUser(HttpServletRequest request) {
-//		request.setAttribute("showLogin", 1);
-//		register(request);
-//		request.setAttribute("error", 3);
-//	}
-//
-//	private void lenghtenPassword(HttpServletRequest request) {
-//		request.setAttribute("showLogin", 1);
-//		register(request);
-//		request.setAttribute("error", 2);
-//	}
-//
-//	private void matchPasswords(HttpServletRequest request) {
-//		request.setAttribute("showLogin", 1);
-//		register(request);
-//		request.setAttribute("error", 1);
-//	}
-//
-//	private void doLogin(HttpServletRequest request) {
-//		player = new UserServices().setPresentPlayer(request.getParameter("userName"));
-//		session = request.getSession();
-//		session.setAttribute("player", player);
-//	}
+	private void existingUser(HttpServletRequest request) {
+		request.setAttribute("showLogin", 1);
+		request.setAttribute("error", 3);
+	}
+
+	private void lenghtenPassword(HttpServletRequest request) {
+		request.setAttribute("showLogin", 1);
+		request.setAttribute("error", 2);
+	}
+
+	private void matchPasswords(HttpServletRequest request) {
+		request.setAttribute("showLogin", 1);
+		request.setAttribute("error", 1);
+	}
+
+	private void doLogin(HttpServletRequest request) {
+		user = new UserServices().setPresentUser(request.getParameter("userName"), request.getParameter("userPassword"));
+		session = request.getSession();
+		session.setAttribute("user", user);
+	}
 
 	private void incorrectPassword(HttpServletRequest request) {
-		login(request);
+//		login(request);
 		request.setAttribute("error", 5);
 	}
 

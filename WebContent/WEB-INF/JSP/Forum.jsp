@@ -16,6 +16,21 @@
 
 <c:if test="${user == null}">
 <div id="login" class="content">
+								<c:if test="${error == '1'}">
+									<p class="warning">Passwords must match!</p>
+								</c:if>
+								<c:if test="${error == '2'}">
+									<p class="warning">Password must be at least 8 digits long!</p>
+								</c:if>
+								<c:if test="${error == '3'}">
+									<p class="warning">Username already exists!</p>
+								</c:if>
+								<c:if test="${error == '4'}">
+									<p class="warning">Not registered yet!</p>
+								</c:if>
+								<c:if test="${error == '5'}">
+									<p class="warning">Wrong password!</p>
+								</c:if>
 <form method="post">
     <div class="left">
         <label for="userName"><h4>Name:</h4></label>
