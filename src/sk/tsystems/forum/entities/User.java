@@ -1,20 +1,20 @@
 package sk.tsystems.forum.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Users")
 public class User {
 
 	@Id
 	@GeneratedValue
 	private int userID;
 
-	@Column(unique = true)
 	private String userName;
 
 	private String userPassword;

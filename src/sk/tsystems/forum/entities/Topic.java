@@ -4,8 +4,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Topic {
@@ -17,7 +19,9 @@ public class Topic {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User creator;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@ManyToMany(mappedBy="" cascade = CascadeType.ALL)
+//	@JoinTable(name="subscriber_topic", joinColumns=@JoinColumn(name="topicID"), inverseJoinColumns=@JoinColumn(name="userID")) 
 	private User subscriber;
 	
 	private String visibility;
