@@ -1,4 +1,4 @@
-package sk.tsystems.forum;
+package sk.tsystems.forum.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -157,7 +157,7 @@ public class ForumServlet extends HttpServlet {
 ////		new RatingJpa().addRating(new Rating(1, new PlayerJpa().setPresentPlayer("root", "root"), new GameJpa().setPresentGame("gtn")));
 ////		new RatingJpa().addRating(new Rating(1, new PlayerJpa().setPresentPlayer("root", "root"), new GameJpa().setPresentGame("stones")));
 //		serviceUpdate(request);
-//		request.getRequestDispatcher("/WEB-INF/jsp/gamestudio.jsp").forward(request, response);
+//		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 //	}
 //
 //	private void updateRatings() {
