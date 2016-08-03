@@ -32,6 +32,7 @@ public class UserServices {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT userID FROM User u WHERE u.userName = :userName");
 		query.setParameter("userName", userName);
+		
 		if(query.getResultList().isEmpty()) {
 			em.close();
 			return 0;
@@ -41,6 +42,22 @@ public class UserServices {
 		 }
 	}
 	
+	
+	
+	public boolean isPasswordCorrect(String userName, String userPassword) {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT userID FROM User u WHERE u.userName = :userName and u.userPassword = :userPassword");
+		query.setParameter("userName", userName);
+		query.setParameter("userPassword", userPassword);
+	
+		
+		if(query.getResultList().isEmpty()) {
+			em.close();
+			return false;
+		} else {
+			return true;
+		}
+	}
 	
 	
 }
