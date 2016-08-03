@@ -14,15 +14,28 @@ public class UserServices {
 	}
 	
 	
-	public User setPresentPlayer(String userName, String userPassword,Date birthDate) {
+	
+	public User registerUser(String userName, String userPassword,Date birthDate,String role,String status){
+		
+		addUser(new User(userName, userPassword,birthDate,role,status));
+		
+		return setPresentPlayer(userName, userPassword);
+		
+	}
+	
+	
+	
+	
+	
+	public User setPresentPlayer(String userName, String userPassword) {
 		int userID = getUserID(userName);
 		if(userID > 0) {
 			EntityManager em = JpaHelper.getEntityManager();
 			return em.find(User.class, userID);
 		 } 
 		else {
-			addUser(new User(userName, userPassword,birthDate));
-			return setPresentPlayer(userName, userPassword,birthDate);
+			
+			return null;
 		 }
 	}
 	
