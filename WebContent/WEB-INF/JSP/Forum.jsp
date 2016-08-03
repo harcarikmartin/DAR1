@@ -17,7 +17,7 @@
 <c:if test="${user == null}">
 <div id="login" class="content">
 								<c:if test="${error == '5'}">
-									<p class="warning">Wrong password!</p>
+									<p class="warning">Wrong login details!</p>
 								</c:if>								
 <form method="post">
     <div class="left">
@@ -25,7 +25,8 @@
         <input id="userName" class="userName" type="text" name="userName" placeholder="name ...">
         <label for="userPassword">Password:</label>
         <input id="userPassword" class="userPassword" type="text" name="userPassword" placeholder="password ...">
-        <button name="action" value="login" type="submit">Login</button>
+        <input type="hidden" name="action" value="login" >
+        <button type="submit">Login</button>
     </div>
     <div class="right">
         <button name="action" value="registrationShow" type="button" onclick="registerFcn()">Registration</button>
@@ -38,10 +39,13 @@
 <c:if test="${user != null}">
 <div class="content">
     <div class="left">
-        <p>Prihlásený ako </p>
+        <p>Prihlásený ako ${user.userName}</p>
     </div>
     <div class="right">
-        <button name="action" value="logout" type="submit">Logout</button>
+    	<form method="post">
+	    	<input type="hidden" name="action" value="logout">
+	        <button type="submit">Logout</button>
+        </form>
     </div>
 </div>
 </c:if>
@@ -95,7 +99,8 @@
         <div class="clear"></div>
         <div class="leftRegistration"></div>
         <div class="rightRegistration">
-            <button name="action" value="registration" type="submit">Registration</button><br>
+        	<input type="hidden" name="action" value="registration">
+            <button type="submit">Registration</button><br>
             <button type="button" onClick="window.location.reload()">Back</button>
         </div>
         <div class="clear"></div>

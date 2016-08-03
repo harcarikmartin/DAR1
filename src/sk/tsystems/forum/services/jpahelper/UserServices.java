@@ -1,6 +1,5 @@
 package sk.tsystems.forum.services.jpahelper;
 
-import java.sql.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import sk.tsystems.forum.entities.User;
@@ -15,9 +14,9 @@ public class UserServices {
 	
 	
 	
-	public User registerUser(String userName, String userPassword,Date birthDate,String role,String status){
+	public User registerUser(String userName, String userPassword,java.util.Date date,String role,String status){
 		
-		addUser(new User(userName, userPassword,birthDate,role,status));
+		addUser(new User(userName, userPassword,date,role,status));
 		
 		return setPresentUser(userName, userPassword);
 	}
