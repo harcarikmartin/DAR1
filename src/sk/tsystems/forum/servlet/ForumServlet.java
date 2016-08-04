@@ -120,9 +120,16 @@ public class ForumServlet extends HttpServlet {
 	
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		User admin = new User();
+		admin.setUserName("jozko");
+		admin.setUserPassword("jozko");
+		admin.setRole("admin");
+		new UserServices().addUser(admin);
+		
 		User user = new User();
-		user.setUserName("jozko");
-		user.setUserPassword("jozko");
+		user.setUserName("janko");
+		user.setUserPassword("janko");
+		user.setRole("user");
 		new UserServices().addUser(user);
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 	}
