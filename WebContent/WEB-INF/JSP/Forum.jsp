@@ -126,11 +126,8 @@
 
 
 
+<jsp:include page="UserMenu.jsp"/>
 
-<c:if test="${user.role == 'user'}">
-<%-- <jsp:include page="Slavo.jsp"/> --%>
-User page with functions!!!!
-</c:if>
 
 
 
