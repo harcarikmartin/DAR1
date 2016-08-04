@@ -18,6 +18,10 @@ h3{
     text-align: center;
 }
 
+p {
+	margin: 0;
+}
+
 .left {
     float: left;
     width: 75%;

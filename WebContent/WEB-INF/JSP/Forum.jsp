@@ -121,13 +121,13 @@
 
 
 
-<c:if test="${user.role == admin}">
-<%-- <jsp:include page="Mato.jsp"/> --%>
-Admin page with functions!!!!
-</c:if>
+
+<jsp:include page="AdminMenu.jsp"/>
 
 
-<c:if test="${user.role == user}">
+
+
+<c:if test="${user.role == 'user'}">
 <%-- <jsp:include page="Slavo.jsp"/> --%>
 User page with functions!!!!
 </c:if>
@@ -136,14 +136,19 @@ User page with functions!!!!
 
 <div>
     <table>
-    <c:if test="${user == null}">
+    <c:forEach items="${topics}" var="topic">
         <tr>
-            <th class="topics">Topic 1 public</th>
+        <td>Name of topic: ${topic.topic}</td>
+        <td>Create by: ${topic.creator.userName}</td>
+        <td>Visibility: ${topic.visibility}</td>
+	        <c:if test="${user.role == 'admin'}">
+	        <a href="?action=updateTopic&idTopic=${topic.topicID}">Update</a>
+	        </c:if>
+	        <c:if test="${user.role == 'admin'}">
+	        <a href="?action=removeTopic&idTopic=${topic.topicID}">Remove</a>
+	        </c:if>
         </tr>
-        <tr>
-            <th class="topics">Topic 2 public</th>
-        </tr>
-        </c:if>
+       </c:forEach>
     </table>
 </div>
 </body>
