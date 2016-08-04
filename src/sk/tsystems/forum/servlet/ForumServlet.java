@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.jpahelper.UserServices;
 /**
- * Hlavny rozhodovaci servlet
+ * Main Forum servlet, responible for deciding based on node requests 
  */
 @WebServlet("/Forum")
 public class ForumServlet extends HttpServlet {
@@ -36,44 +36,34 @@ public class ForumServlet extends HttpServlet {
 		
 		if ("login".equals(action) && "userName" != null && "userPassword" != null) {
 			if((new UserServices().getUserID(request.getParameter("userName")) == 0)) {
-				//bad login details
+				//bad login details case
 				incorrectPassword(request);
 			} else if(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword"))){
-				//do login
+				//do login case
 				doLogin(request);
 			} else if(!(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")))){
-				//bad login details
+				//bad login details case
 				incorrectPassword(request);
 			}
-//		} else if("login".equals(action)) {
-//			login(request);
-//		} else if("register".equals(action)) {
-//			register(request);
 		} else  if("registration".equals(action) && "userName" != null && "userPassword" != null && "userPasswordCheck" != null && "birthdate" != null) {
 			if(! (request.getParameter("userPassword")).equals(request.getParameter("userPasswordCheck"))) {
+				//passwords do not match case
 				matchPasswords(request);
 			} else if (request.getParameter("userPassword").length() < 8) {
+				//password too short case
 				lenghtenPassword(request);
 			} else if (new UserServices().getUserID(request.getParameter("userName")) != 0) {
+				//username already exist case
 				existingUser(request);
 			} else {
+				//registration accepted case
 				doRegister(request);
 			}
 		} else if("logout".equals(action)) {
+			//logout case
 			logout(request);
-//		} else if("play".equals(action) && request.getParameter("game") != null){
-//			if(request.getParameter("player") == null) {
-//				request.setAttribute("defaultLog", 1);
-//			}
-//			request.setAttribute("comments", new CommentJpa().findCommentsForGame(new GameJpa().setPresentGame(request.getParameter("game"))));
-//			request.setAttribute("scores", new ScoreJpa().findTenBestScoresForGame(new GameJpa().setPresentGame(request.getParameter("game"))));
-//		} else if("insertRating".equals(action) && request.getParameter("rating") != null) {
-//			insertRating(request);
-//		} else if("insertComment".equals(action) && !request.getParameter("comment").isEmpty()) {
-//			insertComment(request);
-//		} else {
-//			request.setAttribute("defaultLog", 1);
 		}
+		//forwarding response back to node
 		forwardToList(request, response);
 	}
 
@@ -83,25 +73,6 @@ public class ForumServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-//	private Game prepareEntities(HttpServletRequest request) {
-//		request.setAttribute("name", player.getPlayerName());
-//		Game game1 = new GameJpa().setPresentGame(request.getParameter("game"));
-//		request.setAttribute("comments", new CommentJpa().findCommentsForGame(new GameJpa().setPresentGame(request.getParameter("game"))));
-//		request.setAttribute("scores", new ScoreJpa().findTenBestScoresForGame(new GameJpa().setPresentGame(request.getParameter("game"))));
-//		return game1;
-//	}
-//	
-//	private void insertComment(HttpServletRequest request) {
-//		Game game1 = prepareEntities(request);
-//		new CommentJpa().addComment(new Comment(request.getParameter("comment").trim(), player, game1));
-//	}
-//
-//	private void insertRating(HttpServletRequest request) {
-//		Game game1 = prepareEntities(request);
-//		new RatingJpa().addRating(new Rating(Integer.parseInt(request.getParameter("rating")), player, game1));
-//	}
-//
 
 	private void logout(HttpServletRequest request) {
 		session.setAttribute("user", null);
@@ -146,20 +117,6 @@ public class ForumServlet extends HttpServlet {
 	private void incorrectPassword(HttpServletRequest request) {
 		request.setAttribute("error", 5);
 	}
-
-//	private void doRegister(HttpServletRequest request) {
-//		request.setAttribute("showLogin", 1);
-//		register(request);
-//		request.setAttribute("error", 4);
-//	}
-//	
-	private void serviceUpdate(HttpServletRequest request) {
-//		request.setAttribute("games", games);
-//		request.setAttribute("gamePlay", request.getParameter("game"));
-		updateRatings();
-//		request.setAttribute("avgRatings", avgRatings);
-//		request.setAttribute("ratingsCounts", ratingsCounts);
-	}
 	
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -167,33 +124,6 @@ public class ForumServlet extends HttpServlet {
 		user.setUserName("jozko");
 		user.setUserPassword("jozko");
 		new UserServices().addUser(user);
-//		new GameJpa().setPresentGame("minesweeper");
-//		new GameJpa().setPresentGame("gtn");
-//		new GameJpa().setPresentGame("stones");
-//		new GameJpa().setPresentGame("flipit");
-//		new PlayerJpa().setPresentPlayer("root", "root");
-//		new RatingJpa().addRating(new Rating(1, new PlayerJpa().setPresentPlayer("root", "root"), new GameJpa().setPresentGame("flipit")));
-//		new RatingJpa().addRating(new Rating(1, new PlayerJpa().setPresentPlayer("root", "root"), new GameJpa().setPresentGame("gtn")));
-//		new RatingJpa().addRating(new Rating(1, new PlayerJpa().setPresentPlayer("root", "root"), new GameJpa().setPresentGame("stones")));
-		serviceUpdate(request);
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 	}
-
-	private void updateRatings() {
-//		try {
-//			avgRatings.clear();
-//			ratingsCounts.clear();
-//			for (int i = 0; i < games.size(); i++) {
-//				
-//					avgRatings.add(i, (int) new RatingJpa().findAverageRatingForGame(new GameJpa().setPresentGame(games.get(i).getGameName())));
-//				
-//			}
-//			for (int i = 0; i < games.size(); i++) {
-//				ratingsCounts.add(i,new RatingJpa().findRatingsCountForGame(new GameJpa().setPresentGame(games.get(i).getGameName())));
-//			}
-//		} catch (Exception e) {
-//			System.err.println("No ratings found." + e.getMessage());
-//		}
-	}
-
 }
