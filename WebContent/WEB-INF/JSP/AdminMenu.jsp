@@ -12,7 +12,7 @@
 </body>
 </html> -->
 
-//Admin user is able to see admin interface where he can approve users or disable
+
 
 <c:if test="${user.role == 'admin'}">
 	<form>
