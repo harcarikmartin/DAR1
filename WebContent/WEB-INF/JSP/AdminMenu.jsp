@@ -15,7 +15,7 @@
 
 
 <c:if test="${user.role == 'admin'}">
-	<form>
+	<form method="post">
 		<label for="SeeProfile">My profile:</label>
 		<input type="hidden" name="action" value="profile" >
 	    <button id="ApproveUsers" type="submit">Profile</button>
@@ -46,7 +46,7 @@
 		</c:if>
 	</c:if>
 	
-	<form>
+	<form method="post">
 		<label for="ApproveUsers">Approve users:</label>
 		<input type="hidden" name="action" value="approve" >
 	    <button id="ApproveUsers" type="submit">Approve Users</button>

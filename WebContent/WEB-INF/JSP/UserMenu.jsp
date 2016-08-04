@@ -5,23 +5,23 @@
     
 <c:if test="${user.role=='user'}">
 
-	<form>
+	<form method="post">
 	<label for ="seeProfile"> My profile</label>
 	<input type="hidden" name="action" value="profile">
 	<button type="submit">Profile</button>
 	</form>
 
 
-	<form>
+	<form method="post">
 	<label for ="seeTopic"> My topics</label>
 	<input type="hidden" name="action" value="topic">
 	<button type="submit">Topic</button>
 	</form>
 
 
-   <c:if test="${action=='profile'}">
+   <c:if test="${listProfile != null}">
 		<form method="post">
-       	 <label for="userName"><h4>${userName}</h4></label>
+       	 <label for="userName"><h4>${user.userName}</h4></label>
         
         <label for="OldPass">Old password:</label>
         <input id="OldPass" type="password" name="OldPassword" placeholder="old password ...">
@@ -44,7 +44,7 @@
     
     
   
-  <c:if test="${action=='topic'}">
+  <c:if test="${listTopics != null}">
    <form>
      <table>
         <tr>
