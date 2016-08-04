@@ -26,19 +26,28 @@
 			<p>Birthdate: ${user.birthDate}</p>
 			<p>Role: ${user.role}</p>
 			<p>Status: ${user.status}</p>
-			<p><a href="?action=changePassword&amp;user=${user.userName}">Change Password</a></p></p>
+			<form method="post">
+				<input type="hidden" name="action" value="changePassword" >
+	    		<button type="submit">Change Password</button>
+			</form>
 		</div>
-		<c:if test="${changePassword != null }">
-			<form>
+		<c:if test="${passChanged == 1 }">
+			<p>Password changed successfully</p>
+		</c:if>
+		<c:if test="${passChanged == 0 }">
+			<p>Password not changed!</p>
+		</c:if>
+		<c:if test="${changePassword == 1 }">
+			<form method="post">
 				<label for="OldPassword">Old password:</label>
 				<input id="OldPassword" type="password" name="userPasswordOld" placeholder="password"><br>
 				<label for="NewPassword">New password:</label>
-				<input id="NewPassword"type="password" name="userPassword" 
+				<input id="NewPassword"type="password" name="userPasswordNew" 
            		pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" 
             	oninvalid="alert('Password is not valid')" placeholder="password">
             	<p>* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special Character [!@#$%^&*_=+-]</p>
 				<label for="NewPasswordConfirm">Confirm new password:</label>
-				<input id="NewPasswordConfirm" type="password" name="userPasswordCheck" placeholder="password"><br>
+				<input id="NewPasswordConfirm" type="password" name="userPasswordNewCheck" placeholder="password"><br>
 				
 				<input type="hidden" name="action" value="changeMyPassword" >
 	    		<button type="submit">Change</button>

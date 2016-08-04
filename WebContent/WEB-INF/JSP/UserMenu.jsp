@@ -18,7 +18,6 @@
 	<button type="submit">Topic</button>
 	</form>
 
-
    <c:if test="${listProfile != null}">
 		<form method="post">
        	 <label for="userName"><h4>${user.userName}</h4></label>

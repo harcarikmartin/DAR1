@@ -12,6 +12,8 @@
 </style>
 </head>
 <body>
+		<input type="hidden" name="action" value="generate" >
+        <button type="submit">Generate</button>
 <div class="centerAlign"><a href="google.com"><h3>Forum</h3></a></div>
 
 <c:if test="${user == null}">
@@ -40,6 +42,7 @@
 <div class="content">
     <div class="left">
         <p>Prihlásený ako ${user.userName}</p>
+        <p>heslo je ${user.userPassword }</p>
     </div>
     <div class="right">
     	<form method="post">

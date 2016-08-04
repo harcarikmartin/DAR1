@@ -98,28 +98,64 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("listProfile", 1);
 		} else if("approve".equals(action)) {
 			request.setAttribute("listUsersForApproval", 1);
+			request.setAttribute("pendingUsers", list);
+		} else if("changePassword".equals(action)){ 
+			request.setAttribute("changePassword", 1);
+			request.setAttribute("listProfile", 1);
+		} else if("changeMyPassword".equals(action)){
+			if(!(request.getParameter("userPasswordOld").equals(user.getUserPassword()))) {
+				//old password wrong
+				matchPasswordsChange(request);
+			} else if(! (request.getParameter("userPasswordNew")).equals(request.getParameter("userPasswordNewCheck"))) {
+				//passwords do not match case
+				matchPasswordsChange(request);
+			} else if (request.getParameter("userPasswordNew").length() < 8) {
+				//password too short case
+				lenghtenPasswordChange(request);
+			} else {
+				changePassword(request);
+			}
+		} else if("logout".equals(action)) {
+			//logout case
+			logout(request);
+		} else if("generate".equals(action)) {	
 			admin.setUserName("jozko");
 			admin.setUserPassword("jozko");
 			admin.setRole("admin");
 			user1.setUserName("janko");
 			user1.setUserPassword("janko");
 			user1.setRole("user");
+			new UserServices().addUser(admin);
+			new UserServices().addUser(user1);
 			list.add(admin);
 			list.add(user1);
-			request.setAttribute("pendingUsers", list);
-		} else if("logout".equals(action)) {
-			//logout case
-			logout(request);
-		}
+		 }
 		//forwarding response back to node
 		forwardToList(request, response);
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	
+	private void lenghtenPasswordChange(HttpServletRequest request) {
+		request.setAttribute("passChanged", 0);
+	}
+
+	private void matchPasswordsChange(HttpServletRequest request) {
+		request.setAttribute("passChanged", 0);
+		
+	}
+
+	private void changePassword(HttpServletRequest request) {
+		user.setUserPassword(request.getParameter("userPasswordNew"));
+		request.setAttribute("changePassword", 1);
+		request.setAttribute("listProfile", 1);
+		request.setAttribute("passChanged", 1);
 	}
 
 	private void logout(HttpServletRequest request) {
