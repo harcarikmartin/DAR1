@@ -21,7 +21,7 @@
 								</c:if>								
 <form method="post">
     <div class="left">
-        <label for="userName"><h4>Name:</h4></label>
+        <label for="userName">Name:</label>
         <input id="userName" class="userName" type="text" name="userName" placeholder="name ...">
         <label for="userPassword">Password:</label>
         <input id="userPassword" class="userPassword" type="text" name="userPassword" placeholder="password ...">
@@ -49,7 +49,6 @@
     </div>
 </div>
 </c:if>
-
 
 <c:if test="${user == null}">
 <div id="register" class="content">
@@ -83,14 +82,14 @@
         </div>
         <div class="rightRegistration">
             <input id="userPassReg" class="registrationForm" type="password" name="userPassword" 
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" 
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" 
             oninvalid="alert('Password is not valid')" placeholder="password"><p id="rfPass" class="requiredField">Required field</p>
         </div>
         <div class="clear"></div>
         <div class="leftRegistration">
         </div>
         <div class="rightRegistration">
-          	<p>* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special Character (!@#$%^&*_=+-)</p>
+          	<p>* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special Character</p>
         </div>
         <div class="clear"></div>
         <div class="leftRegistration">
@@ -121,17 +120,39 @@
 </c:if>
 
 
+
+<c:if test="${user.role == admin}">
+<%-- <jsp:include page="Mato.jsp"/> --%>
+Admin page with functions!!!!
+</c:if>
+
+
+<c:if test="${user.role == user}">
+<%-- <jsp:include page="Slavo.jsp"/> --%>
+User page with functions!!!!
+</c:if>
+
+
+
 <div>
     <table>
+    <c:if test="${user == null}">
         <tr>
-            <th class="topics">Topic 1</th>
+            <th class="topics">Topic 1 public</th>
         </tr>
         <tr>
-            <th class="topics">Topic 1</th>
+            <th class="topics">Topic 2 public</th>
         </tr>
+        </c:if>
     </table>
 </div>
 </body>
+
+
+
+
+
+
 
 <script type="text/javascript">
 document.getElementById("login").style.display = "inline";
