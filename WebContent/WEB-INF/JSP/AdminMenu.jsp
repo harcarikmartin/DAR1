@@ -21,13 +21,29 @@
 	    <button id="ApproveUsers" type="submit">Profile</button>
 	</form>
 	<c:if test="${listProfile != null }">
-	<div>
-		<p>Username: ${user.userName} <a href="">change</a></p>
-		<p>Birthdate: ${user.birthDate}</p>
-		<p>Role: ${user.role}</p>
-		<p>Status: ${user.status}</p>
-		<p></p>
-	</div>
+		<div>
+			<p>Username: ${user.userName} <a href="">change</a></p>
+			<p>Birthdate: ${user.birthDate}</p>
+			<p>Role: ${user.role}</p>
+			<p>Status: ${user.status}</p>
+			<p><a href="?action=changePassword&amp;user=${user.userName}">Change Password</a></p></p>
+		</div>
+		<c:if test="${changePassword != null }">
+			<form>
+				<label for="OldPassword">Old password:</label>
+				<input id="OldPassword" type="password" name="userPasswordOld" placeholder="password"><br>
+				<label for="NewPassword">New password:</label>
+				<input id="NewPassword"type="password" name="userPassword" 
+           		pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" 
+            	oninvalid="alert('Password is not valid')" placeholder="password">
+            	<p>* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special Character [!@#$%^&*_=+-]</p>
+				<label for="NewPasswordConfirm">Confirm new password:</label>
+				<input id="NewPasswordConfirm" type="password" name="userPasswordCheck" placeholder="password"><br>
+				
+				<input type="hidden" name="action" value="changeMyPassword" >
+	    		<button type="submit">Change</button>
+			</form>
+		</c:if>
 	</c:if>
 	
 	<form>
@@ -36,5 +52,8 @@
 	    <button id="ApproveUsers" type="submit">Approve Users</button>
 	</form>
 	<c:if test="${listUsersForApproval != null }">
+		<c:forEach items="${pendingUsers}" var="pendingUser">
+			<p>${pendingUser }<a href="?action=approveUser&amp;user=${pendingUser.userName}">Approve</a></p>
+		</c:forEach>
 	</c:if>
 </c:if>
