@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.jpahelper.UserServices;
 /**
@@ -27,7 +28,7 @@ public class ForumServlet extends HttpServlet {
 	List<User> list = new ArrayList<>();
     HttpSession session;   
     User admin = new User();
-	
+	List<Topic> topics = new ArrayList<>();
 	
 	User user = new User();
 	User user1 = new User();
@@ -42,6 +43,8 @@ public class ForumServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
+		
+		
 		
 		if ("login".equals(action) && "userName" != null && "userPassword" != null) {
 			if((new UserServices().getUserID(request.getParameter("userName")) == 0)) {
@@ -63,6 +66,29 @@ public class ForumServlet extends HttpServlet {
 				lenghtenPassword(request);
 			} else if (new UserServices().getUserID(request.getParameter("userName")) != 0) {
 				//username already exist case
+				Topic topic1 = new Topic();
+				topic1.setTopic("prvy topic privatny");
+				topic1.setCreator(admin);
+				topic1.setVisibility("private");
+				Topic topic2 = new Topic();
+				topic2.setTopic("prvy topic privatny");
+				topic2.setCreator(admin);
+				topic2.setVisibility("private");
+				Topic topic3 = new Topic();
+				topic3.setTopic("prvy topic verejny");
+				topic3.setCreator(admin);
+				topic3.setVisibility("public");
+				Topic topic4 = new Topic();
+				topic4.setTopic("prvy topic verejny");
+				topic4.setCreator(admin);
+				topic4.setVisibility("public");
+				
+				topics.add(topic1);
+				topics.add(topic2);
+				topics.add(topic3);
+				topics.add(topic4);
+				
+				
 				existingUser(request);
 			} else {
 				//registration accepted case
@@ -143,7 +169,7 @@ public class ForumServlet extends HttpServlet {
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
+		request.setAttribute("topics", topics);
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 	}
 }

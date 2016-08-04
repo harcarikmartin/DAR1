@@ -136,14 +136,15 @@
     <c:forEach items="${topics}" var="topic">
         <tr>
         <td>Name of topic: ${topic.topic}</td>
-        <td>Create by: ${topic.creator.userName}</td>
+        <td>Create by: ${topic.creator}</td>
         <td>Visibility: ${topic.visibility}</td>
+        <td>
 	        <c:if test="${user.role == 'admin'}">
 	        <a href="?action=updateTopic&idTopic=${topic.topicID}">Update</a>
-	        </c:if>
-	        <c:if test="${user.role == 'admin'}">
+
 	        <a href="?action=removeTopic&idTopic=${topic.topicID}">Remove</a>
 	        </c:if>
+	        </td>
         </tr>
        </c:forEach>
     </table>
