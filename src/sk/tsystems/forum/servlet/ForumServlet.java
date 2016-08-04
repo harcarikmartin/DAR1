@@ -163,10 +163,10 @@ public class ForumServlet extends HttpServlet {
 	
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		User user = new User();
-//		user.setUserName("jozko");
-//		user.setUserPassword("jozko");
-//		new UserServices().addUser(user);
+		User user = new User();
+		user.setUserName("jozko");
+		user.setUserPassword("jozko");
+		new UserServices().addUser(user);
 //		new GameJpa().setPresentGame("minesweeper");
 //		new GameJpa().setPresentGame("gtn");
 //		new GameJpa().setPresentGame("stones");

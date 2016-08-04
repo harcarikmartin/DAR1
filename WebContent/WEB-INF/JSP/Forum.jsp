@@ -50,6 +50,8 @@
 </div>
 </c:if>
 
+
+<c:if test="${user == null}">
 <div id="register" class="content">
 								<c:if test="${error == '1'}">
 									<p class="warning">Passwords must match!</p>
@@ -116,6 +118,8 @@
         </form>
     </div>
 </div>
+</c:if>
+
 
 <div>
     <table>
