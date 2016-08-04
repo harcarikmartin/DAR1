@@ -4,10 +4,6 @@
 
 
 <table id="printComments" >
-	<tr>
-		<th>Player's Name
-		<th>Player's Comment
-	</tr>
 	<c:forEach items="${Comments}" var="Comments">
 		<tr>
 			<td>${Comments.user.userName}
