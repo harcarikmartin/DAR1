@@ -16,7 +16,7 @@ public class UserServices {
 	
 	public User registerUser(String userName, String userPassword,java.util.Date date,String role,String status){
 		
-		addUser(new User(userName, userPassword,date,role,status));
+	//	addUser(new User(topics, userName, userPassword, birthDate, role, status));
 		
 		return setPresentUser(userName, userPassword);
 	}
