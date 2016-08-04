@@ -1,7 +1,12 @@
 package sk.tsystems.forum.services.jpahelper;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
 
 public class UserServices {
@@ -14,13 +19,15 @@ public class UserServices {
 	
 	
 	
-	public User registerUser(String userName, String userPassword,java.util.Date date,String role,String status){
-		
-	//	addUser(new User(topics, userName, userPassword, birthDate, role, status));
-		
+//	public User registerUser(List<Topic> topics, String userName, String userPassword,Date birthDate,String role,String status){
+//		addUser(new User(topics, userName, userPassword, birthDate, role, status));
+//		return setPresentUser(userName, userPassword);
+//	}
+	
+	public User registerUser(String userName, String userPassword,Date birthDate,String role,String status){
+		addUser(new User(userName, userPassword, birthDate, role, status));
 		return setPresentUser(userName, userPassword);
 	}
-	
 
 	public User setPresentUser(String userName, String userPassword) {
 		int userID = getUserID(userName);
