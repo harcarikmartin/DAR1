@@ -14,7 +14,7 @@
 <body>
 		<input type="hidden" name="action" value="generate" >
         <button type="submit">Generate</button>
-<div class="centerAlign"><a href="google.com"><h3>Forum</h3></a></div>
+<div class="centerAlign"><a href="/Forum/Forum"><h3>Forum</h3></a></div>
 
 <c:if test="${user == null}">
 <div id="login" class="content">

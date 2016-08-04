@@ -178,12 +178,14 @@ public class ForumServlet extends HttpServlet {
 	}
 
 	private void doLogin(HttpServletRequest request) {
+		user = null;
 		user = new UserServices().setPresentUser(request.getParameter("userName"), request.getParameter("userPassword"));
 		session = request.getSession();
 		session.setAttribute("user", user);
 	}
 	
 	private void doRegister(HttpServletRequest request) {
+		user = null;
 		String dateString = request.getParameter("birthdate");
 	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
 	    Date date = null;
