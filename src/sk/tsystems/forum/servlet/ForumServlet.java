@@ -66,27 +66,27 @@ public class ForumServlet extends HttpServlet {
 				lenghtenPassword(request);
 			} else if (new UserServices().getUserID(request.getParameter("userName")) != 0) {
 				//username already exist case
-				Topic topic1 = new Topic();
-				topic1.setTopic("prvy topic privatny");
-				topic1.setCreator(admin);
-				topic1.setVisibility("private");
-				Topic topic2 = new Topic();
-				topic2.setTopic("prvy topic privatny");
-				topic2.setCreator(admin);
-				topic2.setVisibility("private");
-				Topic topic3 = new Topic();
-				topic3.setTopic("prvy topic verejny");
-				topic3.setCreator(admin);
-				topic3.setVisibility("public");
-				Topic topic4 = new Topic();
-				topic4.setTopic("prvy topic verejny");
-				topic4.setCreator(admin);
-				topic4.setVisibility("public");
-				
-				topics.add(topic1);
-				topics.add(topic2);
-				topics.add(topic3);
-				topics.add(topic4);
+//				Topic topic1 = new Topic();
+//				topic1.setTopic("prvy topic");
+//				topic1.setCreator(admin);
+//				topic1.setVisibility("private");
+//				Topic topic2 = new Topic();
+//				topic2.setTopic("prvy topic");
+//				topic2.setCreator(admin);
+//				topic2.setVisibility("private");
+//				Topic topic3 = new Topic();
+//				topic3.setTopic("prvy topic");
+//				topic3.setCreator(admin);
+//				topic3.setVisibility("public");
+//				Topic topic4 = new Topic();
+//				topic4.setTopic("prvy topic");
+//				topic4.setCreator(admin);
+//				topic4.setVisibility("public");
+//				
+//				topics.add(topic1);
+//				topics.add(topic2);
+//				topics.add(topic3);
+//				topics.add(topic4);
 				
 				
 				existingUser(request);
@@ -119,12 +119,36 @@ public class ForumServlet extends HttpServlet {
 			//logout case
 			logout(request);
 		} else if("generate".equals(action)) {	
+			Topic topic1 = new Topic();
+			topic1.setTopic("prvy topic");
+			topic1.setCreator(admin);
+			topic1.setVisibility("private");
+			Topic topic2 = new Topic();
+			topic2.setTopic("prvy topic");
+			topic2.setCreator(admin);
+			topic2.setVisibility("private");
+			Topic topic3 = new Topic();
+			topic3.setTopic("prvy topic");
+			topic3.setCreator(admin);
+			topic3.setVisibility("public");
+			Topic topic4 = new Topic();
+			topic4.setTopic("prvy topic");
+			topic4.setCreator(admin);
+			topic4.setVisibility("public");
+			
+			topics.add(topic1);
+			topics.add(topic2);
+			topics.add(topic3);
+			topics.add(topic4);
+			
 			admin.setUserName("jozko");
 			admin.setUserPassword("jozko");
 			admin.setRole("admin");
+			admin.setStatus("confirmed");
 			user1.setUserName("janko");
 			user1.setUserPassword("janko");
 			user1.setRole("user");
+			user1.setStatus("pending");
 			new UserServices().addUser(admin);
 			new UserServices().addUser(user1);
 			list.add(admin);
