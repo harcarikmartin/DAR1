@@ -22,10 +22,10 @@ public class UserServices {
 	
 	public User registerUser(String userName, String userPassword,Date birthDate,String role,String status){
 		addUser(new User(userName, userPassword, birthDate, role, status));
-		return setPresentUser(userName, userPassword);
+		return setPresentUser(userName);
 	}
 
-	public User setPresentUser(String userName, String userPassword) {
+	public User setPresentUser(String userName) {
 		int userID = getUserID(userName);
 		if(userID > 0) {
 			EntityManager em = JpaHelper.getEntityManager();
@@ -68,6 +68,7 @@ public class UserServices {
 			return true;
 		}
 	}
+	
 	
 	
 }

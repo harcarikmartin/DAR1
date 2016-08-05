@@ -205,7 +205,7 @@ public class ForumServlet extends HttpServlet {
 
 	private void doLogin(HttpServletRequest request) {
 		user = null;
-		user = new UserServices().setPresentUser(request.getParameter("userName"), request.getParameter("userPassword"));
+		user = new UserServices().setPresentUser(request.getParameter("userName"));
 		session = request.getSession();
 		session.setAttribute("user", user);
 	}
