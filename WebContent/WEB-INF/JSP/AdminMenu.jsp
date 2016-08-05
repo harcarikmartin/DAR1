@@ -11,13 +11,10 @@
 
 </body>
 </html> -->
-
-
-
 <c:if test="${user.role == 'admin'}">
 	<form method="post">
 		<label for="SeeProfile">My profile:</label>
-		<input type="hidden" name="action" value="profile" >
+		<input type="hidden" name="action" value="showProfile" >
 	    <button id="ApproveUsers" type="submit">Profile</button>
 	</form>
 	<c:if test="${listProfile != null }">

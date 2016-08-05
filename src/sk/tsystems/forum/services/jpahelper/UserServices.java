@@ -15,8 +15,6 @@ public class UserServices {
 		JpaHelper.commitTransaction();
 	}
 	
-	
-	
 //	public User registerUser(List<Topic> topics, String userName, String userPassword,Date birthDate,String role,String status){
 //		addUser(new User(topics, userName, userPassword, birthDate, role, status));
 //		return setPresentUser(userName, userPassword);
@@ -52,8 +50,6 @@ public class UserServices {
 		 }
 	}
 	
-	
-	
 	public int getUserID(String userName) {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT userID FROM User u WHERE u.userName = :userName");
@@ -67,8 +63,6 @@ public class UserServices {
 			return (int) query.getResultList().get(0);
 		 }
 	}
-	
-	
 	
 	public boolean isPasswordCorrect(String userName, String userPassword) {
 		EntityManager em = JpaHelper.getEntityManager();

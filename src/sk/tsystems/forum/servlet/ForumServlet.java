@@ -95,7 +95,7 @@ public class ForumServlet extends HttpServlet {
 				//registration accepted case
 				doRegister(request);
 			}
-		} else if("profile".equals(action)) {
+		} else if("showProfile".equals(action)) {
 			request.setAttribute("listProfile", 1);
 		} else if("approve".equals(action)) {
 			request.setAttribute("listUsersForApproval", 1);
@@ -124,11 +124,10 @@ public class ForumServlet extends HttpServlet {
 		} else if("logout".equals(action)) {
 			//logout case
 			logout(request);
-		} else if("topic".equals(action)) {
-			request.setAttribute("Topic", new TopicServices().printTopic());
+		} else if("showMyTopics".equals(action)) {
+			request.setAttribute("topics", new TopicServices().printTopic());
 			request.setAttribute("listTopics", 1);	
 		}
-		
 		
 		else if("generate".equals(action)) {	
 			Topic topic1 = new Topic();

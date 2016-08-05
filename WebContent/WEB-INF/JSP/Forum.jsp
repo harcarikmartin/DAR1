@@ -162,13 +162,17 @@
 					<td>Name of topic: ${topic.topic}</td>
 					<td>Create by: ${topic.creator.userName}</td>
 					<td>Visibility: ${topic.visibility}</td>
+					
+					 
 					<td>
+					//preco je td vytvorene prazdne pre usera, je v nom nieco iba u admina... doplnit form tagy a hidden inputy!!
 						<c:if test="${user.role == 'admin'}">
 						<input type="hidden" name="updateTopic&idTopic" value="${topic.topicID}">
 						<button type="submit">Update</button>
 						<button type="submit">Remove</button>
 						</c:if>
 					</td>
+					
 				</tr>
 				</c:if>
 			</c:forEach>
