@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
+import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.jpahelper.UserServices;
 /**
  * Main Forum servlet, responible for deciding based on node requests 
@@ -125,7 +126,13 @@ public class ForumServlet extends HttpServlet {
 		} else if("logout".equals(action)) {
 			//logout case
 			logout(request);
-		} else if("generate".equals(action)) {	
+		}	else if("topic".equals(action)) {
+			request.setAttribute("Topic", 	new TopicServices().printTopic());
+			request.setAttribute("listTopics", 1);	
+		}
+		
+		
+		else if("generate".equals(action)) {	
 			Topic topic1 = new Topic();
 			topic1.setTopic("prvy topic");
 			topic1.setCreator(admin);

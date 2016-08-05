@@ -65,7 +65,7 @@
 		<c:forEach var="topic" items="${Topic}">
 			<tr>
 				<td>
-					<input type="checkbox" name="topic" value="	${Topic.topicId}"> ${Topic.topic}
+					<input type="checkbox" name="topic" value="	${topic.topicID}"> ${topic.topic}
 				</td>
 			</tr>
 		</c:forEach>
