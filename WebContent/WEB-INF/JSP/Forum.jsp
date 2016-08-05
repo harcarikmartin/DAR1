@@ -12,12 +12,14 @@
 </style>
 </head>
 <body>
-	<form>
-		<input type="hidden" name="action" value="generate">
-		<button type="submit">Generate</button>
-	</form>
+	<h3>
+		<a href="/Forum/Forum">Forum</a>
+	</h3>
 	<div class="centerAlign">
-		<a href="/Forum/Forum"><h3>Forum</h3></a>
+		<form method="post">
+			<input type="hidden" name="action" value="generate">
+			<button type="submit">Generate</button><br><br>
+		</form>
 	</div>
 
 	<c:if test="${user == null}">
