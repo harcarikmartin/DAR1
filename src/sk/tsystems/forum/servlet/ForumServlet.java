@@ -101,8 +101,11 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("pendingUsers", list);
 		} else if("approveUser".equals(action)) { 
 			//approve user
-			request.getParameter("userForApproval");
-			new User().setStatus("confirmed");
+			User approving = new UserServices().setPresentUser(request.getParameter("userForApproval"));
+			approving.setStatus("confirmed");
+			
+			request.setAttribute("listUsersForApproval", 1);
+			request.setAttribute("pendingUsers", list);
 		} else if("changePassword".equals(action)){ 
 			request.setAttribute("changePassword", 1);
 			request.setAttribute("listProfile", 1);
@@ -153,8 +156,8 @@ public class ForumServlet extends HttpServlet {
 			user1.setUserPassword("janko");
 			user1.setRole("user");
 			user1.setStatus("pending");
-			new UserServices().addUser(admin);
-			new UserServices().addUser(user1);
+//			new UserServices().addUser(admin);
+//			new UserServices().addUser(user1);
 			list.add(admin);
 			list.add(user1);
 		 }
