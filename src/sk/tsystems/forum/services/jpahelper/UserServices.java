@@ -1,6 +1,9 @@
 package sk.tsystems.forum.services.jpahelper;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import sk.tsystems.forum.entities.User;
@@ -69,6 +72,12 @@ public class UserServices {
 		}
 	}
 	
-	
+	public List<User> getPendingUsers(){
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT userName FROM User u WHERE u.status='pending' ");
+
+		return query.getResultList();
+		
+	}
 	
 }
