@@ -100,7 +100,9 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("listUsersForApproval", 1);
 			request.setAttribute("pendingUsers", list);
 		} else if("approveUser".equals(action)) { 
-			
+			//approve user
+			request.getParameter("userForApproval");
+			new User().setStatus("confirmed");
 		} else if("changePassword".equals(action)){ 
 			request.setAttribute("changePassword", 1);
 			request.setAttribute("listProfile", 1);
@@ -204,7 +206,6 @@ public class ForumServlet extends HttpServlet {
 	}
 
 	private void doLogin(HttpServletRequest request) {
-		user = null;
 		user = new UserServices().setPresentUser(request.getParameter("userName"));
 		session = request.getSession();
 		session.setAttribute("user", user);
