@@ -99,6 +99,8 @@ public class ForumServlet extends HttpServlet {
 		} else if("approve".equals(action)) {
 			request.setAttribute("listUsersForApproval", 1);
 			request.setAttribute("pendingUsers", list);
+		} else if("approveUser".equals(action)) { 
+			
 		} else if("changePassword".equals(action)){ 
 			request.setAttribute("changePassword", 1);
 			request.setAttribute("listProfile", 1);
