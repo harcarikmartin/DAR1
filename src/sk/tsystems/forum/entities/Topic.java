@@ -32,7 +32,6 @@ public class Topic {
 	private String topic;
 
 	public Topic(int topicID, User creator, List<User> users, String visibility, String topic) {
-		this.topicID = topicID;
 		this.creator = creator;
 		this.users = users;
 		this.visibility = visibility;
