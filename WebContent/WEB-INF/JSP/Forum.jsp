@@ -152,8 +152,13 @@
 					<td>Create by: ${topic.creator}</td>
 					<td>Visibility: ${topic.visibility}</td>
 					<td><c:if test="${user.role == 'admin'}">
-							<a href="?action=updateTopic&idTopic=${topic.topicID}">Update</a>
-							<a href="?action=removeTopic&idTopic=${topic.topicID}">Remove</a>
+					
+						<input type="hidden" name="updateTopic&idTopic" value="${topic.topicID}">
+						<button type="submit">Update</button>
+						
+						<input type="hidden" name="removeTopic&idTopic" value="${topic.topicID}">
+						<button type="submit">Remove</button>
+					
 						</c:if></td>
 				</tr>
 			</c:forEach>
