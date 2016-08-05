@@ -22,7 +22,7 @@
 	</form>
 	<c:if test="${listProfile != null }">
 		<div>
-			<p>Username: ${user.userName} <a href="">change</a></p>
+			<p>Username: ${user.userName}</p>
 			<p>Birthdate: ${user.birthDate}</p>
 			<p>Role: ${user.role}</p>
 			<p>Status: ${user.status}</p>
@@ -61,8 +61,18 @@
 	    <button id="ApproveUsers" type="submit">Approve Users</button>
 	</form>
 	<c:if test="${listUsersForApproval != null }">
+		<table>
 		<c:forEach items="${pendingUsers}" var="pendingUser">
-			<p>${pendingUser }<a href="?action=approveUser&amp;user=${pendingUser.userName}">Approve</a></p>
+			<tr>
+				<td><p>${pendingUser }</p></td>
+				<td>
+					<form method="post">	
+						<input type="hidden" name="action" value="approveUser" >
+						<button type="submit">Approve</button>
+					</form>
+				</td>
+			</tr>
 		</c:forEach>
+		</table>
 	</c:if>
 </c:if>
