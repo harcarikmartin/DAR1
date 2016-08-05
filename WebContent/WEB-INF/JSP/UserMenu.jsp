@@ -19,9 +19,20 @@
 	</form>
 
    <c:if test="${listProfile != null}">
+  	 <p>Username: ${user.userName} </p>
+	 <p>Birthdate: ${user.birthDate}</p>
+	 <p>Role: ${user.role}</p>
+	 <p>Status: ${user.status}</p>
+   
+   
+   
+   		<form method="post">
+			<input type="hidden" name="action" value="changePassword" >
+	    	<button type="submit">Change Password</button>
+		</form>
+   
+   	<c:if test="${changePassword == 1 }">
 		<form method="post">
-       	 <label for="userName"><h4>${user.userName}</h4></label>
-        
         <label for="OldPass">Old password:</label>
         <input id="OldPass" type="password" name="OldPassword" placeholder="old password ...">
         
@@ -37,6 +48,7 @@
        <input type="hidden" name="action" value="changePass">
         <button type="submit">Change password </button>
     </form>
+    </c:if>  
   </c:if>   
  
     

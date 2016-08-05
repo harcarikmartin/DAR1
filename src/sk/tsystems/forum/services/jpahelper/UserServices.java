@@ -1,12 +1,8 @@
 package sk.tsystems.forum.services.jpahelper;
 
 import java.util.Date;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
-import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
 
 public class UserServices {
