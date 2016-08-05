@@ -27,11 +27,19 @@ public class UserServices {
 		return setPresentUser(userName);
 	}
 	
-	public void approveUser(User user) {
+	public void approveUser(String userName) {
+			User user = setPresentUser(userName);
 			JpaHelper.beginTransaction();
 			user.setStatus("confirmed");
 			JpaHelper.commitTransaction();
-		}
+	}
+	
+	public void changePassword(String userName, String newPassword) {
+		User user = setPresentUser(userName);
+		JpaHelper.beginTransaction();
+		user.setUserPassword(newPassword);
+		JpaHelper.commitTransaction();
+}
 	
 	public User setPresentUser(String userName) {
 		int userID = getUserID(userName);

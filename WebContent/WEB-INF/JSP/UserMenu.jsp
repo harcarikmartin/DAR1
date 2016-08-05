@@ -32,23 +32,21 @@
 		</form>
    
    	<c:if test="${changePassword == 1 }">
-		<form method="post">
-        <label for="OldPass">Old password:</label>
-        <input id="OldPass" type="password" name="OldPassword" placeholder="old password ...">
-        
-         <label for="newPass">New password:</label>
-         <input id="newPass" type="password" name="newPassword" 
-         		pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" 
-           		oninvalid="alert('Password is not valid')"  placeholder="new password ...">
-       	 <p>* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special Character (!@#$%^&*_=+-)</p>
-        
-         <label for="newPassCheck">Password for check:</label>
-         <input id="newPassCheck"  type="password" name="newPasswordCheck" placeholder="password again ...">
-       
-       <input type="hidden" name="action" value="changePass">
-        <button type="submit">Change password </button>
-    </form>
-    </c:if>  
+			<form method="post">
+				<label for="OldPassword">Old password:</label>
+				<input id="OldPassword" type="password" name="userPasswordOld" placeholder="password"><br>
+				<label for="NewPassword">New password:</label>
+				<input id="NewPassword"type="password" name="userPasswordNew" 
+           		pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" 
+            	oninvalid="alert('Password is not valid')" placeholder="password">
+            	<p>* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special Character [!@#$%^&*_=+-]</p>
+				<label for="NewPasswordConfirm">Confirm new password:</label>
+				<input id="NewPasswordConfirm" type="password" name="userPasswordNewCheck" placeholder="password"><br>
+				
+				<input type="hidden" name="action" value="changeMyPassword" >
+	    		<button type="submit">Change</button>
+			</form>
+		</c:if>
   </c:if>   
  
     

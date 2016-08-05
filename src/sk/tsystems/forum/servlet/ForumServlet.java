@@ -102,8 +102,7 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
 		} else if("approveUser".equals(action)) { 
 			//approve user
-			User userForApproval = new UserServices().setPresentUser(request.getParameter("userForApproval"));
-			new UserServices().approveUser(userForApproval);
+			new UserServices().approveUser(request.getParameter("userForApproval"));
 			request.setAttribute("listUsersForApproval", 1);
 			request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
 		} else if("changePassword".equals(action)){ 
@@ -194,7 +193,7 @@ public class ForumServlet extends HttpServlet {
 	}
 
 	private void changePassword(HttpServletRequest request) {
-		user.setUserPassword(request.getParameter("userPasswordNew"));
+		new UserServices().changePassword(user.getUserName(), request.getParameter("userPasswordNew"));
 		request.setAttribute("changePassword", 1);
 		request.setAttribute("listProfile", 1);
 		request.setAttribute("passChanged", 1);
