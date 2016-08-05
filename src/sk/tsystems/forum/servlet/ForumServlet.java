@@ -126,8 +126,8 @@ public class ForumServlet extends HttpServlet {
 		} else if("logout".equals(action)) {
 			//logout case
 			logout(request);
-		}	else if("topic".equals(action)) {
-			request.setAttribute("Topic", 	new TopicServices().printTopic());
+		} else if("topic".equals(action)) {
+			request.setAttribute("Topic", new TopicServices().printTopic());
 			request.setAttribute("listTopics", 1);	
 		}
 		
@@ -149,6 +149,11 @@ public class ForumServlet extends HttpServlet {
 			topic4.setTopic("prvy topic");
 			topic4.setCreator(admin);
 			topic4.setVisibility("public");
+			
+//			new TopicServices().addTopicToDatabase(topic1);
+//			new TopicServices().addTopicToDatabase(topic2);
+//			new TopicServices().addTopicToDatabase(topic3);
+//			new TopicServices().addTopicToDatabase(topic4);
 			
 			topics.add(topic1);
 			topics.add(topic2);
@@ -244,7 +249,7 @@ public class ForumServlet extends HttpServlet {
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setAttribute("topics", topics);
+		request.setAttribute("topics", new TopicServices().printTopic());
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 	}
 }

@@ -147,23 +147,35 @@
 	<div>
 		<table>
 			<c:forEach items="${topics}" var="topic">
-				<tr>
+				<c:if test="${user.role == null}">
+					<c:if test="${topic.visibility == 'public'}">
+					<tr>
+						<td>Name of topic: ${topic.topic}</td>
+						<td>Create by: ${topic.creator.userName}</td>
+						<td>Visibility: ${topic.visibility}</td>
+						</tr>
+					</c:if>
+				</c:if>
+				
+				<c:if test="${user.role != null}">
+					<tr>
 					<td>Name of topic: ${topic.topic}</td>
-					<td>Create by: ${topic.creator}</td>
+					<td>Create by: ${topic.creator.userName}</td>
 					<td>Visibility: ${topic.visibility}</td>
-					<td><c:if test="${user.role == 'admin'}">
-					
+					<td>
+						<c:if test="${user.role == 'admin'}">
 						<input type="hidden" name="updateTopic&idTopic" value="${topic.topicID}">
 						<button type="submit">Update</button>
-						
-						<input type="hidden" name="removeTopic&idTopic" value="${topic.topicID}">
 						<button type="submit">Remove</button>
-					
-						</c:if></td>
+						</c:if>
+					</td>
 				</tr>
+				</c:if>
 			</c:forEach>
 		</table>
 	</div>
+
+	
 </body>
 
 <script type="text/javascript">
