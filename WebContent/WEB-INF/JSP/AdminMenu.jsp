@@ -64,10 +64,10 @@
 		<table>
 		<c:forEach items="${pendingUsers}" var="pendingUser">
 			<tr>
-				<td><p>${pendingUser.userName}</p></td>
+				<td><p>${pendingUser}</p></td>
 				<td>
 					<form method="post">
-						<input type="hidden" name="userForApproval" value="${pendingUser.userName}">
+						<input type="hidden" name="userForApproval" value="${pendingUser}">
 						<input type="hidden" name="action" value="approveUser" >
 						<button type="submit">Approve</button>
 					</form>

@@ -1,6 +1,5 @@
 package sk.tsystems.forum.services.jpahelper;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +26,13 @@ public class UserServices {
 		addUser(new User(userName, userPassword, birthDate, role, status));
 		return setPresentUser(userName);
 	}
-
+	
+	public void approveUser(User user) {
+			JpaHelper.beginTransaction();
+			user.setStatus("confirmed");
+			JpaHelper.commitTransaction();
+		}
+	
 	public User setPresentUser(String userName) {
 		int userID = getUserID(userName);
 		if(userID > 0) {

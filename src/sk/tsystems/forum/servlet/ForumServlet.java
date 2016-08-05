@@ -99,14 +99,13 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("listProfile", 1);
 		} else if("approve".equals(action)) {
 			request.setAttribute("listUsersForApproval", 1);
-			request.setAttribute("pendingUsers", list);
+			request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
 		} else if("approveUser".equals(action)) { 
 			//approve user
-			User approving = new UserServices().setPresentUser(request.getParameter("userForApproval"));
-			approving.setStatus("confirmed");
-			
+			User userForApproval = new UserServices().setPresentUser(request.getParameter("userForApproval"));
+			new UserServices().approveUser(userForApproval);
 			request.setAttribute("listUsersForApproval", 1);
-			request.setAttribute("pendingUsers", list);
+			request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
 		} else if("changePassword".equals(action)){ 
 			request.setAttribute("changePassword", 1);
 			request.setAttribute("listProfile", 1);
