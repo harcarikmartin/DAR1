@@ -111,7 +111,11 @@ public class ForumServlet extends HttpServlet {
 		} else if("showMyTopics".equals(action)) {
 			request.setAttribute("listTopics", 1);	
 		} else if("updateTopic".equals(action)) {
-			request.setAttribute("listTopics", 1);	
+			request.setAttribute("topicUpdating", request.getParameter("topicToUpdate"));
+			request.setAttribute("listTopics", 1);
+		} else if("updateTheTopic".equals(action)) {
+			request.setAttribute("topicUpdating", request.getParameter("topicToUpdate"));
+			request.setAttribute("listTopics", 1);
 		} else if("removeTopic".equals(action)) {
 			new TopicServices().removeTopic(request.getParameter("topicToRemove"));
 			request.setAttribute("listTopics", 1);
