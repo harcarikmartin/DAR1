@@ -115,6 +115,7 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("topics", new TopicServices().printTopic());
 			request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		} else if("updateTopic".equals(action)) {
+			// ak je zmena stavu z private na public treba dany topic odstranit z prepojovacej tabulky
 			request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
 		} else if("updateTheTopic".equals(action)) {
 			new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility"));

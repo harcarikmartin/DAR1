@@ -54,6 +54,7 @@
 					<th>Name of topic</th>
 				</tr>
 				<c:forEach var="topic" items="${topics}">
+				<c:if test="${topic.visibility == 'private'}">
 					<tr>
 						<td><input type="checkbox" name="topic"
 							value="	${topic.topicID}"
@@ -66,6 +67,7 @@
 							</c:forEach>>
 							${topic.topic}</td>
 					</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 			<input type="hidden" name="action" value="changeTopics">
