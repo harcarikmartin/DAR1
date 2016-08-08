@@ -125,8 +125,11 @@ public class ForumServlet extends HttpServlet {
 			//logout case
 			logout(request);
 		} else if("showMyTopics".equals(action)) {
-			request.setAttribute("topics", new TopicServices().printTopic());
 			request.setAttribute("listTopics", 1);	
+		} else if("updateTopic".equals(action)) {
+			request.setAttribute("listTopics", 1);	
+		} else if("removeTopic".equals(action)) {
+			new TopicServices().removeTopic(request.getParameter("topicToRemove"));
 		}
 		
 		else if("generate".equals(action)) {	

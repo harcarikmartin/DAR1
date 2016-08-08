@@ -39,5 +39,39 @@ public class TopicServices {
 		em.persist(topic);
 		JpaHelper.commitTransaction();
 	}
+	
+	public int getTopicID(String topic) {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT topicID FROM Topic t WHERE t.topic = :topic");
+		query.setParameter("topic", topic);
+		
+		if(query.getResultList().isEmpty()) {
+			em.close();
+			return 0;
+		 } 
+		else {
+			return (int) query.getResultList().get(0);
+		 }
+	}
+	
+	public Topic setPresentTopic(String topic) {
+		int topicID = getTopicID(topic);
+		if(topicID > 0) {
+			EntityManager em = JpaHelper.getEntityManager();
+			return em.find(Topic.class, topicID);
+		 } 
+		else {
+			return null;
+		 }
+	}
+
+	public void removeTopic(String topicName) {
+		Topic topic = setPresentTopic(topicName);
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		em.remove(topic);
+		JpaHelper.commitTransaction();
+		
+	}
 
 }
