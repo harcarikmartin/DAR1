@@ -19,6 +19,7 @@ import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
+import sk.tsystems.forum.services.UsersTopicsServices;
 /**
  * Main Forum servlet, responible for deciding based on node requests 
  */
@@ -110,9 +111,11 @@ public class ForumServlet extends HttpServlet {
 			logout(request);
 		} else if("showMyTopics".equals(action)) {
 			request.setAttribute("listTopics", 1);	
+			request.setAttribute("topics", new TopicServices().printTopic());
+			request.setAttribute("currentUser", user);
+			request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		} else if("updateTopic".equals(action)) {
 			request.setAttribute("topicUpdating", request.getParameter("topicToUpdate"));
-			request.setAttribute("listTopics", 1);
 		} else if("updateTheTopic".equals(action)) {
 			request.setAttribute("topicUpdating", request.getParameter("topicToUpdate"));
 			request.setAttribute("listTopics", 1);
