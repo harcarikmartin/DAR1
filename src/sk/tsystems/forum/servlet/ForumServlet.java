@@ -130,6 +130,14 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("listTopics", 1);	
 		} else if("removeTopic".equals(action)) {
 			new TopicServices().removeTopic(request.getParameter("topicToRemove"));
+			request.setAttribute("listTopics", 1);
+		} else if("addTopic".equals(action)) {
+			Topic topic = new Topic();
+			topic.setCreator((User)session.getAttribute("user"));
+			topic.setTopic("addTopic");
+			topic.setVisibility(request.getParameter("visibility"));
+			new TopicServices().addTopicToDatabase(topic);
+			request.setAttribute("listTopics", 1);
 		}
 		
 		else if("generate".equals(action)) {	
