@@ -172,18 +172,18 @@
 					<td>Create by: ${topic.creator.userName}</td>
 					<td>Visibility: ${topic.visibility}</td>
 					 
-					<td>
-						<c:if test="${user.role == 'admin'}">
-						<form method="post" class="updateTopicButton">
-						<input type="hidden" name="updateTopic&idTopic" value="${topic.topicID}">
-						<button type="submit">Update</button>
-						</form>
-						<form method="post" class="removeTopicButton">
-						<input type="hidden" name="removeTopic&idTopic" value="${topic.topicID}">
-						<button type="submit">Remove</button>
-						</form>
-						</c:if>
-					</td>
+					<c:if test="${user.role == 'admin'}">
+					 	<td>
+							<form method="post" class="updateTopicButton">
+								<input type="hidden" name="updateTopic&idTopic" value="${topic.topicID}">
+								<button type="submit">Update</button>
+							</form>
+							<form method="post" class="removeTopicButton">
+								<input type="hidden" name="removeTopic&idTopic" value="${topic.topicID}">
+								<button type="submit">Remove</button>
+							</form>
+						</td>
+					</c:if>
 					
 				</tr>
 				</c:if>
