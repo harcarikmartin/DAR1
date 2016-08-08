@@ -148,6 +148,8 @@
 		<form method="post">
 			<label for="addTopic">Add new Topic: </label>
 			<input id="addTopic" type="text" name="addTopic" placeholder="topic name">
+			<input type="radio" name="visibility" value="public"> Public
+  			<input type="radio" name="visibility" value="private" checked> Private
 			<input type="hidden" name="action" value="addTopic" >
 			<button type="submit">Add Topic</button>
 		</form>
