@@ -92,7 +92,7 @@ public class UserServices {
 	public void dropUser(String userName) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("DELETE FROM Users u Where u.userName=:userName ");
+		Query query = em.createQuery("DELETE FROM User u Where u.userName=:userName ");
 		query.setParameter("userName", userName);
 		query.executeUpdate();
 		JpaHelper.commitTransaction();

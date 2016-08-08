@@ -107,6 +107,11 @@ public class ForumServlet extends HttpServlet {
 			new UserServices().approveUser(request.getParameter("userForApproval"));
 			request.setAttribute("listUsersForApproval", 1);
 			request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
+		} else if("dropUser".equals(action)) { 
+			//drop user
+			new UserServices().dropUser(request.getParameter("userForApproval"));
+			request.setAttribute("listUsersForApproval", 1);
+			request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
 		} else if("changePassword".equals(action)){ 
 			request.setAttribute("changePassword", 1);
 			request.setAttribute("listProfile", 1);
