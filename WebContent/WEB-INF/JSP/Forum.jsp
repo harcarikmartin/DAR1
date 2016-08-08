@@ -176,10 +176,12 @@
 					 	<td>
 							<form method="post" class="updateTopicButton">
 								<input type="hidden" name="updateTopic&idTopic" value="${topic.topicID}">
+								<input type="hidden" name="action" value="updateTopic" >
 								<button type="submit">Update</button>
 							</form>
 							<form method="post" class="removeTopicButton">
 								<input type="hidden" name="removeTopic&idTopic" value="${topic.topicID}">
+								<input type="hidden" name="action" value="removeTopic" >
 								<button type="submit">Remove</button>
 							</form>
 						</td>
