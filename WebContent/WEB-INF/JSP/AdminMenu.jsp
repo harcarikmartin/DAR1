@@ -56,7 +56,9 @@
 		<label for="ApproveUsers">Approve users:</label>
 		<input type="hidden" name="action" value="approve" >
 	    <button id="ApproveUsers" type="submit">Approve Users</button>
+	    
 	</form>
+	
 	<c:if test="${listUsersForApproval != null }">
 		<table>
 		<c:forEach items="${pendingUsers}" var="pendingUser">
@@ -67,6 +69,13 @@
 						<input type="hidden" name="userForApproval" value="${pendingUser}">
 						<input type="hidden" name="action" value="approveUser" >
 						<button type="submit">Approve</button>
+					</form>
+				</td>
+				<td>
+					<form method="post">
+						<input type="hidden" name="userForApproval" value="${pendingUser}">
+						<input type="hidden" name="action" value="dropUser" >
+						<button type="submit">Drop</button>
 					</form>
 				</td>
 			</tr>
