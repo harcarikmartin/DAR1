@@ -143,6 +143,15 @@
 	<jsp:include page="AdminMenu.jsp" />
 
 	<jsp:include page="UserMenu.jsp" />
+	
+	<c:if test="${user.role == 'admin'}">
+		<form method="post">
+			<label for="addTopic">Add new Topic: </label>
+			<input id="addTopic" type="text" name="addTopic" placeholder="topic name">
+			<input type="hidden" name="action" value="addTopic" >
+			<button type="submit">Add Topic</button>
+		</form>
+	</c:if>
 
 	<div>
 		<table>
@@ -162,14 +171,17 @@
 					<td>Name of topic: ${topic.topic}</td>
 					<td>Create by: ${topic.creator.userName}</td>
 					<td>Visibility: ${topic.visibility}</td>
-					
 					 
 					<td>
-					//preco je td vytvorene prazdne pre usera, je v nom nieco iba u admina... doplnit form tagy a hidden inputy!!
 						<c:if test="${user.role == 'admin'}">
+						<form method="post" class="updateTopicButton">
 						<input type="hidden" name="updateTopic&idTopic" value="${topic.topicID}">
 						<button type="submit">Update</button>
+						</form>
+						<form method="post" class="removeTopicButton">
+						<input type="hidden" name="removeTopic&idTopic" value="${topic.topicID}">
 						<button type="submit">Remove</button>
+						</form>
 						</c:if>
 					</td>
 					
