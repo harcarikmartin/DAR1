@@ -47,25 +47,32 @@
 		<button type="submit">Topic</button>
 	</form>
   
-  	<c:if test="${listTopics != null}">
-	   	<form>
-	     	<table>
-		        <tr>
-		            <th>Name of topic</th>
-		        </tr>
+	<c:if test="${listTopics != null}">
+		<form>
+			<table>
+				<tr>
+					<th>Name of topic</th>
+				</tr>
 				<c:forEach var="topic" items="${topics}">
 					<tr>
-						<td>
-							<input type="checkbox" name="topic" value="	${topic.topicID}"> ${topic.topic}
-						</td>
+						<td><input type="checkbox" name="topic"
+							value="	${topic.topicID}"
+							<c:forEach var="userTopic" items="${userTopics}">
+								<c:if test="${topic.topicID == userTopic.topic.topicID}">
+									<c:if test="${userTopic.user.userID == user.userID}">
+										 checked 
+									</c:if>
+								</c:if>
+							</c:forEach>>
+							${topic.topic}</td>
 					</tr>
 				</c:forEach>
-	   		</table>   
-	    	<input type="hidden" name="action" value="changeTopics">
-	     	 <button type="submit">Change topics </button>
+			</table>
+			<input type="hidden" name="action" value="changeTopics">
+			<button type="submit">Change topics</button>
 		</form>
-  	</c:if>
-</c:if>   
+	</c:if>
+</c:if>
 
     
      

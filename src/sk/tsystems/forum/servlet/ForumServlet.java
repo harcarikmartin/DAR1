@@ -113,7 +113,6 @@ public class ForumServlet extends HttpServlet {
 		} else if("showMyTopics".equals(action)) {
 			request.setAttribute("listTopics", 1);	
 			request.setAttribute("topics", new TopicServices().printTopic());
-			request.setAttribute("currentUser", user);
 			request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		} else if("updateTopic".equals(action)) {
 			request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
@@ -250,6 +249,8 @@ public class ForumServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		request.setAttribute("topics", new TopicServices().printTopic());
+		request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
+		
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 	}
 }

@@ -159,14 +159,17 @@
 
 	<div>
 		<table>
+		<tr>
+			<th>Name of topic</th>
+			<th>Create by</th>
+			<th>Visibility</th>
+			<c:if test="${user.role == 'admin'}">
+			<th>Action</th>
+			</c:if>
+		</tr>
 			<c:forEach items="${topics}" var="topic">
 				<c:if test="${user.role == null}">
 					<c:if test="${topic.visibility == 'public'}">
-						<tr>
-							<th>Name of topic</th>
-							<th>Create by</th>
-							<th>Visibility</th>
-						</tr>
 						<tr>
 							<td>${topic.topic}</td>
 							<td>${topic.creator.userName}</td>
@@ -177,13 +180,13 @@
 
 				<c:if test="${topicUpdating == null}">
 
-					<c:if test="${user.role != null}">
-						<tr>
-							<th>Name of topic</th>
-							<th>Create by</th>
-							<th>Visibility</th>
-							<th>Action</th>
-						</tr>
+					<c:if test="${user.role == 'admin'}">
+<!-- 						<tr> -->
+<!-- 							<th>Name of topic</th> -->
+<!-- 							<th>Create by</th> -->
+<!-- 							<th>Visibility</th> -->
+<!-- 							<th>Action</th> -->
+<!-- 						</tr> -->
 						<tr>
 							<td>${topic.topic}</td>
 							<td>${topic.creator.userName}</td>
@@ -197,6 +200,8 @@
 											name="action" value="updateTopic">
 										<button type="submit">Update</button>
 									</form>
+									</td>
+									<td>
 									<form method="post" class="topicToRemove">
 										<input type="hidden" name="topicToRemove"
 											value="${topic.topic}"> <input type="hidden"
@@ -208,7 +213,33 @@
 						</tr>
 					</c:if>
 				</c:if>
+				
+				
+				<c:if test="${user.role == 'user'}">
+					<c:if test="${topic.visibility == 'public'}">
+						<tr>
+							<td>${topic.topic}</td>
+							<td>${topic.creator.userName}</td>
+							<td>${topic.visibility}</td>
+						</tr>
+					</c:if>
+					
+					<c:forEach var="userTopic" items="${userTopics}">
+						<c:if test="${topic.topicID == userTopic.topic.topicID}">
+							<c:if test="${userTopic.user.userID == user.userID}">
+							<tr>
+							<td>${userTopic.topic.topic}</td>
+							<td>${userTopic.topic.creator.userName}</td>
+							<td>${userTopic.topic.visibility}</td>
+						</tr>
+							</c:if>
+						</c:if>
+					</c:forEach>
+					
+				</c:if>
 			</c:forEach>
+			
+			
 				<c:if test="${topicUpdating != null}">
 					<form method="post">
 						<label for="editTopic">Edit Topic: </label> 
@@ -231,17 +262,14 @@
 <script type="text/javascript">
 	document.getElementById("login").style.display = "inline";
 	document.getElementById("register").style.display = "none";
-
 	function registerFcn() {
 		document.getElementById("login").style.display = "none";
 		document.getElementById("register").style.display = "inline";
 	}
-
 	rfName.style.display = "none";
 	rfPass.style.display = "none";
 	rfPassCheck.style.display = "none";
 	rfBirthdate.style.display = "none";
-
 	function clearFcn() {
 		if (userNameReg.value != "") {
 			rfName.style.display = "none";
@@ -260,19 +288,16 @@
 			birthdate.style.border = "solid 1px #D3D3D3"
 		}
 	}
-
 	var checkRequiredReg = function() {
 		var fail = false;
 		var userNameReg = document.getElementById('userNameReg');
 		var userPassReg = document.getElementById('userPassReg');
 		var userPassRegCheck = document.getElementById('userPassRegCheck');
 		var birthdate = document.getElementById('birthdate');
-
 		var rfName = document.getElementById('rfName');
 		var rfPass = document.getElementById('rfPass');
 		var rfPassCheck = document.getElementById('rfPassCheck');
 		var rfBirthdate = document.getElementById('rfBirthdate');
-
 		if (userNameReg.value == "") {
 			rfName.style.display = "inline";
 			userNameReg.style.border = "solid 1px red"
@@ -298,7 +323,6 @@
 		}
 		return !fail;
 	}
-
 	setInterval('clearFcn()', 100);
 <%=request.getAttribute("regWrong")%>
 	
