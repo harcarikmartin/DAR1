@@ -10,11 +10,6 @@
 		<button type="submit">Profile</button>
 	</form>
 
-	<form method="post">
-		<label for ="seeTopic"> My topics</label>
-		<input type="hidden" name="action" value="showMyTopics">
-		<button type="submit">Topic</button>
-	</form>
 
    <c:if test="${listProfile != null}">
 	  	<p>Username: ${user.userName} </p>
@@ -44,6 +39,13 @@
 			</form>
 		</c:if>
  	 </c:if>    
+  
+  
+	<form method="post">
+		<label for ="seeTopic"> My topics</label>
+		<input type="hidden" name="action" value="showMyTopics">
+		<button type="submit">Topic</button>
+	</form>
   
   	<c:if test="${listTopics != null}">
 	   	<form>
