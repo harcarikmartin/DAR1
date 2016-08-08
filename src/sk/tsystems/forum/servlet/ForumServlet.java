@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.TopicServices;
-import sk.tsystems.forum.services.jpahelper.UserServices;
+import sk.tsystems.forum.services.UserServices;
 /**
  * Main Forum servlet, responible for deciding based on node requests 
  */
