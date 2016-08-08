@@ -244,12 +244,21 @@
 					<form method="post">
 						<label for="editTopic">Edit Topic: </label> 
 						<input id="editTopic" type="text" name="editTopic" value="${topicUpdating.topic}">
-						<input type="radio" name="visibility" value="public" 
-							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if>
-							/> Public 
-						<input type="radio" name="visibility" value="private"
-							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if>
-							/> Private 
+						<c:if test="${topicUpdating.visibility == 'public'}">
+							<input type="radio" name="visibility1" value="public" checked>Public
+							<input type="radio" name="visibility1" value="private">Private
+						</c:if>
+						<c:if test="${topicUpdating.visibility == 'private'}">
+							<input type="radio" name="visibility1" value="public">Public
+							<input type="radio" name="visibility1" value="private" checked>Private
+						</c:if>
+						
+<!-- 						<input type="radio" name="visibility" value="public"  -->
+<%-- 							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if> --%>
+<!-- 							/> Public  -->
+<!-- 						<input type="radio" name="visibility" value="private" -->
+<%-- 							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if> --%>
+<!-- 							/> Private  -->
 						<input type="hidden" name="original" value="${topicUpdating.topic}">
 						<input type="hidden" name="action" value="updateTheTopic">
 						<button type="submit">Edit Topic</button>
