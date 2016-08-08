@@ -48,7 +48,8 @@ public class ForumServlet extends HttpServlet {
 		
 		
 		if ("login".equals(action) && "userName" != null && "userPassword" != null) {
-			if((new UserServices().getUserID(request.getParameter("userName")) == 0)) {
+			if((new UserServices().getUserID(request.getParameter("userName")) == 0) || 
+					!(new UserServices().isUserApproved(request.getParameter("userName")))) {
 				//bad login details case
 				incorrectPassword(request);
 			} else if(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")) && 
@@ -247,8 +248,8 @@ public class ForumServlet extends HttpServlet {
 	    }
 		user = new UserServices().registerUser(request.getParameter("userName"), request.getParameter("userPassword"), 
 				date, request.getParameter("role"), request.getParameter("status"));
-		session = request.getSession();
-		session.setAttribute("user", user);
+//		session = request.getSession();
+//		session.setAttribute("user", user);
 	}
 
 	private void incorrectPassword(HttpServletRequest request) {
