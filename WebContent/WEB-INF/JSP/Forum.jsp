@@ -162,7 +162,6 @@
 			<c:forEach items="${topics}" var="topic">
 				<c:if test="${user.role == null}">
 					<c:if test="${topic.visibility == 'public'}">
-<!-- 					Vybrat von urobit hlavicku -->
 						<tr>
 							<th>Name of topic</th>
 							<th>Create by</th>
