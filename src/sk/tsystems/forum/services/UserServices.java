@@ -97,5 +97,20 @@ public class UserServices {
 		query.executeUpdate();
 		JpaHelper.commitTransaction();
 	}
+
+	public boolean isUserApproved(String userName) {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT status FROM User u WHERE u.userName = :userName");
+		query.setParameter("userName", userName);
+	
+		if(query.getResultList().equals("confirmed")) {
+			em.close();
+			return true;
+		} 
+		else {
+			em.close();
+			return false;
+		}
+	}
 	
 }

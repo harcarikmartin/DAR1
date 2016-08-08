@@ -51,7 +51,8 @@ public class ForumServlet extends HttpServlet {
 			if((new UserServices().getUserID(request.getParameter("userName")) == 0)) {
 				//bad login details case
 				incorrectPassword(request);
-			} else if(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword"))){
+			} else if(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")) && 
+					new UserServices().isUserApproved(request.getParameter("userName"))) {
 				//do login case
 				doLogin(request);
 			} else if(!(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")))){
