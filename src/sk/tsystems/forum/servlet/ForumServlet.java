@@ -113,7 +113,6 @@ public class ForumServlet extends HttpServlet {
 		} else if("showMyTopics".equals(action)) {
 			request.setAttribute("listTopics", 1);	
 			request.setAttribute("topics", new TopicServices().printTopic());
-			request.setAttribute("currentUser", user);
 			request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		} else if("updateTopic".equals(action)) {
 			request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
@@ -132,47 +131,47 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("listTopics", 1);
 		}
 		
-//		else if("generate".equals(action)) {	
-//			Topic topic1 = new Topic();
-//			topic1.setTopic("prvy topic");
-//			topic1.setCreator(admin);
-//			topic1.setVisibility("private");
-//			Topic topic2 = new Topic();
-//			topic2.setTopic("prvy topic");
-//			topic2.setCreator(admin);
-//			topic2.setVisibility("private");
-//			Topic topic3 = new Topic();
-//			topic3.setTopic("prvy topic");
-//			topic3.setCreator(admin);
-//			topic3.setVisibility("public");
-//			Topic topic4 = new Topic();
-//			topic4.setTopic("prvy topic");
-//			topic4.setCreator(admin);
-//			topic4.setVisibility("public");
-//			
-////			new TopicServices().addTopicToDatabase(topic1);
-////			new TopicServices().addTopicToDatabase(topic2);
-////			new TopicServices().addTopicToDatabase(topic3);
-////			new TopicServices().addTopicToDatabase(topic4);
-//			
+		else if("generate".equals(action)) {	
+			Topic topic1 = new Topic();
+			topic1.setTopic("prvy topic");
+			topic1.setCreator(admin);
+			topic1.setVisibility("private");
+			Topic topic2 = new Topic();
+			topic2.setTopic("prvy topic");
+			topic2.setCreator(admin);
+			topic2.setVisibility("private");
+			Topic topic3 = new Topic();
+			topic3.setTopic("prvy topic");
+			topic3.setCreator(admin);
+			topic3.setVisibility("public");
+			Topic topic4 = new Topic();
+			topic4.setTopic("prvy topic");
+			topic4.setCreator(admin);
+			topic4.setVisibility("public");
+			
+			new TopicServices().addTopicToDatabase(topic1);
+			new TopicServices().addTopicToDatabase(topic2);
+			new TopicServices().addTopicToDatabase(topic3);
+			new TopicServices().addTopicToDatabase(topic4);
+			
 //			topics.add(topic1);
 //			topics.add(topic2);
 //			topics.add(topic3);
 //			topics.add(topic4);
-//			
-//			admin.setUserName("jozko");
-//			admin.setUserPassword("jozko");
-//			admin.setRole("admin");
-//			admin.setStatus("confirmed");
-//			user1.setUserName("janko");
-//			user1.setUserPassword("janko");
-//			user1.setRole("user");
-//			user1.setStatus("pending");
-////			new UserServices().addUser(admin);
-////			new UserServices().addUser(user1);
+			
+			admin.setUserName("jozko");
+			admin.setUserPassword("jozko");
+			admin.setRole("admin");
+			admin.setStatus("confirmed");
+			user1.setUserName("janko");
+			user1.setUserPassword("janko");
+			user1.setRole("user");
+			user1.setStatus("pending");
+			new UserServices().addUser(admin);
+			new UserServices().addUser(user1);
 //			list.add(admin);
 //			list.add(user1);
-//		 }
+		 }
 		//forwarding response back to node
 		forwardToList(request, response);
 	}
@@ -250,6 +249,8 @@ public class ForumServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		request.setAttribute("topics", new TopicServices().printTopic());
+		request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
+		
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 	}
 }

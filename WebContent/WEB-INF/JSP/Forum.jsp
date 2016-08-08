@@ -159,14 +159,14 @@
 
 	<div>
 		<table>
+		<tr>
+			<th>Name of topic</th>
+			<th>Create by</th>
+			<th>Visibility</th>
+		</tr>
 			<c:forEach items="${topics}" var="topic">
 				<c:if test="${user.role == null}">
 					<c:if test="${topic.visibility == 'public'}">
-						<tr>
-							<th>Name of topic</th>
-							<th>Create by</th>
-							<th>Visibility</th>
-						</tr>
 						<tr>
 							<td>${topic.topic}</td>
 							<td>${topic.creator.userName}</td>
@@ -177,7 +177,7 @@
 
 				<c:if test="${topicUpdating == null}">
 
-					<c:if test="${user.role != null}">
+					<c:if test="${user.role == 'admin'}">
 						<tr>
 							<th>Name of topic</th>
 							<th>Create by</th>
@@ -208,7 +208,33 @@
 						</tr>
 					</c:if>
 				</c:if>
+				
+				
+				<c:if test="${user.role == 'user'}">
+					<c:if test="${topic.visibility == 'public'}">
+						<tr>
+							<td>Name of topic: ${topic.topic}</td>
+							<td>Create by: ${topic.creator.userName}</td>
+							<td>Visibility: ${topic.visibility}</td>
+						</tr>
+					</c:if>
+					
+					<c:forEach var="userTopic" items="${userTopics}">
+						<c:if test="${topic.topicID == userTopic.topic.topicID}">
+							<c:if test="${userTopic.user.userID == user.userID}">
+							<tr>
+							<td>Name of topic: ${userTopic.topic.topic}</td>
+							<td>Create by: ${userTopic.topic.creator.userName}</td>
+							<td>Visibility: ${userTopic.topic.visibility}</td>
+						</tr>
+							</c:if>
+						</c:if>
+					</c:forEach>
+					
+				</c:if>
 			</c:forEach>
+			
+			
 				<c:if test="${topicUpdating != null}">
 					<form method="post">
 						<label for="editTopic">Edit Topic: </label> 
