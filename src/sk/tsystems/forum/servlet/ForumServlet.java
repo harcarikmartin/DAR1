@@ -20,6 +20,7 @@ import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
 import sk.tsystems.forum.services.UsersTopicsServices;
+import sk.tsystems.forum.services.jpahelper.JpaHelper;
 /**
  * Main Forum servlet, responible for deciding based on node requests 
  */
@@ -115,9 +116,9 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("currentUser", user);
 			request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		} else if("updateTopic".equals(action)) {
-			request.setAttribute("topicUpdating", request.getParameter("topicToUpdate"));
+			request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
 		} else if("updateTheTopic".equals(action)) {
-			request.setAttribute("topicUpdating", request.getParameter("topicToUpdate"));
+			new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility"));
 			request.setAttribute("listTopics", 1);
 		} else if("removeTopic".equals(action)) {
 			new TopicServices().removeTopic(request.getParameter("topicToRemove"));

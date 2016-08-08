@@ -73,5 +73,12 @@ public class TopicServices {
 		JpaHelper.commitTransaction();
 		
 	}
-
+	
+	public void updateTopic(String origTopic, String newTopic, String newVisibility) {
+		Topic topic = new TopicServices().setPresentTopic(origTopic);
+		JpaHelper.beginTransaction();
+		topic.setTopic(newTopic);
+		topic.setVisibility(newVisibility);
+		JpaHelper.commitTransaction();
+	}
 }

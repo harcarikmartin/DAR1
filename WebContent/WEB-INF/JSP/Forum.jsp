@@ -209,18 +209,20 @@
 						</tr>
 					</c:if>
 				</c:if>
+			</c:forEach>
 				<c:if test="${topicUpdating != null}">
 					<form method="post">
 						<label for="editTopic">Edit Topic: </label> 
-						<input id="editTopic" type="text" name="editTopic" placeholder="new topic name"> 
+						<input id="editTopic" type="text" name="editTopic" value="${topicUpdating.topic}">
 						<input type="radio" name="visibility" value="public"> Public 
 						<input type="radio" name="visibility" value="private" checked>Private 
-						<input type="hidden" name="action" value="editTopic">
+						<input type="hidden" name="original" value="${topicUpdating.topic}">
+						<input type="hidden" name="action" value="updateTheTopic">
 						<button type="submit">Edit Topic</button>
 					</form>
 				</c:if>
 				
-			</c:forEach>
+			
 		</table>
 	</div>
 
