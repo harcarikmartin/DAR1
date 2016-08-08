@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,7 +18,9 @@
 	<div class="centerAlign">
 		<form method="post">
 			<input type="hidden" name="action" value="generate">
-			<button type="submit">Generate</button><br><br>
+			<button type="submit">Generate</button>
+			<br>
+			<br>
 		</form>
 	</div>
 
@@ -143,14 +145,14 @@
 	<jsp:include page="AdminMenu.jsp" />
 
 	<jsp:include page="UserMenu.jsp" />
-	
+
 	<c:if test="${user.role == 'admin'}">
 		<form method="post">
-			<label for="addTopic">Add new Topic: </label>
-			<input id="addTopic" type="text" name="addTopic" placeholder="topic name">
-			<input type="radio" name="visibility" value="public"> Public
-  			<input type="radio" name="visibility" value="private" checked> Private
-			<input type="hidden" name="action" value="addTopic" >
+			<label for="addTopic">Add new Topic: </label> <input id="addTopic"
+				type="text" name="addTopic" placeholder="topic name"> <input
+				type="radio" name="visibility" value="public"> Public <input
+				type="radio" name="visibility" value="private" checked>
+			Private <input type="hidden" name="action" value="addTopic">
 			<button type="submit">Add Topic</button>
 		</form>
 	</c:if>
@@ -160,42 +162,69 @@
 			<c:forEach items="${topics}" var="topic">
 				<c:if test="${user.role == null}">
 					<c:if test="${topic.visibility == 'public'}">
-					<tr>
-						<td>Name of topic: ${topic.topic}</td>
-						<td>Create by: ${topic.creator.userName}</td>
-						<td>Visibility: ${topic.visibility}</td>
+<!-- 					Vybrat von urobit hlavicku -->
+						<tr>
+							<th>Name of topic</th>
+							<th>Create by</th>
+							<th>Visibility</th>
+						</tr>
+						<tr>
+							<td>${topic.topic}</td>
+							<td>${topic.creator.userName}</td>
+							<td>${topic.visibility}</td>
 						</tr>
 					</c:if>
 				</c:if>
-				
-				<c:if test="${user.role != null}">
-					<tr>
-					<td>Name of topic: ${topic.topic}</td>
-					<td>Create by: ${topic.creator.userName}</td>
-					<td>Visibility: ${topic.visibility}</td>
-					 
-					<c:if test="${user.role == 'admin'}">
-					 	<td>
-							<form method="post" class="topicToUpdate">
-								<input type="hidden" name="topicToUpdate" value="${topic.topic}">
-								<input type="hidden" name="action" value="updateTopic" >
-								<button type="submit">Update</button>
-							</form>
-							<form method="post" class="topicToRemove">
-								<input type="hidden" name="topicToRemove" value="${topic.topic}">
-								<input type="hidden" name="action" value="removeTopic" >
-								<button type="submit">Remove</button>
-							</form>
-						</td>
+
+				<c:if test="${topicUpdating == null}">
+
+					<c:if test="${user.role != null}">
+						<tr>
+							<th>Name of topic</th>
+							<th>Create by</th>
+							<th>Visibility</th>
+							<th>Action</th>
+						</tr>
+						<tr>
+							<td>${topic.topic}</td>
+							<td>${topic.creator.userName}</td>
+							<td>${topic.visibility}</td>
+
+							<c:if test="${user.role == 'admin'}">
+								<td>
+									<form method="post" class="topicToUpdate">
+										<input type="hidden" name="topicToUpdate"
+											value="${topic.topic}"> <input type="hidden"
+											name="action" value="updateTopic">
+										<button type="submit">Update</button>
+									</form>
+									<form method="post" class="topicToRemove">
+										<input type="hidden" name="topicToRemove"
+											value="${topic.topic}"> <input type="hidden"
+											name="action" value="removeTopic">
+										<button type="submit">Remove</button>
+									</form>
+								</td>
+							</c:if>
+						</tr>
 					</c:if>
-					
-				</tr>
 				</c:if>
+				<c:if test="${topicUpdating != null}">
+					<form method="post">
+						<label for="editTopic">Edit Topic: </label> 
+						<input id="editTopic" type="text" name="editTopic" placeholder="new topic name"> 
+						<input type="radio" name="visibility" value="public"> Public 
+						<input type="radio" name="visibility" value="private" checked>Private 
+						<input type="hidden" name="action" value="editTopic">
+						<button type="submit">Edit Topic</button>
+					</form>
+				</c:if>
+				
 			</c:forEach>
 		</table>
 	</div>
 
-	
+
 </body>
 
 <script type="text/javascript">
@@ -269,7 +298,7 @@
 		return !fail;
 	}
 
-setInterval('clearFcn()', 100);
+	setInterval('clearFcn()', 100);
 <%=request.getAttribute("regWrong")%>
 	
 </script>
