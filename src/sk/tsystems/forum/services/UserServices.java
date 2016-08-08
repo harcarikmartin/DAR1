@@ -103,7 +103,7 @@ public class UserServices {
 		Query query = em.createQuery("SELECT status FROM User u WHERE u.userName = :userName");
 		query.setParameter("userName", userName);
 	
-		if(query.getResultList().equals("confirmed")) {
+		if(query.getResultList().get(0).equals("confirmed")) {
 			em.close();
 			return true;
 		} 
