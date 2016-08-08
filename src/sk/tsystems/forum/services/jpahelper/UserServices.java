@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
 import sk.tsystems.forum.entities.User;
 
 public class UserServices {
@@ -85,6 +86,15 @@ public class UserServices {
 
 		return query.getResultList();
 		
+	}
+	
+	public void dropUser(String userName) {
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("DELETE FROM Users u Where u.userName=:userName ");
+		query.setParameter("userName", userName);
+		query.executeUpdate();
+		JpaHelper.commitTransaction();
 	}
 	
 }
