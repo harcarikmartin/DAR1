@@ -245,11 +245,11 @@
 						<label for="editTopic">Edit Topic: </label> 
 						<input id="editTopic" type="text" name="editTopic" value="${topicUpdating.topic}">
 						<input type="radio" name="visibility" value="public" 
-							<c:if test="${topicUpdating.visibility == 'public'}">checked</c:if>
-							> Public 
+							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if>
+							/> Public 
 						<input type="radio" name="visibility" value="private"
-							<c:if test="${topicUpdating.visibility == 'private'}">checked</c:if>
-							> Private 
+							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if>
+							/> Private 
 						<input type="hidden" name="original" value="${topicUpdating.topic}">
 						<input type="hidden" name="action" value="updateTheTopic">
 						<button type="submit">Edit Topic</button>
