@@ -22,6 +22,15 @@
 		    <button type="submit">Change Password</button>
 		</form>
    
+   		<c:if test="${passChanged == 1 }">
+			<p>Password changed successfully</p>
+		</c:if>
+		
+		<c:if test="${passChanged == 0 }">
+			<p>Password not changed!</p>
+		</c:if>
+   
+   
    		<c:if test="${changePassword == 1 }">
 			<form method="post">
 				<label for="OldPassword">Old password:</label>
