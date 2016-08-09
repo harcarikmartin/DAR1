@@ -7,16 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; utf-8">
 <title>Registration form</title>
 <style>
-<%--
-<%@
-include
- 
-file
-="normalize
-.css
-"%
->
---%>
 <%@include file="bootstrap/css/bootstrap.css"%>
 <%@include file="ForumForBootstrap.css"%>
 </style>
@@ -37,7 +27,7 @@ file
 
 
 	<div class="row">
-		<c:if test="${user == null}">
+		<c:if test="${user == null  && registerForm == null}">
 			<div id="login" class="col-lg-offset-1">
 				<!-- 				<div class="col-lg-10"> -->
 				<%-- 					<c:if test="${error == '5'}"> --%>
@@ -62,14 +52,19 @@ file
 						</form>
 					</div>
 					<div class="col-lg-5 text-center">
-						<button name="action" value="registrationShow" type="button"
-							onclick="registerFcn()">Registration</button>
+					
+					<form method="post">
+					<input type="hidden" name="action" value="register">
+							<button type="submit">Registration</button>
+							</form>
+					
+<!-- 						<button name="action" value="registrationShow" type="button" onclick="registerFcn()">Registration</button> -->
 					</div>
 				</div>
 			</div>
 		</c:if>
 
-		<c:if test="${user != null}">
+		<c:if test="${user != null  && registerForm == null}">
 				<div class="col-lg-5 text-center">
 					Prihlásený ako ${user.userName}
 				</div>
@@ -85,100 +80,100 @@ file
 
 
 
-	<c:if test="${user == null}">
-		<div id="register" class="content row">
+<%-- 	<c:if test="${user == null}"> --%>
+<!-- 		<div id="register" class="content row"> -->
+<!-- 			<div class="row col-sm-offset-2"> -->
+<!-- 				<form method="post" onsubmit="return checkRequiredReg()"> -->
+<!-- 					<input type="hidden" name="role" value="user"> <input -->
+<!-- 						type="hidden" name="status" value="pending"> -->
+
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-sm-4 text-right"> -->
+<!-- 							<label for="userNameReg">Name:</label> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-4"> -->
+<!-- 							<input id="userNameReg" class="registrationForm" type="text" -->
+<!-- 								name="userName" placeholder="name ..."> -->
+<!-- 							<p id="rfName" class="requiredField">Required field</p> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-sm-4 text-right"> -->
+<!-- 							<label for="userPassReg">Password:</label> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-4"> -->
+<!-- 							<input id="userPassReg" class="registrationForm" type="password" -->
+<!-- 								name="userPassword" -->
+<!-- 								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" -->
+<!-- 								oninvalid="alert('Password is not valid')" -->
+<!-- 								placeholder="password"> -->
+<!-- 							<p id="rfPass" class="requiredField">Required field</p> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-sm-4 col-sm-offset-4"> -->
+<!-- 							<p>* Password must contain minimum 8 characters, at least 1 -->
+<!-- 								Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special -->
+<!-- 								Character [!@#$%^&*_=+-]</p> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-sm-4 text-right"> -->
+<!-- 							<label for="userPassRegCheck">Password for check:</label> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-4"> -->
+<!-- 							<input id="userPassRegCheck" class="registrationForm" -->
+<!-- 								type="password" name="userPasswordCheck" -->
+<!-- 								placeholder="password again ..."> -->
+<!-- 							<p id="rfPassCheck" class="requiredField">Required field</p> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-sm-4 text-right"> -->
+<!-- 							<label for="birthdate">Birthdate:</label> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-4"> -->
+<!-- 							<input id="birthdate" class="registrationForm" type="date" -->
+<!-- 								name="birthdate"> -->
+<!-- 							<p id="rfBirthdate" class="requiredField">Required field</p> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+
+<!-- 					<div class="row"> -->
+
+<!-- 						<div class="col-sm-4 col-sm-offset-4"> -->
+<!-- 							<input type="hidden" name="action" value="registration"> -->
+<!-- 							<button type="submit">Registration</button> -->
+<!-- 							<br> -->
+<!-- 							<button type="button" onClick="window.location.reload()">Back</button> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
 
 
-			<div class="row col-sm-offset-2">
-				<form method="post" onsubmit="return checkRequiredReg()">
-					<input type="hidden" name="role" value="user"> <input
-						type="hidden" name="status" value="pending">
+<!-- 		</div> -->
+<!-- 		<div class="row"> -->
+<%-- 			<c:if test="${error == '1'}"> --%>
+<!-- 				<p class="warning">Passwords must match!</p> -->
+<%-- 			</c:if> --%>
+<%-- 			<c:if test="${error == '2'}"> --%>
+<!-- 				<p class="warning">Password must be at least 8 digits long!</p> -->
+<%-- 			</c:if> --%>
+<%-- 			<c:if test="${error == '3'}"> --%>
+<!-- 				<p class="warning">Username already exists!</p> -->
+<%-- 			</c:if> --%>
+<%-- 			<c:if test="${error == '4'}"> --%>
+<!-- 				<p class="warning">Not registered yet!</p> -->
+<%-- 			</c:if> --%>
+<!-- 		</div> -->
+<%-- 	</c:if> --%>
 
-					<div class="row">
-						<div class="col-sm-4 text-right">
-							<label for="userNameReg">Name:</label>
-						</div>
-						<div class="col-sm-4">
-							<input id="userNameReg" class="registrationForm" type="text"
-								name="userName" placeholder="name ...">
-							<p id="rfName" class="requiredField">Required field</p>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-4 text-right">
-							<label for="userPassReg">Password:</label>
-						</div>
-						<div class="col-sm-4">
-							<input id="userPassReg" class="registrationForm" type="password"
-								name="userPassword"
-								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-								oninvalid="alert('Password is not valid')"
-								placeholder="password">
-							<p id="rfPass" class="requiredField">Required field</p>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-4 col-sm-offset-4">
-							<p>* Password must contain minimum 8 characters, at least 1
-								Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special
-								Character [!@#$%^&*_=+-]</p>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-4 text-right">
-							<label for="userPassRegCheck">Password for check:</label>
-						</div>
-						<div class="col-sm-4">
-							<input id="userPassRegCheck" class="registrationForm"
-								type="password" name="userPasswordCheck"
-								placeholder="password again ...">
-							<p id="rfPassCheck" class="requiredField">Required field</p>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-4 text-right">
-							<label for="birthdate">Birthdate:</label>
-						</div>
-						<div class="col-sm-4">
-							<input id="birthdate" class="registrationForm" type="date"
-								name="birthdate">
-							<p id="rfBirthdate" class="requiredField">Required field</p>
-						</div>
-					</div>
-
-					<div class="row">
-
-						<div class="col-sm-4 col-sm-offset-4">
-							<input type="hidden" name="action" value="registration">
-							<button type="submit">Registration</button>
-							<br>
-							<button type="button" onClick="window.location.reload()">Back</button>
-						</div>
-					</div>
-				</form>
-			</div>
-
-
-		</div>
-		<div class="row">
-			<c:if test="${error == '1'}">
-				<p class="warning">Passwords must match!</p>
-			</c:if>
-			<c:if test="${error == '2'}">
-				<p class="warning">Password must be at least 8 digits long!</p>
-			</c:if>
-			<c:if test="${error == '3'}">
-				<p class="warning">Username already exists!</p>
-			</c:if>
-			<c:if test="${error == '4'}">
-				<p class="warning">Not registered yet!</p>
-			</c:if>
-		</div>
-	</c:if>
+<jsp:include page="RegisterForm.jsp" />
 
 	<jsp:include page="AdminMenu.jsp" />
 
@@ -341,72 +336,16 @@ file
 
 </body>
 
+<c:if test="${registerForm != null}">
 <script type="text/javascript">
-	// 	document.getElementById("login").style.display = "inline";
-	document.getElementById("register").style.display = "none";
-	function registerFcn() {
-		document.getElementById("login").style.display = "none";
-		document.getElementById("register").style.display = "inline";
-	}
-	rfName.style.display = "none";
-	rfPass.style.display = "none";
-	rfPassCheck.style.display = "none";
-	rfBirthdate.style.display = "none";
-	function clearFcn() {
-		if (userNameReg.value != "") {
-			rfName.style.display = "none";
-			userNameReg.style.border = "solid 1px #D3D3D3"
-		}
-		if (userPassReg.value != "") {
-			rfPass.style.display = "none";
-			userPassReg.style.border = "solid 1px #D3D3D3"
-		}
-		if (userPassRegCheck.value != "") {
-			rfPassCheck.style.display = "none";
-			userPassRegCheck.style.border = "solid 1px #D3D3D3"
-		}
-		if (birthdate.value != "") {
-			rfBirthdate.style.display = "none";
-			birthdate.style.border = "solid 1px #D3D3D3"
-		}
-	}
-	var checkRequiredReg = function() {
-		var fail = false;
-		var userNameReg = document.getElementById('userNameReg');
-		var userPassReg = document.getElementById('userPassReg');
-		var userPassRegCheck = document.getElementById('userPassRegCheck');
-		var birthdate = document.getElementById('birthdate');
-		var rfName = document.getElementById('rfName');
-		var rfPass = document.getElementById('rfPass');
-		var rfPassCheck = document.getElementById('rfPassCheck');
-		var rfBirthdate = document.getElementById('rfBirthdate');
-		if (userNameReg.value == "") {
-			rfName.style.display = "inline";
-			userNameReg.style.border = "solid 1px red"
-			fail = true;
-		}
-		if (userPassReg.value == "") {
-			rfPass.style.display = "inline";
-			userPassReg.style.border = "solid 1px red"
-			fail = true;
-		}
-		if (userPassRegCheck.value == "") {
-			rfPassCheck.style.display = "inline";
-			userPassRegCheck.style.border = "solid 1px red"
-			fail = true;
-		}
-		if (birthdate.value == "") {
-			rfBirthdate.style.display = "inline";
-			birthdate.style.border = "solid 1px red"
-			fail = true;
-		}
-		if (fail == true) {
-			alert("Required field was not set!");
-		}
-		return !fail;
-	}
-	setInterval('clearFcn()', 100);
-<%=request.getAttribute("regWrong")%>
-	
+<%@include file="Forum.js"%>
 </script>
+</c:if>
+
+
+
+
+	
+	
+
 </html>
