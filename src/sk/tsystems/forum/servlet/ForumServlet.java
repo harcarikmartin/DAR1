@@ -209,16 +209,19 @@ public class ForumServlet extends HttpServlet {
 
 	private void existingUser(HttpServletRequest request) {
 		request.setAttribute("error", 3);
+		request.setAttribute("registerForm", 1);
 		request.setAttribute("regWrong", "registerFcn()");
 	}
 
 	private void lenghtenPassword(HttpServletRequest request) {
 		request.setAttribute("error", 2);
+		request.setAttribute("registerForm", 1);
 		request.setAttribute("regWrong", "registerFcn()");
 	}
 
 	private void matchPasswords(HttpServletRequest request) {
 		request.setAttribute("error", 1);
+		request.setAttribute("registerForm", 1);
 		request.setAttribute("regWrong", "registerFcn()");
 	}
 

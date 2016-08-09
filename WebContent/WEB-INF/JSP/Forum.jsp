@@ -26,36 +26,36 @@
 	</div>
 
 
-	<div class="row">
+	<div class="row col-lg-12">
 		<c:if test="${user == null  && registerForm == null}">
-			<div id="login" class="col-lg-offset-1">
+			<div id="login" class="col-lg-offset-1 col-lg-10 rowBackground">
 				<!-- 				<div class="col-lg-10"> -->
 				<%-- 					<c:if test="${error == '5'}"> --%>
 				<!-- 						<p class="warning">Wrong login details!</p> -->
 				<%-- 					</c:if> --%>
 				<!-- 				</div> -->
 
-				<div class="row ">
-					<div class="col-lg-5 text-center">
+				<div class="row">
+					<div class="text-left col-lg-6">
 						<form method="post">
-							<label for="userName">Name: <input id="userName"
+							<label class="labels" for="userName">Name: <input id="userName"
 								class="userName" type="text" name="userName"
 								placeholder="name ..."></label>
-							<label for="userPassword">Password: <input id="userPassword" 
+							<label class="labels" for="userPassword">Password: <input id="userPassword" 
 								class="userPassword" type="text" name="userPassword" 
 								placeholder="password ..."></label>
 							 <input type="hidden" name="action" value="login">
-							<button type="submit">Login</button>
+							<button class="buttonStyle" type="submit">Login</button>
 							<c:if test="${error == '5'}">
 								Wrong login details!
 							</c:if>
 						</form>
 					</div>
-					<div class="col-lg-5 text-center">
+					<div class="text-center col-lg-6">
 					
 					<form method="post">
 					<input type="hidden" name="action" value="register">
-							<button type="submit">Registration</button>
+							<button class="buttonStyle" type="submit">Registration</button>
 							</form>
 					
 <!-- 						<button name="action" value="registrationShow" type="button" onclick="registerFcn()">Registration</button> -->
@@ -71,7 +71,7 @@
 				<div class="col-lg-5 text-center">
 					<form method="post">
 						<input type="hidden" name="action" value="logout">
-						<button type="submit">Logout</button>
+						<button class="buttonStyle" type="submit">Logout</button>
 					</form>
 				</div>
 		</c:if>
@@ -173,7 +173,7 @@
 <!-- 		</div> -->
 <%-- 	</c:if> --%>
 
-<jsp:include page="RegisterForm.jsp" />
+	<jsp:include page="RegisterForm.jsp" />
 
 	<jsp:include page="AdminMenu.jsp" />
 
@@ -192,7 +192,7 @@
 	</c:if>
 
 	<div class="row">
-	<div  class="col-lg-offset-2 col-lg-8">
+	<div  class="col-lg-offset-1 col-lg-10">
 		<table>
 			<tr>
 				<th class="topicCell text-center topicHeadStyle">Name of topic</th>
