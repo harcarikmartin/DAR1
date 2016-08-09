@@ -200,12 +200,12 @@ file
 	<div  class="col-lg-offset-2 col-lg-8">
 		<table>
 			<tr>
-				<th class="topicCell text-center">Name of topic</th>
-				<th class="actionCell text-center">Create by</th>
-				<th class="actionCell text-center">Visibility</th>
+				<th class="topicCell text-center topicHeadStyle">Name of topic</th>
+				<th class="actionCell text-center topicHeadStyle">Create by</th>
+				<th class="actionCell text-center topicHeadStyle">Visibility</th>
 				<c:if test="${user.role == 'admin'}">
-					<th class="actionCell text-center">Update</th>
-					<th class="actionCell text-center">Delete</th>
+					<th class="actionCell text-center topicHeadStyle">Update</th>
+					<th class="actionCell text-center topicHeadStyle">Delete</th>
 				</c:if>
 			</tr>
 			<c:forEach items="${topics}" var="topic">
@@ -217,11 +217,11 @@ file
 							<form method="post">
 							<input type="hidden" name="action" value="openTopic">
 							<input type="hidden" name="idOfTOpic" value="${topic.topicID}">
-							<button class="btn-block" type="submit">${topic.topic}</button>
+							<button class="btn-block topicStyle" type="submit">${topic.topic}</button>
 							</form>
 							</td>
-							<td class="actionCell text-center">${topic.creator.userName}</td>
-							<td class="actionCell text-center">${topic.visibility}</td>
+							<td class="actionCell text-center topicInfoStyle">${topic.creator.userName}</td>
+							<td class="actionCell text-center topicInfoStyle">${topic.visibility}</td>
 						</tr>
 					</c:if>
 				</c:if>
@@ -240,11 +240,11 @@ file
 							<form method="post">
 							<input type="hidden" name="action" value="openTopic">
 							<input type="hidden" name="idOfTOpic" value="${topic.topicID}">
-							<button class="btn-block" type="submit">${topic.topic}</button>
+							<button class="btn-block topicStyle" type="submit">${topic.topic}</button>
 							</form>
 							</td>
-							<td class="actionCell text-center">${topic.creator.userName}</td>
-							<td class="actionCell text-center">${topic.visibility}</td>
+							<td class="actionCell text-center topicInfoStyle">${topic.creator.userName}</td>
+							<td class="actionCell text-center topicInfoStyle">${topic.visibility}</td>
 
 							<c:if test="${user.role == 'admin'}">
 								<td class="actionCell text-center">
@@ -252,7 +252,7 @@ file
 										<input type="hidden" name="topicToUpdate"
 											value="${topic.topic}"> <input type="hidden"
 											name="action" value="updateTopic">
-										<button type="submit">Update</button>
+										<button type="submit" class="btn-block topicStyle">Update</button>
 									</form>
 								</td>
 								<td class="actionCell text-center">
@@ -260,7 +260,7 @@ file
 										<input type="hidden" name="topicToRemove"
 											value="${topic.topic}"> <input type="hidden"
 											name="action" value="removeTopic">
-										<button type="submit">Remove</button>
+										<button type="submit" class="btn-block topicStyle">Remove</button>
 									</form>
 								</td>
 							</c:if>
@@ -276,11 +276,11 @@ file
 							<form method="post">
 							<input type="hidden" name="action" value="openTopic">
 							<input type="hidden" name="idOfTOpic" value="${topic.topicID}">
-							<button class="btn-block topicTask" type="submit">${topic.topic}</button>
+							<button class="btn-block topicStyle" type="submit">${topic.topic}</button>
 							</form>
 							</td>
-							<td class="actionCell text-center">${topic.creator.userName}</td>
-							<td class="actionCell text-center">${topic.visibility}</td>
+							<td class="actionCell text-center topicInfoStyle">${topic.creator.userName}</td>
+							<td class="actionCell text-center topicInfoStyle">${topic.visibility}</td>
 						</tr>
 					</c:if>
 
@@ -292,11 +292,11 @@ file
 									<form method="post">
 									<input type="hidden" name="action" value="openTopic">
 									<input type="hidden" name="idOfTOpic" value="${userTopic.topic.topicID}">
-									<button class="btn-block topicTask" type="submit">${userTopic.topic.topic}</button>
+									<button class="btn-block topicStyle" type="submit">${userTopic.topic.topic}</button>
 									</form>
 									</td>
-									<td class="actionCell text-center">${userTopic.topic.creator.userName}</td>
-									<td class="actionCell text-center">${userTopic.topic.visibility}</td>
+									<td class="actionCell text-center topicInfoStyle">${userTopic.topic.creator.userName}</td>
+									<td class="actionCell text-center topicInfoStyle">${userTopic.topic.visibility}</td>
 								</tr>
 							</c:if>
 						</c:if>

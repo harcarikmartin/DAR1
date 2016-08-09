@@ -21,14 +21,42 @@ body {
 	width: 10rem;
 }
 
-.topicTask{
-	height: 8vh;
-	min-height: 40px;
+.topicStyle{
+	height: 5vh;
+	min-height: 30px;
     background-color: #404040;
     border: none;
     color: white;
-
+    font-weight: bold;
 }
+
+.topicInfoStyle{
+	background-color: #404040;
+	color: white;
+	font-weight: bold;
+	font-size: 10px;
+}
+
+.topicHeadStyle{
+	height: 30px;
+	background-color: #ff9900;
+	color: white;
+	font-weight: bold;
+}
+
+.topicStyle:hover{
+    background-color: #804d00;
+    border: none;
+    color: white;
+    font-weight: bolder;
+    text-shadow: 2px 2px 4px black;
+}
+
+
+
+
+
+
 
 
 h3{
