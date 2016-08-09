@@ -195,9 +195,8 @@
 			<div class="col-lg-offset-1 col-lg-10">
 				<table>
 					<tr>
-						<th class="topicCell text-center topicHeadStyle">Name of
-							topic</th>
-						<th class="actionCell text-center topicHeadStyle">Create by</th>
+						<th class="topicCell text-center topicHeadStyle">Topic</th>
+						<th class="actionCell text-center topicHeadStyle">Created by</th>
 						<th class="actionCell text-center topicHeadStyle">Visibility</th>
 						<c:if test="${user.role == 'admin'}">
 							<th class="actionCell text-center topicHeadStyle">Update</th>

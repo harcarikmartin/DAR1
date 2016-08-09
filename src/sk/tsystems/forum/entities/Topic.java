@@ -24,6 +24,7 @@ public class Topic {
 //	private User subscriber;
 	
 	
+//	@ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	@ManyToMany
 	@JoinTable(name = "Topic_User", joinColumns = @JoinColumn(name = "topic_ID", referencedColumnName="topicID"), inverseJoinColumns = @JoinColumn(name = "user_ID", referencedColumnName="userID"))
 	private List<User> users;
