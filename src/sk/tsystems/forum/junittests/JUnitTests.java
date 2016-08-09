@@ -20,7 +20,6 @@ public class JUnitTests {
 	static User testedUser = new User();
 	static Topic testedTopic = new Topic();
 
-
 	@BeforeClass
 	public static void createTesterUserAndTestingTopic() {
 		testedUser.setUserName(tester);
@@ -79,14 +78,14 @@ public class JUnitTests {
 		// Checks if topic "testingTopic" is in database
 		assertNotEquals(null, topicServices.setPresentTopic(testingTopic));
 	}
-	
+
 	@Test
-	public void doesUpdateTopicMethodWorks(){
+	public void doesUpdateTopicMethodWorks() {
 		// Checks if method updateTopic works
 		topicServices.updateTopic(testingTopic, testingTopic, "public");
 		Topic testedTopic1 = new Topic();
 		testedTopic1 = topicServices.setPresentTopic(testingTopic);
-		assertNotEquals(testedTopic, testedTopic1 );
+		assertNotEquals(testedTopic, testedTopic1);
 	}
 
 }
