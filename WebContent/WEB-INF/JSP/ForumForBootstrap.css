@@ -13,9 +13,23 @@ body {
 	margin: 0;
 }
 
-label {
-	display: inline-block;
+.topicCell{
+	width: 90rem;
 }
+
+.actionCell{
+	width: 10rem;
+}
+
+.topicTask{
+	height: 8vh;
+	min-height: 40px;
+    background-color: #404040;
+    border: none;
+    color: white;
+
+}
+
 
 h3{
     margin: 0;

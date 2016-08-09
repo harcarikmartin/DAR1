@@ -23,10 +23,10 @@
       <file leaf-file-name="ForumForBootstrap.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ForumForBootstrap.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+            <state relative-caret-position="187">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
-                <marker date="1470730072705" expanded="true" signature="61:173" ph="{...}" />
+                <marker date="1470740150342" expanded="true" signature="61:283" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -35,8 +35,8 @@
       <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bootstrap/css/bootstrap.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="2137" column="16" selection-start-line="2137" selection-start-column="16" selection-end-line="2137" selection-end-column="16" />
+            <state relative-caret-position="1597">
+              <caret line="1778" column="102" selection-start-line="1778" selection-start-column="102" selection-end-line="1778" selection-end-column="111" />
               <folding />
             </state>
           </provider>
@@ -167,15 +167,15 @@
       <updated>1470211100489</updated>
       <workItem from="1470211102040" duration="1181000" />
       <workItem from="1470378586904" duration="11000" />
-      <workItem from="1470729156942" duration="1927000" />
+      <workItem from="1470729156942" duration="3605000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3119000" />
+    <option name="totallyTimeSpent" value="4797000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13489583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -270,18 +270,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ForumForBootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="187">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <marker date="1470730072705" expanded="true" signature="61:173" ph="{...}" />
+            <marker date="1470740150342" expanded="true" signature="61:283" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bootstrap/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="2137" column="16" selection-start-line="2137" selection-start-column="16" selection-end-line="2137" selection-end-column="16" />
+        <state relative-caret-position="1597">
+          <caret line="1778" column="102" selection-start-line="1778" selection-start-column="102" selection-end-line="1778" selection-end-column="111" />
           <folding />
         </state>
       </provider>

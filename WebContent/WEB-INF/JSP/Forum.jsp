@@ -184,6 +184,7 @@ file
 
 	<jsp:include page="UserMenu.jsp" />
 
+
 	<c:if test="${user.role == 'admin'}">
 		<form method="post">
 			<label for="addTopic">Add new Topic: </label> <input id="addTopic"
@@ -195,23 +196,32 @@ file
 		</form>
 	</c:if>
 
-	<div>
+	<div class="row">
+	<div  class="col-lg-offset-2 col-lg-8">
 		<table>
 			<tr>
-				<th>Name of topic</th>
-				<th>Create by</th>
-				<th>Visibility</th>
+				<th class="topicCell text-center">Name of topic</th>
+				<th class="actionCell text-center">Create by</th>
+				<th class="actionCell text-center">Visibility</th>
 				<c:if test="${user.role == 'admin'}">
-					<th>Action</th>
+					<th class="actionCell text-center">Update</th>
+					<th class="actionCell text-center">Delete</th>
 				</c:if>
 			</tr>
 			<c:forEach items="${topics}" var="topic">
+				
 				<c:if test="${user.role == null}">
 					<c:if test="${topic.visibility == 'public'}">
 						<tr>
-							<td>${topic.topic}</td>
-							<td>${topic.creator.userName}</td>
-							<td>${topic.visibility}</td>
+							<td>
+							<form method="post">
+							<input type="hidden" name="action" value="openTopic">
+							<input type="hidden" name="idOfTOpic" value="${topic.topicID}">
+							<button class="btn-block" type="submit">${topic.topic}</button>
+							</form>
+							</td>
+							<td class="actionCell text-center">${topic.creator.userName}</td>
+							<td class="actionCell text-center">${topic.visibility}</td>
 						</tr>
 					</c:if>
 				</c:if>
@@ -226,12 +236,18 @@ file
 						<!-- 							<th>Action</th> -->
 						<!-- 						</tr> -->
 						<tr>
-							<td>${topic.topic}</td>
-							<td>${topic.creator.userName}</td>
-							<td>${topic.visibility}</td>
+							<td class="topicCell text-center">
+							<form method="post">
+							<input type="hidden" name="action" value="openTopic">
+							<input type="hidden" name="idOfTOpic" value="${topic.topicID}">
+							<button class="btn-block" type="submit">${topic.topic}</button>
+							</form>
+							</td>
+							<td class="actionCell text-center">${topic.creator.userName}</td>
+							<td class="actionCell text-center">${topic.visibility}</td>
 
 							<c:if test="${user.role == 'admin'}">
-								<td>
+								<td class="actionCell text-center">
 									<form method="post" class="topicToUpdate">
 										<input type="hidden" name="topicToUpdate"
 											value="${topic.topic}"> <input type="hidden"
@@ -239,7 +255,7 @@ file
 										<button type="submit">Update</button>
 									</form>
 								</td>
-								<td>
+								<td class="actionCell text-center">
 									<form method="post" class="topicToRemove">
 										<input type="hidden" name="topicToRemove"
 											value="${topic.topic}"> <input type="hidden"
@@ -256,9 +272,15 @@ file
 				<c:if test="${user.role == 'user'}">
 					<c:if test="${topic.visibility == 'public'}">
 						<tr>
-							<td>${topic.topic}</td>
-							<td>${topic.creator.userName}</td>
-							<td>${topic.visibility}</td>
+							<td class="topicCell text-center">
+							<form method="post">
+							<input type="hidden" name="action" value="openTopic">
+							<input type="hidden" name="idOfTOpic" value="${topic.topicID}">
+							<button class="btn-block topicTask" type="submit">${topic.topic}</button>
+							</form>
+							</td>
+							<td class="actionCell text-center">${topic.creator.userName}</td>
+							<td class="actionCell text-center">${topic.visibility}</td>
 						</tr>
 					</c:if>
 
@@ -266,9 +288,15 @@ file
 						<c:if test="${topic.topicID == userTopic.topic.topicID}">
 							<c:if test="${userTopic.user.userID == user.userID}">
 								<tr>
-									<td>${userTopic.topic.topic}</td>
-									<td>${userTopic.topic.creator.userName}</td>
-									<td>${userTopic.topic.visibility}</td>
+									<td class="topicCell text-center">
+									<form method="post">
+									<input type="hidden" name="action" value="openTopic">
+									<input type="hidden" name="idOfTOpic" value="${userTopic.topic.topicID}">
+									<button class="btn-block topicTask" type="submit">${userTopic.topic.topic}</button>
+									</form>
+									</td>
+									<td class="actionCell text-center">${userTopic.topic.creator.userName}</td>
+									<td class="actionCell text-center">${userTopic.topic.visibility}</td>
 								</tr>
 							</c:if>
 						</c:if>
@@ -305,6 +333,7 @@ file
 
 
 		</table>
+</div>
 	</div>
 
 	<%-- <%@ include file="Task.jsp"%> --%>
