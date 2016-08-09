@@ -25,9 +25,10 @@ body {
 	padding-bottom: 1em;
 }
 
-.labels{
+.labels, .simpleText{
 	color: white;
 	padding-left: 1em;
+	padding-right: 1em;
 }
 
 .topicCell{
@@ -54,7 +55,7 @@ body {
 	font-size: 10px;
 }
 
-.topicHeadStyle{
+.topicHeadStyle, .registerHeadStyle, .approveHeadStyle{
 	height: 30px;
 	background-color: #ff9900;
 	color: white;
@@ -75,9 +76,36 @@ body {
 	color: black;
 }
 
+.loginForm{
+	color: black;
+}
+
+.registerCellStyle{
+	height: 5vh;
+	min-height: 30px;
+	width: 33%;
+    background-color: #404040;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+
+.approveCellStyle{
+	height: 3vh;
+	min-height: 30px;
+	min-width: 100px;
+	width: 100%;
+    background-color: #404040;
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
 .buttonStyle{
 	height: 3vh;
-	min-height: 20px;
+	min-height: 30px;
     background-color: #333333;
     border: none;
     color: white;
@@ -92,15 +120,32 @@ body {
     text-shadow: 2px 2px 4px black;
 }
 
-.registerCellStyle{
-	height: 5vh;
-	min-height: 30px;
-	width: 33%;
-    background-color: #404040;
-    border: none;
-    color: white;
-    font-weight: bold;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* old stuff */
+
+
+
+
 
 h3{
     margin: 0;

@@ -10,9 +10,9 @@
 					type="hidden" name="status" value="pending">
 				<table class="col-lg-10">
 					<tr>
-						<th class="registerCellStyle text-center">Register</th>
-						<th class="registerCellStyle text-center">Form</th>
-						<th class="registerCellStyle text-center">Form</th>
+						<th class="registerHeadStyle text-center">Register</th>
+						<th class="registerHeadStyle text-center">Form</th>
+						<th class="registerHeadStyle text-center">Form</th>
 					</tr>
 					<tr>
 						<td class="registerCellStyle text-center"><label
