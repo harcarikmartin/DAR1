@@ -1,0 +1,82 @@
+html {
+    width: 100vw;
+    background-color: white;
+}
+body {
+    width: 100vw;
+    background-color: #CCCCCC;
+    margin: auto;
+    height: 100vh;
+}
+
+.row{
+	margin: 0;
+}
+
+
+
+h3{
+    margin: 0;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+.centerAlign {
+    text-align: center;
+}
+
+p {
+	margin: 0;
+}
+
+.left {
+    float: left;
+    width: 75%;
+    background-color: darkgrey;
+    min-height: 10vh;
+}
+
+.right {
+    float: left;
+    width: 25%;
+    background-color: darkkhaki;
+    min-height: 10vh;
+}
+
+.clear{
+    clear: both;
+}
+
+.topics {
+    padding-top: 1vh;
+}
+
+.leftRegistration{
+    float: left;
+    width: 50%;
+    text-align: right;
+    min-height: 5vh;
+    background-color: greenyellow;
+}
+
+.rightRegistration{
+    float: left;
+    width: 49%;
+    text-align: left;
+    padding-left: 1%;
+    min-height: 5vh;
+    background-color: darkseagreen;
+    display: inline-block;
+}
+
+.requiredField{
+	padding: 0;
+	margin: 0;
+	font: 12px Arial;
+	color: red;
+}
+
+.registrationForm {
+	width: 15vw;
+}
+

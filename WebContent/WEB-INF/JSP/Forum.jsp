@@ -7,139 +7,168 @@
 <meta http-equiv="Content-Type" content="text/html; utf-8">
 <title>Registration form</title>
 <style>
-   <%@ include file="normalize.css"%>
-   <%@ include file="Forum.css"%>
+<%--    <%@ include file="normalize.css"%> --%>
+   
+   <%@ include file="bootstrap/css/bootstrap.css"%>
+   <%@ include file="ForumForBootstrap.css"%>
 </style>
 </head>
-<body>
-	<h3>
-		<a href="/Forum/Forum">Forum</a>
-	</h3>
-	<div class="centerAlign">
-		<form method="post">
-			<input type="hidden" name="action" value="generate">
-			<button type="submit">Generate</button>
-			<br>
-			<br>
-		</form>
-	</div>
 
-	<c:if test="${user == null}">
-		<div id="login" class="content">
-			<c:if test="${error == '5'}">
-				<p class="warning">Wrong login details!</p>
-			</c:if>
+<body>
+	<div class="row">
+		<h3 class="text-center">
+			<a href="/Forum/Forum">Forum</a>
+		</h3>
+		<div class="row text-center">
 			<form method="post">
-				<div class="left">
-					<label for="userName">Name:</label> <input id="userName"
-						class="userName" type="text" name="userName"
-						placeholder="name ..."> <label for="userPassword">Password:</label>
-					<input id="userPassword" class="userPassword" type="text"
-						name="userPassword" placeholder="password ..."> <input
-						type="hidden" name="action" value="login">
-					<button type="submit">Login</button>
-				</div>
-				<div class="right">
-					<button name="action" value="registrationShow" type="button"
-						onclick="registerFcn()">Registration</button>
-				</div>
-				<div class="clear"></div>
+				<input type="hidden" name="action" value="generate">
+				<button type="submit">Generate</button>
 			</form>
 		</div>
-	</c:if>
+	</div>
 
-	<c:if test="${user != null}">
-		<div class="content">
-			<div class="left">
-				<p>Prihlásený ako ${user.userName}</p>
-				<p>heslo je ${user.userPassword }</p>
+
+	<div class="row">
+		<c:if test="${user == null}">
+			<div id="login" class="col-lg-offset-3">
+				<div class="col-lg-10">
+					<c:if test="${error == '5'}">
+						<p class="warning">Wrong login details!</p>
+					</c:if>
+				</div>
+
+				<div class="row">
+					<form method="post">
+						<div class="col-lg-5 ">
+							<label for="userName">Name:</label> <input id="userName"
+								class="userName" type="text" name="userName"
+								placeholder="name ..."> <label for="userPassword">Password:</label>
+							<input id="userPassword" class="userPassword" type="text"
+								name="userPassword" placeholder="password ..."> <input
+								type="hidden" name="action" value="login">
+							<button type="submit">Login</button>
+						</div>
+						<div class="col-lg-5 text-center">
+							<button name="action" value="registrationShow" type="button" onclick="registerFcn()">Registration</button>
+						</div>
+
+					</form>
+				</div>
 			</div>
-			<div class="right">
-				<form method="post">
-					<input type="hidden" name="action" value="logout">
-					<button type="submit">Logout</button>
-				</form>
+		</c:if>
+
+		<c:if test="${user != null}">
+			<div class="content">
+				<div class="col-sm-6">
+					<p>Prihlásený ako ${user.userName}</p>
+					<p>heslo je ${user.userPassword }</p>
+				</div>
+				<div class="col-sm-4">
+					<form method="post">
+						<input type="hidden" name="action" value="logout">
+						<button type="submit">Logout</button>
+					</form>
+				</div>
 			</div>
-		</div>
-	</c:if>
+		</c:if>
+	</div>
+
+
+
 
 	<c:if test="${user == null}">
-		<div id="register" class="content">
-			<c:if test="${error == '1'}">
-				<p class="warning">Passwords must match!</p>
-			</c:if>
-			<c:if test="${error == '2'}">
-				<p class="warning">Password must be at least 8 digits long!</p>
-			</c:if>
-			<c:if test="${error == '3'}">
-				<p class="warning">Username already exists!</p>
-			</c:if>
-			<c:if test="${error == '4'}">
-				<p class="warning">Not registered yet!</p>
-			</c:if>
-
-			<div>
+		<div id="register" class="content row">
+			
+			
+			<div class="row col-sm-offset-2">
 				<form method="post" onsubmit="return checkRequiredReg()">
 					<input type="hidden" name="role" value="user"> <input
 						type="hidden" name="status" value="pending">
 
-					<div class="leftRegistration">
-						<label for="userNameReg">Name:</label>
+					<div class="row">
+						<div class="col-sm-4 text-right">
+							<label for="userNameReg">Name:</label>
+						</div>
+						<div class="col-sm-4">
+							<input id="userNameReg" class="registrationForm" type="text"
+								name="userName" placeholder="name ...">
+							<p id="rfName" class="requiredField">Required field</p>
+						</div>
 					</div>
-					<div class="rightRegistration">
-						<input id="userNameReg" class="registrationForm" type="text"
-							name="userName" placeholder="name ...">
-						<p id="rfName" class="requiredField">Required field</p>
+
+					<div class="row">
+						<div class="col-sm-4 text-right">
+							<label for="userPassReg">Password:</label>
+						</div>
+						<div class="col-sm-4">
+							<input id="userPassReg" class="registrationForm" type="password"
+								name="userPassword"
+								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
+								oninvalid="alert('Password is not valid')"
+								placeholder="password">
+							<p id="rfPass" class="requiredField">Required field</p>
+						</div>
 					</div>
-					<div class="clear"></div>
-					<div class="leftRegistration">
-						<label for="userPassReg">Password:</label>
+
+					<div class="row">
+						<div class="col-sm-4 col-sm-offset-4">
+							<p>* Password must contain minimum 8 characters, at least 1
+								Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special
+								Character [!@#$%^&*_=+-]</p>
+						</div>
 					</div>
-					<div class="rightRegistration">
-						<input id="userPassReg" class="registrationForm" type="password"
-							name="userPassword"
-							pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-							oninvalid="alert('Password is not valid')" placeholder="password">
-						<p id="rfPass" class="requiredField">Required field</p>
+
+					<div class="row">
+						<div class="col-sm-4 text-right">
+							<label for="userPassRegCheck">Password for check:</label>
+						</div>
+						<div class="col-sm-4">
+							<input id="userPassRegCheck" class="registrationForm"
+								type="password" name="userPasswordCheck"
+								placeholder="password again ...">
+							<p id="rfPassCheck" class="requiredField">Required field</p>
+						</div>
 					</div>
-					<div class="clear"></div>
-					<div class="leftRegistration"></div>
-					<div class="rightRegistration">
-						<p>* Password must contain minimum 8 characters, at least 1
-							Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special
-							Character [!@#$%^&*_=+-]</p>
+
+					<div class="row">
+						<div class="col-sm-4 text-right">
+							<label for="birthdate">Birthdate:</label>
+						</div>
+						<div class="col-sm-4">
+							<input id="birthdate" class="registrationForm" type="date"
+								name="birthdate">
+							<p id="rfBirthdate" class="requiredField">Required field</p>
+						</div>
 					</div>
-					<div class="clear"></div>
-					<div class="leftRegistration">
-						<label for="userPassRegCheck">Password for check:</label>
+
+					<div class="row">
+
+						<div class="col-sm-4 col-sm-offset-4">
+							<input type="hidden" name="action" value="registration">
+							<button type="submit">Registration</button>
+							<br>
+							<button type="button" onClick="window.location.reload()">Back</button>
+						</div>
 					</div>
-					<div class="rightRegistration">
-						<input id="userPassRegCheck" class="registrationForm"
-							type="password" name="userPasswordCheck"
-							placeholder="password again ...">
-						<p id="rfPassCheck" class="requiredField">Required field</p>
-					</div>
-					<div class="clear"></div>
-					<div class="leftRegistration">
-						<label for="birthdate">Birthdate:</label>
-					</div>
-					<div class="rightRegistration">
-						<input id="birthdate" class="registrationForm" type="date"
-							name="birthdate">
-						<p id="rfBirthdate" class="requiredField">Required field</p>
-					</div>
-					<div class="clear"></div>
-					<div class="leftRegistration"></div>
-					<div class="rightRegistration">
-						<input type="hidden" name="action" value="registration">
-						<button type="submit">Registration</button>
-						<br>
-						<button type="button" onClick="window.location.reload()">Back</button>
-					</div>
-					<div class="clear"></div>
 				</form>
 			</div>
+			
+			
 		</div>
+		<div class="row">
+				<c:if test="${error == '1'}">
+					<p class="warning">Passwords must match!</p>
+				</c:if>
+				<c:if test="${error == '2'}">
+					<p class="warning">Password must be at least 8 digits long!</p>
+				</c:if>
+				<c:if test="${error == '3'}">
+					<p class="warning">Username already exists!</p>
+				</c:if>
+				<c:if test="${error == '4'}">
+					<p class="warning">Not registered yet!</p>
+				</c:if>
+			</div>
 	</c:if>
 
 	<jsp:include page="AdminMenu.jsp" />
