@@ -132,8 +132,9 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("listTopics", 1);
 		} else if ("register".equals(action)) {
 			request.setAttribute("registerForm", 1);
-		}
-		else if("generate".equals(action)) {	
+		} else if ("changeTopics".equals(action)){
+			addUserTopic(request);
+		} else if("generate".equals(action)) {	
 			Topic topic1 = new Topic();
 			topic1.setTopic("prvy topic");
 			topic1.setCreator(admin);
@@ -246,6 +247,22 @@ public class ForumServlet extends HttpServlet {
 	private void incorrectPassword(HttpServletRequest request) {
 		request.setAttribute("error", 5);
 	}
+	
+	private void addUserTopic(HttpServletRequest request){
+		String[] topicsId = request.getParameterValues("topic");
+		List<User> actualUser = new ArrayList<>();
+		actualUser.add(user);
+		
+		for( int i = 0; i <= topicsId.length - 1; i++)
+		{
+			for(Topic topic:new TopicServices().printTopic()){
+				if(topic.getTopicID()==Integer.parseInt(topicsId[i])){
+					new TopicServices().setSubscriber(topic, actualUser);	
+			 }	
+		  }
+	    }
+	}
+
 	
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

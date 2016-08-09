@@ -81,4 +81,10 @@ public class TopicServices {
 		topic.setVisibility(newVisibility);
 		JpaHelper.commitTransaction();
 	}
+	
+	public void setSubscriber(Topic topic, List<User> actualUser) {
+		JpaHelper.beginTransaction();
+		topic.setUsers(actualUser);
+		JpaHelper.commitTransaction();
+	}
 }
