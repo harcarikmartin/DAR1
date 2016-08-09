@@ -269,6 +269,8 @@
 		</table>
 	</div>
 
+<%-- <%@ include file="Task.jsp"%> --%>
+<%-- <%@ include file="AddTask.jsp"%> --%>
 
 </body>
 
