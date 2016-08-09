@@ -7,10 +7,18 @@
 <meta http-equiv="Content-Type" content="text/html; utf-8">
 <title>Registration form</title>
 <style>
-<%--    <%@ include file="normalize.css"%> --%>
-   
-   <%@ include file="bootstrap/css/bootstrap.css"%>
-   <%@ include file="ForumForBootstrap.css"%>
+<%--
+<%@
+include
+ 
+file
+="normalize
+.css
+"%
+>
+--%>
+<%@include file="bootstrap/css/bootstrap.css"%>
+<%@include file="ForumForBootstrap.css"%>
 </style>
 </head>
 
@@ -30,46 +38,47 @@
 
 	<div class="row">
 		<c:if test="${user == null}">
-			<div id="login" class="col-lg-offset-3">
-				<div class="col-lg-10">
-					<c:if test="${error == '5'}">
-						<p class="warning">Wrong login details!</p>
-					</c:if>
-				</div>
+			<div id="login" class="col-lg-offset-1">
+				<!-- 				<div class="col-lg-10"> -->
+				<%-- 					<c:if test="${error == '5'}"> --%>
+				<!-- 						<p class="warning">Wrong login details!</p> -->
+				<%-- 					</c:if> --%>
+				<!-- 				</div> -->
 
-				<div class="row">
-					<form method="post">
-						<div class="col-lg-5 ">
-							<label for="userName">Name:</label> <input id="userName"
+				<div class="row ">
+					<div class="col-lg-5 text-center">
+						<form method="post">
+							<label for="userName">Name: <input id="userName"
 								class="userName" type="text" name="userName"
-								placeholder="name ..."> <label for="userPassword">Password:</label>
-							<input id="userPassword" class="userPassword" type="text"
-								name="userPassword" placeholder="password ..."> <input
-								type="hidden" name="action" value="login">
+								placeholder="name ..."></label>
+							<label for="userPassword">Password: <input id="userPassword" 
+								class="userPassword" type="text" name="userPassword" 
+								placeholder="password ..."></label>
+							 <input type="hidden" name="action" value="login">
 							<button type="submit">Login</button>
-						</div>
-						<div class="col-lg-5 text-center">
-							<button name="action" value="registrationShow" type="button" onclick="registerFcn()">Registration</button>
-						</div>
-
-					</form>
+							<c:if test="${error == '5'}">
+								Wrong login details!
+							</c:if>
+						</form>
+					</div>
+					<div class="col-lg-5 text-center">
+						<button name="action" value="registrationShow" type="button"
+							onclick="registerFcn()">Registration</button>
+					</div>
 				</div>
 			</div>
 		</c:if>
 
 		<c:if test="${user != null}">
-			<div class="content">
-				<div class="col-sm-6">
-					<p>Prihlásený ako ${user.userName}</p>
-					<p>heslo je ${user.userPassword }</p>
+				<div class="col-lg-5 text-center">
+					Prihlásený ako ${user.userName}
 				</div>
-				<div class="col-sm-4">
+				<div class="col-lg-5 text-center">
 					<form method="post">
 						<input type="hidden" name="action" value="logout">
 						<button type="submit">Logout</button>
 					</form>
 				</div>
-			</div>
 		</c:if>
 	</div>
 
@@ -78,8 +87,8 @@
 
 	<c:if test="${user == null}">
 		<div id="register" class="content row">
-			
-			
+
+
 			<div class="row col-sm-offset-2">
 				<form method="post" onsubmit="return checkRequiredReg()">
 					<input type="hidden" name="role" value="user"> <input
@@ -152,23 +161,23 @@
 					</div>
 				</form>
 			</div>
-			
-			
+
+
 		</div>
 		<div class="row">
-				<c:if test="${error == '1'}">
-					<p class="warning">Passwords must match!</p>
-				</c:if>
-				<c:if test="${error == '2'}">
-					<p class="warning">Password must be at least 8 digits long!</p>
-				</c:if>
-				<c:if test="${error == '3'}">
-					<p class="warning">Username already exists!</p>
-				</c:if>
-				<c:if test="${error == '4'}">
-					<p class="warning">Not registered yet!</p>
-				</c:if>
-			</div>
+			<c:if test="${error == '1'}">
+				<p class="warning">Passwords must match!</p>
+			</c:if>
+			<c:if test="${error == '2'}">
+				<p class="warning">Password must be at least 8 digits long!</p>
+			</c:if>
+			<c:if test="${error == '3'}">
+				<p class="warning">Username already exists!</p>
+			</c:if>
+			<c:if test="${error == '4'}">
+				<p class="warning">Not registered yet!</p>
+			</c:if>
+		</div>
 	</c:if>
 
 	<jsp:include page="AdminMenu.jsp" />
@@ -188,14 +197,14 @@
 
 	<div>
 		<table>
-		<tr>
-			<th>Name of topic</th>
-			<th>Create by</th>
-			<th>Visibility</th>
-			<c:if test="${user.role == 'admin'}">
-			<th>Action</th>
-			</c:if>
-		</tr>
+			<tr>
+				<th>Name of topic</th>
+				<th>Create by</th>
+				<th>Visibility</th>
+				<c:if test="${user.role == 'admin'}">
+					<th>Action</th>
+				</c:if>
+			</tr>
 			<c:forEach items="${topics}" var="topic">
 				<c:if test="${user.role == null}">
 					<c:if test="${topic.visibility == 'public'}">
@@ -210,12 +219,12 @@
 				<c:if test="${topicUpdating == null}">
 
 					<c:if test="${user.role == 'admin'}">
-<!-- 						<tr> -->
-<!-- 							<th>Name of topic</th> -->
-<!-- 							<th>Create by</th> -->
-<!-- 							<th>Visibility</th> -->
-<!-- 							<th>Action</th> -->
-<!-- 						</tr> -->
+						<!-- 						<tr> -->
+						<!-- 							<th>Name of topic</th> -->
+						<!-- 							<th>Create by</th> -->
+						<!-- 							<th>Visibility</th> -->
+						<!-- 							<th>Action</th> -->
+						<!-- 						</tr> -->
 						<tr>
 							<td>${topic.topic}</td>
 							<td>${topic.creator.userName}</td>
@@ -229,8 +238,8 @@
 											name="action" value="updateTopic">
 										<button type="submit">Update</button>
 									</form>
-									</td>
-									<td>
+								</td>
+								<td>
 									<form method="post" class="topicToRemove">
 										<input type="hidden" name="topicToRemove"
 											value="${topic.topic}"> <input type="hidden"
@@ -242,8 +251,8 @@
 						</tr>
 					</c:if>
 				</c:if>
-				
-				
+
+
 				<c:if test="${user.role == 'user'}">
 					<c:if test="${topic.visibility == 'public'}">
 						<tr>
@@ -252,59 +261,59 @@
 							<td>${topic.visibility}</td>
 						</tr>
 					</c:if>
-					
+
 					<c:forEach var="userTopic" items="${userTopics}">
 						<c:if test="${topic.topicID == userTopic.topic.topicID}">
 							<c:if test="${userTopic.user.userID == user.userID}">
-							<tr>
-							<td>${userTopic.topic.topic}</td>
-							<td>${userTopic.topic.creator.userName}</td>
-							<td>${userTopic.topic.visibility}</td>
-						</tr>
+								<tr>
+									<td>${userTopic.topic.topic}</td>
+									<td>${userTopic.topic.creator.userName}</td>
+									<td>${userTopic.topic.visibility}</td>
+								</tr>
 							</c:if>
 						</c:if>
 					</c:forEach>
-					
+
 				</c:if>
 			</c:forEach>
-			
-			
-				<c:if test="${topicUpdating != null}">
-					<form method="post">
-						<label for="editTopic">Edit Topic: </label> 
-						<input id="editTopic" type="text" name="editTopic" value="${topicUpdating.topic}">
-						<c:if test="${topicUpdating.visibility == 'public'}">
-							<input type="radio" name="visibility1" value="public" checked>Public
+
+
+			<c:if test="${topicUpdating != null}">
+				<form method="post">
+					<label for="editTopic">Edit Topic: </label> <input id="editTopic"
+						type="text" name="editTopic" value="${topicUpdating.topic}">
+					<c:if test="${topicUpdating.visibility == 'public'}">
+						<input type="radio" name="visibility1" value="public" checked>Public
 							<input type="radio" name="visibility1" value="private">Private
 						</c:if>
-						<c:if test="${topicUpdating.visibility == 'private'}">
-							<input type="radio" name="visibility1" value="public">Public
+					<c:if test="${topicUpdating.visibility == 'private'}">
+						<input type="radio" name="visibility1" value="public">Public
 							<input type="radio" name="visibility1" value="private" checked>Private
 						</c:if>
-						
-<!-- 						<input type="radio" name="visibility" value="public"  -->
-<%-- 							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if> --%>
-<!-- 							/> Public  -->
-<!-- 						<input type="radio" name="visibility" value="private" -->
-<%-- 							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if> --%>
-<!-- 							/> Private  -->
-						<input type="hidden" name="original" value="${topicUpdating.topic}">
-						<input type="hidden" name="action" value="updateTheTopic">
-						<button type="submit">Edit Topic</button>
-					</form>
-				</c:if>
-				
-			
+
+					<!-- 						<input type="radio" name="visibility" value="public"  -->
+					<%-- 							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if> --%>
+					<!-- 							/> Public  -->
+					<!-- 						<input type="radio" name="visibility" value="private" -->
+					<%-- 							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if> --%>
+					<!-- 							/> Private  -->
+					<input type="hidden" name="original" value="${topicUpdating.topic}">
+					<input type="hidden" name="action" value="updateTheTopic">
+					<button type="submit">Edit Topic</button>
+				</form>
+			</c:if>
+
+
 		</table>
 	</div>
 
-<%-- <%@ include file="Task.jsp"%> --%>
-<%-- <%@ include file="AddTask.jsp"%> --%>
+	<%-- <%@ include file="Task.jsp"%> --%>
+	<%-- <%@ include file="AddTask.jsp"%> --%>
 
 </body>
 
 <script type="text/javascript">
-	document.getElementById("login").style.display = "inline";
+	// 	document.getElementById("login").style.display = "inline";
 	document.getElementById("register").style.display = "none";
 	function registerFcn() {
 		document.getElementById("login").style.display = "none";
