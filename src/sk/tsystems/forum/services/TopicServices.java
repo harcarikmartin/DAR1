@@ -12,7 +12,7 @@ import sk.tsystems.forum.services.jpahelper.JpaHelper;
 
 public class TopicServices {
 
-	public List<Topic> printTopic() {
+	public List<Topic> printTopics() {
 
 		List<Topic> listOfTopics = new ArrayList<>();
 		EntityManager em = JpaHelper.getEntityManager();

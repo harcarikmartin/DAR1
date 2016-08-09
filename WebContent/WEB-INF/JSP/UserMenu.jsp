@@ -65,18 +65,19 @@
 				<c:forEach var="topic" items="${topics}">
 				<c:if test="${topic.visibility == 'private'}">
 					<tr>
-						<td><input type="checkbox" name="topic"
-							value="	${topic.topicID}"
-							<c:forEach var="userTopic" items="${userTopics}">
-								<c:if test="${topic.topicID == userTopic.topic.topicID}">
-									<c:if test="${userTopic.user.userID == user.userID}">
-										 checked 
+						<td>
+							<input type="checkbox" name="topic" value="	${topic.topicID}"
+								<c:forEach var="userTopic" items="${userTopics}">
+									<c:if test="${topic.topicID == userTopic.topic.topicID}">
+										<c:if test="${userTopic.user.userID == user.userID}">
+										checked 
+										</c:if>
 									</c:if>
-								</c:if>
-							</c:forEach>>
-							${topic.topic}</td>
+								</c:forEach>>
+							${topic.topic}
+						</td>
 					</tr>
-					</c:if>
+				</c:if>
 				</c:forEach>
 			</table>
 			<input type="hidden" name="action" value="changeTopics">

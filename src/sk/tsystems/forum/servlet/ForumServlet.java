@@ -112,7 +112,7 @@ public class ForumServlet extends HttpServlet {
 			logout(request);
 		} else if("showMyTopics".equals(action)) {
 			request.setAttribute("listTopics", 1);	
-			request.setAttribute("topics", new TopicServices().printTopic());
+			request.setAttribute("topics", new TopicServices().printTopics());
 			request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		} else if("updateTopic".equals(action)) {
 			// ak je zmena stavu z private na public treba dany topic odstranit z prepojovacej tabulky
@@ -255,7 +255,7 @@ public class ForumServlet extends HttpServlet {
 		
 		for( int i = 0; i <= topicsId.length - 1; i++)
 		{
-			for(Topic topic:new TopicServices().printTopic()){
+			for(Topic topic:new TopicServices().printTopics()){
 				if(topic.getTopicID()==Integer.parseInt(topicsId[i])){
 					new TopicServices().setSubscriber(topic, actualUser);	
 			 }	
@@ -267,7 +267,7 @@ public class ForumServlet extends HttpServlet {
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setAttribute("topics", new TopicServices().printTopic());
+		request.setAttribute("topics", new TopicServices().printTopics());
 		request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
