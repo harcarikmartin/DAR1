@@ -6,16 +6,20 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
+import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
 
 public class JUnitTests {
-
-	UserServices userServices = new UserServices();
-	String tester = "tester";
+	
+	static TopicServices topicServices = new TopicServices();
+	static UserServices userServices = new UserServices();
+	static String tester = "tester";
+	static String testingTopic = "testing topic";
 
 	@BeforeClass
-	public void createTester() {
+	public static void createTesterUserAndTestingTopic() {
 		User testedUser = new User();
 		testedUser.setUserName(tester);
 		testedUser.setUserPassword("tester");
@@ -23,10 +27,17 @@ public class JUnitTests {
 		testedUser.setRole("user");
 		testedUser.setStatus("pending");
 		userServices.addUser(testedUser);
+		
+		Topic testedTopic = new Topic();
+		testedTopic.setTopic(testingTopic);
+		testedTopic.setVisibility("private");
+		testedTopic.setCreator(testedUser);
+		topicServices.addTopicToDatabase(testedTopic);
 	}
-
+	
 	@AfterClass
-	public void dropUser() {
+	public static void dropUser() {
+		topicServices.removeTopic(testingTopic);
 		userServices.dropUser(tester);
 	}
 
