@@ -20,7 +20,7 @@ import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
 import sk.tsystems.forum.services.UsersTopicsServices;
-import sk.tsystems.forum.services.jpahelper.JpaHelper;
+
 /**
  * Main Forum servlet, responible for deciding based on node requests 
  */
