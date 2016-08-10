@@ -4,7 +4,7 @@ html {
 }
 body {
     width: 100vw;
-    min-width: 300px;
+    min-width: 500px;
     background-image: url("images/background.jpg");
     margin: auto;
     height: 100vh;
@@ -41,6 +41,10 @@ body {
 	padding-right: 1em;
 }
 
+.marginHorizontalLeft {
+	margin-left: 1em;
+}
+
 .marginHorizontal {
 	margin-left: 1em;
 	margin-right: 1em;
@@ -63,11 +67,12 @@ body {
     font-weight: bold;
 }
 
-.topicInfoStyle{
+.topicInfoStyle, .registerInfoStyle{
 	background-color: #404040;
 	color: white;
 	font-weight: bold;
 	font-size: 10px;
+	padding-top: 0;
 }
 
 .topicHeadStyle, .registerHeadStyle, .approveHeadStyle, .subscribedTopicsHeadStyle{
@@ -86,18 +91,18 @@ body {
 }
 
 
-.registrationForm {
+.registrationForm, .passwordForm {
 	width: 100%;
 	color: black;
 }
 
-.loginForm, .passwordForm{
+.loginForm{
 	color: black;
 }
 
 .registerCellStyle{
-	height: 5vh;
-	min-height: 30px;
+	height: 3vh;
+	min-height: 15px;
 	width: 33%;
     background-color: #404040;
     border: none;
@@ -144,6 +149,9 @@ body {
     text-shadow: 2px 2px 4px black;
 }
 
+.userMenu {
+    display: inline-block;
+}
 
 
 

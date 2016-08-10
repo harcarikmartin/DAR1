@@ -7,14 +7,20 @@
 
 	<div class="row col-lg-12">
 		<div class="col-lg-offset-1 col-lg-10 rowBackground">
-			<div class="row">
-				<div class="text-left col-lg-6">
-					<form method="post">
-						<label class="labels" for="SeeProfile">My profile:</label> <input
-							type="hidden" name="action" value="showProfile">
-						<button class="buttonStyle" type="submit">Profile</button>
+				<div class="text-left text-center-xs">
+					<form class="userMenu" method="post">
+						<input type="hidden" name="action" value="showProfile">
+						<button class="marginHorizontalLeft buttonStyle" type="submit">Profile</button>
 					</form>
-				</div>
+					<form class="userMenu" method="post">
+						<input type="hidden" name="action" value="changePassword">
+						<button class="marginHorizontalLeft buttonStyle" type="submit">Change Password</button>
+					</form>
+					<form class="userMenu" method="post">
+						<input type="hidden" name="action" value="showMyTopics">
+						<button class="marginHorizontalLeft buttonStyle" type="submit">Subscribed
+							topics</button>
+					</form>
 			</div>
 		</div>
 	</div>
@@ -26,23 +32,15 @@
 				<p class="simpleText">Birthdate: ${user.birthDate}</p>
 				<p class="simpleText">Role: ${user.role}</p>
 				<p class="simpleText">Status: ${user.status}</p>
-				<form method="post">
-					<input type="hidden" name="action" value="changePassword">
-					<button class="buttonStyle" type="submit">Change Password</button>
-				</form>
-				<form method="post">
-					<input type="hidden" name="action" value="showMyTopics">
-					<button class="buttonStyle" type="submit">Subscribed
-						topics</button>
-				</form>
 			</div>
 		</div>
+	</c:if>
 
-		<c:if test="${changePassword == 1 }">
+	<c:if test="${changePassword == 1 }">
 			<div class="row col-lg-12">
-				<div class="col-lg-offset-1 col-lg-10 rowBackground ">
+				<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground ">
 					<form method="post">
-						<table class="col-lg-offset-2 col-lg-8">
+						<table class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
 							<tr>
 								<td class="passwordCellStyle"><label class="simpleText" for="OldPassword">Old
 										password:</label></td>
@@ -92,7 +90,7 @@
 				</div>
 			</div>
 		</c:if>
-</c:if>
+
 
 
 

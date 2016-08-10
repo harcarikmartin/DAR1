@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; utf-8">
-<title>Registration form</title>
+<title>Forum</title>
 <style>
 <%@include file="bootstrap/css/bootstrap.css"%>
 <%@include file="ForumForBootstrap.css"%>
@@ -32,7 +32,7 @@
 				<div class="row">
 					<div class="text-left  col-lg-8 col-md-8 col-sm-8 col-xs-12">
 						<form method="post">
-							<label class="labels" for="userName">Name: <input
+							<label class="labels" for="userName">Username: <input
 								id="userName" class="loginForm" type="text" name="userName"
 								placeholder="name ..."></label> <label class="labels"
 								for="userPassword">Password: <input id="userPassword"
@@ -58,13 +58,13 @@
 		<c:if test="${user != null  && registerForm == null}">
 			<div class="col-lg-offset-1 col-lg-10 rowBackground">
 				<div class="row">
-					<div class="text-left col-lg-6">
+					<div class="text-left text-center-xs col-lg-8  col-md-8 col-sm-8 col-xs-12">
 						<h4 class="simpleText">Logged as: ${user.userName}</h4>
 					</div>
-					<div class="col-lg-6 text-center">
+					<div class="text-right text-center-xs col-lg-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<form method="post">
 							<input type="hidden" name="action" value="logout">
-							<button class="buttonStyle" type="submit">Logout</button>
+							<button class="marginHorizontal buttonStyle" type="submit">Logout</button>
 						</form>
 					</div>
 				</div>
