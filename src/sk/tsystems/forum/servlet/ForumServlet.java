@@ -60,6 +60,8 @@ public class ForumServlet extends HttpServlet {
 				//bad login details case
 				incorrectPassword(request);
 			}
+		} else if ("register".equals(action)) {
+			request.setAttribute("registerForm", 1);
 		} else  if("registration".equals(action) && "userName" != null && "userPassword" != null && "userPasswordCheck" != null && "birthdate" != null) {
 			if(! (request.getParameter("userPassword")).equals(request.getParameter("userPasswordCheck"))) {
 				//passwords do not match case
@@ -75,9 +77,10 @@ public class ForumServlet extends HttpServlet {
 				doRegister(request);
 			}
 		} else if("showProfile".equals(action)) {
+			// show user's profile
 			request.setAttribute("listProfile", 1);
 		} else if("approve".equals(action)) {
-			
+			// show list of users, which are 'pending'
 			if(!new UserServices().getPendingUsers().isEmpty()) {
 				request.setAttribute("listUsersForApproval", 1);
 				request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
@@ -95,8 +98,10 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("listUsersForApproval", 1);
 			request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
 		} else if("changePassword".equals(action)){ 
+			// show form for changing the password 
 			request.setAttribute("changePassword", 1);
 		} else if("changeMyPassword".equals(action)){
+			// changing user's password
 			if(!(request.getParameter("userPasswordOld").equals(user.getUserPassword()))) {
 				//old password wrong
 				matchPasswordsChange(request);
@@ -110,27 +115,38 @@ public class ForumServlet extends HttpServlet {
 				lenghtenPasswordChange(request);
 				request.setAttribute("listProfile", 1);
 			} else {
+				// change user's password in DB
 				changePassword(request);
 			}
 		} else if("logout".equals(action)) {
 			//logout case
 			logout(request);
 		} else if("showMyTopics".equals(action)) {
+			// list topics that user subscribed for
 			request.setAttribute("listTopics", 1);	
 			request.setAttribute("topics", new TopicServices().printTopics());
 			request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		} else if("updateTopic".equals(action)) {
+			//
 			// ak je zmena stavu z private na public treba dany topic odstranit z prepojovacej tabulky
 			request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
 		} else if("updateTheTopic".equals(action)) {
+			//
+			// zmena topicu, premenovanie alebo zmena visibility
 			new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
 			request.setAttribute("listTopics", 1);
 		} else if("removeTopic".equals(action)) {
+			//
+			// zmazanie topicu
 			new TopicServices().removeTopic(request.getParameter("topicToRemove"));
 			request.setAttribute("listTopics", 1);
 		} else if("addTopic".equals(action)) {
+			//
+			// klik na button add topic, zobrazenie formulara pre pridanie topicu
 			request.setAttribute("topicAdding", 1);
 		} else if("addTheTopic".equals(action)) {
+			//
+			// pridanie topicu do databazy
 			if(new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) == null) {
 				Topic topic = new Topic();
 				topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
@@ -141,16 +157,19 @@ public class ForumServlet extends HttpServlet {
 			} else {
 				request.setAttribute("existingTopic", 1);
 			}
-		} else if ("register".equals(action)) {
-			request.setAttribute("registerForm", 1);
 		} else if ("changeTopics".equals(action)) {
+			//
+			// zmena topicov, ktore user subscribuje
 			if(request.getParameterValues("topic") != null) {
 				addUserSubscriptions(request);
 			} else {
 				updateUserSubscriptions(request);
 			}
-			
+		} else if("openTopic".equals(action)) {
+			//
+			// klik na topic
 		} else if("generate".equals(action)) {	
+			// development action
 			Topic topic1 = new Topic();
 			topic1.setTopic("prvy topic");
 			topic1.setCreator(admin);
