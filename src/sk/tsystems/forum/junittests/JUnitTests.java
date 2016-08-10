@@ -52,6 +52,7 @@ public class JUnitTests {
 
 	@Test
 	public void doesMethodApproveUserWork(){
+		// Compares users status before and after approveUser method.
 		String statusBeforeUpdate = userServices.setPresentUser(nameOfTester).getStatus();
 		userServices.approveUser(nameOfTester);
 		String statusAfterUpdate = userServices.setPresentUser(nameOfTester).getStatus();
