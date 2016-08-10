@@ -22,17 +22,6 @@ public class TopicServices {
 
 	}
 	
-	public List<Topic> printSpecificTopicsByUsersID(User user) {
-
-		List<Topic> listOfTopics = new ArrayList<>();
-		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createNativeQuery("select t.topic from TOPIC_USER tu join TOPIC t on t.TOPICID=tu.TOPIC_ID join USERS u on tu.USER_ID=u.USERID where u.USERID LIKE:userID;");
-		query.setParameter("userID", user.getUserID());
-		listOfTopics = query.getResultList();
-		return listOfTopics;
-
-	}
-	
 	public void addTopicToDatabase(Topic topic) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
