@@ -2,8 +2,11 @@ package sk.tsystems.forum.junittests;
 
 import static org.junit.Assert.*;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import sk.tsystems.forum.entities.Topic;
@@ -13,15 +16,15 @@ import sk.tsystems.forum.services.UserServices;
 
 public class JUnitTests {
 
-	static TopicServices topicServices = new TopicServices();
-	static UserServices userServices = new UserServices();
-	static String tester = "tester";
-	static String testingTopic = "testing topic";
-	static User testedUser = new User();
-	static Topic testedTopic = new Topic();
+	TopicServices topicServices = new TopicServices();
+	UserServices userServices = new UserServices();
+	String tester = "tester";
+	String testingTopic = "testing topic";
+	User testedUser = new User();
+	Topic testedTopic = new Topic();
 
-	@BeforeClass
-	public static void createTesterUserAndTestingTopic() {
+	@Before
+	public void createTesterUserAndTestingTopic() {
 		testedUser.setUserName(tester);
 		testedUser.setUserPassword("tester");
 		testedUser.setBirthDate(null);
@@ -35,8 +38,8 @@ public class JUnitTests {
 		topicServices.addTopicToDatabase(testedTopic);
 	}
 
-	@AfterClass
-	public static void dropUser() {
+	@After
+	public void dropUser() {
 		topicServices.removeTopic(testingTopic);
 		userServices.dropUser(tester);
 	}
@@ -68,6 +71,18 @@ public class JUnitTests {
 	}
 
 	@Test
+	public void doesMethodPrintTopicsWork() {
+		// Firstly, prints topics from database to listOfTestedTopics. Secondly, adds one more topic to database and prints to listOfTestedTopics1. Finally, compares lists. 
+		List<Topic> listOfTestedTopics = new ArrayList<>();
+		listOfTestedTopics = topicServices.printTopics();
+		topicServices.addTopicToDatabase(new Topic(null, null, null, "Bonus"));
+		List<Topic> listOfTestedTopics1 = new ArrayList<>();
+		listOfTestedTopics1 = topicServices.printTopics();
+		assertNotEquals(listOfTestedTopics, listOfTestedTopics1);
+		topicServices.removeTopic("Bonus");
+	}
+
+	@Test
 	public void doesMethodGetTopicIDWork() {
 		// Checks if topic "testingTopic" was created
 		assertNotEquals(0, topicServices.getTopicID(testingTopic));
@@ -79,13 +94,22 @@ public class JUnitTests {
 		assertNotEquals(null, topicServices.setPresentTopic(testingTopic));
 	}
 
+	// TODO: Bazmeg nefunguje to more
 	@Test
 	public void doesUpdateTopicMethodWorks() {
 		// Checks if method updateTopic works
-		topicServices.updateTopic(testingTopic, testingTopic, "public");
+		System.out.println(testedTopic);
 		Topic testedTopic1 = new Topic();
-		testedTopic1 = topicServices.setPresentTopic(testingTopic);
-		assertNotEquals(testedTopic, testedTopic1);
+		testedTopic1 = new TopicServices().setPresentTopic(testingTopic);
+		Topic testedTopic2 = new Topic();
+		new TopicServices().updateTopic(testingTopic, testingTopic, null);
+		System.out.println(testedTopic);
+		testedTopic2 = new TopicServices().setPresentTopic(testingTopic);
+		System.out.println(testedTopic1);
+		System.out.println(testedTopic2);
+		System.out.println(testedTopic);
+		assertEquals(testedTopic1, testedTopic2);
+
 	}
 
 }
