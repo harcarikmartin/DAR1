@@ -124,6 +124,8 @@ public class ForumServlet extends HttpServlet {
 			new TopicServices().removeTopic(request.getParameter("topicToRemove"));
 			request.setAttribute("listTopics", 1);
 		} else if("addTopic".equals(action)) {
+			request.setAttribute("topicAdding", 1);
+		} else if("addTheTopic".equals(action)) {
 			if(new TopicServices().setPresentTopic(request.getParameter("addTopic")) == null) {
 				Topic topic = new Topic();
 				topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
