@@ -78,7 +78,9 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("listProfile", 1);
 		} else if("approve".equals(action)) {
 			request.setAttribute("listUsersForApproval", 1);
-			request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
+			if(!new UserServices().getPendingUsers().isEmpty()) {
+				request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
+			}
 		} else if("approveUser".equals(action)) { 
 			//approve user
 			new UserServices().approveUser(request.getParameter("userForApproval"));
@@ -126,10 +128,10 @@ public class ForumServlet extends HttpServlet {
 		} else if("addTopic".equals(action)) {
 			request.setAttribute("topicAdding", 1);
 		} else if("addTheTopic".equals(action)) {
-			if(new TopicServices().setPresentTopic(request.getParameter("addTopic")) == null) {
+			if(new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) == null) {
 				Topic topic = new Topic();
 				topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
-				topic.setTopic(request.getParameter("addTopic"));
+				topic.setTopic(request.getParameter("addTheTopic"));
 				topic.setVisibility(request.getParameter("visibility"));
 				new TopicServices().addTopicToDatabase(topic);
 				request.setAttribute("listTopics", 1);
