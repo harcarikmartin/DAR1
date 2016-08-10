@@ -1,72 +1,115 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    
-    
+
+
 <c:if test="${user.role=='user'}">
-	<form method="post">
-		<label for ="seeProfile"> My profile</label>
-		<input type="hidden" name="action" value="showProfile">
-		<button type="submit">Profile</button>
-	</form>
+
+	<div class="row col-lg-12">
+		<div class="col-lg-offset-1 col-lg-10 rowBackground">
+			<div class="row">
+				<div class="text-left col-lg-6">
+					<form method="post">
+						<label class="labels" for="SeeProfile">My profile:</label> <input
+							type="hidden" name="action" value="showProfile">
+						<button class="buttonStyle" type="submit">Profile</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<c:if test="${listProfile != null }">
+		<div class="row col-lg-12">
+			<div class="col-lg-offset-1 col-lg-10 rowBackground text-left">
+				<p class="simpleText">Username: ${user.userName}</p>
+				<p class="simpleText">Birthdate: ${user.birthDate}</p>
+				<p class="simpleText">Role: ${user.role}</p>
+				<p class="simpleText">Status: ${user.status}</p>
+				<form method="post">
+					<input type="hidden" name="action" value="changePassword">
+					<button class="buttonStyle" type="submit">Change Password</button>
+				</form>
+				<form method="post">
+					<input type="hidden" name="action" value="showMyTopics">
+					<button class="buttonStyle" type="submit">Subscribed
+						topics</button>
+				</form>
+			</div>
+		</div>
 
 
-   <c:if test="${listProfile != null}">
-	  	<p>Username: ${user.userName} </p>
-		<p>Birthdate: ${user.birthDate}</p>
-		<p>Role: ${user.role}</p>
-		<p>Status: ${user.status}</p>
- 
-	   	<form method="post">
-			<input type="hidden" name="action" value="changePassword" >
-		    <button type="submit">Change Password</button>
-		</form>
-   
-   		<c:if test="${passChanged == 1 }">
+
+
+
+
+		<c:if test="${passChanged == 1 }">
 			<p>Password changed successfully</p>
 		</c:if>
-		
+
 		<c:if test="${passChanged == 0 }">
 			<p>Password not changed!</p>
 		</c:if>
-   
-   
-   		<c:if test="${changePassword == 1 }">
-			<form method="post">
-				<label for="OldPassword">Old password:</label>
-				<input id="OldPassword" type="password" name="userPasswordOld" placeholder="password"><br>
-				<label for="NewPassword">New password:</label>
-				<input id="NewPassword"type="password" name="userPasswordNew" 
-           		pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" 
-            	oninvalid="alert('Password is not valid')" placeholder="password">
-            	<p>* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special Character [!@#$%^&*_=+-]</p>
-				<label for="NewPasswordConfirm">Confirm new password:</label>
-				<input id="NewPasswordConfirm" type="password" name="userPasswordNewCheck" placeholder="password"><br>
-				
-				<input type="hidden" name="action" value="changeMyPassword" >
-	    		<button type="submit">Change</button>
+
+
+<%-- 		<c:if test="${changePassword == 1 }"> --%>
+<!-- 			<form method="post"> -->
+<!-- 	<label for="OldPassword">Old password:</label>  -->
+<!-- 	<input id="OldPassword" type="password" name="userPasswordOld" placeholder="password"> -->
+	
+<!-- 	<label for="NewPassword">New password:</label> -->
+<!-- 	<input id="NewPassword" type="password" name="userPasswordNew" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" oninvalid="alert('Password is not valid')" placeholder="password"> -->
+			
+			
+				<p>* Password must contain minimum 8 characters, at least 1
+					Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special
+					Character [!@#$%^&*_=+-]</p>
+	<label for="NewPasswordConfirm">Confirm new password:</label>
+	<input id="NewPasswordConfirm" type="password" name="userPasswordNewCheck" placeholder="password"><br> <input type="hidden" name="action" value="changeMyPassword">
+	<button type="submit">Change</button>
 			</form>
 		</c:if>
- 	 </c:if>    
-  
-  
-	<form method="post">
-		<label for ="seeTopic"> My topics</label>
-		<input type="hidden" name="action" value="showMyTopics">
-		<button type="submit">Topic</button>
-	</form>
-  
+
+
+
+
+	<c:if test="${changePassword == 1 }">
+	<div class="row col-lg-12">
+		<div class="col-lg-offset-1 col-lg-10 rowBackground ">
+		<form method="post">
+		<table  class="col-lg-offset-2 col-lg-8">
+				<tr>
+					<td><label class="simpleText"for="OldPassword">Old password:</label></td>
+					<td class="registerCellStyle"><input id="OldPassword" type="password" name="userPasswordOld" placeholder="password"></td>
+				</tr>
+				<tr>
+					<td><label class="simpleText"for="NewPassword">New password:</label></td>
+					<td class="registerCellStyle">
+		<input id="NewPassword" type="password" name="userPasswordNew" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" oninvalid="alert('Password is not valid')" placeholder="password">
+</td>
+				</tr>
+				
+				
+				
+			
+		</table>
+		</form>
+		</div>
+		</div>
+	</c:if>
+
+
 	<c:if test="${listTopics != null}">
-		<form>
+		<form method="post">
 			<table>
 				<tr>
 					<th>Name of topic</th>
 				</tr>
 				<c:forEach var="topic" items="${topics}">
-				<c:if test="${topic.visibility == 'private'}">
-					<tr>
-						<td>
-							<input type="checkbox" name="topic" value="${topic.topicID}"
+					<c:if test="${topic.visibility == 'private'}">
+						<tr>
+							<td><input type="checkbox" name="topic"
+								value="${topic.topicID}"
 								<c:forEach var="userTopic" items="${userTopics}">
 									<c:if test="${topic.topicID == userTopic.topic.topicID}">
 										<c:if test="${userTopic.user.userID == user.userID}">
@@ -74,10 +117,9 @@
 										</c:if>
 									</c:if>
 								</c:forEach>>
-							${topic.topic}
-						</td>
-					</tr>
-				</c:if>
+								${topic.topic}</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 			<input type="hidden" name="action" value="changeTopics">
@@ -86,5 +128,4 @@
 	</c:if>
 </c:if>
 
-    
-     
+

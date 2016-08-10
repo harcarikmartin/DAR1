@@ -177,16 +177,20 @@
 	<jsp:include page="UserMenu.jsp" />
 
 
-<%-- 	<c:if test="${user.role == 'admin'}"> --%>
-<!-- 		<form method="post"> -->
-<!-- 			<label for="addTopic">Add new Topic: </label> <input id="addTopic" -->
-<!-- 				type="text" name="addTopic" placeholder="topic name"> <input -->
-<!-- 				type="radio" name="visibility" value="public"> Public <input -->
-<!-- 				type="radio" name="visibility" value="private" checked> -->
-<!-- 			Private <input type="hidden" name="action" value="addTopic"> -->
-<!-- 			<button type="submit">Add Topic</button> -->
-<!-- 		</form> -->
-<%-- 	</c:if> --%>
+	<c:if test="${user.role == 'admin'}">
+	<div class="row">
+			<div class="col-lg-offset-1 col-lg-10 rowBackground">
+		<form method="post">
+			<label class="simpleText" for="addTopic">Add new Topic: </label> 
+			<input id="addTopic" type="text" name="addTopic" placeholder="topic name"> 
+			<input id="public" type="radio" name="visibility" value="public"> <label class="simpleText" for="public">Public</label>		
+			<input id="private" type="radio" name="visibility" value="private" checked> <label class="simpleText" for="private">Private</label>	
+			<input type="hidden" name="action" value="addTopic">
+			<button class="buttonStyle" type="submit">Add Topic</button>
+		</form>
+		</div>
+		</div>
+	</c:if>
 
 
 
