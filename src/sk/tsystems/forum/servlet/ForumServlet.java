@@ -124,12 +124,16 @@ public class ForumServlet extends HttpServlet {
 			new TopicServices().removeTopic(request.getParameter("topicToRemove"));
 			request.setAttribute("listTopics", 1);
 		} else if("addTopic".equals(action)) {
-			Topic topic = new Topic();
-			topic.setCreator((User)session.getAttribute("user"));
-			topic.setTopic(request.getParameter("addTopic"));
-			topic.setVisibility(request.getParameter("visibility"));
-			new TopicServices().addTopicToDatabase(topic);
-			request.setAttribute("listTopics", 1);
+			if(new TopicServices().setPresentTopic(request.getParameter("addTopic")) == null) {
+				Topic topic = new Topic();
+				topic.setCreator((User)session.getAttribute("user"));
+				topic.setTopic(request.getParameter("addTopic"));
+				topic.setVisibility(request.getParameter("visibility"));
+				new TopicServices().addTopicToDatabase(topic);
+				request.setAttribute("listTopics", 1);
+			} else {
+				request.setAttribute("existingTopic", 1);
+			}
 		} else if ("register".equals(action)) {
 			request.setAttribute("registerForm", 1);
 		} else if ("changeTopics".equals(action)) {
