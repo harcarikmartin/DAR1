@@ -71,9 +71,19 @@ public class TopicServices {
 		JpaHelper.commitTransaction();
 	}
 	
-	public void setSubscriber(Topic topic, List<User> actualUser) {
+	public void setSubscriber(Topic topic, User user) {
 		JpaHelper.beginTransaction();
-		topic.setUsers(actualUser);
+		topic.addUser(user);
 		JpaHelper.commitTransaction();
+
 	}
+	
+	public void removeSubscriber(Topic topic, User user) {
+		JpaHelper.beginTransaction();
+		topic.removeUser(user);
+		JpaHelper.commitTransaction();
+
+	}
+
+
 }

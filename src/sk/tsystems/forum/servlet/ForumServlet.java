@@ -134,6 +134,7 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("registerForm", 1);
 		} else if ("changeTopics".equals(action)){
 			addUserTopic(request);
+			
 		} else if("generate".equals(action)) {	
 			Topic topic1 = new Topic();
 			topic1.setTopic("prvy topic");
@@ -260,12 +261,15 @@ public class ForumServlet extends HttpServlet {
 		{
 			for(Topic topic:new TopicServices().printTopics()){
 				if(topic.getTopicID()==Integer.parseInt(topicsId[i])){
-					new TopicServices().setSubscriber(topic, actualUser);	
+					new TopicServices().setSubscriber(topic,user);	
 			 }	
+				
 		  }
 	    }
 	}
 
+	
+	
 	
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

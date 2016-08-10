@@ -42,6 +42,17 @@ public class Topic {
 	public Topic() {
 	}
 	
+	
+	public void addUser(User user) {
+	    users.add( user );
+	    user.getTopics().add(this);
+	}
+	
+	public void removeUser(User user) {
+	    users.remove( user );
+	    user.getTopics().remove(this);
+	}
+	
 	public int getTopicID() {
 		return topicID;
 	}
