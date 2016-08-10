@@ -98,12 +98,15 @@ public class ForumServlet extends HttpServlet {
 			if(!(request.getParameter("userPasswordOld").equals(user.getUserPassword()))) {
 				//old password wrong
 				matchPasswordsChange(request);
+				request.setAttribute("listProfile", 1);
 			} else if(! (request.getParameter("userPasswordNew")).equals(request.getParameter("userPasswordNewCheck"))) {
 				//passwords do not match case
 				matchPasswordsChange(request);
+				request.setAttribute("listProfile", 1);
 			} else if (request.getParameter("userPasswordNew").length() < 8) {
 				//password too short case
 				lenghtenPasswordChange(request);
+				request.setAttribute("listProfile", 1);
 			} else {
 				changePassword(request);
 			}
