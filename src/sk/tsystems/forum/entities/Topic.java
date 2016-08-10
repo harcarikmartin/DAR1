@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -27,9 +26,9 @@ public class Topic {
 	@JoinTable(name = "Topic_User", joinColumns = @JoinColumn(name = "topic_ID", referencedColumnName="topicID"), inverseJoinColumns = @JoinColumn(name = "user_ID", referencedColumnName="userID"))
 	private List<User> users;
 
-	//@AllowedValues({"Standard", "One-Day", "Two-Day", "Three-Day"}) 
 	
-	@NotNull
+	
+	@Column(nullable = false)
 	private String visibility;
 	
 

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "Users")
 public class User {
@@ -27,6 +29,7 @@ public class User {
     @Column(nullable = false)
 	private String userPassword;
     
+    @Type(type="date")
     @Column(nullable = false)
 	private Date birthDate;
     
