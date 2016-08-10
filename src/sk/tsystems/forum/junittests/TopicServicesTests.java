@@ -60,10 +60,8 @@ public class TopicServicesTests {
 		userServices.dropUser(nameOfTester);
 	}
 
-
-	
 	@Test
-	public void doesMethodAddTopicToDatabase() {
+	public void doesMethodAddTopicToDatabaseWork() {
 		// Checks if topic "testing topic" is in database
 		assertEquals("testing topic", topicServices.setPresentTopic("testing topic").getTopic());
 	}
@@ -76,7 +74,13 @@ public class TopicServicesTests {
 		// Finally, compares lists.
 		List<Topic> listOfTestedTopics = new ArrayList<>();
 		listOfTestedTopics = topicServices.printTopics();
-		topicServices.addTopicToDatabase(new Topic(null, null, null, "Bonus"));
+
+		Topic testedTopicNumberTwo = new Topic();
+		testedTopicNumberTwo.setTopic("Bonus");
+		testedTopicNumberTwo.setVisibility("private");
+		testedTopicNumberTwo.setCreator(testedUser);
+		topicServices.addTopicToDatabase(testedTopicNumberTwo);
+
 		List<Topic> listOfTestedTopics1 = new ArrayList<>();
 		listOfTestedTopics1 = topicServices.printTopics();
 		assertNotEquals(listOfTestedTopics, listOfTestedTopics1);
@@ -96,13 +100,33 @@ public class TopicServicesTests {
 	}
 
 	@Test
-	public void doesMethodUpdateTopicMethodWorks() {
+	public void doesMethodUpdateTopicMethodWork() {
 		// Checks if method updateTopic works
 		String vissibilityBeforeUpdate = new TopicServices().setPresentTopic(nameOfTestingTopic).getVisibility();
-		new TopicServices().updateTopic(nameOfTestingTopic, nameOfTestingTopic, null);
+		new TopicServices().updateTopic(nameOfTestingTopic, nameOfTestingTopic, "public");
 		String vissibilityAfterUpdate = new TopicServices().setPresentTopic(nameOfTestingTopic).getVisibility();
 		assertNotEquals(vissibilityBeforeUpdate, vissibilityAfterUpdate);
 	}
 
+	@Test
+	public void doesMethodRemoveTopicWork() {
+		// Checks if topic "Bonus" is in table after calling removeTopic method
+		Topic testedTopicNumberTwo = new Topic();
+		testedTopicNumberTwo.setTopic("Bonus");
+		testedTopicNumberTwo.setVisibility("private");
+		testedTopicNumberTwo.setCreator(testedUser);
+		topicServices.addTopicToDatabase(testedTopicNumberTwo);
+		topicServices.removeTopic("Bonus");
+		assertNull(topicServices.setPresentTopic("Bonus"));
+	}
 
+	@Test
+	public void doesMethodUpdateTopicWork() {
+		// Checks two vissibilities. One before and one after calling
+		// updateTopic method
+		String vissibilityBeforeUpdate = topicServices.setPresentTopic(nameOfTestingTopic).getVisibility();
+		topicServices.updateTopic(nameOfTestingTopic, nameOfTestingTopic, "public");
+		String vissibilityAfterUpdate = topicServices.setPresentTopic(nameOfTestingTopic).getVisibility();
+		assertNotEquals(vissibilityBeforeUpdate, vissibilityAfterUpdate);
+	}
 }
