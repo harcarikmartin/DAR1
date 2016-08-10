@@ -132,8 +132,12 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("listTopics", 1);
 		} else if ("register".equals(action)) {
 			request.setAttribute("registerForm", 1);
-		} else if ("changeTopics".equals(action)){
-			addUserTopic(request);
+		} else if ("changeTopics".equals(action)) {
+			if(request.getParameterValues("topic") != null) {
+				addUserSubscriptions(request);
+			} else {
+				updateUserSubscriptions(request);
+			}
 			
 		} else if("generate".equals(action)) {	
 			Topic topic1 = new Topic();
@@ -179,7 +183,8 @@ public class ForumServlet extends HttpServlet {
 		//forwarding response back to node
 		forwardToList(request, response);
 	}
-	
+
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -252,7 +257,7 @@ public class ForumServlet extends HttpServlet {
 		request.setAttribute("error", 5);
 	}
 	
-	private void addUserTopic(HttpServletRequest request){
+	private void addUserSubscriptions(HttpServletRequest request){
 		String[] topicsId = request.getParameterValues("topic");
 		List<User> actualUser = new ArrayList<>();
 		actualUser.add(user);
@@ -266,6 +271,15 @@ public class ForumServlet extends HttpServlet {
 				
 		  }
 	    }
+	}
+	
+	private void updateUserSubscriptions(HttpServletRequest request) {
+		for(Topic topic:new TopicServices().printTopics()){
+				new TopicServices().removeSubscriber(topic, user);	
+		
+			
+	  }
+		
 	}
 
 	
