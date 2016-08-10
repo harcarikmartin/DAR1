@@ -102,9 +102,6 @@
 				<div class="col-lg-offset-1 col-lg-10 rowBackground ">
 			<form method="post">
 				<table>
-					<tr>
-						<th class="subscribedTopicsHeadStyle">Name of topic</th>
-					</tr>
 					<c:forEach var="topic" items="${topics}">
 						<c:if test="${topic.visibility == 'private'}">
 							<tr>

@@ -13,12 +13,11 @@
 </head>
 
 <body>
-	<div class="row col-lg-12">
-			<div class="row col-lg-12 ">
-<!-- 		<h3 class="text-center"> -->
-			<a class="col-lg-offset-1"href="/Forum/Forum"> <img src="images\forumLink.jpg" alt="Forum"></a>
-			</div>
-<!-- 		</h3> -->
+	<div class="row col-lg-12 header">
+		<div class="row">
+			<a class="col-lg-10 col-lg-offset-1" href="/Forum/Forum"> <img
+				src="images\forumLink.jpg" alt="Forum"></a>
+		</div>
 		<div class="row text-center">
 			<form method="post">
 				<input type="hidden" name="action" value="generate">
@@ -31,7 +30,7 @@
 		<c:if test="${user == null  && registerForm == null}">
 			<div id="login" class="col-lg-offset-1 col-lg-10 rowBackground">
 				<div class="row">
-					<div class="text-left col-lg-6">
+					<div class="text-left col-lg-8 col-md-8 col-sm-8 col-xs-12">
 						<form method="post">
 							<label class="labels" for="userName">Name: <input
 								id="userName" class="loginForm" type="text" name="userName"
@@ -40,13 +39,13 @@
 								class="loginForm" type="text" name="userPassword"
 								placeholder="password ..."></label> <input type="hidden"
 								name="action" value="login">
-							<button class="buttonStyle" type="submit">Login</button>
+							<button class="paddingHorizontal buttonStyle" type="submit">Login</button>
 							<c:if test="${error == '5'}">
 								<p class="simpleText">Wrong login details!</p>
 							</c:if>
 						</form>
 					</div>
-					<div class="text-center col-lg-2">
+					<div class="paddingHorizontal text-right col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<form method="post">
 							<input type="hidden" name="action" value="register">
 							<button class="buttonStyle" type="submit">Registration</button>

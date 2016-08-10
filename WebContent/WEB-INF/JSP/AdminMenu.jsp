@@ -11,7 +11,7 @@
 					<form method="post">
 						<label class="labels" for="SeeProfile">My profile:</label> <input
 							type="hidden" name="action" value="showProfile">
-						<button class="buttonStyle" id="ApproveUsers" type="submit">Profile</button>
+						<button class="buttonStyle" id="SeeProfile" type="submit">Profile</button>
 					</form>
 				</div>
 				<div class="text-left col-lg-6">

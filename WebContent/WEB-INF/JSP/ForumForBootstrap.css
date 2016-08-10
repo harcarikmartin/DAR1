@@ -9,8 +9,16 @@ body {
     height: 100vh;
 }
 
-img{
-	max-width: 83.33333333%;
+
+@media screen and (max-width: 767px){
+    .text-right{
+        text-align: center;
+    }
+}
+
+
+.header img{
+	width: 100%;
 }
 
 /*Change ROW from bootstrap*/
@@ -31,6 +39,11 @@ img{
 
 .labels, .simpleText{
 	color: white;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.paddingHorizontal {
 	padding-left: 1em;
 	padding-right: 1em;
 }
