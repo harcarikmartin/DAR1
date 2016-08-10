@@ -113,16 +113,17 @@
 				</div>
 			</div>
 		</c:if>
-	
+
 
 	<c:if test="${listUsersForApproval != null }">
 		<div class="row col-lg-12">
-			<div class="col-lg-offset-1 col-lg-10 rowBackground ">
-				<table class="col-lg-offset-2 col-lg-8">
+			<div
+				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
+				<table
+					class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
 					<tr>
-						<th class="approveHeadStyle text-center">User</th>
-						<th class="approveHeadStyle text-center">Approve</th>
-						<th class="approveHeadStyle text-center">Remove</th>
+						<th colspan="3" class="approveHeadStyle text-center">New
+							users</th>
 					</tr>
 					<c:forEach items="${pendingUsers}" var="pendingUser">
 						<tr>
@@ -132,7 +133,7 @@
 									<input type="hidden" name="userForApproval"
 										value="${pendingUser}"> <input type="hidden"
 										name="action" value="approveUser">
-									<button class="buttonStyle" type="submit">Approve</button>
+									<button class="btn-block buttonStyle" type="submit">Approve</button>
 								</form>
 							</td>
 							<td>
@@ -140,7 +141,7 @@
 									<input type="hidden" name="userForApproval"
 										value="${pendingUser}"> <input type="hidden"
 										name="action" value="dropUser">
-									<button class="buttonStyle" type="submit">Remove</button>
+									<button class="btn-block buttonStyle" type="submit">Remove</button>
 								</form>
 							</td>
 						</tr>
@@ -149,24 +150,36 @@
 			</div>
 		</div>
 	</c:if>
-	
-	
-	
+
+
+
 	<c:if test="${topicAdding != null}">
-	<div class="row">
-			<div class="col-lg-offset-1 col-lg-10 rowBackground">
-		<form method="post">
-		<c:if test="${existingTopic != null}">
-		<p class="simpleText">Topic with this name already exist!</p>
-		</c:if>
-			<label class="simpleText" for="addTheTopic">Add new Topic: </label> 
-			<input id="addTheTopic" type="text" name="addTheTopic" placeholder="topic name"> 
-			<input id="public" type="radio" name="visibility" value="public"> <label class="simpleText" for="public">Public</label>		
-			<input id="private" type="radio" name="visibility" value="private" checked> <label class="simpleText" for="private">Private</label>	
-			<input type="hidden" name="action" value="addTheTopic">
-			<button class="buttonStyle" type="submit">Add Topic</button>
-		</form>
-		</div>
+		<div class="row">
+			<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
+				<form method="post">
+					<c:if test="${existingTopic != null}">
+						<p class="simpleText">Topic with this name already exist!</p>
+					</c:if>
+						<div class="row text-center"><label class="simpleText" for="addTheTopic">Add new Topic:</label></div>
+					
+						<div class="row text-center"><input class="inputForNewStuff" id="addTheTopic" type="text" name="addTheTopic" placeholder="topic name"></div>
+						
+						<div class="row text-center">
+						<input id="public" type="radio" name="visibility" value="public">
+						<label class="simpleText" for="public">Public</label>
+						</div>
+						
+						<div class="row text-center">
+						<input id="private" type="radio" name="visibility" value="private" checked>
+						<label class="simpleText" for="private">Private</label>
+						</div>
+						
+						<div class="row text-center">
+						<input type="hidden" name="action" value="addTheTopic">
+						<button class="buttonStyle" type="submit">Add Topic</button>
+						</div>
+				</form>
+			</div>
 		</div>
 	</c:if>
 
