@@ -1,11 +1,13 @@
 html {
     width: 100vw;
-    background-color: white;
+	background-image: url("images/background.jpg");
+    background-attachment: fixed;
 }
 body {
     width: 100vw;
     min-width: 500px;
     background-image: url("images/background.jpg");
+    background-attachment: fixed;
     margin: auto;
     height: 100vh;
 }
@@ -75,9 +77,24 @@ body {
 	padding-top: 0;
 }
 
-.topicHeadStyle, .registerHeadStyle, .approveHeadStyle, .subscribedTopicsHeadStyle{
+.topicHeadStyle, .registerHeadStyle, .approveHeadStyle{
 	height: 30px;
-	background-color: #ff9900;
+	background-color: #F8854E;
+	color: white;
+	font-weight: bold;
+}
+
+.userProfilehead{
+	height: 30px;
+	width: 25%;
+	background-color: #F8854E;
+	color: white;
+	font-weight: bold;
+}
+
+.userProfileInfo {
+	height: 30px;
+	background-color: #404040;
 	color: white;
 	font-weight: bold;
 }
@@ -110,9 +127,9 @@ body {
     font-weight: bold;
 }
 
-.passwordCellStyle, .subscribedTopicsCellStyle{
-	height: 5vh;
-	min-height: 30px;
+.passwordCellStyle, .subscribedTopicsTableCell{
+	height: 3vh;
+	min-height: 15px;
 	width: 50%;
     background-color: #404040;
     border: none;

@@ -23,11 +23,9 @@
       <file leaf-file-name="ForumForBootstrap.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ForumForBootstrap.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-              <folding>
-                <marker date="1470827120570" expanded="true" signature="1971:2079" ph="{...}" />
-              </folding>
+            <state relative-caret-position="544">
+              <caret line="118" column="16" selection-start-line="118" selection-start-column="16" selection-end-line="118" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -168,12 +166,12 @@
       <workItem from="1470211102040" duration="1181000" />
       <workItem from="1470378586904" duration="11000" />
       <workItem from="1470729156942" duration="4805000" />
-      <workItem from="1470818844920" duration="2711000" />
+      <workItem from="1470818844920" duration="2715000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8708000" />
+    <option name="totallyTimeSpent" value="8712000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
@@ -217,9 +215,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding>
-            <marker date="1470827120570" expanded="true" signature="1971:2079" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -291,11 +287,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ForumForBootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding>
-            <marker date="1470827120570" expanded="true" signature="1971:2079" ph="{...}" />
-          </folding>
+        <state relative-caret-position="544">
+          <caret line="118" column="16" selection-start-line="118" selection-start-column="16" selection-end-line="118" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>

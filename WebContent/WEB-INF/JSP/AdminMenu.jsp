@@ -7,19 +7,26 @@
 	<div class="row col-lg-12">
 		<div class="col-lg-offset-1 col-lg-10 rowBackground">
 			<div class="row">
-				<div class="text-left col-lg-6">
+				<div class="text-left col-lg-4">
 					<form method="post">
 						<label class="labels" for="SeeProfile">My profile:</label> <input
 							type="hidden" name="action" value="showProfile">
 						<button class="buttonStyle" id="SeeProfile" type="submit">Profile</button>
 					</form>
 				</div>
-				<div class="text-left col-lg-6">
+				<div class="text-left col-lg-4">
 					<form method="post">
 						<label class="labels" for="ApproveUsers">Approve users:</label> <input
 							type="hidden" name="action" value="approve">
 						<button class="buttonStyle" id="ApproveUsers" type="submit">Approve
 							Users</button>
+					</form>
+				</div>
+				<div class="text-left col-lg-4">
+					<form method="post">
+						<input
+							type="hidden" name="action" value="addTopic">
+						<button class="buttonStyle" id="addTopic" type="submit">Add topic</button>
 					</form>
 				</div>
 			</div>
