@@ -127,7 +127,7 @@ public class ForumServlet extends HttpServlet {
 		} else if("addTopic".equals(action)) {
 			if(new TopicServices().setPresentTopic(request.getParameter("addTopic")) == null) {
 				Topic topic = new Topic();
-				topic.setCreator((User)session.getAttribute("user"));
+				topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
 				topic.setTopic(request.getParameter("addTopic"));
 				topic.setVisibility(request.getParameter("visibility"));
 				new TopicServices().addTopicToDatabase(topic);
