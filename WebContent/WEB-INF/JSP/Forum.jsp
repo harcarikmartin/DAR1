@@ -31,7 +31,7 @@
 		<c:if test="${user == null  && registerForm == null}">
 			<div id="login" class="col-lg-offset-1 col-lg-10 rowBackground">
 				<div class="row">
-					<div class="text-left col-lg-9">
+					<div class="text-left col-lg-6">
 						<form method="post">
 							<label class="labels" for="userName">Name: <input
 								id="userName" class="loginForm" type="text" name="userName"

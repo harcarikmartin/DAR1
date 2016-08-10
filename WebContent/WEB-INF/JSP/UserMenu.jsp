@@ -66,7 +66,7 @@
 				<c:if test="${topic.visibility == 'private'}">
 					<tr>
 						<td>
-							<input type="checkbox" name="topic" value="	${topic.topicID}"
+							<input type="checkbox" name="topic" value="${topic.topicID}"
 								<c:forEach var="userTopic" items="${userTopics}">
 									<c:if test="${topic.topicID == userTopic.topic.topicID}">
 										<c:if test="${userTopic.user.userID == user.userID}">
