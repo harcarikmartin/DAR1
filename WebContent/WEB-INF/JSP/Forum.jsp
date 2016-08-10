@@ -46,8 +46,7 @@
 							</c:if>
 						</form>
 					</div>
-					<div class="text-center col-lg-3">
-
+					<div class="text-center col-lg-2">
 						<form method="post">
 							<input type="hidden" name="action" value="register">
 							<button class="buttonStyle" type="submit">Registration</button>
@@ -181,6 +180,9 @@
 	<div class="row">
 			<div class="col-lg-offset-1 col-lg-10 rowBackground">
 		<form method="post">
+		<c:if test="${existingTopic != null}">
+		<p class="simpleText">Topic with this name already exist!</p>
+		</c:if>
 			<label class="simpleText" for="addTopic">Add new Topic: </label> 
 			<input id="addTopic" type="text" name="addTopic" placeholder="topic name"> 
 			<input id="public" type="radio" name="visibility" value="public"> <label class="simpleText" for="public">Public</label>		
