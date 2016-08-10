@@ -2,7 +2,12 @@ package sk.tsystems.forum.junittests;
 
 import static org.junit.Assert.*;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -22,12 +27,24 @@ public class JUnitTests {
 	String nameOfTestingTopic = "testing topic";
 	User testedUser = new User();
 	Topic testedTopic = new Topic();
+	
+	public Date parseDate(){
+		String dateString = "2016-08-18";
+	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+	    Date date = null;
+	    try {
+	        date = df.parse(dateString);
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
+		return date;
+	}
 
 	@Before
 	public void createTesterUserAndTestingTopic() {
 		testedUser.setUserName(nameOfTester);
 		testedUser.setUserPassword("tester");
-		testedUser.setBirthDate(null);
+		testedUser.setBirthDate(parseDate());
 		testedUser.setRole("user");
 		testedUser.setStatus("pending");
 		userServices.addUser(testedUser);
@@ -51,14 +68,23 @@ public class JUnitTests {
 	}
 
 	@Test
-	public void doesMethodApproveUserWork(){
+	public void doesMethodApproveUserWork() {
 		// Compares users status before and after approveUser method.
 		String statusBeforeUpdate = userServices.setPresentUser(nameOfTester).getStatus();
 		userServices.approveUser(nameOfTester);
 		String statusAfterUpdate = userServices.setPresentUser(nameOfTester).getStatus();
 		assertNotEquals(statusBeforeUpdate, statusAfterUpdate);
 	}
-	
+
+	@Test
+	public void doesMethodChangePasswordWorks() {
+		// Compares users password before and after changepassword method.
+		String passwordBeforeChange = userServices.setPresentUser(nameOfTester).getUserPassword();
+		userServices.changePassword(nameOfTester, "anotherTestingPassowrd");
+		String passwordAfterChange = userServices.setPresentUser(nameOfTester).getUserPassword();
+		assertNotEquals(passwordBeforeChange, passwordAfterChange);
+	}
+
 	@Test
 	public void doesMethodIsPasswordCorrectWork() {
 		// Good password
@@ -77,6 +103,15 @@ public class JUnitTests {
 	public void doesmethodGetUserIDWork() {
 		// Checks if user "tester" was created
 		assertNotEquals(0, userServices.getUserID(nameOfTester));
+	}
+
+	@Test
+	public void doesmethodGetUserIDWorkAnotherTry() {
+		// Compares two different ids, get by getUserID
+		int userIDBeforeChange = userServices.setPresentUser(nameOfTester).getUserID();
+		userServices.setPresentUser(nameOfTester).setUserID(99999);
+		int userIDAfterChange = userServices.setPresentUser(nameOfTester).getUserID();
+		assertNotEquals(userIDAfterChange, userIDBeforeChange);
 	}
 
 	@Test
