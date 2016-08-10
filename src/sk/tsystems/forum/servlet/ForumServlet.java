@@ -257,7 +257,8 @@ public class ForumServlet extends HttpServlet {
 		request.setAttribute("error", 5);
 	}
 	
-	private void addUserSubscriptions(HttpServletRequest request){
+	private void addUserSubscriptions(HttpServletRequest request) {
+		updateUserSubscriptions(request);
 		String[] topicsId = request.getParameterValues("topic");
 		List<User> actualUser = new ArrayList<>();
 		actualUser.add(user);
@@ -276,8 +277,6 @@ public class ForumServlet extends HttpServlet {
 	private void updateUserSubscriptions(HttpServletRequest request) {
 		for(Topic topic:new TopicServices().printTopics()){
 				new TopicServices().removeSubscriber(topic, user);	
-		
-			
 	  }
 		
 	}
