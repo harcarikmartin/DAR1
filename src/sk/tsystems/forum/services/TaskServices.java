@@ -8,11 +8,11 @@ import javax.persistence.Query;
 
 import sk.tsystems.forum.entities.Task;
 import sk.tsystems.forum.entities.Topic;
+
 import sk.tsystems.forum.services.jpahelper.JpaHelper;
 
 public class TaskServices {
-	
-	
+
 	public void addTaskToDatabase(Task task) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
@@ -51,9 +51,8 @@ public class TaskServices {
 	}
 
 	
-	public void updateTask(int taskID ,String origTask, String newTask, Topic topic) {
+	public void updateTask(int taskID, String newTask, Topic topic) {
 		Task task = new TaskServices().getTask(taskID);
-		
 		JpaHelper.beginTransaction();
 		task.setTaskName(newTask);
 		task.setTopic(topic);

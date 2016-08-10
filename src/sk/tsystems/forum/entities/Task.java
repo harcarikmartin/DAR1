@@ -1,6 +1,5 @@
 package sk.tsystems.forum.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +13,10 @@ public class Task {
 	@GeneratedValue
 	private int taskID;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Topic topic;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private User user;
 	
 	@Column(nullable = false)
