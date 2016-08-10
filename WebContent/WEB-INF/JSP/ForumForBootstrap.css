@@ -4,9 +4,13 @@ html {
 }
 body {
     width: 100vw;
-    background-image:url("https://wallpaperscraft.com/image/board_black_line_texture_background_wood_55220_1920x1080.jpg");
+    background-image: url("images/background.jpg");
     margin: auto;
     height: 100vh;
+}
+
+img{
+	max-width: 83.33333333%;
 }
 
 /*Change ROW from bootstrap*/

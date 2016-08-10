@@ -13,12 +13,12 @@
 </head>
 
 <body>
-	<div class="row">
-		<h3 class="text-center">
-			<a href="/Forum/Forum"> <!-- <img src="C:\Users\Študent\git\DAR1\WebContent\WEB-INF\JSP\images\forumLink.jpg" alt="Forum"> -->
-				forum
-			</a>
-		</h3>
+	<div class="row col-lg-12">
+			<div class="row col-lg-12 ">
+<!-- 		<h3 class="text-center"> -->
+			<a class="col-lg-offset-1"href="/Forum/Forum"> <img src="images\forumLink.jpg" alt="Forum"></a>
+			</div>
+<!-- 		</h3> -->
 		<div class="row text-center">
 			<form method="post">
 				<input type="hidden" name="action" value="generate">
@@ -31,7 +31,7 @@
 		<c:if test="${user == null  && registerForm == null}">
 			<div id="login" class="col-lg-offset-1 col-lg-10 rowBackground">
 				<div class="row">
-					<div class="text-left col-lg-6">
+					<div class="text-left col-lg-9">
 						<form method="post">
 							<label class="labels" for="userName">Name: <input
 								id="userName" class="loginForm" type="text" name="userName"
@@ -42,11 +42,11 @@
 								name="action" value="login">
 							<button class="buttonStyle" type="submit">Login</button>
 							<c:if test="${error == '5'}">
-								Wrong login details!
+								<p class="simpleText">Wrong login details!</p>
 							</c:if>
 						</form>
 					</div>
-					<div class="text-center col-lg-6">
+					<div class="text-center col-lg-3">
 
 						<form method="post">
 							<input type="hidden" name="action" value="register">
