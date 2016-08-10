@@ -182,11 +182,11 @@
 		<c:if test="${existingTopic != null}">
 		<p class="simpleText">Topic with this name already exist!</p>
 		</c:if>
-			<label class="simpleText" for="addTopic">Add new Topic: </label> 
-			<input id="addTopic" type="text" name="addTopic" placeholder="topic name"> 
+			<label class="simpleText" for="addTheTopic">Add new Topic: </label> 
+			<input id="addTheTopic" type="text" name="addTheTopic" placeholder="topic name"> 
 			<input id="public" type="radio" name="visibility" value="public"> <label class="simpleText" for="public">Public</label>		
 			<input id="private" type="radio" name="visibility" value="private" checked> <label class="simpleText" for="private">Private</label>	
-			<input type="hidden" name="action" value="addTopic">
+			<input type="hidden" name="action" value="addTheTopic">
 			<button class="buttonStyle" type="submit">Add Topic</button>
 		</form>
 		</div>
