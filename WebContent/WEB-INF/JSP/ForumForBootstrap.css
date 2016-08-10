@@ -4,18 +4,11 @@ html {
 }
 body {
     width: 100vw;
+    min-width: 300px;
     background-image: url("images/background.jpg");
     margin: auto;
     height: 100vh;
 }
-
-
-@media screen and (max-width: 767px){
-    .text-right{
-        text-align: center;
-    }
-}
-
 
 .header img{
 	width: 100%;
@@ -46,6 +39,11 @@ body {
 .paddingHorizontal {
 	padding-left: 1em;
 	padding-right: 1em;
+}
+
+.marginHorizontal {
+	margin-left: 1em;
+	margin-right: 1em;
 }
 
 .topicCell{
@@ -147,6 +145,54 @@ body {
 }
 
 
+
+
+
+/* text align */
+@media ( max-width : 767px) {
+	.text-left-xs {
+		text-align: left;
+	}
+}
+
+@media ( max-width : 767px) {
+	.text-center-xs {
+		text-align: center;
+	}
+}
+
+@media ( max-width : 767px) {
+	.text-right-xs {
+		text-align: right;
+	}
+}
+
+
+
+
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .text-justify-sm {
+        text-align: justify;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .text-justify-md {
+        text-align: justify;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .text-justify-lg {
+        text-align: justify;
+    }
+}
 
 
 

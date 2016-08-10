@@ -30,7 +30,7 @@
 		<c:if test="${user == null  && registerForm == null}">
 			<div id="login" class="col-lg-offset-1 col-lg-10 rowBackground">
 				<div class="row">
-					<div class="text-left col-lg-8 col-md-8 col-sm-8 col-xs-12">
+					<div class="text-left  col-lg-8 col-md-8 col-sm-8 col-xs-12">
 						<form method="post">
 							<label class="labels" for="userName">Name: <input
 								id="userName" class="loginForm" type="text" name="userName"
@@ -39,16 +39,16 @@
 								class="loginForm" type="text" name="userPassword"
 								placeholder="password ..."></label> <input type="hidden"
 								name="action" value="login">
-							<button class="paddingHorizontal buttonStyle" type="submit">Login</button>
+							<button class="marginHorizontal buttonStyle" type="submit">Login</button>
 							<c:if test="${error == '5'}">
 								<p class="simpleText">Wrong login details!</p>
 							</c:if>
 						</form>
 					</div>
-					<div class="paddingHorizontal text-right col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<div class="text-right  col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<form method="post">
 							<input type="hidden" name="action" value="register">
-							<button class="buttonStyle" type="submit">Registration</button>
+							<button class="marginHorizontal buttonStyle" type="submit">Registration</button>
 						</form>
 					</div>
 				</div>
