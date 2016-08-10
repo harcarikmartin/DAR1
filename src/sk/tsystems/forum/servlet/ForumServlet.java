@@ -77,15 +77,18 @@ public class ForumServlet extends HttpServlet {
 		} else if("showProfile".equals(action)) {
 			request.setAttribute("listProfile", 1);
 		} else if("approve".equals(action)) {
-			request.setAttribute("listUsersForApproval", 1);
+			
 			if(!new UserServices().getPendingUsers().isEmpty()) {
+				request.setAttribute("listUsersForApproval", 1);
 				request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
 			}
 		} else if("approveUser".equals(action)) { 
 			//approve user
 			new UserServices().approveUser(request.getParameter("userForApproval"));
-			request.setAttribute("listUsersForApproval", 1);
-			request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
+			if(!new UserServices().getPendingUsers().isEmpty()) {
+				request.setAttribute("listUsersForApproval", 1);
+				request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
+			}
 		} else if("dropUser".equals(action)) { 
 			//drop user
 			new UserServices().dropUser(request.getParameter("userForApproval"));

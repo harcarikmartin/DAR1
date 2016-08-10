@@ -6,52 +6,64 @@
 
 	<div class="row col-lg-12">
 		<div class="col-lg-offset-1 col-lg-10 rowBackground">
-			<div class="row">
-				<div class="text-left col-lg-4">
-					<form method="post">
-						<label class="labels" for="SeeProfile">My profile:</label> <input
-							type="hidden" name="action" value="showProfile">
-						<button class="buttonStyle" id="SeeProfile" type="submit">Profile</button>
-					</form>
-				</div>
-				<div class="text-left col-lg-4">
-					<form method="post">
-						<label class="labels" for="ApproveUsers">Approve users:</label> <input
-							type="hidden" name="action" value="approve">
-						<button class="buttonStyle" id="ApproveUsers" type="submit">Approve
-							Users</button>
-					</form>
-				</div>
-				<div class="text-left col-lg-4">
-					<form method="post">
-						<input
-							type="hidden" name="action" value="addTopic">
-						<button class="buttonStyle" id="addTopic" type="submit">Add topic</button>
-					</form>
-				</div>
+			<div class="text-left text-center-xs">
+				<form class="userMenu" method="post">
+					<input type="hidden" name="action" value="showProfile">
+					<button class="marginHorizontalLeft buttonStyle" id="SeeProfile"
+						type="submit">Profile</button>
+				</form>
+				<form class="userMenu" method="post">
+					<input type="hidden" name="action" value="changePassword">
+					<button class="marginHorizontalLeft buttonStyle" type="submit">Change Password</button>
+				</form>
+				<form class="userMenu" method="post">
+					<input type="hidden" name="action" value="approve">
+					<button class="marginHorizontalLeft buttonStyle" id="ApproveUsers"
+						type="submit">Approve Users</button>
+				</form>
+				<form class="userMenu" method="post">
+					<input type="hidden" name="action" value="addTopic">
+					<button class="marginHorizontalLeft buttonStyle" id="addTopic"
+						type="submit">Add topic</button>
+				</form>
 			</div>
 		</div>
 	</div>
 
-	<c:if test="${listProfile != null }">
+
+		<c:if test="${listProfile != null }">
 		<div class="row col-lg-12">
-			<div class="col-lg-offset-1 col-lg-10 rowBackground text-left">
-				<p class="simpleText">Username: ${user.userName}</p>
-				<p class="simpleText">Birthdate: ${user.birthDate}</p>
-				<p class="simpleText">Role: ${user.role}</p>
-				<p class="simpleText">Status: ${user.status}</p>
-				<form method="post">
-					<input type="hidden" name="action" value="changePassword">
-					<button class="buttonStyle" type="submit">Change Password</button>
-				</form>
+			<div
+				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
+				<table
+					class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
+					<tr>
+						<td class="userProfileInfo text-right paddingHorizontal">Username:</td>
+						<td class="userProfileInfo paddingHorizontal">${user.userName}</td>
+					</tr>
+					<tr>
+						<td class="userProfileInfo text-right paddingHorizontal">Birthdate:</td>
+						<td class="userProfileInfo paddingHorizontal">${user.birthDate}</td>
+					</tr>
+					<tr>
+						<td class="userProfileInfo text-right paddingHorizontal">Role:</td>
+						<td class="userProfileInfo paddingHorizontal">${user.role}</td>
+					</tr>
+					<tr>
+						<td class="userProfileInfo text-right paddingHorizontal">Status:</td>
+						<td class="userProfileInfo paddingHorizontal">${user.status}</td>
+					</tr>
+				</table>
+
 			</div>
 		</div>
+	</c:if>
 
 		<c:if test="${changePassword == 1 }">
 			<div class="row col-lg-12">
-				<div class="col-lg-offset-1 col-lg-10 rowBackground ">
+				<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground ">
 					<form method="post">
-						<table class="col-lg-offset-2 col-lg-8">
+						<table class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
 							<tr>
 								<td class="passwordCellStyle"><label class="simpleText" for="OldPassword">Old
 										password:</label></td>
@@ -101,7 +113,7 @@
 				</div>
 			</div>
 		</c:if>
-	</c:if>
+	
 
 	<c:if test="${listUsersForApproval != null }">
 		<div class="row col-lg-12">
@@ -135,6 +147,26 @@
 					</c:forEach>
 				</table>
 			</div>
+		</div>
+	</c:if>
+	
+	
+	
+	<c:if test="${topicAdding != null}">
+	<div class="row">
+			<div class="col-lg-offset-1 col-lg-10 rowBackground">
+		<form method="post">
+		<c:if test="${existingTopic != null}">
+		<p class="simpleText">Topic with this name already exist!</p>
+		</c:if>
+			<label class="simpleText" for="addTheTopic">Add new Topic: </label> 
+			<input id="addTheTopic" type="text" name="addTheTopic" placeholder="topic name"> 
+			<input id="public" type="radio" name="visibility" value="public"> <label class="simpleText" for="public">Public</label>		
+			<input id="private" type="radio" name="visibility" value="private" checked> <label class="simpleText" for="private">Private</label>	
+			<input type="hidden" name="action" value="addTheTopic">
+			<button class="buttonStyle" type="submit">Add Topic</button>
+		</form>
+		</div>
 		</div>
 	</c:if>
 
