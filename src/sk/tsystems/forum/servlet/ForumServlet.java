@@ -47,8 +47,6 @@ public class ForumServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		
-		
-		
 		if ("login".equals(action) && "userName" != null && "userPassword" != null) {
 			if((new UserServices().getUserID(request.getParameter("userName")) == 0) || 
 					!(new UserServices().isUserApproved(request.getParameter("userName")))) {
@@ -191,7 +189,6 @@ public class ForumServlet extends HttpServlet {
 		forwardToList(request, response);
 	}
 
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -256,8 +253,6 @@ public class ForumServlet extends HttpServlet {
 	    }
 		user = new UserServices().registerUser(request.getParameter("userName"), request.getParameter("userPassword"), 
 				date, request.getParameter("role"), request.getParameter("status"));
-//		session = request.getSession();
-//		session.setAttribute("user", user);
 	}
 
 	private void incorrectPassword(HttpServletRequest request) {
@@ -288,9 +283,6 @@ public class ForumServlet extends HttpServlet {
 		
 	}
 
-	
-	
-	
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -300,30 +292,3 @@ public class ForumServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
