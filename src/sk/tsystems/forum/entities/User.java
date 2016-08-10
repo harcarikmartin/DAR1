@@ -3,6 +3,7 @@ package sk.tsystems.forum.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,15 +18,22 @@ public class User {
 	@GeneratedValue
 	private int userID;
 
-	
     @ManyToMany(mappedBy="users")
 	private List<Topic> topics;
 	
+    @Column(unique = true, nullable=false)
 	private String userName;
 
+    @Column(nullable = false)
 	private String userPassword;
+    
+    @Column(nullable = false)
 	private Date birthDate;
+    
+    @Column(nullable = false)
 	private String role;
+    
+    @Column(nullable = false)
 	private String status;
 	
 	public User( List<Topic> topics, String userName, String userPassword, Date birthDate, String role,

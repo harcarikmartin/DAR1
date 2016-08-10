@@ -1,13 +1,16 @@
 package sk.tsystems.forum.entities;
 
 import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -20,16 +23,17 @@ public class Topic {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User creator;
 	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	private User subscriber;
-	
-	
-//	@ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
 	@ManyToMany
 	@JoinTable(name = "Topic_User", joinColumns = @JoinColumn(name = "topic_ID", referencedColumnName="topicID"), inverseJoinColumns = @JoinColumn(name = "user_ID", referencedColumnName="userID"))
 	private List<User> users;
 
+	//@AllowedValues({"Standard", "One-Day", "Two-Day", "Three-Day"}) 
+	
+	@NotNull
 	private String visibility;
+	
+
+	@Column(unique = true, nullable = false)
 	private String topic;
 
 	public Topic(User creator, List<User> users, String visibility, String topic) {

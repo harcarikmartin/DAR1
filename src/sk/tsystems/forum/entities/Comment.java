@@ -22,7 +22,8 @@ public class Comment {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Task task;
 	
-	@Column(name = "coment")
+
+	@Column(name = "coment", nullable = false)
 	private String comment;
 	
 	public Comment(String comment, Task task, User user) {
