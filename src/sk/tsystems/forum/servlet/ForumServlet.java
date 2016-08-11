@@ -59,6 +59,8 @@ public class ForumServlet extends HttpServlet {
 			} else if(!(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")))){
 				//bad login details case
 				incorrectPassword(request);
+			} else {
+				incorrectPassword(request);
 			}
 		} else if ("register".equals(action)) {
 			request.setAttribute("registerForm", 1);
