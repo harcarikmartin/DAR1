@@ -50,8 +50,8 @@ public class ForumServlet extends HttpServlet {
 		if ("login".equals(action) && "userName" != null && "userPassword" != null) {
 			if((new UserServices().getUserID(request.getParameter("userName")) == 0) || 
 					!(new UserServices().isUserApproved(request.getParameter("userName")))) {
-				//bad login details case
-				incorrectPassword(request);
+				//user is not approved yet
+				request.setAttribute("error", 6);
 			} else if(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")) && 
 					new UserServices().isUserApproved(request.getParameter("userName"))) {
 				//do login case
@@ -134,8 +134,8 @@ public class ForumServlet extends HttpServlet {
 		} else if("updateTheTopic".equals(action)) {
 			// update of topic, rename, chenge of visibility
 			// topic is removed from subscriptions table after changing its state from private to public
+			updateTopicSubscriptions(request);
 			new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
-			updateTopicsSubscriptions(request);
 			request.setAttribute("listTopics", 1);
 		} else if("removeTopic".equals(action)) {
 			// topic removal
@@ -167,45 +167,20 @@ public class ForumServlet extends HttpServlet {
 			// open the topic
 		} else if("generate".equals(action)) {	
 			// development action
-			Topic topic1 = new Topic();
-			topic1.setTopic("prvy topic");
-			topic1.setCreator(admin);
-			topic1.setVisibility("private");
-			Topic topic2 = new Topic();
-			topic2.setTopic("prvy topic");
-			topic2.setCreator(admin);
-			topic2.setVisibility("private");
-			Topic topic3 = new Topic();
-			topic3.setTopic("prvy topic");
-			topic3.setCreator(admin);
-			topic3.setVisibility("public");
-			Topic topic4 = new Topic();
-			topic4.setTopic("prvy topic");
-			topic4.setCreator(admin);
-			topic4.setVisibility("public");
-			
-			new TopicServices().addTopicToDatabase(topic1);
-			new TopicServices().addTopicToDatabase(topic2);
-			new TopicServices().addTopicToDatabase(topic3);
-			new TopicServices().addTopicToDatabase(topic4);
-			
-			topics.add(topic1);
-			topics.add(topic2);
-			topics.add(topic3);
-			topics.add(topic4);
-			
 			admin.setUserName("jozko");
-			admin.setUserPassword("jozko");
+			admin.setUserPassword("Jozko123+");
 			admin.setRole("admin");
 			admin.setStatus("confirmed");
-			user1.setUserName("janko");
-			user1.setUserPassword("janko");
-			user1.setRole("user");
-			user1.setStatus("pending");
+			String dateString = "2016-08-18";
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = null;
+			try {
+				date = df.parse(dateString);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			admin.setBirthDate(date);
 			new UserServices().addUser(admin);
-			new UserServices().addUser(user1);
-			list.add(admin);
-			list.add(user1);
 		 }
 		//forwarding response back to node
 		forwardToList(request, response);
@@ -299,14 +274,13 @@ public class ForumServlet extends HttpServlet {
 	  }
 	}
 	
-	private void updateTopicsSubscriptions(HttpServletRequest request) {
+	private void updateTopicSubscriptions(HttpServletRequest request) {
 		Topic topic = new TopicServices().setPresentTopic(request.getParameter("original"));
-		try {
-			for(User user: new Topic().getUsers()) {
+		if(!topic.getVisibility().equals(request.getParameter("visibility1"))) {
+			System.out.println(topic.getUsers().toString());
+			for(User user: topic.getUsers()) {
 				new TopicServices().removeSubscriber(topic, user);
 			}
-		} catch(Exception e) {
-			System.err.println("No subribers for topic" + e.getMessage());
 		}
 	}
 

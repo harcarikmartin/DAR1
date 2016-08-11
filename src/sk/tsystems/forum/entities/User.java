@@ -128,11 +128,11 @@ public class User {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userID=" + userID + ", topics=" + topics + ", userName=" + userName + ", userPassword="
-				+ userPassword + ", birthDate=" + birthDate + ", role=" + role + ", status=" + status + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "User [userID=" + userID + ", topics=" + topics + ", userName=" + userName + ", userPassword="
+//				+ userPassword + ", birthDate=" + birthDate + ", role=" + role + ", status=" + status + "]";
+//	}
 	
 	
 
