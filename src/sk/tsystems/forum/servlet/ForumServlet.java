@@ -307,10 +307,8 @@ public class ForumServlet extends HttpServlet {
 
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		request.setAttribute("topics", new TopicServices().printTopics());
 		request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
-		
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 	}
 }
