@@ -59,7 +59,7 @@
 		</div>
 	</c:if>
 
-		<c:if test="${changePassword == 1 }">
+		<c:if test="${changePassword == 1}">
 			<div class="row col-lg-12">
 				<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground ">
 					<form method="post">

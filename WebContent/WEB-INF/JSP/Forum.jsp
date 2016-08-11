@@ -48,7 +48,7 @@
 							<table class="loginTable">
 								<tr>
 									<td><label class="labels" for="userPassword">Password:
-											<input id="userPassword" class="loginForm" type="text"
+											<input id="userPassword" class="loginForm" type="password"
 											name="userPassword" placeholder="password ...">
 									</label></td>
 								</tr>
@@ -112,7 +112,7 @@
 			<div class="col-lg-offset-1 col-lg-10">
 				<table>
 					<tr>
-						<th class="topicCell text-center topicHeadStyle">Topic</th>
+						<th class="topicCell text-left topicHeadStyle">Topic</th>
 						<th class="actionCell text-center topicHeadStyle">Created by</th>
 						<th class="actionCell text-center topicHeadStyle">Visibility</th>
 						<c:if test="${user.role == 'admin'}">
@@ -143,7 +143,7 @@
 
 							<c:if test="${user.role == 'admin'}">
 								<tr>
-									<td class="topicCell text-center">
+									<td class="topicCell text-left">
 										<form method="post">
 											<input type="hidden" name="action" value="openTopic">
 											<input type="hidden" name="idOfTOpic"
@@ -155,7 +155,7 @@
 									<td class="actionCell text-center topicInfoStyle">${topic.visibility}</td>
 
 									<c:if test="${user.role == 'admin'}">
-										<td class="actionCell text-center">
+										<td class="actionCell text-left">
 											<form method="post" class="topicToUpdate">
 												<input type="hidden" name="topicToUpdate"
 													value="${topic.topic}"> <input type="hidden"
@@ -180,7 +180,7 @@
 						<c:if test="${user.role == 'user'}">
 							<c:if test="${topic.visibility == 'public'}">
 								<tr>
-									<td class="topicCell text-center">
+									<td class="topicCell text-left">
 										<form method="post">
 											<input type="hidden" name="action" value="openTopic">
 											<input type="hidden" name="idOfTOpic"
@@ -197,7 +197,7 @@
 								<c:if test="${topic.topicID == userTopic.topic.topicID}">
 									<c:if test="${userTopic.user.userID == user.userID}">
 										<tr>
-											<td class="topicCell text-center">
+											<td class="topicCell text-left">
 												<form method="post">
 													<input type="hidden" name="action" value="openTopic">
 													<input type="hidden" name="idOfTOpic"
@@ -216,7 +216,7 @@
 					</c:forEach>
 
 
-					<c:if test="${topicUpdating != null}">
+					<c:if test="${topicToUpdate != null}">
 						<div class="row">
 							<div
 								class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground">
@@ -299,6 +299,16 @@
 	</script>
 </c:if>
 
+<c:if test="${user.role=='admin' && changePassword == 1}">
+	<script type="text/javascript">
+	<%@include file="PasswordChange.js"%>
+	</script>
+</c:if>
 
+<c:if test="${user.role=='user' && changePassword == 1}">
+	<script type="text/javascript">
+	<%@include file="PasswordChange.js"%>
+	</script>
+</c:if>
 
 </html>
