@@ -220,9 +220,9 @@
 						<div class="row">
 							<div
 								class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground">
-<%-- 					<c:if test="${existingTopic != null}"> --%>
-<!-- 						<p class="simpleText">Topic with this name already exist!</p> -->
-<%-- 					</c:if> --%>
+								<c:if test="${existingTopic != null}">
+									<p class="simpleText">Topic with this name already exist!</p>
+								</c:if>
 								<form method="post" onsubmit="return checkRequiredEditTopic()">
 									<div class="row text-center">
 										<label class="simpleText" for="editTopic">Edit Topic:
