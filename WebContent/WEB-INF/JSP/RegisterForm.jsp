@@ -66,8 +66,8 @@
 						<td class="registerCellStyle text-center"></td>
 					</tr>
 					<tr>
-						<td class="registerCellStyle text-center"></td>
-						<td class="registerCellStyle text-left"><c:if
+						
+						<td colspan="3" class="registerCellStyle text-center"><c:if
 								test="${error == '1'}"> 
 								<p class="warning">Passwords must match!</p>
 							</c:if> <c:if test="${error == '2'}"> 
@@ -77,7 +77,7 @@
 							</c:if> <c:if test="${error == '4'}"> 
 								<p class="warning">Not registered yet!</p>
 							</c:if></td>
-						<td class="registerCellStyle text-center"></td>
+						
 					</tr>
 					<tr>
 						<td class="registerCellStyle text-center"></td>

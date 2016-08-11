@@ -115,6 +115,15 @@
 									name="action" value="changeMyPassword">
 									<button class="buttonStyle" type="submit">Change</button></td>
 							</tr>
+							<tr>
+							<td colspan="3" class="registerCellStyle text-center"><c:if
+								test="${error == '1'}"> 
+								<p class="warning">Passwords must match!</p>
+							</c:if> <c:if test="${error == '2'}"> 
+								<p class="warning">Password must be at least 8 digits long!</p>
+							</c:if> </td>
+							</tr>
+							
 						</table>
 					</form>
 				</div>
