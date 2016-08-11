@@ -56,14 +56,16 @@
 	<c:if test="${changePassword == 1 }">
 			<div class="row col-lg-12">
 				<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground ">
-					<form method="post">
-						<table class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
+					<form method="post" onsubmit="return checkRequiredPassChange()">
+						<table class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
 							<tr>
 								<td class="passwordCellStyle"><label class="simpleText" for="OldPassword">Old
 										password:</label></td>
 								<td class="passwordCellStyle"><input id="OldPassword"
 									class="passwordForm" type="password" name="userPasswordOld"
 									placeholder="password"></td>
+								<td class="passwordCellStyle text-center"><p id="opRequired"
+									class="requiredField">Required field</p></td>
 							</tr>
 							<tr>
 								<td class="passwordCellStyle"><label class="simpleText" for="NewPassword">New
@@ -73,6 +75,8 @@
 									pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
 									oninvalid="alert('Password is not valid')"
 									placeholder="password"></td>
+								<td class="passwordCellStyle text-center"><p id="npRequired"
+									class="requiredField">Required field</p></td>
 							</tr>
 							<tr>
 								<td class="passwordCellStyle"></td>
@@ -80,6 +84,7 @@
 										Password must contain minimum 8 characters, at least 1
 										Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special
 										Character [!@#$%^&*_=+-]</p></td>
+										<td></td>
 							</tr>
 							<tr>
 								<td class="passwordCellStyle"><label class="simpleText" for="NewPasswordConfirm">Confirm
@@ -87,18 +92,20 @@
 								<td class="passwordCellStyle"><input
 									id="NewPasswordConfirm" class="passwordForm" type="password"
 									name="userPasswordNewCheck" placeholder="password"></td>
+								<td class="passwordCellStyle text-center"><p id="npcRequired"
+									class="requiredField">Required field</p></td>
 							</tr>
 							<tr>
-								<td class="passwordCellStyle"></td>
-								<td><c:if test="${passChanged == 1 }">
+								
+								<td colspan="3" class="text-center"><c:if test="${passChanged == 1 }">
 										<p class="simpleText">Password changed successfully</p>
 									</c:if> <c:if test="${passChanged == 0 }">
 										<p class="simpleText">Password not changed!</p>
 									</c:if></td>
 							</tr>
 							<tr>
-								<td class="passwordCellStyle"></td>
-								<td class="passwordCellStyle"><input type="hidden"
+								
+								<td colspan="3" class="passwordCellStyle text-center"><input type="hidden"
 									name="action" value="changeMyPassword">
 									<button class="buttonStyle" type="submit">Change</button></td>
 							</tr>

@@ -220,9 +220,7 @@
 						<div class="row">
 							<div
 								class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground">
-								<c:if test="${existingTopic != null}">
-									<p class="simpleText">Topic with this name already exist!</p>
-								</c:if>
+								
 								<form method="post" onsubmit="return checkRequiredEditTopic()">
 									<div class="row text-center">
 										<label class="simpleText" for="editTopic">Edit Topic:
@@ -255,6 +253,11 @@
 									<!-- 						<input type="radio" name="visibility" value="private" -->
 									<%-- 							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if> --%>
 									<!-- 							/> Private  -->
+									<div class="row text-center">
+										<c:if test="${existingTopic != null}">
+									<p class=" text-center simpleText">Topic with this name already exist!</p>
+								</c:if>
+									</div>
 									<div class="row text-center">
 										<input type="hidden" name="original"
 											value="${topicUpdating.topic}"> <input type="hidden"

@@ -130,7 +130,7 @@ body {
 .passwordCellStyle, .subscribedTopicsTableCell{
 	height: 3vh;
 	min-height: 15px;
-	width: 50%;
+	width: 33%;
     background-color: #404040;
     border: none;
     color: white;
