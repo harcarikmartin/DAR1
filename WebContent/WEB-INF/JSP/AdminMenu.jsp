@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 
@@ -59,7 +61,7 @@
 		</div>
 	</c:if>
 
-		<c:if test="${changePassword == 1 }">
+		<c:if test="${changePassword == 1}">
 			<div class="row col-lg-12">
 				<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground ">
 					<form method="post" onsubmit="return checkRequiredPassChange()">
@@ -136,7 +138,7 @@
 		</c:if>
 
 
-	<c:if test="${listUsersForApproval == 1 }">
+	<c:if test="${listUsersForApproval == 1 && fn:length(pendingUsers) > 0}">
 		<div class="row col-lg-12">
 			<div
 				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">

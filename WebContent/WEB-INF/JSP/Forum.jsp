@@ -138,8 +138,6 @@
 							</c:if>
 						</c:if>
 
-						<c:if test="${topicToUpdate == null}">
-
 							<c:if test="${user.role == 'admin'}">
 								<tr>
 									<td class="topicCell text-left">
@@ -173,7 +171,6 @@
 									</c:if>
 								</tr>
 							</c:if>
-						</c:if>
 
 
 						<c:if test="${user.role == 'user'}">
