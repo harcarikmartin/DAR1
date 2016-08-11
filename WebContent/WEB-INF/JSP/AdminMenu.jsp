@@ -143,7 +143,7 @@
 					</tr>
 					<c:forEach items="${pendingUsers}" var="pendingUser">
 						<tr>
-							<td><p class="approveCellStyle">${pendingUser}</p></td>
+							<td><p class="approveCellStyle paddingHorizontal">${pendingUser}</p></td>
 							<td>
 								<form method="post">
 									<input type="hidden" name="userForApproval"

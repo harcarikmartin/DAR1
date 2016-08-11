@@ -60,6 +60,11 @@ body {
 	width: 10em;
 }
 
+.btn-block{
+	text-align: left;
+	padding-left: 1em;
+}
+
 .topicStyle{
 	height: 5vh;
 	min-height: 30px;
@@ -147,7 +152,6 @@ body {
     border: none;
     color: white;
     font-weight: bold;
-    text-align: center;
 }
 
 .buttonStyle{
