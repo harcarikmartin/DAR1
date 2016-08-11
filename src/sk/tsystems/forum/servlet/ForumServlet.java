@@ -207,11 +207,13 @@ public class ForumServlet extends HttpServlet {
 	
 	private void lenghtenPasswordChange(HttpServletRequest request) {
 		request.setAttribute("changePassword", 1);
+		request.setAttribute("error", 2);
 		request.setAttribute("passChanged", 0);
 	}
 
 	private void matchPasswordsChange(HttpServletRequest request) {
 		request.setAttribute("changePassword", 1);
+		request.setAttribute("error", 1);
 		request.setAttribute("passChanged", 0);
 		
 	}
