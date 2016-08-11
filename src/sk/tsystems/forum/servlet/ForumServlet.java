@@ -59,8 +59,6 @@ public class ForumServlet extends HttpServlet {
 			} else if(!(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")))){
 				//bad login details case
 				incorrectPassword(request);
-			} else {
-				incorrectPassword(request);
 			}
 		} else if ("register".equals(action)) {
 			request.setAttribute("registerForm", 1);
@@ -136,9 +134,18 @@ public class ForumServlet extends HttpServlet {
 		} else if("updateTheTopic".equals(action)) {
 			// update of topic, rename, chenge of visibility
 			// topic is removed from subscriptions table after changing its state from private to public
-			updateTopicSubscriptions(request);
-			new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
-			request.setAttribute("listTopics", 1);
+			if(!request.getParameter("editTopic").isEmpty() && 
+					!request.getParameter("visibility1").isEmpty() && 
+					new TopicServices().setPresentTopic(request.getParameter("editTopic")) == null) {
+				updateTopicSubscriptions(request);
+				new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
+				request.setAttribute("listTopics", 1);
+			} else if(new TopicServices().setPresentTopic(request.getParameter("editTopic")) != null) {
+				// topic already exists
+				request.setAttribute("existingTopic", 1);
+			} else {
+				// one or both fields are missing, return to main page
+			}
 		} else if("removeTopic".equals(action)) {
 			// topic removal
 			new TopicServices().removeTopic(request.getParameter("topicToRemove"));
@@ -148,15 +155,20 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("topicAdding", 1);
 		} else if("addTheTopic".equals(action)) {
 			// adding topic to database
-			if(new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) == null) {
+			if(!request.getParameter("addTheTopic").isEmpty() && 
+					!request.getParameter("visibility").isEmpty() &&
+					new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) == null) {
 				Topic topic = new Topic();
 				topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
 				topic.setTopic(request.getParameter("addTheTopic"));
 				topic.setVisibility(request.getParameter("visibility"));
 				new TopicServices().addTopicToDatabase(topic);
 				request.setAttribute("listTopics", 1);
-			} else {
+			} else if(new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) == null) {
+				// topic already exists
 				request.setAttribute("existingTopic", 1);
+			} else {
+				// one or both fields are missing, return to main page
 			}
 		} else if ("changeTopics".equals(action)) {
 			// change in user's subscriptions
@@ -271,18 +283,17 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	private void updateUserSubscriptions(HttpServletRequest request) {
-		for(Topic topic:new TopicServices().printTopics()) {
-				new TopicServices().removeSubscriber(topic, user);	
-	  }
+		for(Topic topic : new TopicServices().printTopics()) {
+			new TopicServices().removeSubscriber(topic, user);	
+		}
 	}
 	
 	private void updateTopicSubscriptions(HttpServletRequest request) {
 		Topic topic = new TopicServices().setPresentTopic(request.getParameter("original"));
-		if(!topic.getVisibility().equals(request.getParameter("visibility1"))) {
-			System.out.println(topic.getUsers().toString());
-			for(User user: topic.getUsers()) {
-				new TopicServices().removeSubscriber(topic, user);
-			}
+		if(topic.getVisibility().equals("private") && request.getParameter("visibility1").equals("public")) {
+			List<User> list = topic.getUsers();
+			list.clear();
+			topic.setUsers(list);
 		}
 	}
 
