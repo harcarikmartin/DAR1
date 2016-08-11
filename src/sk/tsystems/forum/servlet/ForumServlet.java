@@ -142,6 +142,7 @@ public class ForumServlet extends HttpServlet {
 				request.setAttribute("listTopics", 1);
 			} else if(new TopicServices().setPresentTopic(request.getParameter("editTopic")) != null) {
 				// topic already exists
+				request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
 				request.setAttribute("existingTopic", 1);
 			}
 		} else if("removeTopic".equals(action)) {
@@ -162,6 +163,7 @@ public class ForumServlet extends HttpServlet {
 				request.setAttribute("listTopics", 1);
 			} else if(new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) != null) {
 				// topic already exists
+				request.setAttribute("topicAdding", 1);
 				request.setAttribute("existingTopic", 1);
 			}
 		} else if ("changeTopics".equals(action)) {
