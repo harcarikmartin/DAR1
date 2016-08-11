@@ -127,26 +127,21 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("topics", new TopicServices().printTopics());
 			request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		} else if("updateTopic".equals(action)) {
-			//
-			// ak je zmena stavu z private na public treba dany topic odstranit z prepojovacej tabulky
+			// topic is removed from subscriptions table after changing its state from private to public
 			request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
 		} else if("updateTheTopic".equals(action)) {
-			//
-			// zmena topicu, premenovanie alebo zmena visibility
+			// update of topic, rename, chenge of visibility
 			new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
 			request.setAttribute("listTopics", 1);
 		} else if("removeTopic".equals(action)) {
-			//
-			// zmazanie topicu
+			// topic removal
 			new TopicServices().removeTopic(request.getParameter("topicToRemove"));
 			request.setAttribute("listTopics", 1);
 		} else if("addTopic".equals(action)) {
-			//
-			// klik na button add topic, zobrazenie formulara pre pridanie topicu
+			// showing form for adding topic
 			request.setAttribute("topicAdding", 1);
 		} else if("addTheTopic".equals(action)) {
-			//
-			// pridanie topicu do databazy
+			// adding topic to database
 			if(new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) == null) {
 				Topic topic = new Topic();
 				topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
@@ -158,16 +153,14 @@ public class ForumServlet extends HttpServlet {
 				request.setAttribute("existingTopic", 1);
 			}
 		} else if ("changeTopics".equals(action)) {
-			//
-			// zmena topicov, ktore user subscribuje
+			// change in user's subscriptions
 			if(request.getParameterValues("topic") != null) {
 				addUserSubscriptions(request);
 			} else {
 				updateUserSubscriptions(request);
 			}
 		} else if("openTopic".equals(action)) {
-			//
-			// klik na topic
+			// open the topic
 		} else if("generate".equals(action)) {	
 			// development action
 			Topic topic1 = new Topic();
