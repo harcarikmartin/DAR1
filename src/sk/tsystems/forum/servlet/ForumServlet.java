@@ -84,6 +84,8 @@ public class ForumServlet extends HttpServlet {
 			if(!new UserServices().getPendingUsers().isEmpty()) {
 				request.setAttribute("listUsersForApproval", 1);
 				request.setAttribute("pendingUsers", new UserServices().getPendingUsers());
+			} else {
+				request.setAttribute("listUsersForApproval", 2);
 			}
 		} else if("approveUser".equals(action)) { 
 			//approve user
@@ -127,11 +129,13 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("topics", new TopicServices().printTopics());
 			request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		} else if("updateTopic".equals(action)) {
-			// topic is removed from subscriptions table after changing its state from private to public
+			// show form for updating the topic
 			request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
 		} else if("updateTheTopic".equals(action)) {
 			// update of topic, rename, chenge of visibility
+			// topic is removed from subscriptions table after changing its state from private to public
 			new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
+			updateTopicsSubscriptions(request);
 			request.setAttribute("listTopics", 1);
 		} else if("removeTopic".equals(action)) {
 			// topic removal
@@ -279,25 +283,31 @@ public class ForumServlet extends HttpServlet {
 	private void addUserSubscriptions(HttpServletRequest request) {
 		updateUserSubscriptions(request);
 		String[] topicsId = request.getParameterValues("topic");
-		List<User> actualUser = new ArrayList<>();
-		actualUser.add(user);
-		
 		for( int i = 0; i <= topicsId.length - 1; i++)
 		{
 			for(Topic topic:new TopicServices().printTopics()){
 				if(topic.getTopicID()==Integer.parseInt(topicsId[i])){
 					new TopicServices().setSubscriber(topic,user);	
 			 }	
-				
 		  }
 	    }
 	}
 	
 	private void updateUserSubscriptions(HttpServletRequest request) {
-		for(Topic topic:new TopicServices().printTopics()){
+		for(Topic topic:new TopicServices().printTopics()) {
 				new TopicServices().removeSubscriber(topic, user);	
 	  }
-		
+	}
+	
+	private void updateTopicsSubscriptions(HttpServletRequest request) {
+		Topic topic = new TopicServices().setPresentTopic(request.getParameter("original"));
+		try {
+			for(User user: new Topic().getUsers()) {
+				new TopicServices().removeSubscriber(topic, user);
+			}
+		} catch(Exception e) {
+			System.err.println("No subribers for topic" + e.getMessage());
+		}
 	}
 
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
