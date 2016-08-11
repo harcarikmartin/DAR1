@@ -26,15 +26,15 @@ public class TaskServices {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		em.remove(task);
-		JpaHelper.commitTransaction();
-		
+		JpaHelper.commitTransaction();	
 	}
 	
 	
-	public List<Task> printTasks() {
+	public List<Task> printTasks(Topic topic) {
 		List<Task> listOfTasks = new ArrayList<>();
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("select t from Task t");
+		Query query = em.createQuery("select t from Task t where t.topic=:topic");
+		query.setParameter("topic", topic);
 		listOfTasks = query.getResultList();
 		return listOfTasks;
 
