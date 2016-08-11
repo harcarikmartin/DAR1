@@ -70,7 +70,7 @@
 								<p class="simpleText">Wrong login details!</p>
 							</c:if>
 							<c:if test="${error == '6'}">
-								<p class="simpleText">Not yet approver by admin!</p>
+								<p class="simpleText">Not yet approved by admin!</p>
 							</c:if>
 						</form>
 					</div>
@@ -223,7 +223,7 @@
 <%-- 					<c:if test="${existingTopic != null}"> --%>
 <!-- 						<p class="simpleText">Topic with this name already exist!</p> -->
 <%-- 					</c:if> --%>
-								<form method="post">
+								<form method="post" onsubmit="return checkRequiredEditTopic()">
 									<div class="row text-center">
 										<label class="simpleText" for="editTopic">Edit Topic:
 										</label>
@@ -232,6 +232,7 @@
 										<input class="inputForNewStuff" id="editTopic" type="text"
 											name="editTopic" placeholder="topic name" value="${topicUpdating.topic}" >
 									</div>
+									<div class="row text-center"><p id="topicNameRequired" class="requiredField ">Topic name is required</p></div>
 									<div class="row text-center">
 										<c:if test="${topicUpdating.visibility == 'public'}">
 											<input type="radio" name="visibility1" value="public" checked>
@@ -247,6 +248,7 @@
 											<label class="simpleText" for="private">Private</label>
 										</c:if>
 									</div>
+									<div class="row text-center"><p id="topicVisibilityRequired" class="requiredField ">Topic visibility is required</p></div>
 									<!-- 						<input type="radio" name="visibility" value="public"  -->
 									<%-- 							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if> --%>
 									<!-- 							/> Public  -->
@@ -285,8 +287,17 @@
 	</script>
 </c:if>
 
+<c:if test="${user.role=='admin' && topicAdding != null}">
+	<script type="text/javascript">
+	<%@include file="AddTopic.js"%>
+	</script>
+</c:if>
 
-
+<c:if test="${topicUpdating != null}">
+	<script type="text/javascript">
+	<%@include file="UpdateTopic.js"%>
+	</script>
+</c:if>
 
 
 
