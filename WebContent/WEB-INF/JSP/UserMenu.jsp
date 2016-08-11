@@ -111,7 +111,10 @@
 							</tr>
 							<tr>
 							<td colspan="3" class="registerCellStyle text-center"><c:if
-								test="${error == '1'}"> 
+								test="${error == '7'}"> 
+								<p class="warning">Old password incorrect!</p>
+							</c:if><c:if
+								test="${error == '8'}"> 
 								<p class="warning">Passwords must match!</p>
 							</c:if> <c:if test="${error == '2'}"> 
 								<p class="warning">Password must be at least 8 digits long!</p>

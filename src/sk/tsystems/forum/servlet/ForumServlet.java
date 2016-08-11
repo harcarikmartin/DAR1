@@ -108,7 +108,7 @@ public class ForumServlet extends HttpServlet {
 			// changing user's password
 			if(!(request.getParameter("userPasswordOld").equals(user.getUserPassword()))) {
 				//old password wrong
-				matchPasswordsChange(request);
+				wrongOldPass(request);
 			} else if(! (request.getParameter("userPasswordNew")).equals(request.getParameter("userPasswordNewCheck"))) {
 				//passwords do not match case
 				matchPasswordsChange(request);
@@ -210,10 +210,17 @@ public class ForumServlet extends HttpServlet {
 		request.setAttribute("error", 2);
 		request.setAttribute("passChanged", 0);
 	}
-
+	
+	private void wrongOldPass(HttpServletRequest request) {
+		request.setAttribute("changePassword", 1);
+		request.setAttribute("error", 7);
+		request.setAttribute("passChanged", 0);
+		
+	}
+	
 	private void matchPasswordsChange(HttpServletRequest request) {
 		request.setAttribute("changePassword", 1);
-		request.setAttribute("error", 1);
+		request.setAttribute("error", 8);
 		request.setAttribute("passChanged", 0);
 		
 	}
