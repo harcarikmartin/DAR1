@@ -130,6 +130,7 @@ public class ForumServlet extends HttpServlet {
 		} else if("updateTopic".equals(action)) {
 			// show form for updating the topic
 			request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
+			request.setAttribute("topicToUpdate", 1);
 		} else if("updateTheTopic".equals(action)) {
 			// update of topic, rename, chenge of visibility
 			// subscriptions for topic are removed from subscriptions table after changing its state from private to public
@@ -142,7 +143,7 @@ public class ForumServlet extends HttpServlet {
 				request.setAttribute("listTopics", 1);
 			} else if(new TopicServices().setPresentTopic(request.getParameter("editTopic")) != null) {
 				// topic already exists
-				request.setAttribute("topicUpdating", new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
+				request.setAttribute("topicToUpdate", 1);
 				request.setAttribute("existingTopic", 1);
 			}
 		} else if("removeTopic".equals(action)) {
