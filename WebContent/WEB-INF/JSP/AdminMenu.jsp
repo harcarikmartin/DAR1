@@ -115,7 +115,7 @@
 		</c:if>
 
 
-	<c:if test="${listUsersForApproval != null }">
+	<c:if test="${listUsersForApproval == 1 }">
 		<div class="row col-lg-12">
 			<div
 				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
@@ -150,7 +150,14 @@
 			</div>
 		</div>
 	</c:if>
-
+	<c:if test="${listUsersForApproval == 2 }">
+		<div class="row col-lg-12">
+			<div
+				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground text-center">
+				<p class="simpleText">There is no one, who can be approved.</p>
+			</div>
+		</div>
+	</c:if>
 
 
 	<c:if test="${topicAdding != null}">
@@ -161,19 +168,13 @@
 						<p class="simpleText">Topic with this name already exist!</p>
 					</c:if>
 						<div class="row text-center"><label class="simpleText" for="addTheTopic">Add new Topic:</label></div>
-					
 						<div class="row text-center"><input class="inputForNewStuff" id="addTheTopic" type="text" name="addTheTopic" placeholder="topic name"></div>
-						
 						<div class="row text-center">
 						<input id="public" type="radio" name="visibility" value="public">
 						<label class="simpleText" for="public">Public</label>
-						</div>
-						
-						<div class="row text-center">
 						<input id="private" type="radio" name="visibility" value="private" checked>
 						<label class="simpleText" for="private">Private</label>
 						</div>
-						
 						<div class="row text-center">
 						<input type="hidden" name="action" value="addTheTopic">
 						<button class="buttonStyle" type="submit">Add Topic</button>

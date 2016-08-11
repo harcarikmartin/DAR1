@@ -188,34 +188,53 @@
 
 
 					<c:if test="${topicUpdating != null}">
-						<form method="post">
-							<label for="editTopic">Edit Topic: </label> <input id="editTopic"
-								type="text" name="editTopic" value="${topicUpdating.topic}">
-							<c:if test="${topicUpdating.visibility == 'public'}">
-								<input type="radio" name="visibility1" value="public" checked>Public
-							<input type="radio" name="visibility1" value="private">Private
-						</c:if>
-							<c:if test="${topicUpdating.visibility == 'private'}">
-								<input type="radio" name="visibility1" value="public">Public
-							<input type="radio" name="visibility1" value="private" checked>Private
-						</c:if>
-
-							<!-- 						<input type="radio" name="visibility" value="public"  -->
-							<%-- 							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if> --%>
-							<!-- 							/> Public  -->
-							<!-- 						<input type="radio" name="visibility" value="private" -->
-							<%-- 							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if> --%>
-							<!-- 							/> Private  -->
-							<input type="hidden" name="original"
-								value="${topicUpdating.topic}"> <input type="hidden"
-								name="action" value="updateTheTopic">
-							<button type="submit">Edit Topic</button>
-						</form>
+						<div class="row">
+							<div
+								class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground">
+<%-- 					<c:if test="${existingTopic != null}"> --%>
+<!-- 						<p class="simpleText">Topic with this name already exist!</p> -->
+<%-- 					</c:if> --%>
+								<form method="post">
+									<div class="row text-center">
+										<label class="simpleText" for="editTopic">Edit Topic:
+										</label>
+									</div>
+									<div class="row text-center">
+										<input class="inputForNewStuff" id="editTopic" type="text"
+											name="editTopic" placeholder="topic name" value="${topicUpdating.topic}" >
+									</div>
+									<div class="row text-center">
+										<c:if test="${topicUpdating.visibility == 'public'}">
+											<input type="radio" name="visibility1" value="public" checked>
+											<label class="simpleText" for="public">Public</label>
+											<input type="radio" name="visibility1" value="private">
+											<label class="simpleText" for="private">Private</label>
+										</c:if>
+										<c:if test="${topicUpdating.visibility == 'private'}">
+											<input type="radio" name="visibility1" value="public">
+											<label class="simpleText" for="public">Public</label>
+											<input type="radio" name="visibility1" value="private"
+												checked>
+											<label class="simpleText" for="private">Private</label>
+										</c:if>
+									</div>
+									<!-- 						<input type="radio" name="visibility" value="public"  -->
+									<%-- 							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if> --%>
+									<!-- 							/> Public  -->
+									<!-- 						<input type="radio" name="visibility" value="private" -->
+									<%-- 							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if> --%>
+									<!-- 							/> Private  -->
+									<div class="row text-center">
+										<input type="hidden" name="original"
+											value="${topicUpdating.topic}"> <input type="hidden"
+											name="action" value="updateTheTopic">
+										<button class="buttonStyle" type="submit">Edit Topic</button>
+									</div>
+								</form>
+							</div>
+						</div>
 					</c:if>
-
-
 				</table>
-
 			</div>
 		</div>
 	</c:if>
@@ -226,15 +245,15 @@
 </body>
 
 <c:if test="${registerForm != null}">
-<script type="text/javascript">
-<%@include file="Forum.js"%>
-</script>
+	<script type="text/javascript">
+	<%@include file="Forum.js"%>
+	</script>
 </c:if>
 
 
 
 
-	
-	
+
+
 
 </html>
