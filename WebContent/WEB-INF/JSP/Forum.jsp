@@ -13,16 +13,17 @@
 </head>
 
 <body>
-	<div class="row col-lg-12 header">
-		<div class="row">
-			<a class="col-lg-10 col-lg-offset-1" href="/Forum/Forum"> <img
-				src="images\forumLink.jpg" alt="Forum"></a>
-		</div>
-		<div class="row text-center">
+	<div class="row col-lg-12">
+		<div class=" col-lg-offset-1 col-lg-10 text-center">
 			<form method="post">
 				<input type="hidden" name="action" value="generate">
-				<button type="submit">Generate</button>
+				<button class="buttonStyle fullWidth" type="submit">Generate</button>
 			</form>
+		</div>
+		<div class="row">
+			<a class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 forumHeader text-center" href="/Forum/Forum"> F-O-R-U-M
+<!-- 			<img src="images\forumLink.jpg" alt="Forum"> -->
+				</a>
 		</div>
 	</div>
 
@@ -36,7 +37,7 @@
 								<tr>
 									<td><label class="labels" for="userName">Username:<input
 											id="userName" class="loginForm" type="text" name="userName"
-											placeholder="name ..."></label></td>
+											placeholder="name ..." autofocus></label></td>
 								</tr>
 								<tr>
 									<td class="text-right paddingHorizontal"><p
@@ -224,7 +225,7 @@
 									</div>
 									<div class="row text-center">
 										<input class="inputForNewStuff" id="editTopic" type="text"
-											name="editTopic" placeholder="topic name" value="${topicUpdating.topic}" >
+											name="editTopic" placeholder="topic name" value="${topicUpdating.topic}" autofocus>
 									</div>
 									<div class="row text-center"><p id="topicNameRequired" class="requiredField ">Topic name is required</p></div>
 									<div class="row text-center">

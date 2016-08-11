@@ -65,7 +65,7 @@
 									class="passwordForm" type="password" name="userPasswordOld"
 									pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
 									oninvalid="alert('Old password is not valid')"
-									placeholder="password"></td>
+									placeholder="password" autofocus></td>
 								<td class="passwordCellStyle text-center"><p id="opRequired"
 									class="requiredField">Required field</p></td>
 							</tr>
