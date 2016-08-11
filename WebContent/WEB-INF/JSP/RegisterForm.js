@@ -2,7 +2,8 @@ rfName.style.display = "none";
 	rfPass.style.display = "none";
 	rfPassCheck.style.display = "none";
 	rfBirthdate.style.display = "none";
-	function clearFcn() {
+	
+	function clearFcnReg() {
 		if (userNameReg.value != "") {
 			rfName.style.display = "none";
 			userNameReg.style.border = "solid 1px #D3D3D3"
@@ -55,5 +56,5 @@ rfName.style.display = "none";
 		}
 		return !fail;
 	}
-	setInterval('clearFcn()', 100);
-<%=request.getAttribute("regWrong")%>
+	setInterval('clearFcnReg()', 100);
+	<%=request.getAttribute("regWrong")%>

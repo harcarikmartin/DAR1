@@ -30,22 +30,51 @@
 		<c:if test="${user == null  && registerForm == null}">
 			<div id="login" class="col-lg-offset-1 col-lg-10 rowBackground">
 				<div class="row">
-					<div class="text-left  col-lg-8 col-md-8 col-sm-8 col-xs-12">
-						<form method="post">
-							<label class="labels" for="userName">Username: <input
-								id="userName" class="loginForm" type="text" name="userName"
-								placeholder="name ..."></label> <label class="labels"
-								for="userPassword">Password: <input id="userPassword"
-								class="loginForm" type="text" name="userPassword"
-								placeholder="password ..."></label> <input type="hidden"
-								name="action" value="login">
-							<button class="marginHorizontal buttonStyle" type="submit">Login</button>
+					<div class="text-left col-lg-10 col-md-10 col-sm-10 col-xs-12">
+						<form method="post" onsubmit="return checkRequiredLog()">
+							<table class="loginTable">
+								<tr>
+									<td><label class="labels" for="userName">Username:<input
+											id="userName" class="loginForm" type="text" name="userName"
+											placeholder="name ..."></label></td>
+								</tr>
+								<tr>
+									<td class="text-right paddingHorizontal"><p
+											id="userNameRequired" class="requiredField">Username is
+											required</p></td>
+								</tr>
+							</table>
+
+							<table class="loginTable">
+								<tr>
+									<td><label class="labels" for="userPassword">Password:
+											<input id="userPassword" class="loginForm" type="text"
+											name="userPassword" placeholder="password ...">
+									</label></td>
+								</tr>
+								<tr>
+									<td class="text-right paddingHorizontal"><p
+											id="userPasswordRequired" class="requiredField ">Password
+											is required</p></td>
+								</tr>
+							</table>
+
+							<table class="loginTable">
+								<tr>
+									<td><input type="hidden" name="action" value="login">
+										<button class="marginHorizontal buttonStyle" type="submit">Login</button>
+									</td>
+								</tr>
+							</table>
 							<c:if test="${error == '5'}">
 								<p class="simpleText">Wrong login details!</p>
 							</c:if>
+							<c:if test="${error == '6'}">
+								<p class="simpleText">Not yet approver by admin!</p>
+							</c:if>
 						</form>
 					</div>
-					<div class="text-right  col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<div class="text-right  col-lg-2 col-md-2 col-sm-2 col-xs-12">
 						<form method="post">
 							<input type="hidden" name="action" value="register">
 							<button class="marginHorizontal buttonStyle" type="submit">Registration</button>
@@ -246,10 +275,15 @@
 
 <c:if test="${registerForm != null}">
 	<script type="text/javascript">
-	<%@include file="Forum.js"%>
+	<%@include file="RegisterForm.js"%>
 	</script>
 </c:if>
 
+<c:if test="${user == null  && registerForm == null}">
+	<script type="text/javascript">
+	<%@include file="LoginForm.js"%>
+	</script>
+</c:if>
 
 
 

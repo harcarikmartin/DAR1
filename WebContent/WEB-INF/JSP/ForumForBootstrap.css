@@ -177,6 +177,20 @@ body {
 	font-weight: bold;
 }
 
+.loginTable{
+	 display: inline-block;
+	 min-width: 200px;
+}
+
+.verticalAlign{
+	vertical-align: top;
+}
+
+
+
+
+
+
 
 /* text align */
 @media ( max-width : 767px) {
