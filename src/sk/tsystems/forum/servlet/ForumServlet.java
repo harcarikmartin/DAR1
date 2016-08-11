@@ -59,8 +59,6 @@ public class ForumServlet extends HttpServlet {
 			} else if(!(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")))){
 				//bad login details case
 				incorrectPassword(request);
-			} else {
-				incorrectPassword(request);
 			}
 		} else if ("register".equals(action)) {
 			request.setAttribute("registerForm", 1);
@@ -271,18 +269,17 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	private void updateUserSubscriptions(HttpServletRequest request) {
-		for(Topic topic:new TopicServices().printTopics()) {
-				new TopicServices().removeSubscriber(topic, user);	
-	  }
+		for(Topic topic : new TopicServices().printTopics()) {
+			new TopicServices().removeSubscriber(topic, user);	
+		}
 	}
 	
 	private void updateTopicSubscriptions(HttpServletRequest request) {
 		Topic topic = new TopicServices().setPresentTopic(request.getParameter("original"));
-		if(!topic.getVisibility().equals(request.getParameter("visibility1"))) {
-			System.out.println(topic.getUsers().toString());
-			for(User user: topic.getUsers()) {
-				new TopicServices().removeSubscriber(topic, user);
-			}
+		if(topic.getVisibility().equals("private") && request.getParameter("visibility1").equals("public")) {
+			List<User> list = topic.getUsers();
+			list.clear();
+			topic.setUsers(list);
 		}
 	}
 
