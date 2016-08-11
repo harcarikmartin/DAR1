@@ -48,8 +48,10 @@ public class ForumServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if ("login".equals(action) && "userName" != null && "userPassword" != null) {
-			if((new UserServices().getUserID(request.getParameter("userName")) == 0) || 
-					!(new UserServices().isUserApproved(request.getParameter("userName")))) {
+			if((new UserServices().getUserID(request.getParameter("userName")) == 0)) {
+				// user does not exist
+				request.setAttribute("error", 5);
+			} else if(!new UserServices().isUserApproved(request.getParameter("userName"))) {
 				//user is not approved yet
 				request.setAttribute("error", 6);
 			} else if(new UserServices().isPasswordCorrect(request.getParameter("userName"), request.getParameter("userPassword")) && 
