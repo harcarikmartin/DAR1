@@ -5,6 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; utf-8">
+
+<!-- DATATABLE -->
+<!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>  -->
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css"> -->
+<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script> -->
+
 <title>Forum</title>
 <style>
 <%@include file="bootstrap/css/bootstrap.css"%>
@@ -110,7 +116,8 @@
 	<c:if test="${registerForm == null}">
 		<div class="row">
 			<div class="col-lg-offset-1 col-lg-10">
-				<table>
+				<table id="table_id">
+					 <thead>
 					<tr>
 						<th class="topicCell text-left paddingHorizontal topicHeadStyle">Topic</th>
 						<th class="actionCell text-center topicHeadStyle">Created by</th>
@@ -120,6 +127,8 @@
 							<th class="actionCell text-center topicHeadStyle">Delete</th>
 						</c:if>
 					</tr>
+					</thead>
+					<tbody>
 					<c:forEach items="${topics}" var="topic">
 						<c:if test="${user.role == null}">
 							<c:if test="${topic.visibility == 'public'}">
@@ -264,6 +273,7 @@
 							</div>
 						</div>
 					</c:if>
+					</tbody>
 				</table>
 			</div>
 		</div>
@@ -273,6 +283,22 @@
 	<%-- <%@ include file="AddTask.jsp"%> --%>
 
 </body>
+
+<!-- DATATABLE -->
+<!-- <script> -->
+<!--   	$(document).ready( function () { -->
+<!--     //https://datatables.net/ -->
+<!--      // pre nezobrazovanie ponuky search  -->
+<!--   	 //  $('#table_id').dataTable({bFilter: false, bInfo: false});	 -->
+<!--   		$('#table_id').dataTable( { -->
+<!--   	        "columnDefs": [ { -->
+<!--   	          "targets": 'no-sort', -->
+<!--   	          "orderable": false, -->
+<!--   	    } ] -->
+<!--   	} ); -->
+<!-- } ); -->
+<!--   	</script> -->
+
 
 <c:if test="${registerForm != null}">
 	<script type="text/javascript">
