@@ -138,7 +138,7 @@
 							</c:if>
 						</c:if>
 
-						<c:if test="${topicUpdating == null}">
+						<c:if test="${topicToUpdate == null}">
 
 							<c:if test="${user.role == 'admin'}">
 								<tr>
