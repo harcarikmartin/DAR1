@@ -109,15 +109,12 @@ public class ForumServlet extends HttpServlet {
 			if(!(request.getParameter("userPasswordOld").equals(user.getUserPassword()))) {
 				//old password wrong
 				matchPasswordsChange(request);
-				request.setAttribute("listProfile", 1);
 			} else if(! (request.getParameter("userPasswordNew")).equals(request.getParameter("userPasswordNewCheck"))) {
 				//passwords do not match case
 				matchPasswordsChange(request);
-				request.setAttribute("listProfile", 1);
 			} else if (request.getParameter("userPasswordNew").length() < 8) {
 				//password too short case
 				lenghtenPasswordChange(request);
-				request.setAttribute("listProfile", 1);
 			} else {
 				// change user's password in DB
 				changePassword(request);
@@ -206,17 +203,19 @@ public class ForumServlet extends HttpServlet {
 
 	
 	private void lenghtenPasswordChange(HttpServletRequest request) {
+		request.setAttribute("changePassword", 1);
 		request.setAttribute("passChanged", 0);
 	}
 
 	private void matchPasswordsChange(HttpServletRequest request) {
+		request.setAttribute("changePassword", 1);
 		request.setAttribute("passChanged", 0);
 		
 	}
 
 	private void changePassword(HttpServletRequest request) {
 		new UserServices().changePassword(user.getUserName(), request.getParameter("userPasswordNew"));
-		request.setAttribute("listProfile", 1);
+		request.setAttribute("changePassword", 1);
 		request.setAttribute("passChanged", 1);
 	}
 
