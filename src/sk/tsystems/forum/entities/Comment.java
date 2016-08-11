@@ -11,21 +11,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Coment")
 public class Comment {
-	
+
 	@Id
 	@GeneratedValue
 	private int commentID;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Task task;
-	
 
 	@Column(name = "coment", nullable = false)
 	private String comment;
-	
+
 	public Comment(String comment, Task task, User user) {
 		this.comment = comment;
 		this.task = task;
@@ -72,5 +71,5 @@ public class Comment {
 	public String toString() {
 		return "Comment [commentID=" + commentID + ", comment=" + comment + ", task=" + task + ", user=" + user + "]";
 	}
-		
+
 }

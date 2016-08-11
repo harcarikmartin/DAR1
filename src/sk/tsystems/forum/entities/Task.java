@@ -12,13 +12,13 @@ public class Task {
 	@Id
 	@GeneratedValue
 	private int taskID;
-	
+
 	@ManyToOne
 	private Topic topic;
 
 	@ManyToOne
 	private User user;
-	
+
 	@Column(nullable = false)
 	private String task;
 

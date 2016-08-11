@@ -20,28 +20,27 @@ public class User {
 	@GeneratedValue
 	private int userID;
 
-    @ManyToMany(mappedBy="users")
+	@ManyToMany(mappedBy = "users")
 	private List<Topic> topics;
-	
-    @Column(unique = true, nullable=false)
+
+	@Column(unique = true, nullable = false)
 	private String userName;
 
-    @Column(nullable = false)
+	@Column(nullable = false)
 	private String userPassword;
-    
-    @Type(type="date")
-    @Column(nullable = false)
+
+	@Type(type = "date")
+	@Column(nullable = false)
 	private Date birthDate;
-    
-    @Column(nullable = false)
+
+	@Column(nullable = false)
 	private String role;
-    
-    @Column(nullable = false)
+
+	@Column(nullable = false)
 	private String status;
-	
-	public User( List<Topic> topics, String userName, String userPassword, Date birthDate, String role,
-			String status) {
-		
+
+	public User(List<Topic> topics, String userName, String userPassword, Date birthDate, String role, String status) {
+
 		this.topics = topics;
 		this.userName = userName;
 		this.userPassword = userPassword;
@@ -50,27 +49,17 @@ public class User {
 		this.status = status;
 	}
 
-	public User(String userName, String userPassword, Date birthDate, String role,
-			String status) {
+	public User(String userName, String userPassword, Date birthDate, String role, String status) {
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.birthDate = birthDate;
 		this.role = role;
 		this.status = status;
 	}
-	
-	
+
 	public User() {
-	
+
 	}
-
-
-
-
-	
-
-
-
 
 	public int getUserID() {
 		return userID;
@@ -128,14 +117,12 @@ public class User {
 		this.status = status;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "User [userID=" + userID + ", topics=" + topics + ", userName=" + userName + ", userPassword="
-//				+ userPassword + ", birthDate=" + birthDate + ", role=" + role + ", status=" + status + "]";
-//	}
-	
-	
+	// @Override
+	// public String toString() {
+	// return "User [userID=" + userID + ", topics=" + topics + ", userName=" +
+	// userName + ", userPassword="
+	// + userPassword + ", birthDate=" + birthDate + ", role=" + role + ",
+	// status=" + status + "]";
+	// }
 
-	
-	
 }
