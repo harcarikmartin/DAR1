@@ -3,8 +3,9 @@
     pageEncoding="utf-8"%>
 
 <c:if test="${user == null && registerForm != null}">
-	<div class="row  col-lg-12">
-		<div class="text-left col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+	<div class="row">
+	<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 rowBackground">
+		<div class="text-left col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 rowBackground">
 			<form method="post" onsubmit="return checkRequiredReg()">
 				<input type="hidden" name="role" value="user"> <input
 					type="hidden" name="status" value="pending">
@@ -89,6 +90,7 @@
 					</tr>
 				</table>
 			</form>
+		</div>
 		</div>
 	</div>
 </c:if>

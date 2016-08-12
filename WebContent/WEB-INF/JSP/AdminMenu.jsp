@@ -62,79 +62,7 @@
 	</c:if>
 
 		<c:if test="${changePassword == 1}">
-			<div class="row col-lg-12">
-				<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground ">
-					<form method="post" onsubmit="return checkRequiredPassChange()">
-						<table class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
-							<tr>
-								<td class="passwordCellStyle"><label class="simpleText" for="OldPassword">Old
-										password:</label></td>
-								<td class="passwordCellStyle"><input id="OldPassword"
-									class="passwordForm" type="password" name="userPasswordOld"
-									pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-									oninvalid="alert('Old password is not valid')"
-									placeholder="password" autofocus></td>
-								<td class="passwordCellStyle text-center"><p id="opRequired"
-									class="requiredField">Required field</p></td>
-							</tr>
-							<tr>
-								<td class="passwordCellStyle"><label class="simpleText" for="NewPassword">New
-										password:</label></td>
-								<td class="passwordCellStyle"><input id="NewPassword"
-									class="passwordForm" type="password" name="userPasswordNew"
-									pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-									oninvalid="alert('New password is not valid')"
-									placeholder="password"></td>
-								<td class="passwordCellStyle text-center"><p id="npRequired"
-									class="requiredField">Required field</p></td>
-							</tr>
-							<tr>
-								<td class="passwordCellStyle"></td>
-								<td class="passwordCellStyle"><p class="topicInfoStyle">*
-										Password must contain minimum 8 characters, at least 1
-										Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special
-										Character [!@#$%^&*_=+-]</p></td>
-										<td></td>
-							</tr>
-							<tr>
-								<td class="passwordCellStyle"><label class="simpleText" for="NewPasswordConfirm">Confirm
-										new password:</label></td>
-								<td class="passwordCellStyle"><input
-									id="NewPasswordConfirm" class="passwordForm" type="password"
-									name="userPasswordNewCheck" placeholder="password"></td>
-								<td class="passwordCellStyle text-center"><p id="npcRequired"
-									class="requiredField">Required field</p></td>
-							</tr>
-							<tr>
-								
-								<td colspan="3" class="text-center"><c:if test="${passChanged == 1 }">
-										<p class="simpleText">Password changed successfully</p>
-									</c:if> <c:if test="${passChanged == 0 }">
-										<p class="simpleText">Password not changed!</p>
-									</c:if></td>
-							</tr>
-							<tr>
-								
-								<td colspan="3" class="passwordCellStyle text-center"><input type="hidden"
-									name="action" value="changeMyPassword">
-									<button class="buttonStyle" type="submit">Change</button></td>
-							</tr>
-							<tr>
-							<td colspan="3" class="registerCellStyle text-center"><c:if
-								test="${error == '7'}"> 
-								<p class="warning">Old password incorrect!</p>
-							</c:if><c:if
-								test="${error == '8'}"> 
-								<p class="warning">Passwords must match!</p>
-							</c:if> <c:if test="${error == '2'}"> 
-								<p class="warning">Password must be at least 8 digits long!</p>
-							</c:if> </td>
-							</tr>
-							
-						</table>
-					</form>
-				</div>
-			</div>
+			<%@ include file="PasswordChange.jsp"%>
 		</c:if>
 
 
@@ -209,6 +137,64 @@
 						<input type="hidden" name="action" value="addTheTopic">
 						<button class="buttonStyle" type="submit">Add Topic</button>
 						</div>
+				</form>
+			</div>
+		</div>
+	</c:if>
+
+	<c:if test="${topicToUpdate != null}">
+		<div class="row">
+			<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
+
+				<form method="post" onsubmit="return checkRequiredEditTopic()">
+					<div class="row text-center">
+						<label class="simpleText" for="editTopic">Edit Topic: </label>
+					</div>
+					<div class="row text-center">
+						<input class="inputForNewStuff" id="editTopic" type="text"
+							name="editTopic" placeholder="topic name"
+							value="${topicUpdating.topic}" autofocus>
+					</div>
+					<div class="row text-center">
+						<p id="topicNameRequired" class="requiredField ">Topic name is
+							required</p>
+					</div>
+					<div class="row text-center">
+						<c:if test="${topicUpdating.visibility == 'public'}">
+							<input type="radio" name="visibility1" value="public" checked>
+							<label class="simpleText" for="public">Public</label>
+							<input type="radio" name="visibility1" value="private">
+							<label class="simpleText" for="private">Private</label>
+						</c:if>
+						<c:if test="${topicUpdating.visibility == 'private'}">
+							<input type="radio" name="visibility1" value="public">
+							<label class="simpleText" for="public">Public</label>
+							<input type="radio" name="visibility1" value="private" checked>
+							<label class="simpleText" for="private">Private</label>
+						</c:if>
+					</div>
+					<div class="row text-center">
+						<p id="topicVisibilityRequired" class="requiredField ">Topic
+							visibility is required</p>
+					</div>
+					<!-- 						<input type="radio" name="visibility" value="public"  -->
+					<%-- 							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if> --%>
+					<!-- 							/> Public  -->
+					<!-- 						<input type="radio" name="visibility" value="private" -->
+					<%-- 							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if> --%>
+					<!-- 							/> Private  -->
+					<div class="row text-center">
+						<c:if test="${existingTopic != null}">
+							<p class=" text-center simpleText">Topic with this name
+								already exist!</p>
+						</c:if>
+					</div>
+					<div class="row text-center">
+						<input type="hidden" name="original"
+							value="${topicUpdating.topic}"> <input type="hidden"
+							name="action" value="updateTheTopic">
+						<button class="buttonStyle" type="submit">Edit Topic</button>
+					</div>
 				</form>
 			</div>
 		</div>

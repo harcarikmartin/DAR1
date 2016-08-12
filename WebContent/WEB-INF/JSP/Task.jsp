@@ -4,6 +4,11 @@
 
 <div class="row">
 	<div class="col-lg-offset-1 col-lg-10">
+
+		<div class=" rowBackground">
+			<button class="btn-block-left topicStyle" type="submit">Add new task1</button>
+		</div>
+
 		<table>
 			<tr>
 				<th class="topicCell text-left paddingHorizontal taskHeadStyle">Task</th>

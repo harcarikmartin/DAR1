@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; utf-8">
-<title>Forum - Topics</title>
+<title>Forum - Tasks</title>
 <style>
 <%@include file="bootstrap/css/bootstrap.css"%>
 <%@include file="ForumForBootstrap.css"%>
@@ -23,7 +23,7 @@
 	<jsp:include page="UserMenu.jsp" />
 
 	<c:if test="${registerForm == null}">
-		<%@ include file="Topic.jsp"%>
+		<%@ include file="Task.jsp"%>
 	</c:if>
 
 						<%-- <c:if test="${showTaskServlet}"> --%>
