@@ -37,6 +37,15 @@ public class Task {
 
 	}
 
+	
+	public String getTask() {
+		return task;
+	}
+
+	public void setTask(String task) {
+		this.task = task;
+	}
+
 	public int getTaskID() {
 		return taskID;
 	}
@@ -71,7 +80,10 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task [taskID=" + taskID + ", taskName=" + task + ", topic=" + topic + ", user=" + user + "]";
+		return "Task [taskID=" + taskID + ", topic=" + topic + ", user=" + user + ", task=" + task + ", taskName="
+				+ taskName + "]";
 	}
+
+	
 
 }
