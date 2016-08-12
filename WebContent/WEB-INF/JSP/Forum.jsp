@@ -30,8 +30,8 @@
 						<%-- 	<%@ include file="/Forum/Task"%> --%>
 						<%-- </c:if> --%>
 					
-						<%-- 	<%@ include file="Task.jsp"%> --%>
-						<%-- 	<%@ include file="AddTask.jsp"%> --%>
+<%-- 							<%@ include file="Task.jsp"%> --%>
+<%-- 							<%@ include file="AddTask.jsp"%> --%>
 
 </body>
 

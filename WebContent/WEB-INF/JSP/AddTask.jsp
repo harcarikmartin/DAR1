@@ -15,7 +15,7 @@
 						
 						<div class="row text-center"><label class="simpleText" for="bodyOfTask">Write task:</label></div>
 						<div class="row text-center"><textarea class="inputForNewStuff" id="bodyOfTask" name="bodyOfTask" spellcheck="true" lang="en"
-							cols="50" rows="5" placeholder="Add body of task ..."></textarea></div>
+							cols="50" rows="5" placeholder="body of task ..."></textarea></div>
 						<div class="row text-center"><p id="taskBodyRequired" class="requiredField ">Task is required</p></div>
 						
 						
