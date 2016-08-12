@@ -21,7 +21,7 @@
 						
 						
 						<div class="row text-center">
-						<input type="hidden" name="topicId" value="${topic}">
+						<input type="hidden" name="topic" value="${topic}">
 						<input type="hidden" name="action" value="addTheTask">
 						<button class="buttonStyle" type="submit">Add task</button>
 						</div>
