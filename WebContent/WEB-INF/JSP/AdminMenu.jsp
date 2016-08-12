@@ -135,7 +135,7 @@
 						<div class="row text-center"><p id="topicVisibilityRequired" class="requiredField ">Topic visibility is required</p></div>
 						<div class="row text-center">
 						<input type="hidden" name="action" value="addTheTopic">
-						<button class="buttonStyle" type="submit">Add Topic</button>
+						<button class="buttonStyle" type="submit">Add topic</button>
 						</div>
 				</form>
 			</div>

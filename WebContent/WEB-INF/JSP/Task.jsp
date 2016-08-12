@@ -6,7 +6,11 @@
 	<div class="col-lg-offset-1 col-lg-10">
 
 		<div class=" rowBackground">
-			<button class="btn-block-left topicStyle" type="submit">Add new task1</button>
+			<form method="post">
+				<input type="hidden" name="action" value="addTask">
+				<button class="btn-block-left topicStyle" type="submit">Add
+					new task</button>
+			</form>
 		</div>
 
 		<table>
