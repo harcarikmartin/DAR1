@@ -60,7 +60,9 @@ body {
 	width: 10em;
 }
 
-.btn-block{
+.btn-block-left {
+	display: block;
+  	width: 100%;
 	text-align: left;
 	padding-left: 1em;
 }
@@ -82,7 +84,7 @@ body {
 	padding-top: 0;
 }
 
-.topicHeadStyle, .registerHeadStyle, .approveHeadStyle{
+.topicHeadStyle, .registerHeadStyle, .approveHeadStyle, .taskHeadStyle{
 	height: 30px;
 	background-color: #F8854E;
 	color: white;
