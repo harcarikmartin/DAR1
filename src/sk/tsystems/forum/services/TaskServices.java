@@ -1,6 +1,5 @@
 package sk.tsystems.forum.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,13 +29,23 @@ public class TaskServices {
 	}
 	
 	
-	public List<Task> printTasks(Topic topic) {
-		List<Task> listOfTasks = new ArrayList<>();
+	private Topic getTopic(int topicID) {
+		if(topicID > 0) {
+			EntityManager em = JpaHelper.getEntityManager();
+			return em.find(Topic.class, topicID);
+		 } 
+		else {
+			return null;
+		 }
+	}
+	
+	
+	public List<Task> printTasks(int topicID) {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select t from Task t where t.topic=:topic");
-		query.setParameter("topic", topic);
-		listOfTasks = query.getResultList();
-		return listOfTasks;
+		query.setParameter("topic", getTopic(topicID));
+		
+		return  query.getResultList();
 
 	}
 	
