@@ -1,12 +1,17 @@
 package sk.tsystems.forum.junittests;
 
+import static org.junit.Assert.*;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import sk.tsystems.forum.entities.Task;
 import sk.tsystems.forum.entities.Topic;
@@ -26,7 +31,10 @@ public class TaskServicesTests {
 	User testedUser = new User();
 	Topic testedTopic = new Topic();
 	Task testedTask = new Task();
-
+	Task concereteTask = new Task();
+	int taskID;
+	int concreteTaskID;
+	
 	public Date parseDate() {
 		String dateString = "2016-08-18";
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -39,32 +47,95 @@ public class TaskServicesTests {
 		return date;
 	}
 
-	@Before
-	public void createTesterUserAndTestingTopic() {
+	public void getTaskID() {
+		List<Task> listOfTestedTasks = new ArrayList<>();
+		listOfTestedTasks = taskServices.printTasks(testedTopic.getTopicID());
+		concereteTask=listOfTestedTasks.get(0);
+		taskID = concereteTask.getTaskID();
+	}
+	
+	public int getConcreteTaskID() {
+		List<Task> listOfTestedTasksNumberTwo = new ArrayList<>();
+		listOfTestedTasksNumberTwo = taskServices.printTasks(testedTopic.getTopicID());
+		concereteTask=listOfTestedTasksNumberTwo.get(1);
+		int concreteTaskID = concereteTask.getTaskID();
+		return concreteTaskID;
+	}
+
+	public void createTestedTask() {
+		testedTask.setTaskName(nameOfTestingTask);
+		testedTask.setTopic(testedTopic);
+		testedTask.setUser(testedUser);
+		taskServices.addTaskToDatabase(testedTask);
+	}
+	
+	public void createTestedTaskNumberTwo() {
+		Task testedTaskNumberTwo = new Task();
+		testedTaskNumberTwo.setTaskName("bonus");
+		testedTaskNumberTwo.setTopic(testedTopic);
+		testedTaskNumberTwo.setUser(testedUser);
+		taskServices.addTaskToDatabase(testedTaskNumberTwo);
+	}
+
+	public void createTestedTopic() {
+		testedTopic.setTopic(nameOfTestingTopic);
+		testedTopic.setVisibility("private");
+		testedTopic.setCreator(testedUser);
+		topicServices.addTopicToDatabase(testedTopic);
+	}
+
+	public void createTestedUser() {
 		testedUser.setUserName(nameOfTester);
 		testedUser.setUserPassword("tester");
 		testedUser.setBirthDate(parseDate());
 		testedUser.setRole("user");
 		testedUser.setStatus("pending");
 		userServices.addUser(testedUser);
-
-		testedTopic.setTopic(nameOfTestingTopic);
-		testedTopic.setVisibility("private");
-		testedTopic.setCreator(testedUser);
-		topicServices.addTopicToDatabase(testedTopic);
-
-		testedTask.setTaskName(nameOfTestingTask);
-		testedTask.setTopic(testedTopic);
-		testedTask.setUser(testedUser);
-		taskServices.addTaskToDatabase(testedTask);
 	}
 
-	// TODO: Not done yet. Under construction.
+	@Before
+	public void createTesterUserAndTestingTopic() {
+		createTestedUser();
+		createTestedTopic();
+		createTestedTask();
+		getTaskID();
+	}
+	
 	@After
 	public void dropUser() {
+		taskServices.removeTask(taskID);
 		topicServices.removeTopic(nameOfTestingTopic);
 		userServices.dropUser(nameOfTester);
-		// taskServices.removeTask(taskServices.getTask());
+	}
+	
+	@Test
+	// Checks if task "testing task" was created, when @Before was called
+	public void doesMethodAddTaskToDatabaseWork(){
+		assertNotNull(taskServices.getTask(taskID));
+		}
+	
+	@Test
+	// Checks if creating new task, and then deleting concrete task work
+	public void doesMethodRemoveTaskWork(){
+		createTestedTaskNumberTwo();
+		concreteTaskID = getConcreteTaskID();
+		taskServices.removeTask(concreteTaskID);
+		assertNull(taskServices.getTask(concreteTaskID));
 	}
 
+	@Test
+	// Checks if after adding new task to table, method printtaska return correct list
+	public void doesMethodPrintTasksWork(){
+		assertNotNull(taskServices.printTasks(testedTopic.getTopicID()));
+	}
+	
+	@Test
+	public void doesMethodGetTask(){
+		assertEquals(nameOfTestingTask, taskServices.getTask(taskID).getTaskName());
+	}
+	
+	@Test
+	public void doesMethodUpdateTaskWork(){
+		
+	}
 }
