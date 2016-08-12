@@ -18,54 +18,49 @@ public class TaskServices {
 		em.persist(task);
 		JpaHelper.commitTransaction();
 	}
-	
-	
+
 	public void removeTask(int taskID) {
 		Task task = getTask(taskID);
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		em.remove(task);
-		JpaHelper.commitTransaction();	
+		JpaHelper.commitTransaction();
 	}
-	
-	
+
 	private Topic getTopic(int topicID) {
-		if(topicID > 0) {
+		if (topicID > 0) {
 			EntityManager em = JpaHelper.getEntityManager();
 			return em.find(Topic.class, topicID);
-		 } 
-		else {
+		} else {
 			return null;
-		 }
+		}
 	}
-	
-	
+
 	public List<Task> printTasks(int topicID) {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select t from Task t where t.topic=:topic");
 		query.setParameter("topic", getTopic(topicID));
-		
-		return  query.getResultList();
+
+		return query.getResultList();
 
 	}
-	
+
 	public Task getTask(int taskID) {
-		if(taskID > 0) {
+		if (taskID > 0) {
 			EntityManager em = JpaHelper.getEntityManager();
 			return em.find(Task.class, taskID);
-		 } 
-		else {
+		} else {
 			return null;
-		 }
+		}
 	}
 
-	
-	public void updateTask(int taskID, String newTask, Topic topic) {
+	public void updateTask(int taskID, String newTask, String newTaskName, Topic topic) {
 		Task task = new TaskServices().getTask(taskID);
 		JpaHelper.beginTransaction();
-		task.setTaskName(newTask);
+		task.setTask(newTask);
+		task.setTaskName(newTaskName);
 		task.setTopic(topic);
 		JpaHelper.commitTransaction();
 	}
-	
+
 }
