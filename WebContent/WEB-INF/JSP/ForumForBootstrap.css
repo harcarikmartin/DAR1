@@ -190,6 +190,29 @@ body {
 	vertical-align: top;
 }
 
+.fullWidth{
+	width: 100%;
+}
+
+a.forumHeader, a.forumHeader:visited{
+	font-size: 75px;
+	text-decoration: none;
+	color: white;
+	background-color: #333333;
+}
+
+a.forumHeader:hover{
+	font-size: 75px;
+	text-decoration: none;
+	color: #F8854E;
+	background-color: #333333;
+	text-shadow: 2px 2px 4px black;
+}
+
+
+
+
+
 
 
 
@@ -327,6 +350,5 @@ p {
 	font: 12px Arial;
 	color: red;
 }
-
 
 

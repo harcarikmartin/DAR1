@@ -73,7 +73,7 @@
 									class="passwordForm" type="password" name="userPasswordOld"
 									pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
 									oninvalid="alert('Old password is not valid')"
-									placeholder="password"></td>
+									placeholder="password" autofocus></td>
 								<td class="passwordCellStyle text-center"><p id="opRequired"
 									class="requiredField">Required field</p></td>
 							</tr>
@@ -191,7 +191,7 @@
 						<p class="simpleText">Topic with this name already exist!</p>
 					</c:if>
 						<div class="row text-center"><label class="simpleText" for="addTheTopic">Add new Topic:</label></div>
-						<div class="row text-center"><input class="inputForNewStuff" id="addTheTopic" type="text" name="addTheTopic" placeholder="topic name"></div>
+						<div class="row text-center"><input class="inputForNewStuff" id="addTheTopic" type="text" name="addTheTopic" placeholder="topic name" autofocus></div>
 						<div class="row text-center"><p id="topicNameRequired" class="requiredField ">Topic name is required</p></div>
 						<div class="row text-center">
 						<input id="addPublic" type="radio" name="visibility" value="public">

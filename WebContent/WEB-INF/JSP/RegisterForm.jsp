@@ -17,7 +17,7 @@
 							for="userNameReg">Username:</label></td>
 						<td class="registerCellStyle text-left"><input
 							id="userNameReg" class="registrationForm" type="text"
-							name="userName" placeholder="name"></td>
+							name="userName" placeholder="name" autofocus></td>
 						<td class="registerCellStyle text-center"><p id="rfName"
 								class="requiredField">Required field</p></td>
 					</tr>

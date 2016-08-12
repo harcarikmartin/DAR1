@@ -271,6 +271,7 @@ public class ForumServlet extends HttpServlet {
 	    }
 		user = new UserServices().registerUser(request.getParameter("userName"), request.getParameter("userPassword"), 
 				date, request.getParameter("role"), request.getParameter("status"));
+		request.setAttribute("succesRegister", 1);
 	}
 
 	private void incorrectPassword(HttpServletRequest request) {

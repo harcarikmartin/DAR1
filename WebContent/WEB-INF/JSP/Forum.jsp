@@ -5,12 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; utf-8">
-
-<!-- DATATABLE -->
-<!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>  -->
-<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css"> -->
-<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script> -->
-
 <title>Forum</title>
 <style>
 <%@include file="bootstrap/css/bootstrap.css"%>
@@ -19,16 +13,17 @@
 </head>
 
 <body>
-	<div class="row col-lg-12 header">
-		<div class="row">
-			<a class="col-lg-10 col-lg-offset-1" href="/Forum/Forum"> <img
-				src="images\forumLink.jpg" alt="Forum"></a>
-		</div>
-		<div class="row text-center">
+	<div class="row col-lg-12">
+		<div class=" col-lg-offset-1 col-lg-10 text-center">
 			<form method="post">
 				<input type="hidden" name="action" value="generate">
-				<button type="submit">Generate</button>
+				<button class="buttonStyle fullWidth" type="submit">Generate</button>
 			</form>
+		</div>
+		<div class="row">
+			<a class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 forumHeader text-center" href="/Forum/Forum"> F-O-R-U-M
+<!-- 			<img src="images\forumLink.jpg" alt="Forum"> -->
+				</a>
 		</div>
 	</div>
 
@@ -42,7 +37,7 @@
 								<tr>
 									<td><label class="labels" for="userName">Username:<input
 											id="userName" class="loginForm" type="text" name="userName"
-											placeholder="name ..."></label></td>
+											placeholder="name ..." autofocus></label></td>
 								</tr>
 								<tr>
 									<td class="text-right paddingHorizontal"><p
@@ -73,10 +68,13 @@
 								</tr>
 							</table>
 							<c:if test="${error == '5'}">
-								<p class="simpleText">Wrong login details!</p>
+								<p class="simpleText marginHorizontal">Wrong login details!</p>
 							</c:if>
 							<c:if test="${error == '6'}">
-								<p class="simpleText">Not yet approved by admin!</p>
+								<p class="simpleText marginHorizontal">Not yet approved by admin!</p>
+							</c:if>
+							<c:if test="${succesRegister == '1'}"> 
+								<p class="simpleText marginHorizontal">Registration was successful.<br>Allow some time for your account to be approved by admin.<br>Currently you can not login yet!</p>
 							</c:if>
 						</form>
 					</div>
@@ -116,8 +114,7 @@
 	<c:if test="${registerForm == null}">
 		<div class="row">
 			<div class="col-lg-offset-1 col-lg-10">
-				<table id="table_id">
-					 <thead>
+				<table>
 					<tr>
 						<th class="topicCell text-left paddingHorizontal topicHeadStyle">Topic</th>
 						<th class="actionCell text-center topicHeadStyle">Created by</th>
@@ -127,8 +124,6 @@
 							<th class="actionCell text-center topicHeadStyle">Delete</th>
 						</c:if>
 					</tr>
-					</thead>
-					<tbody>
 					<c:forEach items="${topics}" var="topic">
 						<c:if test="${user.role == null}">
 							<c:if test="${topic.visibility == 'public'}">
@@ -233,7 +228,7 @@
 									</div>
 									<div class="row text-center">
 										<input class="inputForNewStuff" id="editTopic" type="text"
-											name="editTopic" placeholder="topic name" value="${topicUpdating.topic}" >
+											name="editTopic" placeholder="topic name" value="${topicUpdating.topic}" autofocus>
 									</div>
 									<div class="row text-center"><p id="topicNameRequired" class="requiredField ">Topic name is required</p></div>
 									<div class="row text-center">
@@ -273,7 +268,6 @@
 							</div>
 						</div>
 					</c:if>
-					</tbody>
 				</table>
 			</div>
 		</div>
@@ -283,22 +277,6 @@
 	<%-- <%@ include file="AddTask.jsp"%> --%>
 
 </body>
-
-<!-- DATATABLE -->
-<!-- <script> -->
-<!--   	$(document).ready( function () { -->
-<!--     //https://datatables.net/ -->
-<!--      // pre nezobrazovanie ponuky search  -->
-<!--   	 //  $('#table_id').dataTable({bFilter: false, bInfo: false});	 -->
-<!--   		$('#table_id').dataTable( { -->
-<!--   	        "columnDefs": [ { -->
-<!--   	          "targets": 'no-sort', -->
-<!--   	          "orderable": false, -->
-<!--   	    } ] -->
-<!--   	} ); -->
-<!-- } ); -->
-<!--   	</script> -->
-
 
 <c:if test="${registerForm != null}">
 	<script type="text/javascript">
