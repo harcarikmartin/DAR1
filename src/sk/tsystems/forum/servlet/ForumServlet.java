@@ -176,6 +176,7 @@ public class ForumServlet extends HttpServlet {
 			}
 		} else if("openTopic".equals(action)) {
 			// open the topic
+			request.setAttribute("showTaskServlet", 1);
 			request.getRequestDispatcher("/Forum/Task").forward(request, response);
 		} else if("generate".equals(action)) {	
 			// development action
