@@ -37,29 +37,12 @@ public class Task {
 
 	}
 
-	
-	public String getTask() {
-		return task;
-	}
-
-	public void setTask(String task) {
-		this.task = task;
-	}
-
 	public int getTaskID() {
 		return taskID;
 	}
 
 	public void setTaskID(int taskID) {
 		this.taskID = taskID;
-	}
-
-	public String getTaskName() {
-		return task;
-	}
-
-	public void setTaskName(String taskName) {
-		this.task = taskName;
 	}
 
 	public Topic getTopic() {
@@ -76,6 +59,22 @@ public class Task {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getTask() {
+		return task;
+	}
+
+	public void setTask(String task) {
+		this.task = task;
+	}
+
+	public String getTaskName() {
+		return taskName;
+	}
+
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
 	}
 
 	@Override
