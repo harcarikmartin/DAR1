@@ -13,6 +13,8 @@
 			</form>
 		</div>
 
+			<%@ include file="AddTask.jsp"%>
+
 		<table>
 			<tr>
 				<th class="topicCell text-left paddingHorizontal taskHeadStyle">Task</th>

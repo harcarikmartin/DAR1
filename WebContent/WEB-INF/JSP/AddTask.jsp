@@ -6,7 +6,7 @@
 
 	<c:if test="${taskAdding != null}">
 		<div class="row">
-			<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
+			<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground">
 				<form method="post" onsubmit="return checkRequiredAddTask()">
 						<div class="row text-center"><label class="simpleText" for="nameOfTask">Write name of task:</label></div>
 						<div class="row text-center"><input class="inputForNewStuff" id="nameOfTask" type="text" name="nameOfTask" placeholder="name of task ..." autofocus></div>
@@ -21,6 +21,7 @@
 						
 						
 						<div class="row text-center">
+						<input type="hidden" name="topicId" value="${topic}">
 						<input type="hidden" name="action" value="addTheTask">
 						<button class="buttonStyle" type="submit">Add task</button>
 						</div>
