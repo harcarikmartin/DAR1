@@ -19,13 +19,18 @@ public class Task {
 	@ManyToOne
 	private User user;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length=500) 
 	private String task;
 
-	public Task(String taskName, Topic topic, User user) {
-		this.task = taskName;
+	@Column(nullable = false) 
+	private String taskName;
+	
+	
+	public Task(String taskName, String task, Topic topic, User user) {
+		this.taskName = taskName;
 		this.topic = topic;
 		this.user = user;
+		this.task = task;
 	}
 
 	public Task() {
