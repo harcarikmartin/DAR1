@@ -18,18 +18,25 @@
 
 	<jsp:include page="RegisterForm.jsp" />
 
+<c:if test="${user.role == 'admin'}">
 	<jsp:include page="AdminMenu.jsp" />
+</c:if>
 
+<c:if test="${user.role=='user'}">
 	<jsp:include page="UserMenu.jsp" />
+</c:if>
 
-	<c:if test="${registerForm == null && topicOpen == null}">
+	<c:if test="${registerForm == null && (topicOpen == null || taskOpened == null)}">
 		<%@ include file="Topic.jsp"%>
 	</c:if>
 
-	<c:if test="${registerForm == null && topicOpen != null}">
+	<c:if test="${registerForm == null && topicOpened != null}">
 		<%@ include file="Task.jsp"%>
 	</c:if>
 	
+	<c:if test="${registerForm == null && taskOpened != null}">
+<%-- 		<%@ include file="Comment.jsp"%> --%>
+	</c:if>
 	
 </body>
 

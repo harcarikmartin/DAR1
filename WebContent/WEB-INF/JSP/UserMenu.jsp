@@ -3,7 +3,7 @@
 	pageEncoding="utf-8"%>
 
 
-<c:if test="${user.role=='user'}">
+
 
 	<div class="row col-lg-12">
 		<div class="col-lg-offset-1 col-lg-10 rowBackground">
@@ -95,4 +95,3 @@
 		</div>
 	</c:if>
 
-</c:if>
