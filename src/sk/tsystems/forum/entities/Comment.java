@@ -16,10 +16,10 @@ public class Comment {
 	@GeneratedValue
 	private int commentID;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private User user;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Task task;
 
 	@Column(name = "coment", nullable = false)
