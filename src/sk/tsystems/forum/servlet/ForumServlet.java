@@ -15,9 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sk.tsystems.forum.entities.Comment;
 import sk.tsystems.forum.entities.Task;
 import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
+import sk.tsystems.forum.services.CommentServices;
 import sk.tsystems.forum.services.TaskServices;
 import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
@@ -192,7 +194,7 @@ public class ForumServlet extends HttpServlet {
 			new TaskServices().addTaskToDatabase(task);
 		} else if("updateTask".equals(action)) {
 			// show form for updating the task
-			request.setAttribute("taskUpdating", new TaskServices().getTask(2));
+//			request.setAttribute("taskUpdating", new TaskServices().getTask(taskID));
 			request.setAttribute("taskToUpdate", 1);
 		} else if("updateTheTask".equals(action)) {
 			// update of task, rename, change of visibility
@@ -210,7 +212,44 @@ public class ForumServlet extends HttpServlet {
 //				request.setAttribute("existingTopic", 1);
 //			}
 		} else if("removeTask".equals(action)) {
-			// topic removal
+			// task removal
+			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskIdToRemove")));
+			request.setAttribute("topicOpened", 1);
+		}  else if("openTask".equals(action)) {
+			// open the task
+			session.setAttribute("task", request.getParameter("taskId"));
+			Task task = (Task) session.getAttribute("task");
+			request.setAttribute("taskComments", new CommentServices().printComments(task.getTaskID()));
+			request.setAttribute("taskOpened", 1);
+		} else if("addComment".equals(action)) {
+			// shows form for adding comment
+			request.setAttribute("commentAdding", 1);
+		} else if("addTheComment".equals(action)) {
+			// insert comment into DB
+			Comment comment = new Comment(request.getParameter("comment").trim(), new TaskServices().getTask((int) session.getAttribute("task")), (User) session.getAttribute("user"));
+			session.removeAttribute("task");
+			new CommentServices().addCommentToDatabase(comment);
+		} else if("updateComment".equals(action)) {
+			// show form for updating the comment
+//			request.setAttribute("commentUpdating", new CommentServices().getComment(taskID));
+			request.setAttribute("commentToUpdate", 1);
+		} else if("updateTheComment".equals(action)) {
+			// update of comment, rename, change of visibility
+			
+//			if(request.getParameter("original").equals(request.getParameter("editTask")) && 
+//					!(new TopicServices().setPresentTopic(request.getParameter("original")).getVisibility().equals(request.getParameter("visibility1"))) || 
+//					!request.getParameter("original").equals(request.getParameter("editTask")) && 
+//					new TopicServices().setPresentTopic(request.getParameter("editTask")) == null) {
+//				updateTopicSubscriptions(request);
+//				new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
+//				request.setAttribute("listTopics", 1);
+//			} else if(new TopicServices().setPresentTopic(request.getParameter("editTopic")) != null) {
+//				// topic already exists
+//				request.setAttribute("topicToUpdate", 1);
+//				request.setAttribute("existingTopic", 1);
+//			}
+		} else if("removeComment".equals(action)) {
+			// comment removal
 			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskIdToRemove")));
 			request.setAttribute("topicOpened", 1);
 		} else if("generate".equals(action)) {	
