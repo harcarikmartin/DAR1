@@ -22,16 +22,15 @@
 
 	<jsp:include page="UserMenu.jsp" />
 
-	<c:if test="${registerForm == null}">
+	<c:if test="${registerForm == null && topicOpen == null}">
 		<%@ include file="Topic.jsp"%>
 	</c:if>
 
-						<%-- <c:if test="${showTaskServlet}"> --%>
-						<%-- 	<%@ include file="/Forum/Task"%> --%>
-						<%-- </c:if> --%>
-					
-<%-- 							<%@ include file="Task.jsp"%> --%>
-
+	<c:if test="${registerForm == null && topicOpen != null}">
+		<%@ include file="Task.jsp"%>
+	</c:if>
+	
+	
 </body>
 
 <c:if test="${registerForm != null}">
