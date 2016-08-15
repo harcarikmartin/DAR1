@@ -45,12 +45,12 @@
 				<td class="actionCell text-center topicInfoStyle">creator</td>
 				<td class="actionCell text-center">
 					<form>
-						<button class="btn-block topicStyle" type="submit">Update</button>
+						<button class="btn-block taskStyle" type="submit">Update</button>
 					</form>
 				</td>
 				<td class="actionCell text-center">
 					<form>
-						<button class="btn-block topicStyle" type="submit">Remove</button>
+						<button class="btn-block taskStyle" type="submit">Remove</button>
 					</form>
 				</td>
 			</tr>
@@ -69,14 +69,14 @@
 						<form>
 							<input type="hidden" name="taskToUpdate" value="${task.taskID}">
 							<input type="hidden" name="action" value="updateTask">
-							<button type="submit">Remove</button>
+							<button class="btn-block taskStyle" type="submit">Update</button>
 						</form>
 					</td>
 					<td>
 						<form>
 							<input type="hidden" name="taskToRemove" value="${task.taskID}">
 							<input type="hidden" name="action" value="removeTask">
-							<button type="submit">Remove</button>
+							<button class="btn-block taskStyle" type="submit">Remove</button>
 						</form>
 					</td>
 				</tr>

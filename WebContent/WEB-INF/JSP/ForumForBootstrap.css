@@ -79,7 +79,7 @@ body {
 	padding-left: 3em;
 }
 
-.topicStyle{
+.topicStyle, .taskStyle{
 	height: 5vh;
 	min-height: 30px;
     background-color: #404040;
