@@ -34,7 +34,7 @@ public class TaskServicesTests {
 	Task concereteTask = new Task();
 	int taskID;
 	int concreteTaskID;
-	
+
 	public Date parseDate() {
 		String dateString = "2016-08-18";
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -50,14 +50,14 @@ public class TaskServicesTests {
 	public void getTaskID() {
 		List<Task> listOfTestedTasks = new ArrayList<>();
 		listOfTestedTasks = taskServices.printTasks(testedTopic.getTopicID());
-		concereteTask=listOfTestedTasks.get(0);
+		concereteTask = listOfTestedTasks.get(0);
 		taskID = concereteTask.getTaskID();
 	}
-	
+
 	public int getConcreteTaskID() {
 		List<Task> listOfTestedTasksNumberTwo = new ArrayList<>();
 		listOfTestedTasksNumberTwo = taskServices.printTasks(testedTopic.getTopicID());
-		concereteTask=listOfTestedTasksNumberTwo.get(1);
+		concereteTask = listOfTestedTasksNumberTwo.get(1);
 		int concreteTaskID = concereteTask.getTaskID();
 		return concreteTaskID;
 	}
@@ -66,14 +66,16 @@ public class TaskServicesTests {
 		testedTask.setTaskName(nameOfTestingTask);
 		testedTask.setTopic(testedTopic);
 		testedTask.setUser(testedUser);
+		testedTask.setTask("testing task testing task");
 		taskServices.addTaskToDatabase(testedTask);
 	}
-	
+
 	public void createTestedTaskNumberTwo() {
 		Task testedTaskNumberTwo = new Task();
 		testedTaskNumberTwo.setTaskName("bonus");
 		testedTaskNumberTwo.setTopic(testedTopic);
 		testedTaskNumberTwo.setUser(testedUser);
+		testedTaskNumberTwo.setTask("bonus bonus");
 		taskServices.addTaskToDatabase(testedTaskNumberTwo);
 	}
 
@@ -100,23 +102,23 @@ public class TaskServicesTests {
 		createTestedTask();
 		getTaskID();
 	}
-	
+
 	@After
 	public void dropUser() {
 		taskServices.removeTask(taskID);
 		topicServices.removeTopic(nameOfTestingTopic);
 		userServices.dropUser(nameOfTester);
 	}
-	
+
 	@Test
 	// Checks if task "testing task" was created, when @Before was called
-	public void doesMethodAddTaskToDatabaseWork(){
+	public void doesMethodAddTaskToDatabaseWork() {
 		assertNotNull(taskServices.getTask(taskID));
-		}
-	
+	}
+
 	@Test
 	// Checks if creating new task, and then deleting concrete task work
-	public void doesMethodRemoveTaskWork(){
+	public void doesMethodRemoveTaskWork() {
 		createTestedTaskNumberTwo();
 		concreteTaskID = getConcreteTaskID();
 		taskServices.removeTask(concreteTaskID);
@@ -124,18 +126,24 @@ public class TaskServicesTests {
 	}
 
 	@Test
-	// Checks if after adding new task to table, method printtaska return correct list
-	public void doesMethodPrintTasksWork(){
+	// Checks if after adding new task to table, method printtaska return
+	// correct list
+	public void doesMethodPrintTasksWork() {
 		assertNotNull(taskServices.printTasks(testedTopic.getTopicID()));
 	}
-	
+
 	@Test
-	public void doesMethodGetTask(){
+	// Checks name in tasks using getTask method
+	public void doesMethodGetTask() {
 		assertEquals(nameOfTestingTask, taskServices.getTask(taskID).getTaskName());
 	}
-	
+
 	@Test
-	public void doesMethodUpdateTaskWork(){
-		
+	// Checks task's 'taskBody' before and after update
+	public void doesMethodUpdateTaskWork() {
+		String taskBodyBeforeUpdate = taskServices.getTask(taskID).getTask();
+		taskServices.updateTask(taskID, nameOfTestingTask, "New name", testedTopic);
+		String taskBodyAfterUpdate = taskServices.getTask(taskID).getTask();
+		assertNotEquals(taskBodyAfterUpdate, taskBodyBeforeUpdate);
 	}
 }

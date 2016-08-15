@@ -41,17 +41,24 @@ public class TopicServicesTests {
 
 	@Before
 	public void createTesterUserAndTestingTopic() {
+		createTestedUser();
+		createTestedTopic();
+	}
+
+	public void createTestedTopic() {
+		testedTopic.setTopic(nameOfTestingTopic);
+		testedTopic.setVisibility("private");
+		testedTopic.setCreator(testedUser);
+		topicServices.addTopicToDatabase(testedTopic);
+	}
+
+	public void createTestedUser() {
 		testedUser.setUserName(nameOfTester);
 		testedUser.setUserPassword("tester");
 		testedUser.setBirthDate(parseDate());
 		testedUser.setRole("user");
 		testedUser.setStatus("pending");
 		userServices.addUser(testedUser);
-
-		testedTopic.setTopic(nameOfTestingTopic);
-		testedTopic.setVisibility("private");
-		testedTopic.setCreator(testedUser);
-		topicServices.addTopicToDatabase(testedTopic);
 	}
 
 	@After
