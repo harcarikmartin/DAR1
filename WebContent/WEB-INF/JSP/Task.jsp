@@ -54,6 +54,8 @@
 						</form>
 					</td>
 					<td class="actionCell text-center topicInfoStyle">${topicTask.user.userName}</td>
+					
+					<c:if test="${topicTask.user.userID == sessionScope.user.userID}">
 					<td>
 						<form method="post">
 							<input type="hidden" name="taskToUpdate" value="${topicTask.taskID}">
@@ -61,6 +63,7 @@
 							<button class="btn-block taskStyle" type="submit">Update</button>
 						</form>
 					</td>
+					</c:if>
 					<td>
 						<form method="post">
 							<input type="hidden" name="taskToRemove" value="${topicTask.taskID}">
