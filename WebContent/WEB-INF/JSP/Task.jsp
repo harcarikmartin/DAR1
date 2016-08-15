@@ -16,53 +16,59 @@
 			<%@ include file="AddTask.jsp"%>
 
 		<table>
+
 			<tr>
-				<th class="topicCell text-left paddingHorizontal taskHeadStyle">Task</th>
+				<td colspan="4">
+					<form method="post">
+						<input type="hidden" name="action" value="showTopics">
+						<button class="btn-block-left topicStyle" type="submit">${topic}</button>
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<th class="topicCell text-left paddingHorizontal2 taskHeadStyle">Task</th>
 				<th class="actionCell text-center taskHeadStyle">Added by</th>
 				<th class="actionCell text-center taskHeadStyle">Update</th>
 				<th class="actionCell text-center taskHeadStyle">Delete</th>
 			</tr>
 
 			<tr>
-				<td><button class="btn-block-left topicStyle" type="submit">task
+				<td><button class="btn-block-left2 topicStyle" type="submit">task
 						1</button></td>
 				<td class="actionCell text-center topicInfoStyle">creator</td>
 				<td class="actionCell text-center">
 					<form>
-						<input type="hidden" name="taskToUpdate" value="${task.task}">
-						<input type="hidden" name="action" value="updateTask">
 						<button class="btn-block topicStyle" type="submit">Update</button>
 					</form>
 				</td>
 				<td class="actionCell text-center">
 					<form>
-						<input type="hidden" name="taskToRemove" value="${task.task}">
-						<input type="hidden" name="action" value="removeTask">
 						<button class="btn-block topicStyle" type="submit">Remove</button>
 					</form>
 				</td>
 			</tr>
 
-			<c:forEach var="topicTask" items="${topicTasks}">
+			<c:forEach items="${topicTasks}" var="topicTask">
 				<tr>
 					<td>
 						<form method="post">
 							<input type="hidden" name="action" value="openTask"> <input
 								type="hidden" name="idOfTask" value="${task.taskID}">
-							<button class="btn-block-left topicStyle" type="submit">${topicTask.task.task}</button>
+							<button class="btn-block-left2 topicStyle" type="submit">${topicTask.task}</button>
 						</form>
 					</td>
-					<td class="actionCell text-center topicInfoStyle">${topicTask.topic.user.userName}</td>
+					<td class="actionCell text-center topicInfoStyle">${topicTask.user.userName}</td>
 					<td>
 						<form>
-							<input type="hidden" name="taskToUpdate" value="${task.task}">
+							<input type="hidden" name="taskToUpdate" value="${task.taskID}">
 							<input type="hidden" name="action" value="updateTask">
 							<button type="submit">Remove</button>
 						</form>
 					</td>
 					<td>
 						<form>
-							<input type="hidden" name="taskToRemove" value="${task.task}">
+							<input type="hidden" name="taskToRemove" value="${task.taskID}">
 							<input type="hidden" name="action" value="removeTask">
 							<button type="submit">Remove</button>
 						</form>
