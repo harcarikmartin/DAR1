@@ -86,7 +86,7 @@
 
 <c:if test="${sessionScope.topic != null && taskToUpdate != null}">
 	<script type="text/javascript">
-<%-- 	<%@ include file="UpdateTask.js"%> --%>
+	<%@ include file="UpdateTask.js"%>
 	</script>
 </c:if>
 

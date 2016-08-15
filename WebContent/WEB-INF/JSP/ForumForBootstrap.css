@@ -119,7 +119,7 @@ body {
 	font-weight: bold;
 }
 
-.topicStyle:hover{
+.topicStyle:hover, .taskStyle:hover{
     background-color: #804d00;
     border: none;
     color: white;
