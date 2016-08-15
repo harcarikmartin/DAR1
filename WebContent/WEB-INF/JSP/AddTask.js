@@ -1,7 +1,7 @@
 taskNameRequired.style.display = "none";
 taskBodyRequired.style.display = "none";
 
-function clearFcnAddTopic() {
+function clearFcnAddTask() {
 	if (nameOfTask.value != "") {
 		taskNameRequired.style.display = "none";
 		nameOfTask.style.border = "solid 1px #D3D3D3"

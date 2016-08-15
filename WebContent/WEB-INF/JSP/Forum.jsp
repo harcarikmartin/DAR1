@@ -84,4 +84,10 @@
 	</script>
 </c:if>
 
+<c:if test="${(user.role=='user' || user.role=='admin') && taskToUpdate != null}">
+	<script type="text/javascript">
+	<%@ include file="UpdateTask.js"%>
+	</script>
+</c:if>
+
 </html>
