@@ -26,11 +26,11 @@
 		</div>
 
 		<c:if test="${commentAdding != null}">
-<%-- 			<%@ include file="AddComment.jsp"%> --%>
+			<%@ include file="AddComment.jsp"%>
 		</c:if>
 
 		<c:if test="${commentToUpdate != null}">
-<%-- 			<%@ include file="UpdateComment.jsp"%> --%>
+			<%@ include file="UpdateComment.jsp"%>
 		</c:if>
 
 		
@@ -53,23 +53,23 @@
 							<button class="btn-block-left2 taskStyle" type="submit">${taskComment.comment}</button>
 						</form>
 					</td>
-					<td class="actionCell text-center taskInfoStyle">${topicTask.user.userName}</td>
+					<td class="actionCell text-center taskInfoStyle">${taskComment.user.userName}</td>
 					
 					<td class="actionCell text-center taskNoButton">
-					<c:if test="${topicTask.user.userID == sessionScope.user.userID}">
+					<c:if test="${taskComment.user.userID == sessionScope.user.userID}">
 						<form method="post">
-							<input type="hidden" name="taskToUpdate" value="${topicTask.taskID}">
-							<input type="hidden" name="action" value="updateTask">
+							<input type="hidden" name="CommentToUpdate" value="${taskComment.commentID}">
+							<input type="hidden" name="action" value="updateComment">
 							<button class="btn-block taskStyle" type="submit">Update</button>
 						</form>
 					</c:if>
 					</td>
 					
 					<td class="actionCell text-center taskNoButton">
-						<c:if test="${topicTask.user.userID == sessionScope.user.userID}">
+						<c:if test="${taskComment.user.userID == sessionScope.user.userID}">
 						<form method="post">
-							<input type="hidden" name="taskToRemove" value="${topicTask.taskID}">
-							<input type="hidden" name="action" value="removeTask">
+							<input type="hidden" name="CommentToRemove" value="${taskComment.commentID}">
+							<input type="hidden" name="action" value="removeComment">
 							<button class="btn-block taskStyle" type="submit">Remove</button>
 						</form>
 						</c:if>
