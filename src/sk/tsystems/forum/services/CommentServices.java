@@ -46,11 +46,10 @@ public class CommentServices {
 		}
 	}
 
-	public void updateComment(int commentID, String newComment, Task task) {
+	public void updateComment(int commentID, String newComment) {
 		Comment comment = new CommentServices().getComment(commentID);
 		JpaHelper.beginTransaction();
 		comment.setComment(newComment);
-		comment.setTask(task);
 		JpaHelper.commitTransaction();
 	}
 	

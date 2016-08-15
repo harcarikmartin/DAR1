@@ -56,12 +56,11 @@ public class TaskServices {
 		}
 	}
 
-	public void updateTask(int taskID, String newTask, String newTaskName, Topic topic) {
+	public void updateTask(int taskID, String newTaskName, String newTask) {
 		Task task = new TaskServices().getTask(taskID);
 		JpaHelper.beginTransaction();
 		task.setTask(newTask);
 		task.setTaskName(newTaskName);
-		task.setTopic(topic);
 		JpaHelper.commitTransaction();
 	}
 
