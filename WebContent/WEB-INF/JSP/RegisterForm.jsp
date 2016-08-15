@@ -55,7 +55,7 @@
 						<td class="registerCellStyle text-center"><label
 							for="birthdate">Date of birth:</label></td>
 						<td class="registerCellStyle text-left"><input id="birthdate"
-							class="registrationForm" type="date" name="birthdate"></td>
+							class="registrationForm" type="date" name="birthdate" onchange="checkDate()"></td>
 						<td class="registerCellStyle text-center"><p id="rfBirthdate"
 								class="requiredField">Required field</p></td>
 					</tr>

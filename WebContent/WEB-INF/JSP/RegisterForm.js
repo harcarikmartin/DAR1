@@ -21,6 +21,35 @@ rfName.style.display = "none";
 			birthdate.style.border = "solid 1px #D3D3D3"
 		}
 	}
+	
+function checkDate() {
+	var selectedDate = document.getElementById('birthdate').value;
+	var now = new Date();
+	month = '' + (now.getMonth() + 1), day = '' + now.getDate(), year = now
+			.getFullYear();
+	if (month.length < 2)
+		month = '0' + month;
+	if (day.length < 2)
+		day = '0' + day;
+
+	if (selectedDate > [ year, month, day ].join('-')) {
+		alert("Selected date of birth must be in past");
+		birthdate.value = '';
+	}
+}
+	 
+	 function formatDate(date) {
+		    var d = new Date(date),
+		        month = '' + (d.getMonth() + 1),
+		        day = '' + d.getDate(),
+		        year = d.getFullYear();
+
+		    if (month.length < 2) month = '0' + month;
+		    if (day.length < 2) day = '0' + day;
+
+		    return [year, month, day].join('-');
+		}
+	
 	var checkRequiredReg = function() {
 		var fail = false;
 		var userNameReg = document.getElementById('userNameReg');
