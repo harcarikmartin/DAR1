@@ -4,19 +4,19 @@ rfName.style.display = "none";
 	rfBirthdate.style.display = "none";
 	
 	function clearFcnReg() {
-		if (userNameReg.value != "") {
+		if (userNameReg.value.trim() != "") {
 			rfName.style.display = "none";
 			userNameReg.style.border = "solid 1px #D3D3D3"
 		}
-		if (userPassReg.value != "") {
+		if (userPassReg.value.trim() != "") {
 			rfPass.style.display = "none";
 			userPassReg.style.border = "solid 1px #D3D3D3"
 		}
-		if (userPassRegCheck.value != "") {
+		if (userPassRegCheck.value.trim() != "") {
 			rfPassCheck.style.display = "none";
 			userPassRegCheck.style.border = "solid 1px #D3D3D3"
 		}
-		if (birthdate.value != "") {
+		if (birthdate.value.trim() != "") {
 			rfBirthdate.style.display = "none";
 			birthdate.style.border = "solid 1px #D3D3D3"
 		}
@@ -36,17 +36,17 @@ rfName.style.display = "none";
 			userNameReg.style.border = "solid 1px red"
 			fail = true;
 		}
-		if (userPassReg.value == "") {
+		if (userPassReg.value.trim() == "") {
 			rfPass.style.display = "inline";
 			userPassReg.style.border = "solid 1px red"
 			fail = true;
 		}
-		if (userPassRegCheck.value == "") {
+		if (userPassRegCheck.value.trim() == "") {
 			rfPassCheck.style.display = "inline";
 			userPassRegCheck.style.border = "solid 1px red"
 			fail = true;
 		}
-		if (birthdate.value == "") {
+		if (birthdate.value.trim() == "") {
 			rfBirthdate.style.display = "inline";
 			birthdate.style.border = "solid 1px red"
 			fail = true;
@@ -57,4 +57,4 @@ rfName.style.display = "none";
 		return !fail;
 	}
 	setInterval('clearFcnReg()', 100);
-	<%=request.getAttribute("regWrong")%>
+//	<%=request.getAttribute("regWrong")%>
