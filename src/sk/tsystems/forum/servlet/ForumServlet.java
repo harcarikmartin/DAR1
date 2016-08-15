@@ -190,7 +190,7 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("taskAdding", 1);
 		} else if("addTheTask".equals(action)) {
 			// insert task into DB
-			Task task = new Task(request.getParameter("nameOfTask").trim(), request.getParameter("bodyOfTask").trim(), new TopicServices().setPresentTopic((String) session.getAttribute("topic")), (User) session.getAttribute("user"));
+			Task task = new Task(request.getParameter("nameOfTask").trim(), request.getParameter("bodyOfTask").trim(), (Topic) session.getAttribute("topic"), (User) session.getAttribute("user"));
 			session.removeAttribute("topic");
 			new TaskServices().addTaskToDatabase(task);
 		} else if("updateTask".equals(action)) {
@@ -255,6 +255,9 @@ public class ForumServlet extends HttpServlet {
 			// comment removal
 			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskIdToRemove")));
 			request.setAttribute("topicOpened", 1);
+		} else if("showTopics".equals(action)) {
+			// shows all topics for user
+			session.removeAttribute("topic");
 		} else if("generate".equals(action)) {	
 			// development action
 			admin.setUserName("jozko");
