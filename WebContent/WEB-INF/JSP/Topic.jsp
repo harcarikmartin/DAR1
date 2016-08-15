@@ -94,7 +94,7 @@
 										<form method="post">
 											<input type="hidden" name="action" value="openTopic">
 											<input type="hidden" name="topic"
-												value="${userTopic.topic}">
+												value="${userTopic.topic.topic}">
 											<button class="btn-block-left topicStyle" type="submit">${userTopic.topic.topic}</button>
 										</form>
 									</td>
