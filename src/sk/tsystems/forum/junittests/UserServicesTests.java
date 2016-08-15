@@ -18,9 +18,9 @@ import sk.tsystems.forum.services.UserServices;
 
 public class UserServicesTests {
 
-	UserServices userServices = new UserServices();
-	String nameOfTester = "tester";
-	User testedUser = new User();
+	private UserServices userServices = new UserServices();
+	private String nameOfTester = "tester";
+	private User testedUser = new User();
 
 	public Date parseDate() {
 		String dateString = "2016-08-18";
@@ -96,10 +96,13 @@ public class UserServicesTests {
 	@Test
 	public void doesMethodGetUserIDWorkAnotherTry() {
 		// Compares two different ids, get by getUserID
-		int userIDBeforeChange = userServices.setPresentUser(nameOfTester).getUserID();
-		userServices.setPresentUser(nameOfTester).setUserID(99999);
-		int userIDAfterChange = userServices.setPresentUser(nameOfTester).getUserID();
-		assertNotEquals(userIDAfterChange, userIDBeforeChange);
+		assertNotEquals("0", userServices.getUserID(nameOfTester));
+		// int userIDBeforeChange =
+		// userServices.setPresentUser(nameOfTester).getUserID();
+		// userServices.setPresentUser(nameOfTester).setUserID(99999);
+		// int userIDAfterChange =
+		// userServices.setPresentUser(nameOfTester).getUserID();
+		// assertNotEquals(userIDAfterChange, userIDBeforeChange);
 	}
 
 	@Test
@@ -122,7 +125,8 @@ public class UserServicesTests {
 
 	@Test
 	public void doesMethodDropUserWork() {
-		// Checks if user "testingDummy" is in table after calling dropUser method
+		// Checks if user "testingDummy" is in table after calling dropUser
+		// method
 		userServices.addUser(new User("testingDummy", "testingDummy", parseDate(), "user", "pending"));
 		userServices.dropUser("testingDummy");
 		assertNull(userServices.setPresentUser("testingDummy"));

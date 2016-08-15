@@ -22,18 +22,17 @@ import sk.tsystems.forum.services.UserServices;
 
 public class TaskServicesTests {
 
-	TopicServices topicServices = new TopicServices();
-	UserServices userServices = new UserServices();
-	TaskServices taskServices = new TaskServices();
-	String nameOfTester = "tester";
-	String nameOfTestingTopic = "testing topic";
-	String nameOfTestingTask = "testing task";
-	User testedUser = new User();
-	Topic testedTopic = new Topic();
-	Task testedTask = new Task();
-	Task concereteTask = new Task();
-	int taskID;
-	int concreteTaskID;
+	private TopicServices topicServices = new TopicServices();
+	private UserServices userServices = new UserServices();
+	private TaskServices taskServices = new TaskServices();
+	private String nameOfTester = "tester";
+	private String nameOfTestingTopic = "testing topic";
+	private String nameOfTestingTask = "testing task";
+	private User testedUser = new User();
+	private Topic testedTopic = new Topic();
+	private Task testedTask = new Task();
+	private Task testedTaskNumberTwo = new Task();
+	private Task concereteTask = new Task();
 
 	public Date parseDate() {
 		String dateString = "2016-08-18";
@@ -47,19 +46,13 @@ public class TaskServicesTests {
 		return date;
 	}
 
-	public void getTaskID() {
+	public int getTaskID() {
 		List<Task> listOfTestedTasks = new ArrayList<>();
 		listOfTestedTasks = taskServices.printTasks(testedTopic.getTopicID());
-		concereteTask = listOfTestedTasks.get(0);
-		taskID = concereteTask.getTaskID();
-	}
-
-	public int getConcreteTaskID() {
-		List<Task> listOfTestedTasksNumberTwo = new ArrayList<>();
-		listOfTestedTasksNumberTwo = taskServices.printTasks(testedTopic.getTopicID());
-		concereteTask = listOfTestedTasksNumberTwo.get(1);
-		int concreteTaskID = concereteTask.getTaskID();
-		return concreteTaskID;
+		int indexOfTask = listOfTestedTasks.size() - 1;
+		concereteTask = listOfTestedTasks.get(indexOfTask);
+		int taskID = concereteTask.getTaskID();
+		return taskID;
 	}
 
 	public void createTestedTask() {
@@ -71,7 +64,6 @@ public class TaskServicesTests {
 	}
 
 	public void createTestedTaskNumberTwo() {
-		Task testedTaskNumberTwo = new Task();
 		testedTaskNumberTwo.setTaskName("bonus");
 		testedTaskNumberTwo.setTopic(testedTopic);
 		testedTaskNumberTwo.setUser(testedUser);
@@ -100,12 +92,11 @@ public class TaskServicesTests {
 		createTestedUser();
 		createTestedTopic();
 		createTestedTask();
-		getTaskID();
 	}
 
 	@After
 	public void dropUser() {
-		taskServices.removeTask(taskID);
+		taskServices.removeTask(getTaskID());
 		topicServices.removeTopic(nameOfTestingTopic);
 		userServices.dropUser(nameOfTester);
 	}
@@ -113,16 +104,16 @@ public class TaskServicesTests {
 	@Test
 	// Checks if task "testing task" was created, when @Before was called
 	public void doesMethodAddTaskToDatabaseWork() {
-		assertNotNull(taskServices.getTask(taskID));
+		assertNotNull(taskServices.getTask(getTaskID()));
 	}
 
 	@Test
 	// Checks if creating new task, and then deleting concrete task work
 	public void doesMethodRemoveTaskWork() {
 		createTestedTaskNumberTwo();
-		concreteTaskID = getConcreteTaskID();
-		taskServices.removeTask(concreteTaskID);
-		assertNull(taskServices.getTask(concreteTaskID));
+		int idIfTestedTaskNumberTwo = getTaskID();
+		taskServices.removeTask(idIfTestedTaskNumberTwo);
+		assertNull(taskServices.getTask(idIfTestedTaskNumberTwo));
 	}
 
 	@Test
@@ -135,15 +126,15 @@ public class TaskServicesTests {
 	@Test
 	// Checks name in tasks using getTask method
 	public void doesMethodGetTask() {
-		assertEquals(nameOfTestingTask, taskServices.getTask(taskID).getTaskName());
+		assertEquals(nameOfTestingTask, taskServices.getTask(getTaskID()).getTaskName());
 	}
 
 	@Test
 	// Checks task's 'taskBody' before and after update
 	public void doesMethodUpdateTaskWork() {
-		String taskBodyBeforeUpdate = taskServices.getTask(taskID).getTask();
-		taskServices.updateTask(taskID, nameOfTestingTask, "New name", testedTopic);
-		String taskBodyAfterUpdate = taskServices.getTask(taskID).getTask();
+		String taskBodyBeforeUpdate = taskServices.getTask(getTaskID()).getTask();
+		taskServices.updateTask(getTaskID(), nameOfTestingTask, "New name", testedTopic);
+		String taskBodyAfterUpdate = taskServices.getTask(getTaskID()).getTask();
 		assertNotEquals(taskBodyAfterUpdate, taskBodyBeforeUpdate);
 	}
 }
