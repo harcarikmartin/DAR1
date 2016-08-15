@@ -13,7 +13,13 @@
 			</form>
 		</div>
 
+		<c:if test="${taskAdding != null}">
 			<%@ include file="AddTask.jsp"%>
+		</c:if>
+
+		<c:if test="${taskToUpdate != null}">
+			<%@ include file="UpdateTask.jsp"%>
+		</c:if>
 
 		<table>
 

@@ -4,7 +4,7 @@
 
 
 
-	<c:if test="${taskAdding != null}">
+	
 		<div class="row">
 			<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground">
 				<form method="post" onsubmit="return checkRequiredAddTask()">
@@ -28,7 +28,6 @@
 				</form>
 			</div>
 		</div>
-	</c:if>
 
 
 
