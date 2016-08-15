@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sk.tsystems.forum.entities.Task;
 import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
+import sk.tsystems.forum.services.TaskServices;
 import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
 import sk.tsystems.forum.services.UsersTopicsServices;
@@ -174,14 +176,22 @@ public class ForumServlet extends HttpServlet {
 			} else {
 				updateUserSubscriptions(request);
 			}
-		} else if("openTopic".equals(action) || "addTheTask".equals(action) || "addTask".equals(action)) {
+		} else if("openTopic".equals(action)) {
 			// open the topic
-			if("openTopic".equals(action)) {
-				session.setAttribute("topic", request.getParameter("topic"));
-			}
-			System.out.println("session topic: " + session.getAttribute("topic"));
-			request.getRequestDispatcher("/Task").forward(request, response);
-			return;
+			session.setAttribute("topic", request.getParameter("topic"));
+			request.setAttribute("topicOpened", 1);
+		} else if("addTask".equals(action)) {
+			// shows form for adding task
+			request.setAttribute("taskAdding", 1);
+		} else if("addTheTask".equals(action)) {
+			// insert task into DB
+			Task task = new Task(request.getParameter("nameOfTask"), request.getParameter("bodyOfTask"), new TopicServices().setPresentTopic((String) session.getAttribute("topic")), (User) session.getAttribute("user"));
+			session.removeAttribute("topic");
+			new TaskServices().addTaskToDatabase(task);
+		} else if("removeTask".equals(action)) {
+			// topic removal
+			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskIdToRemove")));
+			request.setAttribute("topicOpened", 1);
 		} else if("generate".equals(action)) {	
 			// development action
 			admin.setUserName("jozko");

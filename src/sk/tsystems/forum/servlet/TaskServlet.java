@@ -45,9 +45,7 @@ public class TaskServlet extends HttpServlet {
 		// press the button for submitting new task to DB
 		else if("addTheTask".equals(action)) {
 			System.out.println("Topic attbribute value: " + session.getAttribute("topic"));
-			Task task = new Task(request.getParameter("nameOfTask"), request.getParameter("bodyOfTask"), new TopicServices().setPresentTopic((String) session.getAttribute("topic")), (User) session.getAttribute("user"));
-			session.removeAttribute("topic");
-			new TaskServices().addTaskToDatabase(task);
+			
 		} 
 		// press the button for updating the task
 		else if("updateTask".equals(action)) {
