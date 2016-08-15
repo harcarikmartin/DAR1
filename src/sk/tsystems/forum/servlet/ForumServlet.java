@@ -194,8 +194,10 @@ public class ForumServlet extends HttpServlet {
 		} else if("addTheTask".equals(action)) {
 			// insert task into DB
 			Task task = new Task(request.getParameter("nameOfTask").trim(), request.getParameter("bodyOfTask").trim(), (Topic) session.getAttribute("topic"), (User) session.getAttribute("user"));
-			session.removeAttribute("topic");
 			new TaskServices().addTaskToDatabase(task);
+			Topic topic = (Topic) session.getAttribute("topic");
+			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
+			request.setAttribute("topicOpened", 1);
 		} else if("updateTask".equals(action)) {
 			// show form for updating the task
 			request.setAttribute("taskUpdating", new TaskServices().getTask(Integer.parseInt(request.getParameter("taskToUpdate"))));
@@ -221,12 +223,13 @@ public class ForumServlet extends HttpServlet {
 		} else if("removeTask".equals(action)) {
 			// task removal
 			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskToRemove")));
+			Topic topic = (Topic) session.getAttribute("topic");
+			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
 			request.setAttribute("topicOpened", 1);
 		}  else if("openTask".equals(action)) {
 			// open the task
-			session.setAttribute("task", request.getParameter("taskId"));
-			Task task = (Task) session.getAttribute("task");
-			request.setAttribute("taskComments", new CommentServices().printComments(task.getTaskID()));
+			session.setAttribute("taskID", request.getParameter("idOfTask"));
+			request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
 			request.setAttribute("taskOpened", 1);
 		} else if("addComment".equals(action)) {
 			// shows form for adding comment
