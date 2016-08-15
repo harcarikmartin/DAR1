@@ -13,17 +13,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import sk.tsystems.forum.entities.Comment;
 import sk.tsystems.forum.entities.Task;
 import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
-import sk.tsystems.forum.entities.Comment;
 import sk.tsystems.forum.services.CommentServices;
 import sk.tsystems.forum.services.TaskServices;
 import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
 
 public class CommentServicesTests {
-	
+
 	private TopicServices topicServices = new TopicServices();
 	private UserServices userServices = new UserServices();
 	private TaskServices taskServices = new TaskServices();
@@ -51,7 +51,7 @@ public class CommentServicesTests {
 		}
 		return date;
 	}
-	
+
 	public int getTaskID() {
 		List<Task> listOfTestedTasks = new ArrayList<>();
 		listOfTestedTasks = taskServices.printTasks(testedTopic.getTopicID());
@@ -60,7 +60,7 @@ public class CommentServicesTests {
 		int taskID = concereteTask.getTaskID();
 		return taskID;
 	}
-	
+
 	public int getCommentID() {
 		List<Comment> listOfTestedComments = new ArrayList<>();
 		listOfTestedComments = commentServices.printComments(testedTask.getTaskID());
@@ -78,20 +78,27 @@ public class CommentServicesTests {
 		testedUser.setStatus("pending");
 		userServices.addUser(testedUser);
 	}
-	
+
 	public void createTestedTopic() {
 		testedTopic.setTopic(nameOfTestingTopic);
 		testedTopic.setVisibility("private");
 		testedTopic.setCreator(testedUser);
 		topicServices.addTopicToDatabase(testedTopic);
 	}
-	
+
 	public void createTestedTask() {
 		testedTask.setTaskName(nameOfTestingTask);
 		testedTask.setTopic(testedTopic);
 		testedTask.setUser(testedUser);
 		testedTask.setTask("testing task testing task");
 		taskServices.addTaskToDatabase(testedTask);
+	}
+
+	public void createTestedComment() {
+		testedComment.setComment(nameOfTestingComment);
+		testedComment.setTask(testedTask);
+		testedComment.setUser(testedUser);
+		commentServices.addCommentToDatabase(testedComment);
 	}
 
 	public void createTestedTaskNumberTwo() {
@@ -102,15 +109,8 @@ public class CommentServicesTests {
 		testedTaskNumberTwo.setTask("bonus bonus");
 		taskServices.addTaskToDatabase(testedTaskNumberTwo);
 	}
-	
-	public void createTestedComment(){
-		testedComment.setComment(nameOfTestingComment);
-		testedComment.setTask(testedTask);
-		testedComment.setUser(testedUser);
-		commentServices.addCommentToDatabase(testedComment);
-	}
-	
-	private void createTestedCommentNumberTwo() {
+
+	public void createTestedCommentNumberTwo() {
 		testedCommentNumberTwo.setComment("bonus");
 		testedCommentNumberTwo.setTask(testedTask);
 		testedCommentNumberTwo.setUser(testedUser);
@@ -132,34 +132,34 @@ public class CommentServicesTests {
 		topicServices.removeTopic(nameOfTestingTopic);
 		userServices.dropUser(nameOfTester);
 	}
-	
+
 	@Test
-	public void doesMethodAddCommentToDatabaseWork(){
+	public void doesMethodAddCommentToDatabaseWork() {
 		assertNotNull(commentServices.getComment(getCommentID()));
 	}
-	
+
 	@Test
-	public void doesMethodPrintComments(){
+	public void doesMethodPrintComments() {
 		assertNotNull(commentServices.printComments(getTaskID()));
 	}
-	
+
 	@Test
-	public void doesMethodRemoveCommentWork(){
+	public void doesMethodRemoveCommentWork() {
 		createTestedCommentNumberTwo();
 		int idOfTestedCommentNumberTwo = getCommentID();
 		commentServices.removeComment(idOfTestedCommentNumberTwo);
 		assertNull(commentServices.getComment(idOfTestedCommentNumberTwo));
 	}
-	
+
 	@Test
-	public void doesMethodGetComment(){
+	public void doesMethodGetComment() {
 		assertEquals(nameOfTestingComment, commentServices.getComment(getCommentID()).getComment());
 	}
-	
+
 	@Test
-	public void doesMethodUpdateCommentWork(){
+	public void doesMethodUpdateCommentWork() {
 		String commentBodyBeforeUpdate = commentServices.getComment(getCommentID()).getComment();
-		commentServices.updateComment(getCommentID(),"new comment", testedTask);
+		commentServices.updateComment(getCommentID(), "new comment", testedTask);
 		String commentBodyAfterUpdate = commentServices.getComment(getCommentID()).getComment();
 		assertNotEquals(commentBodyAfterUpdate, commentBodyBeforeUpdate);
 	}

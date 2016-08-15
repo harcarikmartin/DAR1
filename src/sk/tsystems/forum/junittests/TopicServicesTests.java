@@ -20,12 +20,12 @@ import sk.tsystems.forum.services.UserServices;
 
 public class TopicServicesTests {
 
-	TopicServices topicServices = new TopicServices();
-	UserServices userServices = new UserServices();
-	String nameOfTester = "tester";
-	String nameOfTestingTopic = "testing topic";
-	User testedUser = new User();
-	Topic testedTopic = new Topic();
+	private TopicServices topicServices = new TopicServices();
+	private UserServices userServices = new UserServices();
+	private String nameOfTester = "tester";
+	private String nameOfTestingTopic = "testing topic";
+	private User testedUser = new User();
+	private Topic testedTopic = new Topic();
 
 	public Date parseDate() {
 		String dateString = "2016-08-18";
