@@ -102,14 +102,14 @@ public class TaskServicesTests {
 	}
 
 	@Test
-	// Checks if task "testing task" was created, when @Before was called
 	public void doesMethodAddTaskToDatabaseWork() {
+		// Checks if task "testing task" was created, when @Before was called
 		assertNotNull(taskServices.getTask(getTaskID()));
 	}
 
 	@Test
-	// Checks if creating new task, and then deleting concrete task work
 	public void doesMethodRemoveTaskWork() {
+		// Checks if creating new task, and then deleting concrete task work
 		createTestedTaskNumberTwo();
 		int idIfTestedTaskNumberTwo = getTaskID();
 		taskServices.removeTask(idIfTestedTaskNumberTwo);
@@ -117,21 +117,21 @@ public class TaskServicesTests {
 	}
 
 	@Test
-	// Checks if after adding new task to table, method printtaska return
-	// correct list
 	public void doesMethodPrintTasksWork() {
+		// Checks if after adding new task to table, method printtaska return
+		// correct list
 		assertNotNull(taskServices.printTasks(testedTopic.getTopicID()));
 	}
 
 	@Test
-	// Checks name in tasks using getTask method
 	public void doesMethodGetTask() {
+		// Checks name in tasks using getTask method
 		assertEquals(nameOfTestingTask, taskServices.getTask(getTaskID()).getTaskName());
 	}
 
 	@Test
-	// Checks task's 'taskBody' before and after update
 	public void doesMethodUpdateTaskWork() {
+		// Checks task's 'taskBody' before and after update
 		String taskBodyBeforeUpdate = taskServices.getTask(getTaskID()).getTask();
 		taskServices.updateTask(getTaskID(), nameOfTestingTask, "New name", testedTopic);
 		String taskBodyAfterUpdate = taskServices.getTask(getTaskID()).getTask();

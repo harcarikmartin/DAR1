@@ -66,7 +66,6 @@ public class UserServicesTests {
 
 	@Test
 	public void doesMethodChangePasswordWorks() {
-		// Compares users password before and after changepassword method.
 		String passwordBeforeChange = userServices.setPresentUser(nameOfTester).getUserPassword();
 		userServices.changePassword(nameOfTester, "anotherTestingPassowrd");
 		String passwordAfterChange = userServices.setPresentUser(nameOfTester).getUserPassword();
