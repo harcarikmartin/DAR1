@@ -26,7 +26,7 @@
 				<c:if test="${user.role == null}">
 					<c:if test="${topic.visibility == 'public'}">
 						<tr>
-							<td>
+							<td class="rowOfTable">
 								<form method="post">
 									<input type="hidden" name="action" value="openTopic"> <input
 										type="hidden" name="topic" value="${topic.topic}">
@@ -41,7 +41,7 @@
 
 				<c:if test="${user.role == 'admin'}">
 					<tr>
-						<td class="topicCell text-left">
+						<td class="rowOfTable">
 							<form method="post">
 								<input type="hidden" name="action" value="openTopic"> <input
 									type="hidden" name="topic" value="${topic.topic}">
@@ -52,7 +52,7 @@
 						<td class="actionCell text-center topicInfoStyle">${topic.visibility}</td>
 
 						<c:if test="${user.role == 'admin'}">
-							<td class="actionCell">
+							<td  class="rowOfTable">
 								<form method="post" class="topicToUpdate">
 									<input type="hidden" name="topicToUpdate"
 										value="${topic.topic}"> <input type="hidden"
@@ -60,7 +60,7 @@
 									<button type="submit" class="btn-block topicStyle">Update</button>
 								</form>
 							</td>
-							<td class="actionCell text-center">
+							<td  class="rowOfTable">
 								<form method="post" class="topicToRemove">
 									<input type="hidden" name="topicToRemove"
 										value="${topic.topic}"> <input type="hidden"
@@ -76,7 +76,7 @@
 				<c:if test="${user.role == 'user'}">
 					<c:if test="${topic.visibility == 'public'}">
 						<tr>
-							<td class="topicCell text-left">
+							<td  class="rowOfTable">
 								<form method="post">
 									<input type="hidden" name="action" value="openTopic"> <input
 										type="hidden" name="topic" value="${topic.topic}">
@@ -92,7 +92,7 @@
 						<c:if test="${topic.topicID == userTopic.topic.topicID}">
 							<c:if test="${userTopic.user.userID == user.userID}">
 								<tr>
-									<td class="topicCell text-left">
+									<td  class="rowOfTable">
 										<form method="post">
 											<input type="hidden" name="action" value="openTopic">
 											<input type="hidden" name="topic"

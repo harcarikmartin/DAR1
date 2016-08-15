@@ -33,7 +33,7 @@ body {
 	padding-bottom: 1em;
 }
 
-.labels, .simpleText{
+label, .labels, .simpleText{
 	color: white;
 	padding-left: 1em;
 	padding-right: 1em;
@@ -236,8 +236,25 @@ a.forumHeader:hover{
 }
 
 
+.searchInTable, .numberOfRows{
+	color: black;
+}
 
+#table_id_info {
+	color: white;
+	font-weight: bold;
+	padding-left: 1em;
+	padding-right: 1em;
+}
 
+.paginate_button, .dataTables_paginate, .paging_simple_numbers {
+	color: white;
+}
+
+#table_id_previous{
+	color: white;
+	
+}
 
 
 

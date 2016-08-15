@@ -10,9 +10,11 @@
 
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script> 
 <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css"> -->
+
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
 
 <style>
+<%@include file="DataTables.css"%>
 <%@include file="bootstrap/css/bootstrap.css"%>
 <%@include file="ForumForBootstrap.css"%>
 </style>
@@ -62,6 +64,8 @@
   	    } ]
   	} );
     
+  		$('div.dataTables_filter input').addClass('searchInTable')
+  		$('div.dataTables_length select').addClass('numberOfRows')
 } );
   	</script>
 
