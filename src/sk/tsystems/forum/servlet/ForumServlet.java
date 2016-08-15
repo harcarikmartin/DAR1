@@ -178,7 +178,9 @@ public class ForumServlet extends HttpServlet {
 			}
 		} else if("openTopic".equals(action)) {
 			// open the topic
-			session.setAttribute("topic", request.getParameter("topic"));
+			session.setAttribute("topic", new TopicServices().setPresentTopic(request.getParameter("topic")));
+			Topic topic = (Topic) session.getAttribute("topic");
+			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
 			request.setAttribute("topicOpened", 1);
 		} else if("addTask".equals(action)) {
 			// shows form for adding task
@@ -188,6 +190,25 @@ public class ForumServlet extends HttpServlet {
 			Task task = new Task(request.getParameter("nameOfTask"), request.getParameter("bodyOfTask"), new TopicServices().setPresentTopic((String) session.getAttribute("topic")), (User) session.getAttribute("user"));
 			session.removeAttribute("topic");
 			new TaskServices().addTaskToDatabase(task);
+		} else if("updateTask".equals(action)) {
+			// show form for updating the task
+			request.setAttribute("taskUpdating", new TaskServices().getTask(taskID));
+			request.setAttribute("taskToUpdate", 1);
+		} else if("updateTheTask".equals(action)) {
+			// update of task, rename, change of visibility
+			
+//			if(request.getParameter("original").equals(request.getParameter("editTask")) && 
+//					!(new TopicServices().setPresentTopic(request.getParameter("original")).getVisibility().equals(request.getParameter("visibility1"))) || 
+//					!request.getParameter("original").equals(request.getParameter("editTask")) && 
+//					new TopicServices().setPresentTopic(request.getParameter("editTask")) == null) {
+//				updateTopicSubscriptions(request);
+//				new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
+//				request.setAttribute("listTopics", 1);
+//			} else if(new TopicServices().setPresentTopic(request.getParameter("editTopic")) != null) {
+//				// topic already exists
+//				request.setAttribute("topicToUpdate", 1);
+//				request.setAttribute("existingTopic", 1);
+//			}
 		} else if("removeTask".equals(action)) {
 			// topic removal
 			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskIdToRemove")));
