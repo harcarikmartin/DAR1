@@ -26,7 +26,7 @@
 		<jsp:include page="UserMenu.jsp" />
 	</c:if>
 
-	<c:if test="${registerForm == null  && topic == null || taskOpened == null)}">
+	<c:if test="${registerForm == null  && (topicOpened == null || taskOpened == null)}">
 		<%@ include file="Topic.jsp"%>
 	</c:if>
 	
