@@ -2,11 +2,11 @@ taskNameRequired.style.display = "none";
 taskBodyRequired.style.display = "none";
 
 function clearFcnAddTask() {
-	if (nameOfTask.value != "") {
+	if (nameOfTask.value.trim() != "") {
 		taskNameRequired.style.display = "none";
 		nameOfTask.style.border = "solid 1px #D3D3D3"
 	}
-	if (bodyOfTask.value != "") {
+	if (bodyOfTask.value.trim() != "") {
 		taskBodyRequired.style.display = "none";
 		bodyOfTask.style.border = "solid 1px #D3D3D3"
 	}
@@ -19,12 +19,12 @@ var checkRequiredAddTask = function() {
 	var nameOfTask = document.getElementById('nameOfTask');
 	var bodyOfTask = document.getElementById('bodyOfTask');
 	
-	if (nameOfTask.value == "") {
+	if (nameOfTask.value.trim() == "") {
 		taskNameRequired.style.display = "inline";
 		nameOfTask.style.border = "solid 1px red"
 		fail = true;
 	}
-	if (bodyOfTask.value == "") {
+	if (bodyOfTask.value.trim() == "") {
 		taskBodyRequired.style.display = "inline";
 		bodyOfTask.style.border = "solid 1px red"
 		fail = true;

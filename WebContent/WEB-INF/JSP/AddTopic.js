@@ -2,7 +2,7 @@ topicNameRequired.style.display = "none";
 topicVisibilityRequired.style.display = "none";
 
 function clearFcnAddTopic() {
-	if (addTheTopic.value != "") {
+	if (addTheTopic.value.trim() != "") {
 		topicNameRequired.style.display = "none";
 		addTheTopic.style.border = "solid 1px #D3D3D3"
 	}
@@ -22,7 +22,7 @@ var checkRequiredAddTopic = function() {
 //	var addPrivate = document.getElementById('addPrivate');
 //	var addPublic = document.getElementById('addPublic');
 	
-	if (addTheTopic.value == "") {
+	if (addTheTopic.value.trim() == "") {
 		topicNameRequired.style.display = "inline";
 		addTheTopic.style.border = "solid 1px red"
 		fail = true;

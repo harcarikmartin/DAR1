@@ -2,7 +2,7 @@ topicNameRequired.style.display = "none";
 topicVisibilityRequired.style.display = "none";
 
 function clearFcnEditTopic() {
-	if (editTopic.value != "") {
+	if (editTopic.value.trim() != "") {
 		topicNameRequired.style.display = "none";
 		editTopic.style.border = "solid 1px #D3D3D3"
 	}
@@ -22,7 +22,7 @@ var checkRequiredEditTopic = function() {
 //	var addPrivate = document.getElementById('addPrivate');
 //	var addPublic = document.getElementById('addPublic');
 	
-	if (editTopic.value == "") {
+	if (editTopic.value.trim() == "") {
 		topicNameRequired.style.display = "inline";
 		editTopic.style.border = "solid 1px red"
 		fail = true;

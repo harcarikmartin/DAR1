@@ -2,11 +2,11 @@ userNameRequired.style.display = "none";
 userPasswordRequired.style.display = "none";
 
 function clearFcnLog() {
-	if (userName.value != "") {
+	if (userName.value.trim() != "") {
 		userNameRequired.style.display = "none";
 		userName.style.border = "solid 1px #D3D3D3"
 	}
-	if (userPassword.value != "") {
+	if (userPassword.value.trim() != "") {
 		userPasswordRequired.style.display = "none";
 		userPassword.style.border = "solid 1px #D3D3D3"
 	}
@@ -19,12 +19,12 @@ var checkRequiredLog = function() {
 	var userName = document.getElementById('userName');
 	var userPassword = document.getElementById('userPassword');
 	
-	if (userName.value == "") {
+	if (userName.value.trim() == "") {
 		userNameRequired.style.display = "inline";
 		userName.style.border = "solid 1px red"
 		fail = true;
 	}
-	if (userPassword.value == "") {
+	if (userPassword.value.trim() == "") {
 		userPasswordRequired.style.display = "inline";
 		userPassword.style.border = "solid 1px red"
 		fail = true;

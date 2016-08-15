@@ -3,15 +3,15 @@
 	npcRequired.style.display = "none";
 	
 	function clearPassChange() {
-		if (OldPassword.value != "") {
+		if (OldPassword.value.trim() != "") {
 			opRequired.style.display = "none";
 			OldPassword.style.border = "solid 1px #D3D3D3"
 		}
-		if (NewPassword.value != "") {
+		if (NewPassword.value.trim() != "") {
 			npRequired.style.display = "none";
 			NewPassword.style.border = "solid 1px #D3D3D3"
 		}
-		if (NewPasswordConfirm.value != "") {
+		if (NewPasswordConfirm.value.trim() != "") {
 			npcRequired.style.display = "none";
 			NewPasswordConfirm.style.border = "solid 1px #D3D3D3"
 		}
@@ -28,17 +28,17 @@
 		var npcRequired = document.getElementById('npcRequired');
 
 
-		if (OldPassword.value == "") {
+		if (OldPassword.value.trim() == "") {
 			opRequired.style.display = "inline";
 			OldPassword.style.border = "solid 1px red"
 			fail = true;
 		}
-		if (NewPassword.value == "") {
+		if (NewPassword.value.trim() == "") {
 			npRequired.style.display = "inline";
 			NewPassword.style.border = "solid 1px red"
 			fail = true;
 		}
-		if (NewPasswordConfirm.value == "") {
+		if (NewPasswordConfirm.value.trim() == "") {
 			npcRequired.style.display = "inline";
 			NewPasswordConfirm.style.border = "solid 1px red"
 			fail = true;
