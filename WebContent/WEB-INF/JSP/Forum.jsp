@@ -30,7 +30,7 @@
 		<%@ include file="Topic.jsp"%>
 	</c:if>
 	
-	<%@ include file="Task.jsp"%>
+<%-- 	<%@ include file="Task.jsp"%> --%>
 
 	<c:if test="${registerForm == null && topicOpened != null}">
 		<%@ include file="Task.jsp"%>
