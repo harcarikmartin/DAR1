@@ -220,7 +220,7 @@ public class ForumServlet extends HttpServlet {
 //			}
 		} else if("removeTask".equals(action)) {
 			// task removal
-			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskIdToRemove")));
+			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskToRemove")));
 			request.setAttribute("topicOpened", 1);
 		}  else if("openTask".equals(action)) {
 			// open the task
