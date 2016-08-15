@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="col-lg-offset-1 col-lg-10">
 		
-		<div class=" rowBackground">
+		<div class="rowBackground col-lg-10 col-md-10 col-sm-9 col-xs-9">
 			<form method="post">
 				<input type="hidden" name="action" value="showTopics">
 						<button class="btn-block-left topicStyle" type="submit">${topic}</button>
@@ -17,10 +17,10 @@
 		</div>
 		
 		
-		<div class=" rowBackground">
+		<div class=" rowBackground col-lg-2 col-md-2 col-sm-3 col-xs-3">
 			<form method="post">
 				<input type="hidden" name="action" value="addTask">
-				<button class="btn-block-left topicStyle" type="submit">Add
+				<button class="btn-block-right topicStyle" type="submit">Add
 					new task</button>
 			</form>
 		</div>
@@ -55,7 +55,7 @@
 					</td>
 					<td class="actionCell text-center topicInfoStyle">${topicTask.user.userName}</td>
 					
-					<td class="actionCell text-center topicInfoStyle">
+					<td class="actionCell text-center ">
 					<c:if test="${topicTask.user.userID == sessionScope.user.userID}">
 						<form method="post">
 							<input type="hidden" name="taskToUpdate" value="${topicTask.taskID}">
@@ -65,7 +65,7 @@
 					</c:if>
 					</td>
 					
-					<td class="actionCell text-center topicInfoStyle">
+					<td class="actionCell text-center ">
 						<c:if test="${topicTask.user.userID == sessionScope.user.userID}">
 						<form method="post">
 							<input type="hidden" name="taskToRemove" value="${topicTask.taskID}">

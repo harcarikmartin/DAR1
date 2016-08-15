@@ -95,7 +95,7 @@
 											<input type="hidden" name="action" value="openTopic">
 											<input type="hidden" name="topic"
 												value="${userTopic.topic}">
-											<button class="btn-block-left topicStyle" type="submit">${userTopic.topic}</button>
+											<button class="btn-block-left topicStyle" type="submit">${userTopic.topic.topic}</button>
 										</form>
 									</td>
 									<td class="actionCell text-center topicInfoStyle">${userTopic.topic.creator.userName}</td>
