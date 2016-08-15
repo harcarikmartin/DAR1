@@ -207,7 +207,16 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("taskToUpdate", 1);
 		} else if("updateTheTask".equals(action)) {
 			// update of task, rename, change of visibility
-			
+			if(!request.getParameter("editNameTask").trim().isEmpty() && !request.getParameter("editBodyTask").trim().isEmpty()) {
+				// update task
+				new TaskServices().updateTask(Integer.parseInt(request.getParameter("taskID")), request.getParameter("editNameTask").trim(), request.getParameter("editBodyTask").trim());
+				Topic topic = (Topic) session.getAttribute("topic");
+				request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
+				request.setAttribute("topicOpened", 1);
+			} else {
+				// return message of empty field/s
+				request.setAttribute("emptyField", 1);
+			}
 //			if(request.getParameter("original").equals(request.getParameter("editTask")) && 
 //					!(new TopicServices().setPresentTopic(request.getParameter("original")).getVisibility().equals(request.getParameter("visibility1"))) || 
 //					!request.getParameter("original").equals(request.getParameter("editTask")) && 
