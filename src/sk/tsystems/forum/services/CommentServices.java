@@ -1,5 +1,6 @@
 package sk.tsystems.forum.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,11 +21,12 @@ public class CommentServices {
 	}
 
 	public List<Comment> printComments(int taskID) {
+		List<Comment> listOfComments= new ArrayList<>();
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select c from Comment c where c.task=:task");
 		query.setParameter("task", getTask(taskID));
-
-		return query.getResultList();
+		listOfComments = query.getResultList();
+		return listOfComments;
 	}
 	
 	public void removeComment(int commentID) {
