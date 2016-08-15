@@ -14,7 +14,7 @@
 						
 						
 						<div class="row text-center">
-						<input type="hidden" name="commentID" value="${commentID}">
+						<input type="hidden" name="commentID" value="${commentUpdating.commentID}">
 						<input type="hidden" name="action" value="updateTheComment">
 						<button class="buttonStyle" type="submit">Edit comment</button>
 						</div>
