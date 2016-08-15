@@ -78,13 +78,13 @@
 	</script>
 </c:if>
 
-<c:if test="${(user.role=='user' || user.role=='admin') && taskAdding != null}">
+<c:if test="${sessionScope.topic != null && taskAdding != null}">
 	<script type="text/javascript">
 	<%@ include file="AddTask.js"%>
 	</script>
 </c:if>
 
-<c:if test="${(user.role=='user' || user.role=='admin') && taskToUpdate != null}">
+<c:if test="${sessionScope.topic != null && taskToUpdate != null}">
 	<script type="text/javascript">
 <%-- 	<%@ include file="UpdateTask.js"%> --%>
 	</script>

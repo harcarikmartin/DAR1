@@ -3,6 +3,7 @@ html {
 	background-image: url("images/background.jpg");
     background-attachment: fixed;
 }
+ 
 body {
     width: 100vw;
     min-width: 500px;
