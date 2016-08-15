@@ -31,7 +31,7 @@ rfName.style.display = "none";
 		var rfPass = document.getElementById('rfPass');
 		var rfPassCheck = document.getElementById('rfPassCheck');
 		var rfBirthdate = document.getElementById('rfBirthdate');
-		if (userNameReg.value == "") {
+		if (userNameReg.value.trim()== "") {
 			rfName.style.display = "inline";
 			userNameReg.style.border = "solid 1px red"
 			fail = true;
