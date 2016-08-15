@@ -126,6 +126,7 @@ public class ForumServlet extends HttpServlet {
 		} else if("logout".equals(action)) {
 			//logout case
 			logout(request);
+			session.removeAttribute("topic");
 		} else if("showMyTopics".equals(action)) {
 			// list topics that user subscribed for
 			request.setAttribute("listTopics", 1);	
@@ -186,6 +187,8 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("topicOpened", 1);
 		} else if("addTask".equals(action)) {
 			// shows form for adding task
+			Topic topic = (Topic) session.getAttribute("topic");
+			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
 			request.setAttribute("topicOpened", 1);
 			request.setAttribute("taskAdding", 1);
 		} else if("addTheTask".equals(action)) {
@@ -195,7 +198,9 @@ public class ForumServlet extends HttpServlet {
 			new TaskServices().addTaskToDatabase(task);
 		} else if("updateTask".equals(action)) {
 			// show form for updating the task
-//			request.setAttribute("taskUpdating", new TaskServices().getTask(taskID));
+			request.setAttribute("taskUpdating", new TaskServices().getTask(Integer.parseInt(request.getParameter("taskToUpdate"))));
+			Topic topic = (Topic) session.getAttribute("topic");
+			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
 			request.setAttribute("topicOpened", 1);
 			request.setAttribute("taskToUpdate", 1);
 		} else if("updateTheTask".equals(action)) {
