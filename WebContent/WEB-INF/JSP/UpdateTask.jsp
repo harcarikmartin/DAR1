@@ -19,7 +19,7 @@
 						
 						
 						<div class="row text-center">
-						<input type="hidden" name="taskID" value="${taskID}">
+						<input type="hidden" name="taskID" value="${taskUpdating.taskID}">
 						<input type="hidden" name="action" value="updateTheTask">
 						<button class="buttonStyle" type="submit">Edit task</button>
 						</div>

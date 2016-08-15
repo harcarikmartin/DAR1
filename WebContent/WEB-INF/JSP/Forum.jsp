@@ -7,6 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; utf-8">
 <title>Forum - Topics</title>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script> 
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css"> -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
 <style>
 <%@include file="bootstrap/css/bootstrap.css"%>
 <%@include file="ForumForBootstrap.css"%>
@@ -41,6 +46,26 @@
 	</c:if>
 	
 </body>
+
+
+<script>
+  	$(document).ready( function () {
+    //https://datatables.net/
+     // pre nezobrazovanie ponuky search 
+  	 //  $('#table_id').dataTable({bFilter: false, bInfo: false});	
+      
+      
+  		$('#table_id').dataTable( {
+  	        "columnDefs": [ {
+  	          "targets": 'no-sort',
+  	          "orderable": false,
+  	    } ]
+  	} );
+    
+} );
+  	</script>
+
+
 
 <c:if test="${registerForm != null}">
 	<script type="text/javascript">

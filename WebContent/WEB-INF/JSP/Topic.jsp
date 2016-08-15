@@ -8,10 +8,10 @@
 <div>&nbsp</div>
 	
 <c:if test="${fn:length(topics) > 0}">
-<div class="row">
-	<div class="col-lg-offset-1 col-lg-10">
-		<table>
-			<tr>
+<div class="row ">
+	<div class="col-lg-offset-1 col-lg-10 rowBackground">
+		<table id="table_id" class="rowBackground">
+			<thead><tr>
 				<th class="topicCell text-left paddingHorizontal topicHeadStyle">Topic</th>
 				<th class="actionCell text-center topicHeadStyle">Created by</th>
 				<th class="actionCell text-center topicHeadStyle">Visibility</th>
@@ -19,7 +19,9 @@
 					<th class="actionCell text-center topicHeadStyle">Update</th>
 					<th class="actionCell text-center topicHeadStyle">Remove</th>
 				</c:if>
-			</tr>
+			</tr></thead>
+			<tbody>
+			
 			<c:forEach items="${topics}" var="topic">
 				<c:if test="${user.role == null}">
 					<c:if test="${topic.visibility == 'public'}">
@@ -107,6 +109,7 @@
 
 				</c:if>
 			</c:forEach>
+</tbody>
 
 		</table>
 
