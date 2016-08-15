@@ -32,9 +32,13 @@
 				to modify an existing database; value="create-drop" means the same as "create" 
 				but also drops tables when Hibernate closes; value="validate" makes no changes 
 				to the database -->
+<<<<<<< HEAD
+<!--  	 <property name="hibernate.hbm2ddl.auto" value="create-drop"/>	 --> 
+=======
 <!--  		 <property name="hibernate.hbm2ddl.auto" value="create-drop"/>  -->
+>>>>>>> refs/remotes/origin/master
 
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
 		</properties>
 	</persistence-unit>

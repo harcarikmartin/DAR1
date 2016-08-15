@@ -174,9 +174,14 @@ public class ForumServlet extends HttpServlet {
 			} else {
 				updateUserSubscriptions(request);
 			}
-		} else if("openTopic".equals(action)) {
+		} else if("openTopic".equals(action) || "addTheTask".equals(action) || "addTask".equals(action)) {
 			// open the topic
-			request.setAttribute("openTaskServlet", 1);
+			if("openTopic".equals(action)) {
+				session.setAttribute("topic", request.getParameter("topic"));
+			}
+			System.out.println("session topic: " + session.getAttribute("topic"));
+			request.getRequestDispatcher("/Task").forward(request, response);
+			return;
 		} else if("generate".equals(action)) {	
 			// development action
 			admin.setUserName("jozko");
@@ -270,7 +275,7 @@ public class ForumServlet extends HttpServlet {
 	    } catch (ParseException e) {
 	        e.printStackTrace();
 	    }
-		user = new UserServices().registerUser(request.getParameter("userName"), request.getParameter("userPassword"), 
+		new UserServices().registerUser(request.getParameter("userName"), request.getParameter("userPassword"), 
 				date, request.getParameter("role"), request.getParameter("status"));
 		request.setAttribute("succesRegister", 1);
 	}

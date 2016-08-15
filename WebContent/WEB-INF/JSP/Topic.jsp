@@ -21,7 +21,7 @@
 							<td>
 								<form method="post">
 									<input type="hidden" name="action" value="openTopic"> <input
-										type="hidden" name="idOfTOpic" value="${topic.topicID}">
+										type="hidden" name="topic" value="${topic.topic}">
 									<button class="btn-block-left topicStyle" type="submit">${topic.topic}</button>
 								</form>
 							</td>
@@ -36,7 +36,7 @@
 						<td class="topicCell text-left">
 							<form method="post">
 								<input type="hidden" name="action" value="openTopic"> <input
-									type="hidden" name="idOfTOpic" value="${topic.topicID}">
+									type="hidden" name="topic" value="${topic.topic}">
 								<button class="btn-block-left topicStyle" type="submit">${topic.topic}</button>
 							</form>
 						</td>
@@ -71,7 +71,7 @@
 							<td class="topicCell text-left">
 								<form method="post">
 									<input type="hidden" name="action" value="openTopic"> <input
-										type="hidden" name="idOfTOpic" value="${topic.topicID}">
+										type="hidden" name="topic" value="${topic.topic}">
 									<button class="btn-block-left topicStyle" type="submit">${topic.topic}</button>
 								</form>
 							</td>
@@ -87,8 +87,8 @@
 									<td class="topicCell text-left">
 										<form method="post">
 											<input type="hidden" name="action" value="openTopic">
-											<input type="hidden" name="idOfTOpic"
-												value="${userTopic.topic.topicID}">
+											<input type="hidden" name="topic"
+												value="${userTopic.topic}">
 											<button class="btn-block-left topicStyle" type="submit">${userTopic.topic.topic}</button>
 										</form>
 									</td>
