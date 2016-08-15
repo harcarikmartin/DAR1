@@ -41,7 +41,7 @@
 				<th class="topicCell text-left paddingHorizontal2 taskHeadStyle">Task</th>
 				<th class="actionCell text-center taskHeadStyle">Added by</th>
 				<th class="actionCell text-center taskHeadStyle">Update</th>
-				<th class="actionCell text-center taskHeadStyle">Delete</th>
+				<th class="actionCell text-center taskHeadStyle">Remove</th>
 			</tr>
 
 			<c:forEach items="${topicTasks}" var="topicTask">
@@ -50,12 +50,12 @@
 						<form method="post">
 							<input type="hidden" name="action" value="openTask"> <input
 								type="hidden" name="idOfTask" value="${topicTask.taskID}">
-							<button class="btn-block-left2 topicStyle" type="submit">${topicTask.taskName}</button>
+							<button class="btn-block-left2 taskStyle" type="submit">${topicTask.taskName}</button>
 						</form>
 					</td>
-					<td class="actionCell text-center topicInfoStyle">${topicTask.user.userName}</td>
+					<td class="actionCell text-center taskInfoStyle">${topicTask.user.userName}</td>
 					
-					<td class="actionCell text-center ">
+					<td class="actionCell text-center taskNoButton">
 					<c:if test="${topicTask.user.userID == sessionScope.user.userID}">
 						<form method="post">
 							<input type="hidden" name="taskToUpdate" value="${topicTask.taskID}">
@@ -65,7 +65,7 @@
 					</c:if>
 					</td>
 					
-					<td class="actionCell text-center ">
+					<td class="actionCell text-center taskNoButton">
 						<c:if test="${topicTask.user.userID == sessionScope.user.userID}">
 						<form method="post">
 							<input type="hidden" name="taskToRemove" value="${topicTask.taskID}">

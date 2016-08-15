@@ -17,7 +17,7 @@
 				<th class="actionCell text-center topicHeadStyle">Visibility</th>
 				<c:if test="${user.role == 'admin'}">
 					<th class="actionCell text-center topicHeadStyle">Update</th>
-					<th class="actionCell text-center topicHeadStyle">Delete</th>
+					<th class="actionCell text-center topicHeadStyle">Remove</th>
 				</c:if>
 			</tr>
 			<c:forEach items="${topics}" var="topic">

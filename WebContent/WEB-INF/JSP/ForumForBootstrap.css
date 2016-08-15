@@ -96,12 +96,16 @@ body {
     font-weight: bold;
 }
 
-.topicInfoStyle, .registerInfoStyle{
+.topicInfoStyle, .registerInfoStyle, .taskInfoStyle{
 	background-color: #404040;
 	color: white;
 	font-weight: bold;
 	font-size: 10px;
 	padding-top: 0;
+}
+
+.taskNoButton{
+	background-color: #404040;
 }
 
 .topicHeadStyle, .registerHeadStyle, .approveHeadStyle, .taskHeadStyle{
