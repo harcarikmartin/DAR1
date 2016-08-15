@@ -186,6 +186,7 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("topicOpened", 1);
 		} else if("addTask".equals(action)) {
 			// shows form for adding task
+			request.setAttribute("topicOpened", 1);
 			request.setAttribute("taskAdding", 1);
 		} else if("addTheTask".equals(action)) {
 			// insert task into DB
@@ -195,6 +196,7 @@ public class ForumServlet extends HttpServlet {
 		} else if("updateTask".equals(action)) {
 			// show form for updating the task
 //			request.setAttribute("taskUpdating", new TaskServices().getTask(taskID));
+			request.setAttribute("topicOpened", 1);
 			request.setAttribute("taskToUpdate", 1);
 		} else if("updateTheTask".equals(action)) {
 			// update of task, rename, change of visibility
@@ -224,6 +226,7 @@ public class ForumServlet extends HttpServlet {
 		} else if("addComment".equals(action)) {
 			// shows form for adding comment
 			request.setAttribute("commentAdding", 1);
+			request.setAttribute("taskOpened", 1);
 		} else if("addTheComment".equals(action)) {
 			// insert comment into DB
 			Comment comment = new Comment(request.getParameter("comment").trim(), new TaskServices().getTask((int) session.getAttribute("task")), (User) session.getAttribute("user"));

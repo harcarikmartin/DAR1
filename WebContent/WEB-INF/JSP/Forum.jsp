@@ -26,7 +26,7 @@
 		<jsp:include page="UserMenu.jsp" />
 	</c:if>
 
-	<c:if test="${registerForm == null && (topicOpen == null || taskOpened == null)}">
+	<c:if test="${registerForm == null  && topic == null || taskOpened == null)}">
 		<%@ include file="Topic.jsp"%>
 	</c:if>
 	
@@ -86,7 +86,7 @@
 
 <c:if test="${(user.role=='user' || user.role=='admin') && taskToUpdate != null}">
 	<script type="text/javascript">
-	<%@ include file="UpdateTask.js"%>
+<%-- 	<%@ include file="UpdateTask.js"%> --%>
 	</script>
 </c:if>
 
