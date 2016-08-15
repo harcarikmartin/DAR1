@@ -141,7 +141,7 @@ public class ForumServlet extends HttpServlet {
 					!request.getParameter("original").equals(request.getParameter("editTopic")) && 
 					new TopicServices().setPresentTopic(request.getParameter("editTopic")) == null) {
 				updateTopicSubscriptions(request);
-				new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
+				new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic").trim(), request.getParameter("visibility1"));
 				request.setAttribute("listTopics", 1);
 			} else if(new TopicServices().setPresentTopic(request.getParameter("editTopic")) != null) {
 				// topic already exists
@@ -160,7 +160,7 @@ public class ForumServlet extends HttpServlet {
 			if(new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) == null) {
 				Topic topic = new Topic();
 				topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
-				topic.setTopic(request.getParameter("addTheTopic"));
+				topic.setTopic(request.getParameter("addTheTopic").trim());
 				topic.setVisibility(request.getParameter("visibility"));
 				new TopicServices().addTopicToDatabase(topic);
 				request.setAttribute("listTopics", 1);
@@ -187,12 +187,12 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("taskAdding", 1);
 		} else if("addTheTask".equals(action)) {
 			// insert task into DB
-			Task task = new Task(request.getParameter("nameOfTask"), request.getParameter("bodyOfTask"), new TopicServices().setPresentTopic((String) session.getAttribute("topic")), (User) session.getAttribute("user"));
+			Task task = new Task(request.getParameter("nameOfTask").trim(), request.getParameter("bodyOfTask").trim(), new TopicServices().setPresentTopic((String) session.getAttribute("topic")), (User) session.getAttribute("user"));
 			session.removeAttribute("topic");
 			new TaskServices().addTaskToDatabase(task);
 		} else if("updateTask".equals(action)) {
 			// show form for updating the task
-			request.setAttribute("taskUpdating", new TaskServices().getTask(taskID));
+			request.setAttribute("taskUpdating", new TaskServices().getTask(2));
 			request.setAttribute("taskToUpdate", 1);
 		} else if("updateTheTask".equals(action)) {
 			// update of task, rename, change of visibility
@@ -306,7 +306,7 @@ public class ForumServlet extends HttpServlet {
 	    } catch (ParseException e) {
 	        e.printStackTrace();
 	    }
-		new UserServices().registerUser(request.getParameter("userName"), request.getParameter("userPassword"), 
+		new UserServices().registerUser(request.getParameter("userName").trim(), request.getParameter("userPassword").trim(), 
 				date, request.getParameter("role"), request.getParameter("status"));
 		request.setAttribute("succesRegister", 1);
 	}
