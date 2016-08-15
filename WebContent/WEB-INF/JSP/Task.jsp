@@ -39,29 +39,13 @@
 				<th class="actionCell text-center taskHeadStyle">Delete</th>
 			</tr>
 
-			<tr>
-				<td><button class="btn-block-left2 topicStyle" type="submit">task
-						1</button></td>
-				<td class="actionCell text-center topicInfoStyle">creator</td>
-				<td class="actionCell text-center">
-					<form>
-						<button class="btn-block taskStyle" type="submit">Update</button>
-					</form>
-				</td>
-				<td class="actionCell text-center">
-					<form>
-						<button class="btn-block taskStyle" type="submit">Remove</button>
-					</form>
-				</td>
-			</tr>
-
 			<c:forEach items="${topicTasks}" var="topicTask">
 				<tr>
 					<td>
 						<form method="post">
 							<input type="hidden" name="action" value="openTask"> <input
 								type="hidden" name="idOfTask" value="${task.taskID}">
-							<button class="btn-block-left2 topicStyle" type="submit">${topicTask.task}</button>
+							<button class="btn-block-left2 topicStyle" type="submit">${topicTask.taskName}</button>
 						</form>
 					</td>
 					<td class="actionCell text-center topicInfoStyle">${topicTask.user.userName}</td>
@@ -73,7 +57,7 @@
 						</form>
 					</td>
 					<td>
-						<form>
+						<form method="post">
 							<input type="hidden" name="taskToRemove" value="${task.taskID}">
 							<input type="hidden" name="action" value="removeTask">
 							<button class="btn-block taskStyle" type="submit">Remove</button>
