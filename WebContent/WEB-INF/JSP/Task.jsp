@@ -21,8 +21,8 @@
 			<%@ include file="UpdateTask.jsp"%>
 		</c:if>
 
-		<table>
 
+		<table>
 			<tr>
 				<td colspan="4">
 					<form method="post">

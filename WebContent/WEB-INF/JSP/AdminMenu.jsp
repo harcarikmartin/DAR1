@@ -151,13 +151,10 @@
 						<label class="simpleText" for="editTopic">Edit Topic: </label>
 					</div>
 					<div class="row text-center">
-						<input class="inputForNewStuff" id="editTopic" type="text"
-							name="editTopic" placeholder="topic name"
-							value="${topicUpdating.topic}" autofocus>
+						<input class="inputForNewStuff" id="editTopic" type="text" name="editTopic" placeholder="topic name" value="${topicUpdating.topic}" autofocus>
 					</div>
 					<div class="row text-center">
-						<p id="topicNameRequired" class="requiredField ">Topic name is
-							required</p>
+						<p id="topicNameRequired" class="requiredField ">Topic name is required</p>
 					</div>
 					<div class="row text-center">
 						<c:if test="${topicUpdating.visibility == 'public'}">
@@ -174,8 +171,7 @@
 						</c:if>
 					</div>
 					<div class="row text-center">
-						<p id="topicVisibilityRequired" class="requiredField ">Topic
-							visibility is required</p>
+						<p id="topicVisibilityRequired" class="requiredField ">Topic visibility is required</p>
 					</div>
 					<!-- 						<input type="radio" name="visibility" value="public"  -->
 					<%-- 							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if> --%>
@@ -185,15 +181,12 @@
 					<!-- 							/> Private  -->
 					<div class="row text-center">
 						<c:if test="${existingTopic != null}">
-							<p class=" text-center simpleText">Topic with this name
-								already exist!</p>
+							<p class=" text-center simpleText">Topic with this name already exist!</p>
 						</c:if>
 					</div>
 					<div class="row text-center">
-						<input type="hidden" name="original"
-							value="${topicUpdating.topic}"> <input type="hidden"
-							name="action" value="updateTheTopic">
-						<button class="buttonStyle" type="submit">Edit Topic</button>
+						<input type="hidden" name="original" value="${topicUpdating.topic}"> <input type="hidden" name="action" value="updateTheTopic">
+						<button class="buttonStyle" type="submit">Edit topic</button>
 					</div>
 				</form>
 			</div>
