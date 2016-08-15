@@ -65,11 +65,13 @@
 					</td>
 					</c:if>
 					<td>
+						<c:if test="${topicTask.user.userID == sessionScope.user.userID}">
 						<form method="post">
 							<input type="hidden" name="taskToRemove" value="${topicTask.taskID}">
 							<input type="hidden" name="action" value="removeTask">
 							<button class="btn-block taskStyle" type="submit">Remove</button>
 						</form>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
