@@ -60,6 +60,7 @@
 			"columnDefs" : [ {
 				"targets" : 'no-sort',
 				"orderable" : false,
+				"searchable": false, "targets": [ 3, 4 ],
 			} ]
 		});
 
@@ -67,15 +68,11 @@
 		"columnDefs" : [ {
 			"targets" : 'no-sort',
 			"orderable" : false,
+			"searchable": false, "targets": [ 2, 3 ],
 		} ]
 	});
 	
-// 	$('#commentTable').dataTable({
-// 		"columnDefs" : [ {
-// 			"targets" : 'no-sort',
-// 			"orderable" : false,
-// 		} ]
-// 	});
+
 	
 		$('div.dataTables_filter input').addClass('searchInTable')
 		$('div.dataTables_length select').addClass('numberOfRows')

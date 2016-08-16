@@ -8,7 +8,7 @@
 				<form method="post" onsubmit="return checkRequiredEditTask()">
 						<div class="row text-center"><label class="simpleText" for="nameOfEditedTask">Edit name of task:</label></div>
 						<div class="row text-center"><input class="inputForNewStuff" id="nameOfEditedTask" type="text" name="editNameTask" value="${taskUpdating.taskName}" placeholder="name of task ..." autofocus></div>
-						<div class="row text-center"><p id="taskNameRequired" class="requiredField ">Task name is required</p></div>
+						<div class="row text-center"><p id="taskNameRequired" class="requiredField ">Task name is required</p></div><br>
 						
 						
 						<div class="row text-center"><label class="simpleText" for="bodyOfEditedTask">Edit task:</label></div>

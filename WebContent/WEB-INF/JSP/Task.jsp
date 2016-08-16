@@ -19,12 +19,12 @@
 			</form>
 		</div>
 		
-		<div class="rowBackgroundNone col-lg-10 col-md-10 col-sm-9 col-xs-9">
+		<div class="rowBackgroundNone col-lg-9 col-md-9 col-sm-9 col-xs-7">
 			<span class="topicHierarchy">${topic.topic}</span>
 		</div>
 
 
-		<div class="marginHeavy rowBackgroundNone col-lg-2 col-md-2 col-sm-3 col-xs-3">
+		<div class="marginHeavy rowBackgroundNone col-lg-3 col-md-3 col-sm-3 col-xs-5">
 			<c:if test="${sessionScope.user != null}">
 				<form method="post">
 					<input type="hidden" name="action" value="addTask">
@@ -35,7 +35,7 @@
 			<c:if test="${sessionScope.user == null}">
 				<form method="post">
 					<input type="hidden" name="action" value="addTask">
-					<button class="btn-block-right taskStyle" disabled="disabled"
+					<button class="btn-block-right addTaskBtn" disabled="disabled"
 						type="submit">Add new task</button>
 				</form>
 			</c:if>

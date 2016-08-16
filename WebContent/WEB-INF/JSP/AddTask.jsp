@@ -10,7 +10,7 @@
 				<form method="post" onsubmit="return checkRequiredAddTask()">
 						<div class="row text-center"><label class="simpleText" for="nameOfTask">Write name of task:</label></div>
 						<div class="row text-center"><input class="inputForNewStuff" id="nameOfTask" type="text" name="nameOfTask" placeholder="name of task ..." autofocus></div>
-						<div class="row text-center"><p id="taskNameRequired" class="requiredField ">Task name is required</p></div>
+						<div class="row text-center"><p id="taskNameRequired" class="requiredField ">Task name is required</p></div><br>
 						
 						
 						<div class="row text-center"><label class="simpleText" for="bodyOfTask">Write task:</label></div>
