@@ -4,9 +4,9 @@
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 
-<div>&nbsp</div>
 
-<div class="row">
+
+<div class="row marginHeavy">
 	<div class="col-lg-offset-1 col-lg-10">
 		<div class="rowBackgroundNone col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 			<form class="navigationMenu" method="post">

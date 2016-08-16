@@ -6,7 +6,7 @@
 
 
 
-<div class="row">
+<div class="row marginHeavy">
 	<div class="col-lg-offset-1 col-lg-10">
 		
 		<c:if test="${sessionScope.task == null}">

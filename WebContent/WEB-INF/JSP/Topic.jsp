@@ -8,7 +8,7 @@
 <div>&nbsp</div>
 	
 <c:if test="${fn:length(topics) > 0}">
-<div class="row ">
+<div class="row marginHeavy">
 	<div class="col-lg-offset-1 col-lg-10 rowBackground">
 		<table id="topicsTable" class="rowBackground">
 			<thead><tr>

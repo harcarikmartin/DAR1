@@ -21,6 +21,8 @@
 </head>
 
 <body>
+
+
 	<jsp:include page="Header.jsp" />
 
 	<jsp:include page="RegisterForm.jsp" />
@@ -44,13 +46,24 @@
 	<c:if test="${registerForm == null && sessionScope.taskID != null}">
 		<%@ include file="Comment.jsp"%>
 	</c:if>
-	<p>to <a href="/Forum//ForumStatsServlet">Statistics</a></p>
-</body>
+	<div class="row col-lg-12">
+		<div class="footer navbar-fixed-bottom col-lg-offset-1 col-lg-10">
+			<footer >
+			<p >
+				to <a href="/Forum//ForumStatsServlet">Statistics</a>
+			</p>
+			</footer>
+		</div>
+	</div>
 
 
 
 
-<c:if test="${user.role=='admin'}">
+
+
+
+
+	<c:if test="${user.role=='admin'}">
 	<script type="text/javascript">
 	<%@include file="DataTablesAdmin.js"%>
 	</script>

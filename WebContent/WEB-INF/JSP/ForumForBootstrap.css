@@ -17,6 +17,28 @@ body {
 	width: 100%;
 }
 
+/* footer{ */
+/* 	height: 5vh; */
+/* 	 background-color: #404040; */
+/*     color: white; */
+/*     font-weight: bold; */
+/*     position: absolute; */
+/*     margin-top: 10vh; */
+/* } */
+
+footer {
+	background-color: yellow;
+/* background-image: url("images/background.jpg"); */
+	color: white;
+    font-weight: bold;
+    height: 25px;
+    text-align: center;
+}
+
+
+
+
+
 /*Change ROW from bootstrap*/
 .row{
 	margin: 0;
@@ -85,6 +107,10 @@ label, .labels, .simpleText{
 .paddingHeavy{
 	padding-bottom: 3em;
 }
+
+.marginHeavy{
+	margin-bottom: 25px;
+	}
 
 .topicCell{
 	width: 100em;
