@@ -36,6 +36,17 @@ public class UserServices {
 		JpaHelper.commitTransaction();
 	}
 
+	public boolean isDBEmpty(){
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("FROM User u");
+		if(query.getResultList().isEmpty()){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public void changePassword(String userName, String newPassword) {
 		User user = setPresentUser(userName);
 		JpaHelper.beginTransaction();
