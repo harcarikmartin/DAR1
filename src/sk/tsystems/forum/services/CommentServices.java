@@ -23,7 +23,7 @@ public class CommentServices {
 	public List<Comment> printComments(int taskID) {
 		List<Comment> listOfComments= new ArrayList<>();
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("select c from Comment c where c.task=:task");
+		Query query = em.createQuery("select c from Comment c where c.task=:task order by c.addedOn asc");
 		query.setParameter("task", getTask(taskID));
 		listOfComments = query.getResultList();
 		return listOfComments;

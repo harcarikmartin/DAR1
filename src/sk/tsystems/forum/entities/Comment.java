@@ -1,5 +1,7 @@
 package sk.tsystems.forum.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,8 @@ public class Comment {
 
 	@ManyToOne
 	private User user;
+	
+	private Date addedOn;
 
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -28,10 +32,11 @@ public class Comment {
 	@Column(name = "coment", nullable = false)
 	private String comment;
 
-	public Comment(String comment, Task task, User user) {
+	public Comment(String comment, Task task, User user, Date addedOn) {
 		this.comment = comment;
 		this.task = task;
 		this.user = user;
+		this.addedOn = addedOn;
 	}
 
 	public Comment() {
@@ -70,9 +75,18 @@ public class Comment {
 		this.user = user;
 	}
 
-	@Override
-	public String toString() {
-		return "Comment [commentID=" + commentID + ", comment=" + comment + ", task=" + task + ", user=" + user + "]";
+	public Date getAddedOn() {
+		return addedOn;
 	}
 
+	public void setAddedOn(Date addedOn) {
+		this.addedOn = addedOn;
+	}
+
+	@Override
+	public String toString() {
+		return "Comment [commentID=" + commentID + ", user=" + user + ", addedOn=" + addedOn + ", task=" + task
+				+ ", comment=" + comment + "]";
+	}
+	
 }

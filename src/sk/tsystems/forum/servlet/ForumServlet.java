@@ -250,7 +250,8 @@ public class ForumServlet extends HttpServlet {
 		} else if("addTheComment".equals(action)) {
 			// insert comment into DB
 			if(!request.getParameter("comment").trim().isEmpty()) {
-				Comment comment = new Comment(request.getParameter("comment").trim(), new TaskServices().getTask(Integer.parseInt((String) session.getAttribute("taskID"))), (User) session.getAttribute("user"));
+				Date date = new Date(System.currentTimeMillis());
+				Comment comment = new Comment(request.getParameter("comment").trim(), new TaskServices().getTask(Integer.parseInt((String) session.getAttribute("taskID"))), (User) session.getAttribute("user"), date);
 				new CommentServices().addCommentToDatabase(comment);
 				request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
 				request.setAttribute("taskOpened", 1);
