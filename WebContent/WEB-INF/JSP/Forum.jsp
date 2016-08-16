@@ -132,4 +132,15 @@
 	</script>
 </c:if>
 
+<c:if test="${sessionScope.task != null && commentAdding != null}">
+	<script type="text/javascript">
+	<%@ include file="AddComment.js"%>
+	</script>
+</c:if>
+
+<c:if test="${sessionScope.task != null && commentToUpdate != null}">
+	<script type="text/javascript">
+	<%@ include file="UpdateComment.js"%>
+	</script>
+</c:if>
 </html>
