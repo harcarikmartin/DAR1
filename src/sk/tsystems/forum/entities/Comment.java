@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name = "Coment")
 public class Comment {
@@ -19,6 +22,7 @@ public class Comment {
 	private User user;
 
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Task task;
 
 	@Column(name = "coment", nullable = false)

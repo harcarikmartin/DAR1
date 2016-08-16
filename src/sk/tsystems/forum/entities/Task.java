@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Task {
 
@@ -13,7 +16,9 @@ public class Task {
 	@GeneratedValue
 	private int taskID;
 
+	
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Topic topic;
 
 	@ManyToOne
