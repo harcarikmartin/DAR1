@@ -12,7 +12,7 @@
 		<div class="rowBackground col-lg-10 col-md-10 col-sm-9 col-xs-9">
 			<form method="post">
 				<input type="hidden" name="action" value="showComments">
-						<button class="btn-block-left topicStyle" type="submit">${comment}</button>
+						<button class="btn-block-left topicStyle" type="submit">${task.taskName}</button>
 			</form>
 		</div>
 		
@@ -36,21 +36,23 @@
 		
 
 	<c:if test="${fn:length(taskComments) > 0}">
-		<table>
-			<tr>
-				<th class="topicCell text-left paddingHorizontal2 taskHeadStyle">Comment</th>
+	<div class="row ">
+	<div class="rowBackground">
+		<table id="commentTable" class="rowBackground">
+			<thead><tr>
+				<th class="topicCell text-left paddingHorizontal3 taskHeadStyle">Comment</th>
 				<th class="actionCell text-center taskHeadStyle">Added by</th>
 				<th class="actionCell text-center taskHeadStyle">Update</th>
 				<th class="actionCell text-center taskHeadStyle">Remove</th>
-			</tr>
-
+			</tr></thead>
+<tbody>
 			<c:forEach items="${taskComments}" var="taskComment">
 				<tr>
 					<td>
 						<form method="post">
 							<input type="hidden" name="action" value="openComment"> <input
 								type="hidden" name="idOfComment" value="${taskComment.commentID}">
-							<button class="btn-block-left2 taskStyle" type="submit">${taskComment.comment}</button>
+							<button class="btn-block-left3 taskStyle" type="submit">${taskComment.comment}</button>
 						</form>
 					</td>
 					<td class="actionCell text-center taskInfoStyle">${taskComment.user.userName}</td>
@@ -76,7 +78,10 @@
 					</td>
 				</tr>
 			</c:forEach>
+			</tbody>
 		</table>
+		</div>
+		</div>
 		</c:if>
 	</div>
 </div>

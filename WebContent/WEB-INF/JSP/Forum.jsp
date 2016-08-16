@@ -70,6 +70,13 @@
 		} ]
 	});
 	
+	$('#commentTable').dataTable({
+		"columnDefs" : [ {
+			"targets" : 'no-sort',
+			"orderable" : false,
+		} ]
+	});
+	
 		$('div.dataTables_filter input').addClass('searchInTable')
 		$('div.dataTables_length select').addClass('numberOfRows')
 	});

@@ -49,6 +49,11 @@ label, .labels, .simpleText{
 	padding-right: 3em;
 }
 
+.paddingHorizontal3 {
+	padding-left: 5em;
+	padding-right: 5em;
+}
+
 .marginHorizontalLeft {
 	margin-left: 1em;
 }
@@ -85,6 +90,13 @@ label, .labels, .simpleText{
   	width: 100%;
 	text-align: left;
 	padding-left: 3em;
+}
+
+.btn-block-left3 {
+	display: block;
+  	width: 100%;
+	text-align: left;
+	padding-left: 5em;
 }
 
 .topicStyle, .taskStyle{

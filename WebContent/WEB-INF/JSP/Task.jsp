@@ -15,14 +15,23 @@
 						<button class="btn-block-left topicStyle" type="submit">${topic.topic}</button>
 			</form>
 		</div>
-		
-		
+
+
 		<div class=" rowBackground col-lg-2 col-md-2 col-sm-3 col-xs-3">
-			<form method="post">
-				<input type="hidden" name="action" value="addTask">
-				<button class="btn-block-right topicStyle" type="submit">Add
-					new task</button>
-			</form>
+			<c:if test="${sessionScope.user != null}">
+				<form method="post">
+					<input type="hidden" name="action" value="addTask">
+					<button class="btn-block-right taskStyle" type="submit">Add
+						new task</button>
+				</form>
+			</c:if>
+			<c:if test="${sessionScope.user == null}">
+				<form method="post">
+					<input type="hidden" name="action" value="addTask">
+					<button class="btn-block-right taskStyle" disabled="disabled"
+						type="submit">Add new task</button>
+				</form>
+			</c:if>
 		</div>
 
 		<c:if test="${taskAdding != null}">
