@@ -118,7 +118,7 @@ label, .labels, .simpleText{
 }
 
  .commentStyle{
-	height: 10vh;
+	height: 5vh;
 	min-height: 30px;
     padding-left: 5em;
     padding-right: 5em;

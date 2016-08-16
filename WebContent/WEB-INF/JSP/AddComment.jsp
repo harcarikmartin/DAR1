@@ -10,7 +10,7 @@
 				<form method="post" onsubmit="return checkRequiredAddComment()">
 						<div class="row text-center"><label class="simpleText" for="comment">Write comment:</label></div>
 						<div class="row text-center"><textarea class="inputForNewStuff" id="comment" name="comment" spellcheck="true" lang="en"
-							cols="50" rows="5" placeholder="comment ..."></textarea></div>
+							cols="50" rows="5" placeholder="comment ..." autofocus></textarea></div>
 						<div class="row text-center"><p id="commentRequired" class="requiredField ">Comment is required</p></div>
 
 

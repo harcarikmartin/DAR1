@@ -72,21 +72,17 @@
 					</td>
 				</tr>
 			</c:forEach>
-<!-- 			<tr> -->
-<!-- 			<td colspan="4"> -->
-<%-- 						<%@ include file="AddComment.jsp"%> --%>
-			
-<!-- 			</td> -->
-<!-- 			</tr> -->
+
 			</tbody>
 		</table>
 		</div>
 		</div>
 		
 		</c:if>
-							<%@ include file="AddComment.jsp"%>
-		
-<%-- 		<c:if test="${commentAdding != null}"> --%>
-<%-- 		</c:if> --%>
+		<c:if test="${commentToUpdate == null}">
+			<%@ include file="AddComment.jsp"%>
+		</c:if>
+							
+
 	</div>
 </div>
