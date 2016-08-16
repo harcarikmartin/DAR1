@@ -159,7 +159,7 @@ public class CommentServicesTests {
 	@Test
 	public void doesMethodUpdateCommentWork() {
 		String commentBodyBeforeUpdate = commentServices.getComment(getCommentID()).getComment();
-		commentServices.updateComment(getCommentID(), "new comment", testedTask);
+		commentServices.updateComment(getCommentID(), "new comment");
 		String commentBodyAfterUpdate = commentServices.getComment(getCommentID()).getComment();
 		assertNotEquals(commentBodyAfterUpdate, commentBodyBeforeUpdate);
 	}

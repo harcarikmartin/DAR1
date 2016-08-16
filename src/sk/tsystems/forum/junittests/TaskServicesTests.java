@@ -133,7 +133,7 @@ public class TaskServicesTests {
 	public void doesMethodUpdateTaskWork() {
 		// Checks task's 'taskBody' before and after update
 		String taskBodyBeforeUpdate = taskServices.getTask(getTaskID()).getTask();
-		taskServices.updateTask(getTaskID(), nameOfTestingTask, "New name", testedTopic);
+		taskServices.updateTask(getTaskID(),"New task nameeee", "New task bodyyyy");
 		String taskBodyAfterUpdate = taskServices.getTask(getTaskID()).getTask();
 		assertNotEquals(taskBodyAfterUpdate, taskBodyBeforeUpdate);
 	}
