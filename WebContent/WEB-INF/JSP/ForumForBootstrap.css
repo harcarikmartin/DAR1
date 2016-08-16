@@ -27,6 +27,10 @@ body {
   padding: 0;
 }
 
+.rowHeavy{
+	height: 10em;
+}
+
 .rowBackground{
 	background-color: #404040;
 	padding-top: 1em;
@@ -91,7 +95,8 @@ label, .labels, .simpleText{
 }
 
 .creatorOfComment{
-	width: 6%;
+	width: 14%;
+	min-width: 100px;
 	color: white;
 	padding-bottom: 1em;
     padding-top:1em;
@@ -99,10 +104,10 @@ label, .labels, .simpleText{
 
 
 .commentBtn{
-	width: 7%;
+	width: 8%;
 }
 .commentBody{
-	width: 80%;
+	width: 70%;
 }
 
 
@@ -144,6 +149,14 @@ label, .labels, .simpleText{
     font-weight: bold;
 }
 
+.dataTables_empty{
+    background-color: #404040;
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
 .addTaskBtn:disabled, .addTaskBtn:disabled:hover{
     background-color: #404040;
     border: none;
@@ -178,6 +191,7 @@ label, .labels, .simpleText{
     padding-top:1em;
     color: white;
     word-break: break-all;
+    vertical-align: top;
 }
 
 .taskBody{
@@ -220,14 +234,17 @@ label, .labels, .simpleText{
 	color: #F8854E;
 }
 
+p{
+	padding: 0;
+}
+
 .commentInfoStyle{
 	background-color: #404040;
 	color: white;
 	font-weight: bold;
 	font-size: 10px;
-	vertical-align: top;
-	padding-bottom: 1em;
-    padding-top:1em;
+	vertical-align: bottom;
+	
 }
 
 tr.commentTR td, .borderBtm{

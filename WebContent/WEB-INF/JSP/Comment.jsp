@@ -49,10 +49,12 @@
 		<tbody>
 			<c:forEach items="${taskComments}" var="taskComment">
 				<tr class="commentTR">
-				<td class="creatorOfComment text-center paddingHorizontal verticalAlign">${taskComment.user.userName}</td>
-					<td class="commentBody ">
-						<p class="commentStyle rowBackground">${taskComment.comment}</p>
-						<p class="commentStyle rowBackground text-right">${taskComment.addedOn}</p>
+				<td class="creatorOfComment text-center paddingHorizontal verticalAlign">${taskComment.user.userName}
+				<p class="commentInfoStyle rowBackgroundNone text-right">Date of creating:<br>${addedOnDate}</p>
+				<p class="commentInfoStyle rowBackgroundNone text-right">Time of creating:<br>${addedOnTime}</p></td>
+					<td class="commentBody commentStyle rowBackground">
+						${taskComment.comment}
+						
 					</td>
 					
 					
