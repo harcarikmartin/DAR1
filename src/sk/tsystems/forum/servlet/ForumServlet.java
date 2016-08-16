@@ -33,7 +33,9 @@ public class ForumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	List<User> list = new ArrayList<>();
-    HttpSession session;   
+    HttpSession session; 
+    
+    
     User admin = new User();
 	List<Topic> topics = new ArrayList<>();
 	
@@ -50,6 +52,7 @@ public class ForumServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
+		session = request.getSession();
 		
 		if("mainPage".equals(action)) { 
 			// go to main page
@@ -382,7 +385,6 @@ public class ForumServlet extends HttpServlet {
 
 	private void doLogin(HttpServletRequest request) {
 		user = new UserServices().setPresentUser(request.getParameter("userName"));
-		session = request.getSession();
 		session.setAttribute("user", user);
 	}
 	
