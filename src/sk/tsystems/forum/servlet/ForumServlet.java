@@ -272,7 +272,8 @@ public class ForumServlet extends HttpServlet {
 			}
 		} else if("updateComment".equals(action)) {
 			// show form for updating the comment
-			request.setAttribute("commentUpdating", new CommentServices().getComment(Integer.parseInt((String)session.getAttribute("taskID"))));
+			request.setAttribute("commentUpdating", new CommentServices().getComment(Integer.parseInt((String) request.getParameter("CommentToUpdate"))));
+			System.out.println(new CommentServices().getComment(Integer.parseInt((String)request.getParameter("CommentToUpdate"))));
 			request.setAttribute("commentToUpdate", 1);
 		} else if("updateTheComment".equals(action)) {
 			// update of comment
