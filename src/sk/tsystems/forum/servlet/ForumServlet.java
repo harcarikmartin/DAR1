@@ -240,6 +240,7 @@ public class ForumServlet extends HttpServlet {
 		}  else if("openTask".equals(action)) {
 			// open the task
 			session.setAttribute("taskID", request.getParameter("idOfTask"));
+			session.setAttribute("task", new TaskServices().getTask(Integer.parseInt(request.getParameter("idOfTask"))));
 			request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
 			request.setAttribute("taskOpened", 1);
 		} else if("addComment".equals(action)) {
@@ -249,16 +250,19 @@ public class ForumServlet extends HttpServlet {
 		} else if("addTheComment".equals(action)) {
 			// insert comment into DB
 			if(!request.getParameter("comment").trim().isEmpty()) {
-				Comment comment = new Comment(request.getParameter("comment").trim(), new TaskServices().getTask((int) session.getAttribute("task")), (User) session.getAttribute("user"));
-				session.removeAttribute("task");
+				Comment comment = new Comment(request.getParameter("comment").trim(), new TaskServices().getTask(Integer.parseInt((String) session.getAttribute("taskID"))), (User) session.getAttribute("user"));
 				new CommentServices().addCommentToDatabase(comment);
+				request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
+				request.setAttribute("taskOpened", 1);
 			} else {
 				// empty field for comment, could not add to DB
 				request.setAttribute("emptyField", 1);
+				request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
+				request.setAttribute("taskOpened", 1);
 			}
 		} else if("updateComment".equals(action)) {
 			// show form for updating the comment
-//			request.setAttribute("commentUpdating", new CommentServices().getComment(taskID));
+			request.setAttribute("commentUpdating", new CommentServices().getComment(Integer.parseInt((String)session.getAttribute("taskID"))));
 			request.setAttribute("commentToUpdate", 1);
 		} else if("updateTheComment".equals(action)) {
 			// update of comment
@@ -266,17 +270,33 @@ public class ForumServlet extends HttpServlet {
 				// update comment
 				new CommentServices().updateComment(Integer.parseInt(request.getParameter("commentID")), request.getParameter("editComment").trim());
 				// pridat hodnoty, ktore potom treba poslat pre korektne zobrazenie stranky
+				request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
+				request.setAttribute("taskOpened", 1);
 			} else {
 				// return message of empty field/s
 				request.setAttribute("emptyField", 1);
+				request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
+				request.setAttribute("taskOpened", 1);
 			}
 		} else if("removeComment".equals(action)) {
 			// comment removal
 			new CommentServices().removeComment(Integer.parseInt(request.getParameter("CommentToRemove")));
 			// pridat hodnoty, ktore potom treba poslat pre korektne zobrazenie stranky
+			request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
+			request.setAttribute("taskOpened", 1);
 		} else if("showTopics".equals(action)) {
 			// shows all topics for user
-			session.removeAttribute("topic");
+			if(session.getAttribute("topic") != null) {
+				session.removeAttribute("topic");
+			}
+		} else if("showTasks".equals(action)) {
+			// shows all tasks for topic
+			if(session.getAttribute("taskID") != null) {
+				session.removeAttribute("taskID");
+			}
+			if(session.getAttribute("task") != null) {
+				session.removeAttribute("task");
+			}
 		}
 		//forwarding response back to node
 		forwardToList(request, response);
@@ -353,7 +373,7 @@ public class ForumServlet extends HttpServlet {
 	    try {
 	        date = df.parse(dateString);
 	    } catch (ParseException e) {
-	        e.printStackTrace();
+	        System.err.println("Bad DOB format " + e.getLocalizedMessage());
 	    }
 	    if(date != null) {
 	    	new UserServices().registerUser(request.getParameter("userName").trim(), request.getParameter("userPassword").trim(), 
