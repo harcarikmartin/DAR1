@@ -9,25 +9,15 @@
 <div class="row">
 	<div class="col-lg-offset-1 col-lg-10">
 		
-		<div class="rowBackground col-lg-10 col-md-10 col-sm-9 col-xs-9">
+		<div class="rowBackground col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 			<form method="post">
-				<input type="hidden" name="action" value="showComments">
-						<button class="btn-block-left topicStyle" type="submit">${task.taskName}</button>
+				<input type="hidden" name="action" value="showTasks">
+						<button class="btn-block-left2 taskStyle" type="submit">${task.taskName}</button>
 			</form>
 		</div>
-		
-		
-		<div class=" rowBackground col-lg-2 col-md-2 col-sm-3 col-xs-3">
-			<form method="post">
-				<input type="hidden" name="action" value="addComment">
-				<button class="btn-block-right topicStyle" type="submit">Add
-					new comment</button>
-			</form>
+		<div class="rowBackground col-lg-12 col-md-12 col-sm-12 col-xs-12 paddingHorizontal1-2">
+			<p class="commentStyle">${task.task}</p>
 		</div>
-
-		<c:if test="${commentAdding != null}">
-			<%@ include file="AddComment.jsp"%>
-		</c:if>
 
 		<c:if test="${commentToUpdate != null}">
 			<%@ include file="UpdateComment.jsp"%>
@@ -40,22 +30,20 @@
 	<div class="rowBackground">
 		<table id="commentTable" class="rowBackground">
 			<thead><tr>
+			<th class="actionCell text-center taskHeadStyle">Added by</th>
 				<th class="topicCell text-left paddingHorizontal3 taskHeadStyle">Comment</th>
-				<th class="actionCell text-center taskHeadStyle">Added by</th>
+				
 				<th class="actionCell text-center taskHeadStyle">Update</th>
 				<th class="actionCell text-center taskHeadStyle">Remove</th>
 			</tr></thead>
 <tbody>
 			<c:forEach items="${taskComments}" var="taskComment">
 				<tr>
+				<td class="actionCell text-center taskInfoStyle">${taskComment.user.userName}</td>
 					<td>
-						<form method="post">
-							<input type="hidden" name="action" value="openComment"> <input
-								type="hidden" name="idOfComment" value="${taskComment.commentID}">
-							<button class="btn-block-left3 taskStyle" type="submit">${taskComment.comment}</button>
-						</form>
+						<p class="commentStyle">${taskComment.comment}</p>
 					</td>
-					<td class="actionCell text-center taskInfoStyle">${taskComment.user.userName}</td>
+					
 					
 					<td class="actionCell text-center taskNoButton">
 					<c:if test="${taskComment.user.userID == sessionScope.user.userID}">
@@ -78,10 +66,21 @@
 					</td>
 				</tr>
 			</c:forEach>
+<!-- 			<tr> -->
+<!-- 			<td colspan="4"> -->
+<%-- 						<%@ include file="AddComment.jsp"%> --%>
+			
+<!-- 			</td> -->
+<!-- 			</tr> -->
 			</tbody>
 		</table>
 		</div>
 		</div>
+		
 		</c:if>
+							<%@ include file="AddComment.jsp"%>
+		
+<%-- 		<c:if test="${commentAdding != null}"> --%>
+<%-- 		</c:if> --%>
 	</div>
 </div>

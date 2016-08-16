@@ -9,6 +9,7 @@
 <div class="row">
 	<div class="col-lg-offset-1 col-lg-10">
 		
+		<c:if test="${sessionScope.task == null}">
 		<div class="rowBackground col-lg-10 col-md-10 col-sm-9 col-xs-9">
 			<form method="post">
 				<input type="hidden" name="action" value="showTopics">
@@ -33,6 +34,8 @@
 				</form>
 			</c:if>
 		</div>
+</c:if>
+
 
 		<c:if test="${taskAdding != null}">
 			<%@ include file="AddTask.jsp"%>

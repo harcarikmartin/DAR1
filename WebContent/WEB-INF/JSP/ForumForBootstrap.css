@@ -44,6 +44,11 @@ label, .labels, .simpleText{
 	padding-right: 1em;
 }
 
+.paddingHorizontal1-2 {
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
 .paddingHorizontal2 {
 	padding-left: 3em;
 	padding-right: 3em;
@@ -106,6 +111,17 @@ label, .labels, .simpleText{
     border: none;
     color: white;
     font-weight: bold;
+}
+
+ .commentStyle{
+	height: 5vh;
+	min-height: 30px;
+    background-color: #404040;
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-bottom: 1em;
+    padding-top:1em;
+    color: white;
 }
 
 .taskStyle:disabled, .taskStyle:disabled:hover{
