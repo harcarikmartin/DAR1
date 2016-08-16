@@ -51,7 +51,15 @@ public class ForumServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		
-		if ("login".equals(action) && "userName" != null && "userPassword" != null) {
+		if("mainPage".equals(action)) { 
+			// go to main page
+			try {
+				session.removeAttribute("topic");
+				session.removeAttribute("taskID");
+			} catch (NullPointerException e) {
+				System.err.println("session is empty " + e.getMessage());
+			}
+		} else if ("login".equals(action) && "userName" != null && "userPassword" != null) {
 			if((new UserServices().getUserID(request.getParameter("userName")) == 0)) {
 				// user does not exist
 				request.setAttribute("error", 5);
@@ -269,23 +277,7 @@ public class ForumServlet extends HttpServlet {
 		} else if("showTopics".equals(action)) {
 			// shows all topics for user
 			session.removeAttribute("topic");
-		} else if("generate".equals(action)) {	
-			// development action
-			admin.setUserName("jozko");
-			admin.setUserPassword("jozko");
-			admin.setRole("admin");
-			admin.setStatus("confirmed");
-			String dateString = "2016-08-01";
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = null;
-			try {
-				date = df.parse(dateString);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			admin.setBirthDate(date);
-			new UserServices().addUser(admin);
-		 }
+		}
 		//forwarding response back to node
 		forwardToList(request, response);
 	}
@@ -401,6 +393,23 @@ public class ForumServlet extends HttpServlet {
 
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// adds admin to DB if empty
+		if(new UserServices().isDBEmpty()) {
+			admin.setUserName("jozko");
+			admin.setUserPassword("jozko");
+			admin.setRole("admin");
+			admin.setStatus("confirmed");
+			String dateString = "2016-08-01";
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = null;
+			try {
+				date = df.parse(dateString);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			admin.setBirthDate(date);
+			new UserServices().addUser(admin);
+		}
 		request.setAttribute("topics", new TopicServices().printTopics());
 		request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
