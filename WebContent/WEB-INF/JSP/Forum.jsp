@@ -70,12 +70,12 @@
 		} ]
 	});
 	
-	$('#commentTable').dataTable({
-		"columnDefs" : [ {
-			"targets" : 'no-sort',
-			"orderable" : false,
-		} ]
-	});
+// 	$('#commentTable').dataTable({
+// 		"columnDefs" : [ {
+// 			"targets" : 'no-sort',
+// 			"orderable" : false,
+// 		} ]
+// 	});
 	
 		$('div.dataTables_filter input').addClass('searchInTable')
 		$('div.dataTables_length select').addClass('numberOfRows')
@@ -132,7 +132,7 @@
 	</script>
 </c:if>
 
-<c:if test="${sessionScope.task != null && commentAdding != null}">
+<c:if test="${sessionScope.task != null}">
 	<script type="text/javascript">
 	<%@ include file="AddComment.js"%>
 	</script>

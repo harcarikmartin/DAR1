@@ -34,7 +34,7 @@
 	<c:if test="${fn:length(taskComments) > 0}">
 	<div class="row ">
 	<div class="rowBackground">
-		<table id="commentTable" class=" rowBackground">
+		<table id="commentTable" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground">
 			<thead><tr>
 <!-- 			<th class="actionCell text-center taskHeadStyle">Added by</th> -->
 <!-- 				<th class="topicCell text-left paddingHorizontal3 taskHeadStyle">Comment</th> -->
