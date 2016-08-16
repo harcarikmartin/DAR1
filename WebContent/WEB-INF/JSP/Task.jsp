@@ -12,7 +12,7 @@
 		<div class="rowBackground col-lg-10 col-md-10 col-sm-9 col-xs-9">
 			<form method="post">
 				<input type="hidden" name="action" value="showTopics">
-						<button class="btn-block-left topicStyle" type="submit">${topic}</button>
+						<button class="btn-block-left topicStyle" type="submit">${topic.topic}</button>
 			</form>
 		</div>
 		
@@ -34,24 +34,38 @@
 		</c:if>
 
 		
-
 	<c:if test="${fn:length(topicTasks) > 0}">
-		<table>
-			<tr>
+	
+	<div class="row ">
+	<div class="rowBackground">
+		<table id="tasksTable" class="rowBackground">
+			
+			<thead><tr>
 				<th class="topicCell text-left paddingHorizontal2 taskHeadStyle">Task</th>
 				<th class="actionCell text-center taskHeadStyle">Added by</th>
 				<th class="actionCell text-center taskHeadStyle">Update</th>
 				<th class="actionCell text-center taskHeadStyle">Remove</th>
-			</tr>
+			</tr></thead>
 
+<tbody>
 			<c:forEach items="${topicTasks}" var="topicTask">
 				<tr>
 					<td>
+						<c:if test="${sessionScope.user != null}">
 						<form method="post">
 							<input type="hidden" name="action" value="openTask"> <input
 								type="hidden" name="idOfTask" value="${topicTask.taskID}">
 							<button class="btn-block-left2 taskStyle" type="submit">${topicTask.taskName}</button>
 						</form>
+						</c:if>
+						
+						<c:if test="${sessionScope.user == null}">
+						<form method="post">
+							<input type="hidden" name="action" value="openTask"> <input
+								type="hidden" name="idOfTask" value="${topicTask.taskID}">
+							<button class="btn-block-left2 taskStyle" disabled="disabled" type="submit">${topicTask.taskName}</button>
+						</form>
+						</c:if>
 					</td>
 					<td class="actionCell text-center taskInfoStyle">${topicTask.user.userName}</td>
 					
@@ -75,8 +89,12 @@
 						</c:if>
 					</td>
 				</tr>
+					
 			</c:forEach>
+			</tbody>
 		</table>
+		</div>
+</div>
 		</c:if>
 	</div>
 </div>

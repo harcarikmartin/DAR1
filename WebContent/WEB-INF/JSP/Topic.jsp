@@ -10,7 +10,7 @@
 <c:if test="${fn:length(topics) > 0}">
 <div class="row ">
 	<div class="col-lg-offset-1 col-lg-10 rowBackground">
-		<table id="table_id" class="rowBackground">
+		<table id="topicsTable" class="rowBackground">
 			<thead><tr>
 				<th class="topicCell text-left paddingHorizontal topicHeadStyle">Topic</th>
 				<th class="actionCell text-center topicHeadStyle">Created by</th>

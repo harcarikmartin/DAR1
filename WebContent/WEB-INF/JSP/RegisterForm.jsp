@@ -77,6 +77,8 @@
 								<p class="warning">Username already exists!</p>
 							</c:if> <c:if test="${error == '4'}"> 
 								<p class="warning">Not registered yet!</p>
+							</c:if> <c:if test="${error == '9'}"> 
+								<p class="warning">Date of birth is not in proper format!</p>
 							</c:if></td>
 						
 					</tr>

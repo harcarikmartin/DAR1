@@ -37,14 +37,12 @@
 		<%@ include file="Topic.jsp"%>
 	</c:if>
 	
-<%-- 	<%@ include file="Task.jsp"%> --%>
-
 	<c:if test="${registerForm == null && sessionScope.topic != null}">
 		<%@ include file="Task.jsp"%>
 	</c:if>
 	
-	<c:if test="${registerForm == null && taskOpened != null}">
-<%-- 		<%@ include file="Comment.jsp"%> --%>
+	<c:if test="${registerForm == null && sessionScope.taskID != null}">
+		<%@ include file="Comment.jsp"%>
 	</c:if>
 	
 </body>
@@ -57,17 +55,25 @@
   	 //  $('#table_id').dataTable({bFilter: false, bInfo: false});	
       
       
-  		$('#table_id').dataTable( {
-  	        "columnDefs": [ {
-  	          "targets": 'no-sort',
-  	          "orderable": false,
-  	    } ]
-  	} );
-    
-  		$('div.dataTables_filter input').addClass('searchInTable')
-  		$('div.dataTables_length select').addClass('numberOfRows')
-} );
-  	</script>
+
+	$('#topicsTable').dataTable({
+			"columnDefs" : [ {
+				"targets" : 'no-sort',
+				"orderable" : false,
+			} ]
+		});
+
+	$('#tasksTable').dataTable({
+		"columnDefs" : [ {
+			"targets" : 'no-sort',
+			"orderable" : false,
+		} ]
+	});
+	
+		$('div.dataTables_filter input').addClass('searchInTable')
+		$('div.dataTables_length select').addClass('numberOfRows')
+	});
+</script>
 
 
 
