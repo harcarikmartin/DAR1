@@ -347,6 +347,7 @@ public class ForumServlet extends HttpServlet {
 	private void doRegister(HttpServletRequest request) {
 		user = null;
 		String dateString = request.getParameter("birthdate");
+		System.out.println(request.getParameter("birthdate"));
 	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
 	    Date date = null;
 	    try {
@@ -354,9 +355,13 @@ public class ForumServlet extends HttpServlet {
 	    } catch (ParseException e) {
 	        e.printStackTrace();
 	    }
-		new UserServices().registerUser(request.getParameter("userName").trim(), request.getParameter("userPassword").trim(), 
+	    if(date != null) {
+	    	new UserServices().registerUser(request.getParameter("userName").trim(), request.getParameter("userPassword").trim(), 
 				date, request.getParameter("role"), request.getParameter("status"));
-		request.setAttribute("succesRegister", 1);
+			request.setAttribute("succesRegister", 1);
+	    } else {
+	    	request.setAttribute("error", 9);
+	    }
 	}
 
 	private void incorrectPassword(HttpServletRequest request) {
