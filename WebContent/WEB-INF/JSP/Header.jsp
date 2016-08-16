@@ -13,7 +13,7 @@
 	<div class="col-lg-offset-1 col-lg-10 text-center">
 	<form method="post">
 		<input type="hidden" name="action" value="mainPage">
-		<button class="buttonStyle fullWidth" type="submit">forum</button>
+		<button class=" fullWidth mainPage" type="submit">FORUM</button>
 	</form>
 	</div>
 </div>

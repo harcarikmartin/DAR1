@@ -16,8 +16,8 @@
 				<th class="actionCell text-center topicHeadStyle">Created by</th>
 				<th class="actionCell text-center topicHeadStyle">Visibility</th>
 				<c:if test="${user.role == 'admin'}">
-					<th class="actionCell text-center topicHeadStyle">Update</th>
-					<th class="actionCell text-center topicHeadStyle">Remove</th>
+					<th class="actionCell text-center topicHeadStyle no-sort">Update</th>
+					<th class="actionCell text-center topicHeadStyle no-sort">Remove</th>
 				</c:if>
 			</tr></thead>
 			<tbody>

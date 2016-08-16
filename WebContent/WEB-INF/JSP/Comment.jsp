@@ -8,69 +8,75 @@
 
 <div class="row">
 	<div class="col-lg-offset-1 col-lg-10">
+		<div class="rowBackgroundNone col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+			<form class="navigationMenu" method="post">
+				<input type="hidden" name="action" value="showTopics">
+						<button class="marginHorizontalLeft marginVertical buttonStyle" type="submit">Go to topics</button>
+			</form>
+			<form class="navigationMenu" method="post">
+				<input type="hidden" name="action" value="showTasks">
+						<button class="marginHorizontalLeft marginVertical buttonStyle" type="submit">Go to tasks</button>
+			</form>
+		</div>
 		
-		<div class="rowBackground col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-			<form method="post">
-				<input type="hidden" name="action" value="showTasks">
-						<button class="btn-block-left taskStyle" type="submit">${topic.topic}</button>
-			</form>
+		
+		<c:if test="${sessionScope.task != null}">
+		<div class="rowBackgroundNone col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+		
+						<span class="topicHierarchy">${topic.topic}</span>
+			
 		</div>
-		<div class="rowBackground col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-			<form method="post">
-				<input type="hidden" name="action" value="showTasks">
-						<button class="btn-block-left2 taskStyle" type="submit">${task.taskName}</button>
-			</form>
+		<div class="rowBackgroundNone col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+			
+						<span class="taskHierarchy">${task.taskName}</span>
+		
 		</div>
-		<div class="rowBackground col-lg-12 col-md-12 col-sm-12 col-xs-12 paddingHorizontal1-2">
-			<p class="commentStyle">${task.task}</p>
+		<div class="rowBackgroundNone col-lg-12 col-md-12 col-sm-12 col-xs-12 paddingHorizontal1-2 borderBtm">
+			<p class="taskBody">${task.task}</p>
 		</div>
 
 		<c:if test="${commentToUpdate != null}">
 			<%@ include file="UpdateComment.jsp"%>
 		</c:if>
-
+</c:if>
 		
 
 	<c:if test="${fn:length(taskComments) > 0}">
 	<div class="row ">
 	<div class="rowBackground">
-		<table id="commentTable" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground">
-			<thead><tr>
-<!-- 			<th class="actionCell text-center taskHeadStyle">Added by</th> -->
-<!-- 				<th class="topicCell text-left paddingHorizontal3 taskHeadStyle">Comment</th> -->
-				
-<!-- 				<th class="actionCell text-center taskHeadStyle">Update</th> -->
-<!-- 				<th class="actionCell text-center taskHeadStyle">Remove</th> -->
-			</tr></thead>
-<tbody>
+		<table id="commentTable" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground ">
+
+		<tbody>
 			<c:forEach items="${taskComments}" var="taskComment">
 				<tr class="commentTR">
-				<td class="actionCell text-center commentInfoStyle">${taskComment.user.userName}</td>
-					<td>
+				<td class="creatorOfComment text-center paddingHorizontal verticalAlign">${taskComment.user.userName}</td>
+					<td class="commentBody ">
 						<p class="commentStyle rowBackground">${taskComment.comment}</p>
+						<p class="commentStyle rowBackground text-right">${taskComment.addedOn}</p>
 					</td>
 					
 					
-					<td class="actionCell text-center taskNoButton">
+					<td class="commentBtn text-center taskNoButton">
 					<c:if test="${taskComment.user.userID == sessionScope.user.userID}">
 						<form method="post">
 							<input type="hidden" name="CommentToUpdate" value="${taskComment.commentID}">
 							<input type="hidden" name="action" value="updateComment">
-							<button class="btn-block taskStyle btn-max" type="submit">Update</button>
+							<button class="btn-block taskStyle" type="submit">Update</button>
 						</form>
 					</c:if>
 					</td>
 					
-					<td class="actionCell text-center taskNoButton">
+					<td class="commentBtn text-center taskNoButton">
 						<c:if test="${taskComment.user.userID == sessionScope.user.userID}">
 						<form method="post">
 							<input type="hidden" name="CommentToRemove" value="${taskComment.commentID}">
 							<input type="hidden" name="action" value="removeComment">
-							<button class="btn-block taskStyle btn-max" type="submit">Remove</button>
+							<button class="btn-block taskStyle" type="submit">Remove</button>
 						</form>
 						</c:if>
 					</td>
 				</tr>
+
 			</c:forEach>
 
 			</tbody>
@@ -79,7 +85,7 @@
 		</div>
 		
 		</c:if>
-		<c:if test="${commentToUpdate == null}">
+		<c:if test="${sessionScope.task != null && commentToUpdate == null}">
 			<%@ include file="AddComment.jsp"%>
 		</c:if>
 							

@@ -33,6 +33,11 @@ body {
 	padding-bottom: 1em;
 }
 
+.rowBackgroundNone{
+	background-color: #404040;
+	padding: 0;
+}
+
 label, .labels, .simpleText{
 	color: white;
 	padding-left: 1em;
@@ -68,6 +73,15 @@ label, .labels, .simpleText{
 	margin-right: 1em;
 }
 
+.marginVertical{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.marginHeavy{
+	margin-bottom: 3em;
+}
+
 .topicCell{
 	width: 100em;
 }
@@ -76,9 +90,22 @@ label, .labels, .simpleText{
 	width: 10em;
 }
 
-.btn-max{
-	height: 80px;
+.creatorOfComment{
+	width: 6%;
+	color: white;
+	padding-bottom: 1em;
+    padding-top:1em;
 }
+
+
+.commentBtn{
+	width: 7%;
+}
+.commentBody{
+	width: 80%;
+}
+
+
 
 .btn-block-left {
 	display: block;
@@ -117,15 +144,54 @@ label, .labels, .simpleText{
     font-weight: bold;
 }
 
+.addTaskBtn{
+    background-color: #404040;
+    border: none;
+    color: #F8854E;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.addTaskBtn{
+    background-color: #404040;
+    border: none;
+    color: #F8854E;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.addTaskBtn:hover{
+    background-color: #804d00;
+    border: none;
+    color: white;
+    font-weight: bolder;
+    font-size: x-large;
+    text-shadow: 2px 2px 4px black;
+}
+
  .commentStyle{
-	height: 5vh;
-	min-height: 30px;
-    padding-left: 5em;
-    padding-right: 5em;
+/* 	height: 5vh; */
+/* 	min-height: 30px; */
+    padding-left: 1em;
+    padding-right: 1em;
     padding-bottom: 1em;
     padding-top:1em;
     color: white;
     word-break: break-all;
+}
+
+.taskBody{
+	height: 5vh;
+	min-height: 30px;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    padding-top:1em;
+    margin-left: 4em;
+    margin-right: 4em;
+    color: white;
+    word-break: break-all;
+    background: #4d4d4d;
 }
 
 .taskStyle:disabled, .taskStyle:disabled:hover{
@@ -146,6 +212,14 @@ label, .labels, .simpleText{
 	padding-top: 0;
 }
 
+.mainPage{
+	font-size: 80pt;
+	height: 100pt;
+	background-color: #404040;
+	border: none;
+	color: #F8854E;
+}
+
 .commentInfoStyle{
 	background-color: #404040;
 	color: white;
@@ -156,13 +230,26 @@ label, .labels, .simpleText{
     padding-top:1em;
 }
 
-tr.commentTR td{
+tr.commentTR td, .borderBtm{
 	 border-bottom:2px solid #F8854E;
+	 overflow: hidden;
 }
 
-/* .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th { */
-/*    background-color: #666666; */
-/* } */
+.topicHierarchy{
+	font-weight: bold;
+	padding-left: 1em;
+	font-size: x-large;
+}
+
+.taskHierarchy{
+	font-weight: bold;
+	padding-left: 3em;
+	font-size: large;
+}
+
+span {
+	color: #F8854E;
+}
 
 .taskNoButton{
 	background-color: #404040;
@@ -259,7 +346,7 @@ tr.commentTR td{
     text-shadow: 2px 2px 4px black;
 }
 
-.userMenu {
+.userMenu, .navigationMenu {
     display: inline-block;
 }
 

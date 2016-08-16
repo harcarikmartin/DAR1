@@ -11,19 +11,24 @@
 		
 		<c:if test="${sessionScope.task == null}">
 		<div>&nbsp</div>
-		<div class="rowBackground col-lg-10 col-md-10 col-sm-9 col-xs-9">
-			<form method="post">
+		
+		<div class="rowBackgroundNone col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+			<form class="navigationMenu" method="post">
 				<input type="hidden" name="action" value="showTopics">
-						<button class="btn-block-left topicStyle" type="submit">${topic.topic}</button>
+						<button class="marginHorizontalLeft marginVertical buttonStyle" type="submit">Go to topics</button>
 			</form>
+		</div>
+		
+		<div class="rowBackgroundNone col-lg-10 col-md-10 col-sm-9 col-xs-9">
+			<span class="topicHierarchy">${topic.topic}</span>
 		</div>
 
 
-		<div class=" rowBackground col-lg-2 col-md-2 col-sm-3 col-xs-3">
+		<div class="marginHeavy rowBackgroundNone col-lg-2 col-md-2 col-sm-3 col-xs-3">
 			<c:if test="${sessionScope.user != null}">
 				<form method="post">
 					<input type="hidden" name="action" value="addTask">
-					<button class="btn-block-right taskStyle" type="submit">Add
+					<button class="btn-block-right addTaskBtn" type="submit">Add
 						new task</button>
 				</form>
 			</c:if>
@@ -49,15 +54,15 @@
 		
 	<c:if test="${fn:length(topicTasks) > 0}">
 	
-	<div class="row ">
-	<div class="rowBackground">
+	<div class="row">
+	<div class="rowBackground ">
 		<table id="tasksTable" class="rowBackground">
 			
 			<thead><tr>
 				<th class="topicCell text-left paddingHorizontal2 taskHeadStyle">Task</th>
 				<th class="actionCell text-center taskHeadStyle">Added by</th>
-				<th class="actionCell text-center taskHeadStyle">Update</th>
-				<th class="actionCell text-center taskHeadStyle">Remove</th>
+				<th class="actionCell text-center taskHeadStyle no-sort">Update</th>
+				<th class="actionCell text-center taskHeadStyle no-sort">Remove</th>
 			</tr></thead>
 
 <tbody>
