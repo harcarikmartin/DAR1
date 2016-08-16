@@ -56,6 +56,7 @@ public class ForumServlet extends HttpServlet {
 			try {
 				session.removeAttribute("topic");
 				session.removeAttribute("taskID");
+				session.removeAttribute("task");
 			} catch (NullPointerException e) {
 				System.err.println("session is empty " + e.getMessage());
 			}
@@ -134,7 +135,15 @@ public class ForumServlet extends HttpServlet {
 		} else if("logout".equals(action)) {
 			//logout case
 			logout(request);
-			session.removeAttribute("topic");
+			if(session.getAttribute("topic") != null) {
+				session.removeAttribute("topic");
+			}
+			if(session.getAttribute("taskID") != null) {
+				session.removeAttribute("taskID");
+			}
+			if(session.getAttribute("task") != null) {
+				session.removeAttribute("task");
+			}
 		} else if("showMyTopics".equals(action)) {
 			// list topics that user subscribed for
 			request.setAttribute("listTopics", 1);	
@@ -347,7 +356,9 @@ public class ForumServlet extends HttpServlet {
 	}
 
 	private void logout(HttpServletRequest request) {
-		session.setAttribute("user", null);
+		if(session.getAttribute("user") != null) {
+			session.removeAttribute("user");
+		}
 	}
 
 	private void existingUser(HttpServletRequest request) {
