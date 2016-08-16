@@ -78,8 +78,8 @@ label, .labels, .simpleText{
 	margin-bottom: 1em;
 }
 
-.marginHeavy{
-	margin-bottom: 3em;
+.paddingHeavy{
+	padding-bottom: 3em;
 }
 
 .topicCell{
@@ -144,7 +144,7 @@ label, .labels, .simpleText{
     font-weight: bold;
 }
 
-.addTaskBtn{
+.addTaskBtn:disabled, .addTaskBtn:disabled:hover{
     background-color: #404040;
     border: none;
     color: #F8854E;
@@ -160,7 +160,7 @@ label, .labels, .simpleText{
     font-size: x-large;
 }
 
-.addTaskBtn:hover{
+.addTaskBtn:enabled:hover{
     background-color: #804d00;
     border: none;
     color: white;
@@ -239,6 +239,7 @@ tr.commentTR td, .borderBtm{
 	font-weight: bold;
 	padding-left: 1em;
 	font-size: x-large;
+	height: 5em;
 }
 
 .taskHierarchy{
