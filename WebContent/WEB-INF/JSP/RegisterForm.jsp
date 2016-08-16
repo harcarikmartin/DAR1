@@ -62,7 +62,7 @@
 					<tr>
 						<td class="registerCellStyle text-center"></td>
 						<td class="registerCellStyle text-left">
-							<p class="registerInfoStyle">* dd.mm.yyyy</p>
+							<p class="registerInfoStyle">* yyyy-mm-dd</p>
 						</td>
 						<td class="registerCellStyle text-center"></td>
 					</tr>
