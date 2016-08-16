@@ -4,16 +4,17 @@
 
 
 <div class="row col-lg-12">
-	<div class=" col-lg-offset-1 col-lg-10 text-center">
-		<form method="post">
-			<input type="hidden" name="action" value="generate">
-			<button class="buttonStyle fullWidth" type="submit">Generate</button>
-		</form>
-	</div>
-	<div class="row">
-		<a
-			class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 forumHeader text-center"
-			href="/Forum/Forum"> F-O-R-U-M </a>
+<!-- 	<div class=" col-lg-offset-1 col-lg-10 text-center"> -->
+<!-- 		<form method="post"> -->
+<!-- 			<input type="hidden" name="action" value="generate"> -->
+<!-- 			<button class="buttonStyle fullWidth" type="submit">Generate</button> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+	<div class="col-lg-offset-1 col-lg-10 text-center">
+	<form method="post">
+		<input type="hidden" name="action" value="mainPage">
+		<button class="buttonStyle fullWidth" type="submit">forum</button>
+	</form>
 	</div>
 </div>
 
