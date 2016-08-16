@@ -48,38 +48,25 @@
 </body>
 
 
-<script>
-  	$(document).ready( function () {
-    //https://datatables.net/
-     // pre nezobrazovanie ponuky search 
-  	 //  $('#table_id').dataTable({bFilter: false, bInfo: false});	
-      
-      
-
-	$('#topicsTable').dataTable({
-			"columnDefs" : [ {
-				"targets" : 'no-sort',
-				"orderable" : false,
-				"searchable": false, "targets": [ 3, 4 ],
-			} ]
-		});
-
-	$('#tasksTable').dataTable({
-		"columnDefs" : [ {
-			"targets" : 'no-sort',
-			"orderable" : false,
-			"searchable": false, "targets": [ 2, 3 ],
-		} ]
-	});
-	
-
-	
-		$('div.dataTables_filter input').addClass('searchInTable')
-		$('div.dataTables_length select').addClass('numberOfRows')
-	});
-</script>
 
 
+<c:if test="${user.role=='admin'}">
+	<script type="text/javascript">
+	<%@include file="DataTablesAdmin.js"%>
+	</script>
+</c:if>
+
+<c:if test="${user.role=='user'}">
+	<script type="text/javascript">
+	<%@include file="DataTablesUserGuest.js"%>
+	</script>
+</c:if>
+
+<c:if test="${user.role==null}">
+	<script type="text/javascript">
+	<%@include file="DataTablesUserGuest.js"%>
+	</script>
+</c:if>
 
 <c:if test="${registerForm != null}">
 	<script type="text/javascript">
