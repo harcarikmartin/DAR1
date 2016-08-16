@@ -289,6 +289,12 @@ public class ForumServlet extends HttpServlet {
 			if(session.getAttribute("topic") != null) {
 				session.removeAttribute("topic");
 			}
+			if(session.getAttribute("taskID") != null) {
+				session.removeAttribute("taskID");
+			}
+			if(session.getAttribute("task") != null) {
+				session.removeAttribute("task");
+			}
 		} else if("showTasks".equals(action)) {
 			// shows all tasks for topic
 			if(session.getAttribute("taskID") != null) {
