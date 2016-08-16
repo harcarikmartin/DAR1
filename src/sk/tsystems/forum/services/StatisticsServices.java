@@ -42,7 +42,7 @@ public class StatisticsServices {
 	
 	public int getApprovedCount() {
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("select count(*) from User u where u.status = 'approved'");
+		Query query = em.createQuery("select count(*) from User u where u.status = 'confirmed'");
 		if(query.getResultList().isEmpty()) {
 			em.close();
 			return 0;
