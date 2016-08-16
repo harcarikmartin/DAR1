@@ -44,7 +44,7 @@
 	<c:if test="${registerForm == null && sessionScope.taskID != null}">
 		<%@ include file="Comment.jsp"%>
 	</c:if>
-	
+	<p>to <a href="/Forum//ForumStatsServlet">Statistics</a></p>
 </body>
 
 

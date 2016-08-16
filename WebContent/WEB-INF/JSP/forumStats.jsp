@@ -29,5 +29,6 @@
 			</ul>
 		<li>Comments: <b>${commentsCount}</b></li>
 	</ol>
+	<p>to <a href="/Forum/Forum">Forum</a></p>
 </body>
 </html>
