@@ -30,6 +30,7 @@ public class ForumStatsServlet extends HttpServlet {
 		request.setAttribute("publicTopicsCount", new StatisticsServices().getPublicTopicsCount());
 		request.setAttribute("privateTopicsCount", new StatisticsServices().getPrivateTopicsCount());
 		request.setAttribute("mostAnsweredTask", new StatisticsServices().getMostAnsweredTask());
+		request.setAttribute("commentsForMostAnsweredTask", new StatisticsServices().getNumberOfCommentsForMostAnsweredTask());
 		request.getRequestDispatcher("/WEB-INF/JSP/forumStats.jsp").forward(request, response);
 	}
 

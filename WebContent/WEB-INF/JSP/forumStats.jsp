@@ -25,7 +25,7 @@
 			</ul>
 		<li>Tasks: <b>${tasksCount}</b></li>
 			<ul>
-				<li>Most answered task: <b>${mostAnsweredTask}</b></li>
+				<li>Most answered task is <b>${mostAnsweredTask}</b> with <b>${commentsForMostAnsweredTask}</b> comments.</li>
 			</ul>
 		<li>Comments: <b>${commentsCount}</b></li>
 	</ol>

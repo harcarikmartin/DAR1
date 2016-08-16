@@ -127,4 +127,15 @@ public class StatisticsServices {
 			return (String) query.getResultList().get(0);
 		}
 	}
+	
+	public int getNumberOfCommentsForMostAnsweredTask() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select max(count(c.task.taskName)) from Comment c group by c.task.taskName order by count(c.task.taskName) desc");
+		if(query.getResultList().isEmpty()) {
+			em.close();
+			return 0;
+		} else {
+			return Math.toIntExact((long) query.getResultList().get(0));
+		}
+	}
 }
