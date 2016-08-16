@@ -303,6 +303,9 @@ public class ForumServlet extends HttpServlet {
 			if(session.getAttribute("task") != null) {
 				session.removeAttribute("task");
 			}
+			Topic topic = (Topic) session.getAttribute("topic");
+			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
+			request.setAttribute("topicOpened", 1);
 		}
 		//forwarding response back to node
 		forwardToList(request, response);
