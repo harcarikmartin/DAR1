@@ -193,11 +193,17 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("taskAdding", 1);
 		} else if("addTheTask".equals(action)) {
 			// insert task into DB
-			Task task = new Task(request.getParameter("nameOfTask").trim(), request.getParameter("bodyOfTask").trim(), (Topic) session.getAttribute("topic"), (User) session.getAttribute("user"));
-			new TaskServices().addTaskToDatabase(task);
-			Topic topic = (Topic) session.getAttribute("topic");
-			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
-			request.setAttribute("topicOpened", 1);
+			if(!request.getParameter("nameOfTask").trim().isEmpty() && !request.getParameter("bodyOfTask").trim().isEmpty()) {
+				// add the task to DB
+				Task task = new Task(request.getParameter("nameOfTask").trim(), request.getParameter("bodyOfTask").trim(), (Topic) session.getAttribute("topic"), (User) session.getAttribute("user"));
+				new TaskServices().addTaskToDatabase(task);
+				Topic topic = (Topic) session.getAttribute("topic");
+				request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
+				request.setAttribute("topicOpened", 1);
+			} else {
+				// empty field/s
+				request.setAttribute("emptyField", 1);
+			}
 		} else if("updateTask".equals(action)) {
 			// show form for updating the task
 			request.setAttribute("taskUpdating", new TaskServices().getTask(Integer.parseInt(request.getParameter("taskToUpdate"))));
@@ -206,7 +212,7 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("topicOpened", 1);
 			request.setAttribute("taskToUpdate", 1);
 		} else if("updateTheTask".equals(action)) {
-			// update of task, rename, change of visibility
+			// update of task, rename, change body of task
 			if(!request.getParameter("editNameTask").trim().isEmpty() && !request.getParameter("editBodyTask").trim().isEmpty()) {
 				// update task
 				new TaskServices().updateTask(Integer.parseInt(request.getParameter("taskID")), request.getParameter("editNameTask").trim(), request.getParameter("editBodyTask").trim());
@@ -217,18 +223,6 @@ public class ForumServlet extends HttpServlet {
 				// return message of empty field/s
 				request.setAttribute("emptyField", 1);
 			}
-//			if(request.getParameter("original").equals(request.getParameter("editTask")) && 
-//					!(new TopicServices().setPresentTopic(request.getParameter("original")).getVisibility().equals(request.getParameter("visibility1"))) || 
-//					!request.getParameter("original").equals(request.getParameter("editTask")) && 
-//					new TopicServices().setPresentTopic(request.getParameter("editTask")) == null) {
-//				updateTopicSubscriptions(request);
-//				new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
-//				request.setAttribute("listTopics", 1);
-//			} else if(new TopicServices().setPresentTopic(request.getParameter("editTopic")) != null) {
-//				// topic already exists
-//				request.setAttribute("topicToUpdate", 1);
-//				request.setAttribute("existingTopic", 1);
-//			}
 		} else if("removeTask".equals(action)) {
 			// task removal
 			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskToRemove")));
@@ -246,42 +240,42 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("taskOpened", 1);
 		} else if("addTheComment".equals(action)) {
 			// insert comment into DB
-			Comment comment = new Comment(request.getParameter("comment").trim(), new TaskServices().getTask((int) session.getAttribute("task")), (User) session.getAttribute("user"));
-			session.removeAttribute("task");
-			new CommentServices().addCommentToDatabase(comment);
+			if(!request.getParameter("comment").trim().isEmpty()) {
+				Comment comment = new Comment(request.getParameter("comment").trim(), new TaskServices().getTask((int) session.getAttribute("task")), (User) session.getAttribute("user"));
+				session.removeAttribute("task");
+				new CommentServices().addCommentToDatabase(comment);
+			} else {
+				// empty field for comment, could not add to DB
+				request.setAttribute("emptyField", 1);
+			}
 		} else if("updateComment".equals(action)) {
 			// show form for updating the comment
 //			request.setAttribute("commentUpdating", new CommentServices().getComment(taskID));
 			request.setAttribute("commentToUpdate", 1);
 		} else if("updateTheComment".equals(action)) {
-			// update of comment, rename, change of visibility
-			
-//			if(request.getParameter("original").equals(request.getParameter("editTask")) && 
-//					!(new TopicServices().setPresentTopic(request.getParameter("original")).getVisibility().equals(request.getParameter("visibility1"))) || 
-//					!request.getParameter("original").equals(request.getParameter("editTask")) && 
-//					new TopicServices().setPresentTopic(request.getParameter("editTask")) == null) {
-//				updateTopicSubscriptions(request);
-//				new TopicServices().updateTopic(request.getParameter("original"), request.getParameter("editTopic"), request.getParameter("visibility1"));
-//				request.setAttribute("listTopics", 1);
-//			} else if(new TopicServices().setPresentTopic(request.getParameter("editTopic")) != null) {
-//				// topic already exists
-//				request.setAttribute("topicToUpdate", 1);
-//				request.setAttribute("existingTopic", 1);
-//			}
+			// update of comment
+			if(!request.getParameter("editComment").trim().isEmpty()) {
+				// update comment
+				new CommentServices().updateComment(Integer.parseInt(request.getParameter("commentID")), request.getParameter("editComment").trim());
+				// pridat hodnoty, ktore potom treba poslat pre korektne zobrazenie stranky
+			} else {
+				// return message of empty field/s
+				request.setAttribute("emptyField", 1);
+			}
 		} else if("removeComment".equals(action)) {
 			// comment removal
-			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskIdToRemove")));
-			request.setAttribute("topicOpened", 1);
+			new CommentServices().removeComment(Integer.parseInt(request.getParameter("CommentToRemove")));
+			// pridat hodnoty, ktore potom treba poslat pre korektne zobrazenie stranky
 		} else if("showTopics".equals(action)) {
 			// shows all topics for user
 			session.removeAttribute("topic");
 		} else if("generate".equals(action)) {	
 			// development action
 			admin.setUserName("jozko");
-			admin.setUserPassword("Jozko123+");
+			admin.setUserPassword("jozko");
 			admin.setRole("admin");
 			admin.setStatus("confirmed");
-			String dateString = "2016-08-18";
+			String dateString = "2016-08-01";
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = null;
 			try {
