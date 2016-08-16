@@ -29,7 +29,7 @@ public class Comment {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Task task;
 
-	@Column(name = "coment", nullable = false)
+	@Column(name = "coment", nullable = false, length=500)
 	private String comment;
 
 	public Comment(String comment, Task task, User user, Date addedOn) {
