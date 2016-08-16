@@ -76,6 +76,10 @@ label, .labels, .simpleText{
 	width: 10em;
 }
 
+.btn-max{
+	height: 80px;
+}
+
 .btn-block-left {
 	display: block;
   	width: 100%;
@@ -114,14 +118,14 @@ label, .labels, .simpleText{
 }
 
  .commentStyle{
-	height: 5vh;
+	height: 10vh;
 	min-height: 30px;
-    background-color: #404040;
     padding-left: 5em;
     padding-right: 5em;
     padding-bottom: 1em;
     padding-top:1em;
     color: white;
+    word-break: break-all;
 }
 
 .taskStyle:disabled, .taskStyle:disabled:hover{
@@ -141,6 +145,24 @@ label, .labels, .simpleText{
 	font-size: 10px;
 	padding-top: 0;
 }
+
+.commentInfoStyle{
+	background-color: #404040;
+	color: white;
+	font-weight: bold;
+	font-size: 10px;
+	vertical-align: top;
+	padding-bottom: 1em;
+    padding-top:1em;
+}
+
+tr.commentTR td{
+	 border-bottom:2px solid #F8854E;
+}
+
+/* .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th { */
+/*    background-color: #666666; */
+/* } */
 
 .taskNoButton{
 	background-color: #404040;

@@ -25,7 +25,7 @@
 			<c:forEach items="${topics}" var="topic">
 				<c:if test="${user.role == null}">
 					<c:if test="${topic.visibility == 'public'}">
-						<tr>
+						<tr class="commentTR">
 							<td class="rowOfTable">
 								<form method="post">
 									<input type="hidden" name="action" value="openTopic"> <input
@@ -40,7 +40,7 @@
 				</c:if>
 
 				<c:if test="${user.role == 'admin'}">
-					<tr>
+					<tr class="commentTR">
 						<td class="rowOfTable">
 							<form method="post">
 								<input type="hidden" name="action" value="openTopic"> <input
@@ -75,7 +75,7 @@
 
 				<c:if test="${user.role == 'user'}">
 					<c:if test="${topic.visibility == 'public'}">
-						<tr>
+						<tr class="commentTR">
 							<td  class="rowOfTable">
 								<form method="post">
 									<input type="hidden" name="action" value="openTopic"> <input
@@ -91,7 +91,7 @@
 					<c:forEach var="userTopic" items="${userTopics}">
 						<c:if test="${topic.topicID == userTopic.topic.topicID}">
 							<c:if test="${userTopic.user.userID == user.userID}">
-								<tr>
+								<tr class="commentTR">
 									<td  class="rowOfTable">
 										<form method="post">
 											<input type="hidden" name="action" value="openTopic">

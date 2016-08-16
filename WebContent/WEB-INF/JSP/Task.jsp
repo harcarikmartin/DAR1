@@ -4,12 +4,13 @@
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 
-<div>&nbsp</div>
+
 
 <div class="row">
 	<div class="col-lg-offset-1 col-lg-10">
 		
 		<c:if test="${sessionScope.task == null}">
+		<div>&nbsp</div>
 		<div class="rowBackground col-lg-10 col-md-10 col-sm-9 col-xs-9">
 			<form method="post">
 				<input type="hidden" name="action" value="showTopics">
@@ -61,7 +62,7 @@
 
 <tbody>
 			<c:forEach items="${topicTasks}" var="topicTask">
-				<tr>
+				<tr class="commentTR">
 					<td>
 						<c:if test="${sessionScope.user != null}">
 						<form method="post">

@@ -12,6 +12,12 @@
 		<div class="rowBackground col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 			<form method="post">
 				<input type="hidden" name="action" value="showTasks">
+						<button class="btn-block-left taskStyle" type="submit">${topic.topic}</button>
+			</form>
+		</div>
+		<div class="rowBackground col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+			<form method="post">
+				<input type="hidden" name="action" value="showTasks">
 						<button class="btn-block-left2 taskStyle" type="submit">${task.taskName}</button>
 			</form>
 		</div>
@@ -28,20 +34,20 @@
 	<c:if test="${fn:length(taskComments) > 0}">
 	<div class="row ">
 	<div class="rowBackground">
-		<table id="commentTable" class="rowBackground">
+		<table id="commentTable" class=" rowBackground">
 			<thead><tr>
-			<th class="actionCell text-center taskHeadStyle">Added by</th>
-				<th class="topicCell text-left paddingHorizontal3 taskHeadStyle">Comment</th>
+<!-- 			<th class="actionCell text-center taskHeadStyle">Added by</th> -->
+<!-- 				<th class="topicCell text-left paddingHorizontal3 taskHeadStyle">Comment</th> -->
 				
-				<th class="actionCell text-center taskHeadStyle">Update</th>
-				<th class="actionCell text-center taskHeadStyle">Remove</th>
+<!-- 				<th class="actionCell text-center taskHeadStyle">Update</th> -->
+<!-- 				<th class="actionCell text-center taskHeadStyle">Remove</th> -->
 			</tr></thead>
 <tbody>
 			<c:forEach items="${taskComments}" var="taskComment">
-				<tr>
-				<td class="actionCell text-center taskInfoStyle">${taskComment.user.userName}</td>
+				<tr class="commentTR">
+				<td class="actionCell text-center commentInfoStyle">${taskComment.user.userName}</td>
 					<td>
-						<p class="commentStyle">${taskComment.comment}</p>
+						<p class="commentStyle rowBackground">${taskComment.comment}</p>
 					</td>
 					
 					
@@ -50,7 +56,7 @@
 						<form method="post">
 							<input type="hidden" name="CommentToUpdate" value="${taskComment.commentID}">
 							<input type="hidden" name="action" value="updateComment">
-							<button class="btn-block taskStyle" type="submit">Update</button>
+							<button class="btn-block taskStyle btn-max" type="submit">Update</button>
 						</form>
 					</c:if>
 					</td>
@@ -60,7 +66,7 @@
 						<form method="post">
 							<input type="hidden" name="CommentToRemove" value="${taskComment.commentID}">
 							<input type="hidden" name="action" value="removeComment">
-							<button class="btn-block taskStyle" type="submit">Remove</button>
+							<button class="btn-block taskStyle btn-max" type="submit">Remove</button>
 						</form>
 						</c:if>
 					</td>
