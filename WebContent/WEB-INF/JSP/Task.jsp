@@ -4,8 +4,6 @@
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 
-
-
 <div class="row marginHeavy">
 	<div class="col-lg-offset-1 col-lg-10">
 		
@@ -44,7 +42,6 @@
 		</div>
 </c:if>
 
-
 		<c:if test="${taskAdding != null}">
 			<%@ include file="AddTask.jsp"%>
 		</c:if>
@@ -53,7 +50,6 @@
 			<%@ include file="UpdateTask.jsp"%>
 		</c:if>
 
-		
 	<c:if test="${fn:length(topicTasks) > 0}">
 	
 	<div class="row">
@@ -118,7 +114,3 @@
 		</c:if>
 	</div>
 </div>
-
-
-
-

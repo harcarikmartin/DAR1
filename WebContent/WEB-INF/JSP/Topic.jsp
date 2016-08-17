@@ -1,12 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 
-	
 <div>&nbsp</div>
-	
 <c:if test="${fn:length(topics) > 0}">
 <div class="row marginHeavy">
 	<div class="col-lg-offset-1 col-lg-10 rowBackground">

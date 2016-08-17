@@ -1,11 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
-
-
 
 <div class="row marginHeavy">
 	<div class="col-lg-offset-1 col-lg-10">

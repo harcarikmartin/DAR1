@@ -1,10 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
-
 
 	<div class="row col-lg-12">
 		<div class="col-lg-offset-1 col-lg-10 rowBackground">
@@ -173,12 +170,6 @@
 					<div class="row text-center">
 						<p id="topicVisibilityRequired" class="requiredField ">Topic visibility is required</p>
 					</div>
-					<!-- 						<input type="radio" name="visibility" value="public"  -->
-					<%-- 							<c:if test="${topicUpdating.visibility == 'public'}"> checked="checked" </c:if> --%>
-					<!-- 							/> Public  -->
-					<!-- 						<input type="radio" name="visibility" value="private" -->
-					<%-- 							<c:if test="${topicUpdating.visibility == 'private'}"> checked="checked" </c:if> --%>
-					<!-- 							/> Private  -->
 					<div class="row text-center">
 						<c:if test="${existingTopic != null}">
 							<p class=" text-center simpleText">Topic with this name already exist!</p>

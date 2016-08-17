@@ -2,14 +2,7 @@
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 
-
 <div class="row col-lg-12">
-<!-- 	<div class=" col-lg-offset-1 col-lg-10 text-center"> -->
-<!-- 		<form method="post"> -->
-<!-- 			<input type="hidden" name="action" value="generate"> -->
-<!-- 			<button class="buttonStyle fullWidth" type="submit">Generate</button> -->
-<!-- 		</form> -->
-<!-- 	</div> -->
 	<div class="col-lg-offset-1 col-lg-10 text-center">
 	<form method="post">
 		<input type="hidden" name="action" value="mainPage">
@@ -35,7 +28,6 @@
 										id="userName" class="loginForm" type="text" name="userName"
 										placeholder="name ..." autofocus></label></td>
 							</tr>
-
 						</table>
 
 						<table class="loginTable">
@@ -50,7 +42,6 @@
 										name="userPassword" placeholder="password ...">
 								</label></td>
 							</tr>
-
 						</table>
 
 						<table class="loginTable">

@@ -86,4 +86,3 @@ function checkDate() {
 		return !fail;
 	}
 	setInterval('clearFcnReg()', 100);
-//	<%=request.getAttribute("regWrong")%>

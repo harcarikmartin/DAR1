@@ -3,7 +3,6 @@ html {
 	background-image: url("images/background.jpg");
     background-attachment: fixed;
 }
- 
 body {
     width: 100vw;
     min-width: 500px;
@@ -12,114 +11,95 @@ body {
     margin: auto;
     height: 100vh;
 }
-
 .header img{
 	width: 100%;
 }
-
-/* footer{ */
-/* 	height: 5vh; */
-/* 	 background-color: #404040; */
-/*     color: white; */
-/*     font-weight: bold; */
-/*     position: absolute; */
-/*     margin-top: 10vh; */
-/* } */
-
-footer {
-	background-color: yellow;
-/* background-image: url("images/background.jpg"); */
-	color: white;
-    font-weight: bold;
-    height: 25px;
-    text-align: center;
+.wrapper {
+    min-height: 100%;
+    height: 100%;
+    margin: 0 auto -50px;
 }
-
-
-
-
-
+.footer, .push {
+    height: 50px;
+}
+.footerBCG{
+	background-color: #262626;
+}
+a:link, a:visited {
+    font-weight: bold;
+	color: white;
+	text-decoration: none;
+}
+a:hover {
+    font-weight: bold;
+	text-decoration: none;
+	color: #F8854E;
+	text-decoration: none;
+}
 /*Change ROW from bootstrap*/
 .row{
 	margin: 0;
 }
-
 /*Change COL-XS/SM/LG/MD from bootstrap*/
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   padding: 0;
 }
-
 .rowHeavy{
 	height: 10em;
 }
-
 .rowBackground{
 	background-color: #404040;
 	padding-top: 1em;
 	padding-bottom: 1em;
 }
-
 .rowBackgroundNone{
 	background-color: #404040;
 	padding: 0;
 }
-
 label, .labels, .simpleText{
 	color: white;
 	padding-left: 1em;
 	padding-right: 1em;
 }
-
 .paddingHorizontal {
 	padding-left: 1em;
 	padding-right: 1em;
 }
-
 .paddingHorizontal1-2 {
 	padding-left: 2em;
 	padding-right: 2em;
 }
-
 .paddingHorizontal2 {
 	padding-left: 3em;
 	padding-right: 3em;
 }
-
 .paddingHorizontal3 {
 	padding-left: 5em;
 	padding-right: 5em;
 }
-
 .marginHorizontalLeft {
 	margin-left: 1em;
 }
-
 .marginHorizontal {
 	margin-left: 1em;
 	margin-right: 1em;
 }
-
 .marginVertical{
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
-
 .paddingHeavy{
 	padding-bottom: 3em;
 }
-
 .marginHeavy{
 	margin-bottom: 25px;
-	}
-
+}
 .topicCell{
 	width: 100em;
 }
-
 .actionCell{
 	width: 10em;
 }
-
 .creatorOfComment{
 	width: 14%;
 	min-width: 100px;
@@ -127,45 +107,36 @@ label, .labels, .simpleText{
 	padding-bottom: 1em;
     padding-top:1em;
 }
-
-
 .commentBtn{
 	width: 8%;
 }
 .commentBody{
 	width: 70%;
 }
-
-
-
 .btn-block-left {
 	display: block;
   	width: 100%;
 	text-align: left;
 	padding-left: 1em;
 }
-
 .btn-block-right {
 	display: block;
   	width: 100%;
 	text-align: right;
 	padding-right: 1em;
 }
-
 .btn-block-left2 {
 	display: block;
   	width: 100%;
 	text-align: left;
 	padding-left: 3em;
 }
-
 .btn-block-left3 {
 	display: block;
   	width: 100%;
 	text-align: left;
 	padding-left: 5em;
 }
-
 .topicStyle, .taskStyle{
 	height: 5vh;
 	min-height: 30px;
@@ -174,7 +145,6 @@ label, .labels, .simpleText{
     color: white;
     font-weight: bold;
 }
-
 .dataTables_empty{
     background-color: #404040;
     border: none;
@@ -182,7 +152,6 @@ label, .labels, .simpleText{
     font-weight: bold;
     text-align: center;
 }
-
 .addTaskBtn:disabled, .addTaskBtn:disabled:hover{
     background-color: #404040;
     border: none;
@@ -190,7 +159,6 @@ label, .labels, .simpleText{
     font-weight: bold;
     font-size: x-large;
 }
-
 .addTaskBtn{
     background-color: #404040;
     border: none;
@@ -198,7 +166,6 @@ label, .labels, .simpleText{
     font-weight: bold;
     font-size: x-large;
 }
-
 .addTaskBtn:enabled:hover{
     background-color: #804d00;
     border: none;
@@ -207,10 +174,7 @@ label, .labels, .simpleText{
     font-size: x-large;
     text-shadow: 2px 2px 4px black;
 }
-
  .commentStyle{
-/* 	height: 5vh; */
-/* 	min-height: 30px; */
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 1em;
@@ -219,7 +183,6 @@ label, .labels, .simpleText{
     word-break: break-all;
     vertical-align: top;
 }
-
 .taskBody{
 	height: 5vh;
 	min-height: 30px;
@@ -233,7 +196,6 @@ label, .labels, .simpleText{
     word-break: break-all;
     background: #4d4d4d;
 }
-
 .taskStyle:disabled, .taskStyle:disabled:hover{
 	height: 5vh;
 	min-height: 30px;
@@ -243,7 +205,6 @@ label, .labels, .simpleText{
     font-weight: bold;
     text-shadow: none;
 }
-
 .topicInfoStyle, .registerInfoStyle, .taskInfoStyle{
 	background-color: #404040;
 	color: white;
@@ -251,7 +212,6 @@ label, .labels, .simpleText{
 	font-size: 10px;
 	padding-top: 0;
 }
-
 .mainPage{
 	font-size: 80pt;
 	height: 100pt;
@@ -259,53 +219,43 @@ label, .labels, .simpleText{
 	border: none;
 	color: #F8854E;
 }
-
 p{
 	padding: 0;
 }
-
 .commentInfoStyle{
 	background-color: #404040;
 	color: white;
 	font-weight: bold;
 	font-size: 10px;
 	vertical-align: bottom;
-	
 }
-
 tr.commentTR td, .borderBtm{
 	 border-bottom:2px solid #F8854E;
 	 overflow: hidden;
 }
-
 .topicHierarchy{
 	font-weight: bold;
 	padding-left: 1em;
 	font-size: x-large;
 	height: 5em;
 }
-
 .taskHierarchy{
 	font-weight: bold;
 	padding-left: 3em;
 	font-size: large;
 }
-
 span {
 	color: #F8854E;
 }
-
 .taskNoButton{
 	background-color: #404040;
 }
-
 .topicHeadStyle, .registerHeadStyle, .approveHeadStyle, .taskHeadStyle{
 	height: 30px;
 	background-color: #F8854E;
 	color: white;
 	font-weight: bold;
 }
-
 .userProfilehead{
 	height: 30px;
 	width: 25%;
@@ -313,14 +263,12 @@ span {
 	color: white;
 	font-weight: bold;
 }
-
 .userProfileInfo {
 	height: 30px;
 	background-color: #404040;
 	color: white;
 	font-weight: bold;
 }
-
 .topicStyle:hover, .taskStyle:hover{
     background-color: #804d00;
     border: none;
@@ -328,19 +276,13 @@ span {
     font-weight: bolder;
     text-shadow: 2px 2px 4px black;
 }
-
-
-
-
 .registrationForm, .passwordForm {
 	width: 100%;
 	color: black;
 }
-
 .loginForm{
 	color: black;
 }
-
 .registerCellStyle{
 	height: 3vh;
 	min-height: 15px;
@@ -350,7 +292,6 @@ span {
     color: white;
     font-weight: bold;
 }
-
 .passwordCellStyle, .subscribedTopicsTableCell{
 	height: 3vh;
 	min-height: 15px;
@@ -360,8 +301,6 @@ span {
     color: white;
     font-weight: bold;
 }
- 
- 
 .approveCellStyle{
 	height: 3vh;
 	min-height: 30px;
@@ -372,7 +311,6 @@ span {
     color: white;
     font-weight: bold;
 }
-
 .buttonStyle{
 	height: 3vh;
 	min-height: 30px;
@@ -381,7 +319,6 @@ span {
     color: white;
     font-weight: bold;
 }
-
 .buttonStyle:hover{
     background-color: #804d00;
     border: none;
@@ -389,37 +326,30 @@ span {
     font-weight: bolder;
     text-shadow: 2px 2px 4px black;
 }
-
 .userMenu, .navigationMenu {
     display: inline-block;
 }
-
 .inputForNewStuff{
 	width: 50%;
 	min-width: 400px;
 	font-weight: bold;
 }
-
 .loginTable{
 	 display: inline-block;
 	 min-width: 200px;
 }
-
 .verticalAlign{
 	vertical-align: top;
 }
-
 .fullWidth{
 	width: 100%;
 }
-
 a.forumHeader, a.forumHeader:visited{
 	font-size: 75px;
 	text-decoration: none;
 	color: white;
 	background-color: #333333;
 }
-
 a.forumHeader:hover{
 	font-size: 75px;
 	text-decoration: none;
@@ -427,15 +357,12 @@ a.forumHeader:hover{
 	background-color: #333333;
 	text-shadow: 2px 2px 4px black;
 }
-
 .requiredField{
 	padding: 0;
 	margin: 0;
 	font: 12px Arial;
 	color: red;
 }
-
-
 /*DataTables - tables style*/
 table.dataTable {
 	width: 100%;
@@ -444,27 +371,22 @@ table.dataTable {
 	border-collapse: separate;
 	border-spacing: 0;
 }
-
 .dataTables_wrapper {
 	position: relative;
 	clear: both;
 	*zoom: 1;
 	zoom: 1;
 }
-
 .dataTables_wrapper .dataTables_length {
 	float: left;
 }
-
 .dataTables_wrapper .dataTables_filter {
 	float: right;
 	text-align: right;
 }
-
 .dataTables_wrapper .dataTables_filter input {
 	margin-left: 0.5em;
 }
-
 .dataTables_wrapper .dataTables_info {
 	color: white;
 	font-weight: bold;
@@ -474,7 +396,6 @@ table.dataTable {
 	float: left;
 	padding-top: 0.755em;
 }
-
 /*DataTables - buttons*/
 .dataTables_wrapper .dataTables_paginate {
   float: right;
@@ -497,7 +418,6 @@ table.dataTable {
 	margin-right: 0.25em;
 	font-size: small;
 }
-
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
 cursor: default;
 	color: white;
@@ -508,14 +428,12 @@ cursor: default;
 	cursor: default;
 	color: #b3b3b3;
 	background-color: #404040;
-	}
-
+}
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
 	cursor: default;
 	background-color: #804d00;
 	color: white;
 }
-
 /*DataTables - sorting images*/
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,
@@ -546,7 +464,6 @@ table.dataTable thead .sorting_asc_disabled {
 table.dataTable thead .sorting_desc_disabled {
   background-image: url("images/sort_desc_disabled.png");
 }
-
 /*DataTables - footer*/
 .dataTables_wrapper:after {
   visibility: hidden;
@@ -555,137 +472,23 @@ table.dataTable thead .sorting_desc_disabled {
   clear: both;
   height: 0;
 }
-
-/*DataTables - low resolution center stuff*/
-/* @media screen and (max-width: 767px) { */
-/*   .dataTables_wrapper .dataTables_info, */
-/*   .dataTables_wrapper .dataTables_paginate { */
-/*     float: none; */
-/*     text-align: center; */
-/*   } */
-/*   .dataTables_wrapper .dataTables_paginate { */
-/*     margin-top: 0.5em; */
-/*   } */
-/* } */
-/* @media screen and (max-width: 640px) { */
-/*   .dataTables_wrapper .dataTables_length, */
-/*   .dataTables_wrapper .dataTables_filter { */
-/*     float: none; */
-/*     text-align: center; */
-/*   } */
-/*   .dataTables_wrapper .dataTables_filter { */
-/*     margin-top: 0.5em; */
-/*   } */
-/* } */
-
 /*DataTables - aditional classes*/
 .searchInTable, .numberOfRows{
 	color: black;
 }
-
 /* text align in resolutions */
 @media ( max-width : 767px) {
 	.text-left-xs {
 		text-align: left;
 	}
 }
-
 @media ( max-width : 767px) {
 	.text-center-xs {
 		text-align: center;
 	}
 }
-
 @media ( max-width : 767px) {
 	.text-right-xs {
 		text-align: right;
 	}
 }
-
-
-
-
-
-
-
-/* /* Small devices (tablets, 768px and up) */ */
-/* @media (min-width: 768px) { */
-/*     .text-justify-sm { */
-/*         text-align: justify; */
-/*     } */
-/* } */
-
-/* /* Medium devices (desktops, 992px and up) */ */
-/* @media (min-width: 992px) { */
-/*     .text-justify-md { */
-/*         text-align: justify; */
-/*     } */
-/* } */
-
-/* /* Large devices (large desktops, 1200px and up) */ */
-/* @media (min-width: 1200px) { */
-/*     .text-justify-lg { */
-/*         text-align: justify; */
-/*     } */
-/* } */
-
-
-/* old stuff */
-
-/* h3{ */
-/*     margin: 0; */
-/*     padding-top: 5vh; */
-/*     padding-bottom: 5vh; */
-/* } */
-
-/* .centerAlign { */
-/*     text-align: center; */
-/* } */
-
-/* p { */
-/* 	margin: 0; */
-/* } */
-
-/* .left { */
-/*     float: left; */
-/*     width: 75%; */
-/*     background-color: darkgrey; */
-/*     min-height: 10vh; */
-/* } */
-
-/* .right { */
-/*     float: left; */
-/*     width: 25%; */
-/*     background-color: darkkhaki; */
-/*     min-height: 10vh; */
-/* } */
-
-/* .clear{ */
-/*     clear: both; */
-/* } */
-
-/* .topics { */
-/*     padding-top: 1vh; */
-/* } */
-
-/* .leftRegistration{ */
-/*     float: left; */
-/*     width: 50%; */
-/*     text-align: right; */
-/*     min-height: 5vh; */
-/*     background-color: greenyellow; */
-/* } */
-
-/* .rightRegistration{ */
-/*     float: left; */
-/*     width: 49%; */
-/*     text-align: left; */
-/*     padding-left: 1%; */
-/*     min-height: 5vh; */
-/*     background-color: darkseagreen; */
-/*     display: inline-block; */
-/* } */
-
-
-
-

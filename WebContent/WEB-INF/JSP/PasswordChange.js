@@ -50,14 +50,3 @@
 		return !fail;
 	}
 	setInterval('clearPassChange()', 100);
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

@@ -6,64 +6,48 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; utf-8">
-<title>Forum - Topics</title>
-
+<title>Forum</title>
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script> 
-<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css"> -->
-
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-
 <style>
-<%@include file="DataTables.css"%>
-<%@include file="bootstrap/css/bootstrap.css"%>
+<%@include file="bootstrap/css/bootstrap.min.css"%>
 <%@include file="ForumForBootstrap.css"%>
 </style>
 </head>
 
 <body>
-
+<div class="wrapper">
 
 	<jsp:include page="Header.jsp" />
-
 	<jsp:include page="RegisterForm.jsp" />
-
 	<c:if test="${user.role == 'admin'}">
 		<jsp:include page="AdminMenu.jsp" />
 	</c:if>
-	
 	<c:if test="${user.role=='user'}">
 		<jsp:include page="UserMenu.jsp" />
 	</c:if>
-
 	<c:if test="${registerForm == null  && sessionScope.topic == null}">
-		<%@ include file="Topic.jsp"%>
+		<jsp:include page="Topic.jsp" />
 	</c:if>
-	
 	<c:if test="${registerForm == null && sessionScope.topic != null}">
-		<%@ include file="Task.jsp"%>
+		<jsp:include page="Task.jsp" />
 	</c:if>
-	
 	<c:if test="${registerForm == null && sessionScope.taskID != null}">
-		<%@ include file="Comment.jsp"%>
+		<jsp:include page="Comment.jsp" />
 	</c:if>
-	<div class="row col-lg-12">
-		<div class="footer navbar-fixed-bottom col-lg-offset-1 col-lg-10">
-			<footer >
-			<p >
-				to <a href="/Forum//ForumStatsServlet">Statistics</a>
-			</p>
-			</footer>
+	<div class="push"></div>
+	</div>
+	<div class="footer">
+
+		<div class="row">
+			<div class="col-lg-offset-1 col-lg-10 footerBCG text-center">
+				<p><a href="/Forum//ForumStatsServlet">Statistics</a></p>
+			</div>
 		</div>
 	</div>
 </body>
 
-
-
-
-
-
-
-	<c:if test="${user.role=='admin'}">
+<c:if test="${user.role=='admin'}">
 	<script type="text/javascript">
 	<%@include file="DataTablesAdmin.js"%>
 	</script>

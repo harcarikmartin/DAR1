@@ -18,7 +18,6 @@ var checkRequiredAddTask = function() {
 	var taskBodyRequired = document.getElementById('taskBodyRequired');
 	var nameOfTask = document.getElementById('nameOfTask');
 	var bodyOfTask = document.getElementById('bodyOfTask');
-	
 	if (nameOfTask.value.trim() == "") {
 		taskNameRequired.style.display = "inline";
 		nameOfTask.style.border = "solid 1px red"
@@ -29,7 +28,6 @@ var checkRequiredAddTask = function() {
 		bodyOfTask.style.border = "solid 1px red"
 		fail = true;
 	}
-
 	return !fail;
 }
 setInterval('clearFcnAddTask()', 100);
