@@ -131,11 +131,18 @@ public class StatisticsServices {
 	public int getNumberOfCommentsForMostAnsweredTask() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select max(count(c.task.taskName)) from Comment c group by c.task.taskName order by count(c.task.taskName) desc");
-		if(query.getResultList().isEmpty()) {
-			em.close();
+		try {
+			if(query.getResultList().size() == 0) {
+				em.close();
+				return 0;
+			} else {
+				return Math.toIntExact((long) query.getResultList().get(0));
+			}
+		} catch(Exception e) {
+			System.out.println("Result" + query.getResultList());
+			System.out.println("Message" + e.getMessage());
+		} finally {
 			return 0;
-		} else {
-			return Math.toIntExact((long) query.getResultList().get(0));
 		}
 	}
 	
@@ -153,11 +160,18 @@ public class StatisticsServices {
 	public int getNumberOfCommentsForMostActiveUser() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select max(count(c.user.userName)) from Comment c group by c.user.userName order by count(c.user.userName) desc");
-		if(query.getResultList().isEmpty()) {
-			em.close();
+		try {
+			if(query.getResultList().isEmpty()) {
+				em.close();
+				return 0;
+			} else {
+				return Math.toIntExact((long) query.getResultList().get(0));
+			}
+		} catch (Exception e) {
+			System.out.println("Result" + query.getResultList());
+			System.out.println("Message" + e.getMessage());
+		} finally {
 			return 0;
-		} else {
-			return Math.toIntExact((long) query.getResultList().get(0));
 		}
 	}
 	
