@@ -160,4 +160,16 @@ public class StatisticsServices {
 			return Math.toIntExact((long) query.getResultList().get(0));
 		}
 	}
+	
+	public int getNumberOfTasksForTopic(String topic) {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select count(t) from Task t where t.topic.topic = :topic");
+		query.setParameter("topic", topic);
+		if(query.getResultList().isEmpty()) {
+			em.close();
+			return 0;
+		} else {
+			return Math.toIntExact((long) query.getResultList().get(0));
+		}
+	}
 }

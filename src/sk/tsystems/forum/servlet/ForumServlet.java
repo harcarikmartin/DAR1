@@ -1,5 +1,9 @@
 package sk.tsystems.forum.servlet;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -8,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -99,6 +104,9 @@ public class ForumServlet extends HttpServlet {
 		} else if("showProfile".equals(action)) {
 			// show user's profile
 			request.setAttribute("listProfile", 1);
+		} else if ("UploadImage".equals(action)) {
+			testSaveImage(request);
+			testGetImage();
 		} else if("approve".equals(action)) {
 			// show list of users, which are 'pending'
 			if(!new UserServices().getPendingUsers().isEmpty()) {
@@ -397,8 +405,9 @@ public class ForumServlet extends HttpServlet {
 	        System.err.println("Bad DOB format " + e.getLocalizedMessage());
 	    }
 	    if(date != null) {
+	    	Date regDate = new Date(System.currentTimeMillis());
 	    	new UserServices().registerUser(request.getParameter("userName").trim(), request.getParameter("userPassword").trim(), 
-				date, request.getParameter("role"), request.getParameter("status"));
+				date, request.getParameter("role"), request.getParameter("status"), regDate);
 			request.setAttribute("succesRegister", 1);
 	    } else {
 	    	request.setAttribute("error", 9);
@@ -445,6 +454,7 @@ public class ForumServlet extends HttpServlet {
 			admin.setUserPassword("jozko");
 			admin.setRole("admin");
 			admin.setStatus("confirmed");
+			admin.setRegisteredOn(new Date(System.currentTimeMillis()));
 			String dateString = "2016-08-01";
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = null;
@@ -459,5 +469,62 @@ public class ForumServlet extends HttpServlet {
 		request.setAttribute("topics", new TopicServices().printTopics());
 		request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
+	}
+	
+	private void testSaveImage(HttpServletRequest request) {
+
+		BufferedImage image = null;
+		File file = null;
+		File f = null;
+		try {
+			file = new File(request.getParameter("fileToUpload")); // image file
+																	// path
+			image = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
+			image = ImageIO.read(file);
+
+			f = new File("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID()+ ".jpg");
+
+			ImageIO.write(image, "jpg", f);
+			System.out.println("Reading complete.");
+		} catch (IOException e) {
+			System.out.println("Error: " + e);
+		}
+
+		byte[] bFile = new byte[(int) f.length()];
+
+		try {
+			FileInputStream fileInputStream = new FileInputStream(f);
+			fileInputStream.read(bFile);
+			fileInputStream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		getUser().setProfileImage(bFile);
+
+		UserServices ur = new UserServices();
+		ur.updateImage(getUser(), bFile);
+
+	}
+
+	private void testGetImage() {
+
+		byte[] bAvatar = getUser().getProfileImage();
+		try {
+
+			FileOutputStream fos = new FileOutputStream(
+					"C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+			fos.write(bAvatar);
+
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private User getUser(){
+		User user = new User();
+		user = (User) session.getAttribute("user");	
+		return user;
 	}
 }
