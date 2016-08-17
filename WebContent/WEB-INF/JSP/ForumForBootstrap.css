@@ -107,6 +107,11 @@ label, .labels, .simpleText{
 	padding-bottom: 1em;
     padding-top:1em;
 }
+.stats{
+	min-width: 500px;
+	color: white;
+	padding-bottom: 1em;
+}
 .commentBtn{
 	width: 8%;
 }
