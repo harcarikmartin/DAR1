@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -39,8 +40,13 @@ public class User {
 	@Column(nullable = false)
 	private String status;
 
+	private Date registeredOn;
+	
+	@Lob
+	@Column(length=16777215)
+	private byte[] profileImage;
+	
 	public User(List<Topic> topics, String userName, String userPassword, Date birthDate, String role, String status) {
-
 		this.topics = topics;
 		this.userName = userName;
 		this.userPassword = userPassword;
@@ -49,12 +55,13 @@ public class User {
 		this.status = status;
 	}
 
-	public User(String userName, String userPassword, Date birthDate, String role, String status) {
+	public User(String userName, String userPassword, Date birthDate, String role, String status,Date registeredOn) {
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.birthDate = birthDate;
 		this.role = role;
 		this.status = status;
+		this.registeredOn = registeredOn;
 	}
 
 	public User() {
@@ -117,12 +124,23 @@ public class User {
 		this.status = status;
 	}
 
-	// @Override
-	// public String toString() {
-	// return "User [userID=" + userID + ", topics=" + topics + ", userName=" +
-	// userName + ", userPassword="
-	// + userPassword + ", birthDate=" + birthDate + ", role=" + role + ",
-	// status=" + status + "]";
-	// }
+	public Date getRegisteredOn() {
+		return registeredOn;
+	}
+
+	public void setRegisteredOn(Date registeredOn) {
+		this.registeredOn = registeredOn;
+	}
+
+	public byte[] getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(byte[] profileImage) {
+		this.profileImage = profileImage;
+	}
+
+
+	
 
 }

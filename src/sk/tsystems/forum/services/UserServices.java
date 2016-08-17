@@ -17,15 +17,8 @@ public class UserServices {
 		JpaHelper.commitTransaction();
 	}
 
-	// public User registerUser(List<Topic> topics, String userName, String
-	// userPassword,Date birthDate,String role,String status){
-	// addUser(new User(topics, userName, userPassword, birthDate, role,
-	// status));
-	// return setPresentUser(userName, userPassword);
-	// }
-
-	public User registerUser(String userName, String userPassword, Date birthDate, String role, String status) {
-		addUser(new User(userName, userPassword, birthDate, role, status));
+	public User registerUser(String userName, String userPassword, Date birthDate, String role, String status,Date registeredOn) {
+		addUser(new User(userName, userPassword, birthDate, role, status,registeredOn));
 		return setPresentUser(userName);
 	}
 
@@ -122,5 +115,12 @@ public class UserServices {
 			return false;
 		}
 	}
+	
+	public void updateImage(User user, byte[] profileImage) {
+		JpaHelper.beginTransaction();
+		user.setProfileImage(profileImage);
+		JpaHelper.commitTransaction();
+	}
+
 
 }
