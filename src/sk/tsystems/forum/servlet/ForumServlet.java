@@ -116,6 +116,7 @@ public class ForumServlet extends HttpServlet {
 		} else if ("UploadImage".equals(action)) {
 			testSaveImage(request);
 			testGetImage();
+			session.setAttribute("user", user);
 		} else if ("approve".equals(action)) {
 			// show list of users, which are 'pending'
 			if (!new UserServices().getPendingUsers().isEmpty()) {
@@ -508,43 +509,21 @@ public class ForumServlet extends HttpServlet {
 
 	private void testSaveImage(HttpServletRequest request) {
 		Part filePart = null;
-
-		try {
-			filePart = request.getPart("fileToUpload");
-
-			System.out.println(filePart.getName());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-
 		BufferedImage image = null;
 		InputStream inputStream = null;
-		try {
-			inputStream = filePart.getInputStream();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		File f = null;
 		try {
-			// file = new File(request.getParameter("fileToUpload")); // image
-			// file
-			// path
+			filePart = request.getPart("fileToUpload");
+			inputStream = filePart.getInputStream();
 			image = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 			image = ImageIO.read(inputStream);
-
 			f = new File("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
-
 			ImageIO.write(image, "jpg", f);
 			System.out.println("Reading complete.");
 		} catch (IOException e) {
-			System.out.println("Error: " + e);
+			System.err.println("IO Exception occured with message " + e.getMessage());
+		} catch (ServletException e) {
+			System.err.println("Servlet Exceptionn occured with message " + e.getMessage());
 		}
 
 		byte[] bFile = new byte[(int) f.length()];
@@ -556,19 +535,14 @@ public class ForumServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		getUser().setProfileImage(bFile);
-
 		UserServices ur = new UserServices();
 		ur.updateImage(getUser(), bFile);
-
 	}
 
 	private void testGetImage() {
-
 		byte[] bAvatar = getUser().getProfileImage();
 		try {
-
 			FileOutputStream fos = new FileOutputStream(
 					"C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
 			fos.write(bAvatar);

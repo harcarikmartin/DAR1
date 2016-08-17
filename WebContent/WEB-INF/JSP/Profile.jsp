@@ -31,15 +31,15 @@
 			</tr>
 			<tr>
 				<td colspan="2" class="text-center">
-					<p class="userProfileInfo">Select image to upload:</p>
+					<p class="userProfileInfo">Change your profile picture</p>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" class="text-center">
 					<form method="post" enctype="multipart/form-data">
-						<!-- 							<label for="file-upload" class="custom-file-upload">Select a file</label> -->
-						<!-- 							<input id="file-upload" type="file" accept="image/jpeg"/> -->
-						<input type="file" name="fileToUpload" id="fileToUpload" size="50" accept="image/jpeg">
+						<label for="file-upload" class="custom-file-upload">Select new profile picture</label> 
+						<input id="file-upload" name="fileToUpload" type="file" accept="image/jpeg"/>
+<!-- 						<input type="file" name="fileToUpload" id="fileToUpload" size="50" accept="image/jpeg"> -->
 						<input type="hidden" name="action" value="UploadImage">
 						<br>
 						<button class=" buttonStyle" type="submit">Send</button>

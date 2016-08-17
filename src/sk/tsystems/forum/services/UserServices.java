@@ -36,6 +36,7 @@ public class UserServices {
 			return true;
 		}
 		else {
+//			System.out.println(query.getResultList());
 			return false;
 		}
 	}
