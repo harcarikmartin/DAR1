@@ -100,13 +100,6 @@ label, .labels, .simpleText{
 .actionCell{
 	width: 10em;
 }
-/* .creatorOfComment{ */
-/* 	width: 14%; */
-/* 	min-width: 100px; */
-/* 	color: white; */
-/* 	padding-bottom: 1em; */
-/*     padding-top:1em; */
-/* } */
 .stats{
 	min-width: 500px;
 	color: white;
