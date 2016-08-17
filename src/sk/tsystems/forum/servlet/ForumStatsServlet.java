@@ -45,6 +45,8 @@ public class ForumStatsServlet extends HttpServlet {
 		request.setAttribute("privateTopicsCount", new StatisticsServices().getPrivateTopicsCount());
 		request.setAttribute("mostAnsweredTask", new StatisticsServices().getMostAnsweredTask());
 		request.setAttribute("commentsForMostAnsweredTask", new StatisticsServices().getNumberOfCommentsForMostAnsweredTask());
+		request.setAttribute("mostActiveUser", new StatisticsServices().getMostActiveUser());
+		request.setAttribute("commentsForMostActiveUser", new StatisticsServices().getNumberOfCommentsForMostActiveUser());
 		request.getRequestDispatcher("/WEB-INF/JSP/forumStats.jsp").forward(request, response);
 	}
 

@@ -138,4 +138,26 @@ public class StatisticsServices {
 			return Math.toIntExact((long) query.getResultList().get(0));
 		}
 	}
+	
+	public String getMostActiveUser() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select c.user.userName from Comment c group by c.user.userName order by count(c.user.userName) desc");
+		if(query.getResultList().isEmpty()) {
+			em.close();
+			return null;
+		} else {
+			return (String) query.getResultList().get(0);
+		}
+	}
+	
+	public int getNumberOfCommentsForMostActiveUser() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select max(count(c.user.userName)) from Comment c group by c.user.userName order by count(c.user.userName) desc");
+		if(query.getResultList().isEmpty()) {
+			em.close();
+			return 0;
+		} else {
+			return Math.toIntExact((long) query.getResultList().get(0));
+		}
+	}
 }

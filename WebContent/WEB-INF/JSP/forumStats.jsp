@@ -11,13 +11,10 @@
 	<ol>
 		<li>Registered users: <b>${allUsersCount}</b></li>
 			<ul>
-				<li>Admins: <b>${adminsCount}</b></li>
-				<li>Users: <b>${usersCount}</b></li>
-					<ul>
-						<li>Approved: <b>${approvedCount}</b></li>
-						<li>Not Approved: <b>${notApprovedCount}</b></li>
-					</ul>
+				<li>Admins: <b>${adminsCount}</b>, Regular users: <b>${usersCount}</b></li>
+				<li>Approved: <b>${approvedCount}</b>, Not Approved: <b>${notApprovedCount}</b></li>
 			</ul>
+		<li>Most active user is <b>${mostActiveUser}</b> with <b>${commentsForMostActiveUser}</b> comments.</li>
 		<li>Topics: <b>${topicsCount}</b></li>
 			<ul>
 				<li>Public: <b>${publicTopicsCount}</b></li>
@@ -25,9 +22,9 @@
 			</ul>
 		<li>Tasks: <b>${tasksCount}</b></li>
 			<ul>
-				<li>Most answered task is <b>${mostAnsweredTask}</b> with <b>${commentsForMostAnsweredTask}</b> comments.</li>
+				<li>Most answered task is <b>${mostAnsweredTask}</b>, commented <b>${commentsForMostAnsweredTask}</b> times.</li>
 			</ul>
-		<li>Comments: <b>${commentsCount}</b></li>
+		<li>Comments total: <b>${commentsCount}</b></li>
 	</ol>
 	<p>to <a href="/Forum/Forum">Forum</a></p>
 </body>
