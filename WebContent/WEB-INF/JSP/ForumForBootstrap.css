@@ -36,8 +36,12 @@ a:hover {
 	color: #F8854E;
 	text-decoration: none;
 }
-input[type="file"] {
-    display: none;
+/* input[type="file"] { */
+/*     display: none; */
+/* } */
+img{
+    max-width: 200px;
+    max-height: 200px;
 }
 .custom-file-upload {
     border: 1px solid white;
