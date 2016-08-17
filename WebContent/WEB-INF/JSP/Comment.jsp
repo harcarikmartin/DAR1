@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
@@ -49,9 +50,10 @@
 		<tbody>
 			<c:forEach items="${taskComments}" var="taskComment">
 				<tr class="commentTR">
-				<td class="creatorOfComment text-center paddingHorizontal verticalAlign">${taskComment.user.userName}
-				<p class="commentInfoStyle rowBackgroundNone text-right">Date of creating:<br>${addedOnDate}</p>
-				<p class="commentInfoStyle rowBackgroundNone text-right">Time of creating:<br>${addedOnTime}</p></td>
+				<td class="creatorOfComment text-center paddingHorizontal verticalAlign">${taskComment.user.userName} replied
+				<p class="commentInfoStyle rowBackgroundNone text-right">on <fmt:formatDate value="${taskComment.addedOn}" pattern="MM/dd/yyyy"/></p>
+				<p class="commentInfoStyle rowBackgroundNone text-right">at <fmt:formatDate value="${taskComment.addedOn}" pattern="HH:mm"/></p>
+				</td>
 					<td class="commentBody commentStyle rowBackground">
 						${taskComment.comment}
 						

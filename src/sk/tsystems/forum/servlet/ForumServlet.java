@@ -64,6 +64,7 @@ public class ForumServlet extends HttpServlet {
 				System.err.println("session is empty " + e.getMessage());
 			}
 		} else if ("login".equals(action) && "userName" != null && "userPassword" != null) {
+			clearSession();
 			if((new UserServices().getUserID(request.getParameter("userName")) == 0)) {
 				// user does not exist
 				request.setAttribute("error", 5);
@@ -79,6 +80,7 @@ public class ForumServlet extends HttpServlet {
 				incorrectPassword(request);
 			}
 		} else if ("register".equals(action)) {
+			clearSession();
 			request.setAttribute("registerForm", 1);
 		} else  if("registration".equals(action) && "userName" != null && "userPassword" != null && "userPasswordCheck" != null && "birthdate" != null) {
 			if(! (request.getParameter("userPassword")).equals(request.getParameter("userPasswordCheck"))) {
@@ -138,15 +140,7 @@ public class ForumServlet extends HttpServlet {
 		} else if("logout".equals(action)) {
 			//logout case
 			logout(request);
-			if(session.getAttribute("topic") != null) {
-				session.removeAttribute("topic");
-			}
-			if(session.getAttribute("taskID") != null) {
-				session.removeAttribute("taskID");
-			}
-			if(session.getAttribute("task") != null) {
-				session.removeAttribute("task");
-			}
+			clearSession();
 		} else if("showMyTopics".equals(action)) {
 			// list topics that user subscribed for
 			request.setAttribute("listTopics", 1);	
@@ -253,7 +247,7 @@ public class ForumServlet extends HttpServlet {
 			// open the task
 			session.setAttribute("taskID", request.getParameter("idOfTask"));
 			session.setAttribute("task", new TaskServices().getTask(Integer.parseInt(request.getParameter("idOfTask"))));
-			request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
+			session.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
 			request.setAttribute("taskOpened", 1);
 		} else if("addComment".equals(action)) {
 			// shows form for adding comment
@@ -265,12 +259,12 @@ public class ForumServlet extends HttpServlet {
 				Date date = new Date(System.currentTimeMillis());
 				Comment comment = new Comment(request.getParameter("comment").trim(), new TaskServices().getTask(Integer.parseInt((String) session.getAttribute("taskID"))), (User) session.getAttribute("user"), date);
 				new CommentServices().addCommentToDatabase(comment);
-				request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
+				session.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
 				request.setAttribute("taskOpened", 1);
 			} else {
 				// empty field for comment, could not add to DB
 				request.setAttribute("emptyField", 1);
-				request.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
+				session.setAttribute("taskComments", new CommentServices().printComments(Integer.parseInt((String)session.getAttribute("taskID"))));
 				request.setAttribute("taskOpened", 1);
 			}
 		} else if("updateComment".equals(action)) {
@@ -300,15 +294,7 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("taskOpened", 1);
 		} else if("showTopics".equals(action)) {
 			// shows all topics for user
-			if(session.getAttribute("topic") != null) {
-				session.removeAttribute("topic");
-			}
-			if(session.getAttribute("taskID") != null) {
-				session.removeAttribute("taskID");
-			}
-			if(session.getAttribute("task") != null) {
-				session.removeAttribute("task");
-			}
+			clearSession();
 		} else if("showTasks".equals(action)) {
 			// shows all tasks for topic
 			if(session.getAttribute("taskID") != null) {
@@ -323,6 +309,18 @@ public class ForumServlet extends HttpServlet {
 		}
 		//forwarding response back to node
 		forwardToList(request, response);
+	}
+
+	private void clearSession() {
+		if(session.getAttribute("topic") != null) {
+			session.removeAttribute("topic");
+		}
+		if(session.getAttribute("taskID") != null) {
+			session.removeAttribute("taskID");
+		}
+		if(session.getAttribute("task") != null) {
+			session.removeAttribute("task");
+		}
 	}
 
 	/**

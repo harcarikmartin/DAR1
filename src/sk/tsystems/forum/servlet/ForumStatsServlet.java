@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import sk.tsystems.forum.services.StatisticsServices;
 
 
@@ -19,6 +21,18 @@ public class ForumStatsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("topic") != null) {
+			session.removeAttribute("topic");
+		}
+		if(session.getAttribute("taskID") != null) {
+			session.removeAttribute("taskID");
+		}
+		if(session.getAttribute("task") != null) {
+			session.removeAttribute("task");
+		}
+		
 		request.setAttribute("allUsersCount", new StatisticsServices().getAllUsersCount());
 		request.setAttribute("adminsCount", new StatisticsServices().getAdminsCount());
 		request.setAttribute("usersCount", new StatisticsServices().getUsersCount());
