@@ -64,11 +64,11 @@
 						</c:if>
 						<c:if test="${succesRegister == '1'}">
 							<p class="simpleText marginHorizontal">
-								Registration was successful.
+								Your registration was successful.
 								<br>
 								Allow some time for your account to be approved by admin.
 								<br>
-								Currently you can not login yet!
+								You are not able to log in yet.
 							</p>
 						</c:if>
 					</form>

@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" class="text-center">
-					<p class="userProfileInfo">Change your profile picture</p>
+					<p class="userProfileInfo"></p>
 				</td>
 			</tr>
 			<tr>

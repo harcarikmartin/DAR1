@@ -113,10 +113,9 @@ public class ForumServlet extends HttpServlet {
 		} else if ("showProfile".equals(action)) {
 			// show user's profile
 			request.setAttribute("listProfile", 1);
+			testGetImage();
 		} else if ("UploadImage".equals(action)) {
 			testSaveImage(request);
-			testGetImage();
-			session.setAttribute("user", user);
 		} else if ("approve".equals(action)) {
 			// show list of users, which are 'pending'
 			if (!new UserServices().getPendingUsers().isEmpty()) {
@@ -198,11 +197,7 @@ public class ForumServlet extends HttpServlet {
 		} else if ("addTheTopic".equals(action)) {
 			// adding topic to database
 			if (new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) == null) {
-				Topic topic = new Topic();
-				topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
-				topic.setTopic(request.getParameter("addTheTopic").trim());
-				topic.setVisibility(request.getParameter("visibility"));
-				new TopicServices().addTopicToDatabase(topic);
+				addTopicToDB(request);
 				request.setAttribute("listTopics", 1);
 			} else if (new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) != null) {
 				// topic already exists
@@ -219,67 +214,44 @@ public class ForumServlet extends HttpServlet {
 		} else if ("openTopic".equals(action)) {
 			// open the topic
 			session.setAttribute("topic", new TopicServices().setPresentTopic(request.getParameter("topic")));
-			Topic topic = (Topic) session.getAttribute("topic");
-			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
-			request.setAttribute("topicOpened", 1);
+			getTasksForTopic(request);
 		} else if ("addTask".equals(action)) {
-			// shows form for adding task
-			Topic topic = (Topic) session.getAttribute("topic");
-			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
-			request.setAttribute("topicOpened", 1);
+			getTasksForTopic(request);
 			request.setAttribute("taskAdding", 1);
 		} else if ("addTheTask".equals(action)) {
 			// insert task into DB
 			if (!request.getParameter("nameOfTask").trim().isEmpty()
 					&& !request.getParameter("bodyOfTask").trim().isEmpty()) {
 				// add the task to DB
-				Task task = new Task(request.getParameter("nameOfTask").trim(),
-						request.getParameter("bodyOfTask").trim(), (Topic) session.getAttribute("topic"),
-						(User) session.getAttribute("user"));
-				new TaskServices().addTaskToDatabase(task);
-				Topic topic = (Topic) session.getAttribute("topic");
-				request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
-				request.setAttribute("topicOpened", 1);
+				addTaskToDB(request);
+				getTasksForTopic(request);
 			} else {
 				// empty field/s
 				request.setAttribute("emptyField", 1);
 			}
 		} else if ("updateTask".equals(action)) {
 			// show form for updating the task
-			request.setAttribute("taskUpdating",
-					new TaskServices().getTask(Integer.parseInt(request.getParameter("taskToUpdate"))));
-			Topic topic = (Topic) session.getAttribute("topic");
-			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
-			request.setAttribute("topicOpened", 1);
-			request.setAttribute("taskToUpdate", 1);
+			getTaskToUpdate(request);
+			getTasksForTopic(request);
 		} else if ("updateTheTask".equals(action)) {
 			// update of task, rename, change body of task
 			if (!request.getParameter("editNameTask").trim().isEmpty()
 					&& !request.getParameter("editBodyTask").trim().isEmpty()) {
 				// update task
-				new TaskServices().updateTask(Integer.parseInt(request.getParameter("taskID")),
-						request.getParameter("editNameTask").trim(), request.getParameter("editBodyTask").trim());
-				Topic topic = (Topic) session.getAttribute("topic");
-				request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
-				request.setAttribute("topicOpened", 1);
+				updateTaskInDB(request);
+				getTasksForTopic(request);
 			} else {
 				// return message of empty field/s
 				request.setAttribute("emptyField", 1);
 			}
 		} else if ("removeTask".equals(action)) {
 			// task removal
-			new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskToRemove")));
-			Topic topic = (Topic) session.getAttribute("topic");
-			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
-			request.setAttribute("topicOpened", 1);
+			removeTaskFromDB(request);
+			getTasksForTopic(request);
 		} else if ("openTask".equals(action)) {
 			// open the task
-			session.setAttribute("taskID", request.getParameter("idOfTask"));
-			session.setAttribute("task",
-					new TaskServices().getTask(Integer.parseInt(request.getParameter("idOfTask"))));
-			session.setAttribute("taskComments",
-					new CommentServices().printComments(Integer.parseInt((String) session.getAttribute("taskID"))));
-			request.setAttribute("taskOpened", 1);
+			openTask(request);
+			showCommentsForTask(request);
 		} else if ("addComment".equals(action)) {
 			// shows form for adding comment
 			request.setAttribute("commentAdding", 1);
@@ -287,20 +259,12 @@ public class ForumServlet extends HttpServlet {
 		} else if ("addTheComment".equals(action)) {
 			// insert comment into DB
 			if (!request.getParameter("comment").trim().isEmpty()) {
-				Date date = new Date(System.currentTimeMillis());
-				Comment comment = new Comment(request.getParameter("comment").trim(),
-						new TaskServices().getTask(Integer.parseInt((String) session.getAttribute("taskID"))),
-						(User) session.getAttribute("user"), date);
-				new CommentServices().addCommentToDatabase(comment);
-				session.setAttribute("taskComments",
-						new CommentServices().printComments(Integer.parseInt((String) session.getAttribute("taskID"))));
-				request.setAttribute("taskOpened", 1);
+				addCommentToDB(request);
+				showCommentsForTask(request);
 			} else {
 				// empty field for comment, could not add to DB
 				request.setAttribute("emptyField", 1);
-				session.setAttribute("taskComments",
-						new CommentServices().printComments(Integer.parseInt((String) session.getAttribute("taskID"))));
-				request.setAttribute("taskOpened", 1);
+				showCommentsForTask(request);
 			}
 		} else if ("updateComment".equals(action)) {
 			// show form for updating the comment
@@ -311,45 +275,103 @@ public class ForumServlet extends HttpServlet {
 			// update of comment
 			if (!request.getParameter("editComment").trim().isEmpty()) {
 				// update comment
-				new CommentServices().updateComment(Integer.parseInt(request.getParameter("commentID")),
-						request.getParameter("editComment").trim());
-				// pridat hodnoty, ktore potom treba poslat pre korektne
-				// zobrazenie stranky
-				request.setAttribute("taskComments",
-						new CommentServices().printComments(Integer.parseInt((String) session.getAttribute("taskID"))));
-				request.setAttribute("taskOpened", 1);
+				updateComment(request);
+				showCommentsForTask(request);
 			} else {
 				// return message of empty field/s
 				request.setAttribute("emptyField", 1);
-				request.setAttribute("taskComments",
-						new CommentServices().printComments(Integer.parseInt((String) session.getAttribute("taskID"))));
-				request.setAttribute("taskOpened", 1);
+				showCommentsForTask(request);
 			}
 		} else if ("removeComment".equals(action)) {
 			// comment removal
-			new CommentServices().removeComment(Integer.parseInt(request.getParameter("CommentToRemove")));
-			// pridat hodnoty, ktore potom treba poslat pre korektne zobrazenie
-			// stranky
-			request.setAttribute("taskComments",
-					new CommentServices().printComments(Integer.parseInt((String) session.getAttribute("taskID"))));
-			request.setAttribute("taskOpened", 1);
+			removeCommentFromDB(request);
+			showCommentsForTask(request);
 		} else if ("showTopics".equals(action)) {
 			// shows all topics for user
 			clearSession();
 		} else if ("showTasks".equals(action)) {
 			// shows all tasks for topic
-			if (session.getAttribute("taskID") != null) {
-				session.removeAttribute("taskID");
-			}
-			if (session.getAttribute("task") != null) {
-				session.removeAttribute("task");
-			}
-			Topic topic = (Topic) session.getAttribute("topic");
-			request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
-			request.setAttribute("topicOpened", 1);
+			showTasksForTopic(request);
 		}
 		// forwarding response back to node
 		forwardToList(request, response);
+	}
+
+	private void addTopicToDB(HttpServletRequest request) {
+		Topic topic = new Topic();
+		topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
+		topic.setTopic(request.getParameter("addTheTopic").trim());
+		topic.setVisibility(request.getParameter("visibility"));
+		new TopicServices().addTopicToDatabase(topic);
+	}
+
+	private void updateTaskInDB(HttpServletRequest request) {
+		new TaskServices().updateTask(Integer.parseInt(request.getParameter("taskID")),
+				request.getParameter("editNameTask").trim(), request.getParameter("editBodyTask").trim());
+	}
+
+	private void getTaskToUpdate(HttpServletRequest request) {
+		request.setAttribute("taskUpdating",
+				new TaskServices().getTask(Integer.parseInt(request.getParameter("taskToUpdate"))));
+		request.setAttribute("taskToUpdate", 1);
+	}
+
+	private void addTaskToDB(HttpServletRequest request) {
+		Task task = new Task(request.getParameter("nameOfTask").trim(),
+				request.getParameter("bodyOfTask").trim(), (Topic) session.getAttribute("topic"),
+				(User) session.getAttribute("user"));
+		new TaskServices().addTaskToDatabase(task);
+	}
+
+	private void removeTaskFromDB(HttpServletRequest request) {
+		new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskToRemove")));
+	}
+
+	private void getTasksForTopic(HttpServletRequest request) {
+		Topic topic = (Topic) session.getAttribute("topic");
+		request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
+		request.setAttribute("topicOpened", 1);
+	}
+
+	private void openTask(HttpServletRequest request) {
+		session.setAttribute("taskID", request.getParameter("idOfTask"));
+		session.setAttribute("task",
+				new TaskServices().getTask(Integer.parseInt(request.getParameter("idOfTask"))));
+	}
+
+	private void addCommentToDB(HttpServletRequest request) {
+		Date date = new Date(System.currentTimeMillis());
+		Comment comment = new Comment(request.getParameter("comment").trim(),
+				new TaskServices().getTask(Integer.parseInt((String) session.getAttribute("taskID"))),
+				(User) session.getAttribute("user"), date);
+		new CommentServices().addCommentToDatabase(comment);
+	}
+
+	private void showCommentsForTask(HttpServletRequest request) {
+		session.setAttribute("taskComments",
+				new CommentServices().printComments(Integer.parseInt((String) session.getAttribute("taskID"))));
+		request.setAttribute("taskOpened", 1);
+	}
+
+	private void updateComment(HttpServletRequest request) {
+		new CommentServices().updateComment(Integer.parseInt(request.getParameter("commentID")),
+				request.getParameter("editComment").trim());
+	}
+
+	private void removeCommentFromDB(HttpServletRequest request) {
+		new CommentServices().removeComment(Integer.parseInt(request.getParameter("CommentToRemove")));
+	}
+
+	
+
+	private void showTasksForTopic(HttpServletRequest request) {
+		if (session.getAttribute("taskID") != null) {
+			session.removeAttribute("taskID");
+		}
+		if (session.getAttribute("task") != null) {
+			session.removeAttribute("task");
+		}
+		getTasksForTopic(request);
 	}
 
 	private void clearSession() {
@@ -517,7 +539,8 @@ public class ForumServlet extends HttpServlet {
 			inputStream = filePart.getInputStream();
 			image = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 			image = ImageIO.read(inputStream);
-			f = new File("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+//			f = new File("C:\\Users\\ï¿½tudent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+			f = new File("/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
 			ImageIO.write(image, "jpg", f);
 			System.out.println("Reading complete.");
 		} catch (IOException e) {
@@ -544,7 +567,7 @@ public class ForumServlet extends HttpServlet {
 		byte[] bAvatar = getUser().getProfileImage();
 		try {
 			FileOutputStream fos = new FileOutputStream(
-					"C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+					"/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
 			fos.write(bAvatar);
 
 			fos.close();
