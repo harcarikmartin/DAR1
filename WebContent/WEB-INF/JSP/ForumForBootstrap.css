@@ -36,6 +36,24 @@ a:hover {
 	color: #F8854E;
 	text-decoration: none;
 }
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid white;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    border: 1px solid #F8854E;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: #F8854E;
+}
+
 /*Change ROW from bootstrap*/
 .row{
 	margin: 0;
