@@ -5,7 +5,7 @@
 			<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 rowBackground">
 				<form method="post" onsubmit="return checkRequiredAddComment()">
 						<div class="row text-center"><textarea class="inputForNewStuff" id="comment" name="comment" spellcheck="true" lang="en"
-							cols="50" rows="5" placeholder="Write comment ..." ></textarea></div>
+							cols="50" rows="5" placeholder="Write comment ..." maxlength="500"></textarea></div>
 						<div class="row text-center"><p id="commentRequired" class="requiredField ">Comment is required</p></div>
 						<div class="row text-center">
 						<input type="hidden" name="action" value="addTheComment">

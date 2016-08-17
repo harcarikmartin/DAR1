@@ -15,7 +15,7 @@
 						class="passwordForm" type="password" name="userPasswordOld"
 						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
 						oninvalid="alert('Old password is not valid')"
-						placeholder="password" autofocus></td>
+						placeholder="password" autofocus maxlength="100"></td>
 					<td class="passwordCellStyle text-center"><p id="opRequired"
 							class="requiredField">Required field</p></td>
 				</tr>
@@ -26,7 +26,7 @@
 						class="passwordForm" type="password" name="userPasswordNew"
 						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
 						oninvalid="alert('New password is not valid')"
-						placeholder="password"></td>
+						placeholder="password" maxlength="100"></td>
 					<td class="passwordCellStyle text-center"><p id="npRequired"
 							class="requiredField">Required field</p></td>
 				</tr>
@@ -43,7 +43,7 @@
 						for="NewPasswordConfirm">Confirm new password:</label></td>
 					<td class="passwordCellStyle"><input id="NewPasswordConfirm"
 						class="passwordForm" type="password" name="userPasswordNewCheck"
-						placeholder="password"></td>
+						placeholder="password" maxlength="100"></td>
 					<td class="passwordCellStyle text-center"><p id="npcRequired"
 							class="requiredField">Required field</p></td>
 				</tr>

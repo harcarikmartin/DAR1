@@ -18,7 +18,7 @@
 							for="userNameReg">Username:</label></td>
 						<td class="registerCellStyle text-left"><input
 							id="userNameReg" class="registrationForm" type="text"
-							name="userName" placeholder="name" autofocus></td>
+							name="userName" placeholder="name" autofocus maxlength="100"></td>
 						<td class="registerCellStyle text-center"><p id="rfName"
 								class="requiredField">Required field</p></td>
 					</tr>
@@ -29,7 +29,7 @@
 							id="userPassReg" class="registrationForm" type="password"
 							name="userPassword"
 							pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-							oninvalid="alert('Password is not valid')" placeholder="password"></td>
+							oninvalid="alert('Password is not valid')" placeholder="password" maxlength="100"></td>
 						<td class="registerCellStyle text-center"><p id="rfPass"
 								class="requiredField">Required field</p></td>
 					</tr>
@@ -47,7 +47,7 @@
 							for="userPassRegCheck">Confirm password:</label></td>
 						<td class="registerCellStyle text-left"><input
 							id="userPassRegCheck" class="registrationForm" type="password"
-							name="userPasswordCheck" placeholder="password"></td>
+							name="userPasswordCheck" placeholder="password" maxlength="100"></td>
 						<td class="registerCellStyle text-center"><p id="rfPassCheck"
 								class="requiredField">Required field</p></td>
 					</tr>
@@ -55,7 +55,7 @@
 						<td class="registerCellStyle text-center"><label
 							for="birthdate">Date of birth:</label></td>
 						<td class="registerCellStyle text-left"><input id="birthdate"
-							class="registrationForm" type="date" name="birthdate" onchange="checkDate()"></td>
+							class="registrationForm" type="date" name="birthdate" onchange="checkDate()" maxlength="10"></td>
 						<td class="registerCellStyle text-center"><p id="rfBirthdate"
 								class="requiredField">Required field</p></td>
 					</tr>

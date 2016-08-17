@@ -116,7 +116,7 @@
 						<p class="simpleText">Topic with this name already exist!</p>
 					</c:if>
 						<div class="row text-center"><label class="simpleText" for="addTheTopic">Add new Topic:</label></div>
-						<div class="row text-center"><input class="inputForNewStuff" id="addTheTopic" type="text" name="addTheTopic" placeholder="topic name" autofocus></div>
+						<div class="row text-center"><input class="inputForNewStuff" id="addTheTopic" type="text" name="addTheTopic" placeholder="topic name" autofocus maxlength="100"></div>
 						<div class="row text-center"><p id="topicNameRequired" class="requiredField ">Topic name is required</p></div>
 						<div class="row text-center">
 						<input id="addPublic" type="radio" name="visibility" value="public">
@@ -148,7 +148,7 @@
 						<label class="simpleText" for="editTopic">Edit Topic: </label>
 					</div>
 					<div class="row text-center">
-						<input class="inputForNewStuff" id="editTopic" type="text" name="editTopic" placeholder="topic name" value="${topicUpdating.topic}" autofocus>
+						<input class="inputForNewStuff" id="editTopic" type="text" name="editTopic" placeholder="topic name" value="${topicUpdating.topic}" autofocus maxlength="100">
 					</div>
 					<div class="row text-center">
 						<p id="topicNameRequired" class="requiredField ">Topic name is required</p>

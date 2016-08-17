@@ -26,7 +26,7 @@
 							<tr>
 								<td><label class="labels" for="userName">Username:<input
 										id="userName" class="loginForm" type="text" name="userName"
-										placeholder="name ..." autofocus></label></td>
+										placeholder="name ..." autofocus maxlength="100"></label></td>
 							</tr>
 						</table>
 
@@ -39,7 +39,7 @@
 							<tr>
 								<td><label class="labels" for="userPassword">Password:
 										<input id="userPassword" class="loginForm" type="password"
-										name="userPassword" placeholder="password ...">
+										name="userPassword" placeholder="password ..." maxlength="100">
 								</label></td>
 							</tr>
 						</table>

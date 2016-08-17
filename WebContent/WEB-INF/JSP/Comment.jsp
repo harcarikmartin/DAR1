@@ -30,7 +30,9 @@
 		
 		</div>
 		<div class="rowBackgroundNone col-lg-12 col-md-12 col-sm-12 col-xs-12 paddingHorizontal1-2 borderBtm">
-			<p class="taskBody">${task.task}</p>
+			<p class="taskBody">
+			Asked by <span>${task.user.userName}</span><br><br>
+			${task.task}</p>
 		</div>
 
 		<c:if test="${commentToUpdate != null}">
@@ -47,11 +49,12 @@
 		<tbody>
 			<c:forEach items="${taskComments}" var="taskComment">
 				<tr class="commentTR">
-				<td class="creatorOfComment text-center paddingHorizontal verticalAlign">${taskComment.user.userName} replied
-				<p class="commentInfoStyle rowBackgroundNone text-right">on <fmt:formatDate value="${taskComment.addedOn}" pattern="MM/dd/yyyy"/></p>
-				<p class="commentInfoStyle rowBackgroundNone text-right">at <fmt:formatDate value="${taskComment.addedOn}" pattern="HH:mm"/></p>
-				</td>
 					<td class="commentBody commentStyle rowBackground">
+					<p class="  verticalAlign">
+					
+					by <span>${taskComment.user.userName}</span> on 
+					<span><fmt:formatDate value="${taskComment.addedOn}" pattern="MM/dd/yyyy"/></span> at 
+					<span><fmt:formatDate value="${taskComment.addedOn}" pattern="HH:mm"/></span></p>
 						${taskComment.comment}
 						
 					</td>
