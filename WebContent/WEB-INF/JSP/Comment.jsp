@@ -36,7 +36,7 @@
 		</div>
 
 		<c:if test="${commentToUpdate != null}">
-			<%@ include file="UpdateComment.jsp"%>
+			<jsp:include page="UpdateComment.jsp" />
 		</c:if>
 </c:if>
 		
@@ -90,7 +90,7 @@
 		
 		</c:if>
 		<c:if test="${sessionScope.task != null && commentToUpdate == null}">
-			<%@ include file="AddComment.jsp"%>
+			<jsp:include page="AddComment.jsp" />
 		</c:if>
 							
 

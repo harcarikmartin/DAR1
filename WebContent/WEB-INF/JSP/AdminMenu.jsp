@@ -30,36 +30,12 @@
 	</div>
 
 
-		<c:if test="${listProfile != null }">
-		<div class="row col-lg-12">
-			<div
-				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
-				<table
-					class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
-					<tr>
-						<td class="userProfileInfo text-right paddingHorizontal">Username:</td>
-						<td class="userProfileInfo paddingHorizontal">${user.userName}</td>
-					</tr>
-					<tr>
-						<td class="userProfileInfo text-right paddingHorizontal">Birthdate:</td>
-						<td class="userProfileInfo paddingHorizontal">${user.birthDate}</td>
-					</tr>
-					<tr>
-						<td class="userProfileInfo text-right paddingHorizontal">Role:</td>
-						<td class="userProfileInfo paddingHorizontal">${user.role}</td>
-					</tr>
-					<tr>
-						<td class="userProfileInfo text-right paddingHorizontal">Status:</td>
-						<td class="userProfileInfo paddingHorizontal">${user.status}</td>
-					</tr>
-				</table>
+<c:if test="${listProfile != null }">
+	<jsp:include page="Profile.jsp" />
+</c:if>
 
-			</div>
-		</div>
-	</c:if>
-
-		<c:if test="${changePassword == 1}">
-			<%@ include file="PasswordChange.jsp"%>
+<c:if test="${changePassword == 1}">
+			<jsp:include page="PasswordChange.jsp" />
 		</c:if>
 
 

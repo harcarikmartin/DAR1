@@ -43,11 +43,11 @@
 </c:if>
 
 		<c:if test="${taskAdding != null}">
-			<%@ include file="AddTask.jsp"%>
+			<jsp:include page="AddTask.jsp" />
 		</c:if>
 
 		<c:if test="${taskToUpdate != null}">
-			<%@ include file="UpdateTask.jsp"%>
+			<jsp:include page="UpdateTask.jsp" />
 		</c:if>
 
 	<c:if test="${fn:length(topicTasks) > 0}">
