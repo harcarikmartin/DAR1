@@ -22,6 +22,7 @@ public class Task {
 	private Topic topic;
 
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
 
 	@Column(nullable = false, length=500) 

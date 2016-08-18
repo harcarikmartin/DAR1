@@ -21,6 +21,7 @@ public class Comment {
 	private int commentID;
 
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
 	
 	private Date addedOn;
