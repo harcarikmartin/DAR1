@@ -43,6 +43,10 @@ img{
     max-width: 200px;
     max-height: 200px;
 }
+.commentIMG{
+	max-width: 50px;
+    max-height: 50px;
+}
 .custom-file-upload {
     border: 1px solid white;
     display: inline-block;
@@ -110,6 +114,9 @@ label, .labels, .simpleText{
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
+.marginVerticalTop{
+	margin-top: 1em;
+}
 .paddingHeavy{
 	padding-bottom: 3em;
 }
@@ -128,10 +135,13 @@ label, .labels, .simpleText{
 	padding-bottom: 1em;
 }
 .commentBtn{
-	width: 10%;
+	width: 7%;
 }
 .commentBody{
-	width: 80%;
+	width: 70%;
+}
+.commentImage{
+	width: 16%;
 }
 .btn-block-left {
 	display: block;

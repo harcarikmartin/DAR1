@@ -7,16 +7,16 @@
 			<div class="text-left text-center-xs">
 				<form class="userMenu" method="post">
 					<input type="hidden" name="action" value="showProfile">
-					<button class="marginHorizontalLeft buttonStyle" type="submit">Profile</button>
+					<button class="marginHorizontalLeft buttonStyle marginVerticalTop" type="submit">Profile</button>
 				</form>
 				<form class="userMenu" method="post">
 					<input type="hidden" name="action" value="changePassword">
-					<button class="marginHorizontalLeft buttonStyle" type="submit">Change
+					<button class="marginHorizontalLeft buttonStyle marginVerticalTop" type="submit">Change
 						Password</button>
 				</form>
 				<form class="userMenu" method="post">
 					<input type="hidden" name="action" value="showMyTopics">
-					<button class="marginHorizontalLeft buttonStyle" type="submit">Subscribed
+					<button class="marginHorizontalLeft buttonStyle marginVerticalTop" type="submit">Subscribed
 						topics</button>
 				</form>
 			</div>

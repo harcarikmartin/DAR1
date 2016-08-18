@@ -45,6 +45,14 @@
 						<tbody>
 							<c:forEach items="${taskComments}" var="taskComment">
 								<tr class="commentTR">
+								<td class="commentImage text-center taskNoButton">
+										<c:if test="${taskComment.user.profileImage == null}">
+											<img src="images/default.jpg" height="200" alt="Default profile image" class="commentIMG">
+										</c:if>
+										<c:if test="${taskComment.user.profileImage != null}">
+											<img src="images/${taskComment.user.userID}.jpg" height="50" alt="User profile image" class="commentIMG">
+										</c:if>
+									</td>
 									<td class="commentBody commentStyle rowBackground">
 										<p class="  verticalAlign">
 											by

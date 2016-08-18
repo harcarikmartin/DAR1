@@ -8,26 +8,26 @@
 			<div class="text-left text-center-xs">
 				<form class="userMenu" method="post">
 					<input type="hidden" name="action" value="showProfile">
-					<button class="marginHorizontalLeft buttonStyle" id="SeeProfile"
+					<button class="marginHorizontalLeft buttonStyle marginVerticalTop" id="SeeProfile"
 						type="submit">Profile</button>
 				</form>
 				<form class="userMenu" method="post">
 					<input type="hidden" name="action" value="changePassword">
-					<button class="marginHorizontalLeft buttonStyle" type="submit">Change Password</button>
+					<button class="marginHorizontalLeft buttonStyle marginVerticalTop" type="submit">Change Password</button>
 				</form>
 				<form class="userMenu" method="post">
 					<input type="hidden" name="action" value="approve">
-					<button class="marginHorizontalLeft buttonStyle" id="ApproveUsers"
+					<button class="marginHorizontalLeft buttonStyle marginVerticalTop" id="ApproveUsers"
 						type="submit">Approve Users</button>
 				</form>
 				<form class="userMenu" method="post">
 					<input type="hidden" name="action" value="userRoles">
-					<button class="marginHorizontalLeft buttonStyle" id="ApproveUsers"
+					<button class="marginHorizontalLeft buttonStyle marginVerticalTop" id="ApproveUsers"
 						type="submit">User roles</button>
 				</form>
 				<form class="userMenu" method="post">
 					<input type="hidden" name="action" value="addTopic">
-					<button class="marginHorizontalLeft buttonStyle" id="addTopic"
+					<button class="marginHorizontalLeft buttonStyle marginVerticalTop" id="addTopic"
 						type="submit">Add topic</button>
 				</form>
 			</div>
@@ -169,7 +169,7 @@
 			<div
 				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
 				<table
-					class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
+					class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8  col-xs-12">
 					<tr>
 						<th colspan="4" class="approveHeadStyle text-center">Users role</th>
 					</tr>
@@ -211,7 +211,7 @@
 													value="${user.userName}"> 
 												<input type="hidden"
 													name="action" value="deleteUser">
-												<button class="btn-block buttonStyle" type="submit">Delete</button>
+												<button class="btn-block buttonStyle" type="submit">Delete from Forum</button>
 											</form>
 										</td>
 									</tr>
