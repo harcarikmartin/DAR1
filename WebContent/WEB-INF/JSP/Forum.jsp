@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; utf-8">
 <title>Forum</title>
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script> 
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script> 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-<style>
+<style type="text/css">
 <%@include file="bootstrap/css/bootstrap.min.css"%>
 <%@include file="ForumForBootstrap.css"%>
 </style>
