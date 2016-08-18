@@ -552,7 +552,7 @@ public class ForumServlet extends HttpServlet {
 			inputStream = filePart.getInputStream();
 			image = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 			image = ImageIO.read(inputStream);
-			f = new File("C:\\Users\\ï¿½tudent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+			f = new File("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
 //			f = new File("/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
 			ImageIO.write(image, "jpg", f);
 			System.out.println("Reading complete.");
@@ -579,7 +579,7 @@ public class ForumServlet extends HttpServlet {
 	private void testGetImage() {
 		byte[] bAvatar = getUser().getProfileImage();
 		try {
-			FileOutputStream fos = new FileOutputStream("C:\\Users\\ï¿½tudent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
 //			FileOutputStream fos = new FileOutputStream("/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
 			fos.write(bAvatar);
 
