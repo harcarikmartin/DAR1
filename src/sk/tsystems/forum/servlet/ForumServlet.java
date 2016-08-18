@@ -299,6 +299,10 @@ public class ForumServlet extends HttpServlet {
 			// toggle user role (admin->user || user->admin)
 			new UserServices().toggleUserRole(request.getParameter("userForToggle"), request.getParameter("newRole"));
 			getUserRoles(request);
+		} else if ("deleteUser".equals(action)) {
+			// drop user
+			new UserServices().dropUser(request.getParameter("userToDelete"));
+			getUserRoles(request);
 		}
 		// forwarding response back to node
 		forwardToList(request, response);
