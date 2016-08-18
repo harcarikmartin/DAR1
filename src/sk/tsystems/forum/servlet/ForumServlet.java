@@ -514,7 +514,9 @@ public class ForumServlet extends HttpServlet {
 		Topic topic = new TopicServices().setPresentTopic(request.getParameter("original"));
 		if (topic.getVisibility().equals("private") && request.getParameter("visibility1").equals("public")) {
 			List<User> list = topic.getUsers();
-			list.clear();
+			if(!list.isEmpty()) {
+				list.clear();
+			}
 			topic.setUsers(list);
 		}
 	}
