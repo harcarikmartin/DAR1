@@ -175,40 +175,38 @@
 				<c:forEach items="${users}" var="user">
 					<c:if test="${user.userName != 'jozko'}">
 						<c:if test="${user.userName != sessionScope.user.userName}">
-							<c:if test="${user.status != 'pending'}">
-								<tr>
-									<td>
-										<p class="approveCellStyle paddingHorizontal">${user.userName}</p>
-									</td>
-									<td>
-										<c:if test="${user.role == 'user'}">
-											<form method="post">
-												<input type="hidden" name="userForToggle" value="${user.userName}">
-												<input type="hidden" name="action" value="toggleUserRole">
-												<input type="hidden" name="newRole" value="admin">
-												<button class="btn-block buttonStyle" type="submit">Promote to Admin</button>
-											</form>
-										</c:if>
-									</td>
-									<td>
-										<c:if test="${user.role == 'admin'}">
-											<form method="post">
-												<input type="hidden" name="userForToggle" value="${user.userName}">
-												<input type="hidden" name="action" value="toggleUserRole">
-												<input type="hidden" name="newRole" value="user">
-												<button class="btn-block buttonStyle" type="submit">Degrade to User</button>
-											</form>
-										</c:if>
-									</td>
-									<td>
+							<tr>
+								<td>
+									<p class="approveCellStyle paddingHorizontal">${user.userName}</p>
+								</td>
+								<td>
+									<c:if test="${user.role == 'user'}">
 										<form method="post">
-											<input type="hidden" name="userToDelete" value="${user.userName}">
-											<input type="hidden" name="action" value="deleteUser">
-											<button class="btn-block buttonStyle" type="submit">Delete from Forum</button>
+											<input type="hidden" name="userForToggle" value="${user.userName}">
+											<input type="hidden" name="action" value="toggleUserRole">
+											<input type="hidden" name="newRole" value="admin">
+											<button class="btn-block buttonStyle" type="submit">Promote to Admin</button>
 										</form>
-									</td>
-								</tr>
-							</c:if>
+									</c:if>
+								</td>
+								<td>
+									<c:if test="${user.role == 'admin'}">
+										<form method="post">
+											<input type="hidden" name="userForToggle" value="${user.userName}">
+											<input type="hidden" name="action" value="toggleUserRole">
+											<input type="hidden" name="newRole" value="user">
+											<button class="btn-block buttonStyle" type="submit">Degrade to User</button>
+										</form>
+									</c:if>
+								</td>
+								<td>
+									<form method="post">
+										<input type="hidden" name="userToDelete" value="${user.userName}">
+										<input type="hidden" name="action" value="deleteUser">
+										<button class="btn-block buttonStyle" type="submit">Delete from Forum</button>
+									</form>
+								</td>
+							</tr>
 						</c:if>
 					</c:if>
 				</c:forEach>

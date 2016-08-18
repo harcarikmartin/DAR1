@@ -53,7 +53,6 @@ img{
     padding: 6px 12px;
     cursor: pointer;
 }
-
 .custom-file-upload:hover {
     border: 1px solid #F8854E;
     display: inline-block;
@@ -61,7 +60,6 @@ img{
     cursor: pointer;
     color: #F8854E;
 }
-
 /*Change ROW from bootstrap*/
 .row{
 	margin: 0;
@@ -168,7 +166,6 @@ label, .labels, .simpleText{
 	padding-left: 5em;
 }
 .topicStyle, .taskStyle{
-	height: 5vh;
 	min-height: 30px;
     background-color: #404040;
     border: none;
@@ -225,7 +222,6 @@ label, .labels, .simpleText{
     background: #4d4d4d;
 }
 .taskStyle:disabled, .taskStyle:disabled:hover{
-	height: 5vh;
 	min-height: 30px;
     background-color: #404040;
     border: none;
@@ -265,12 +261,13 @@ tr.commentTR td, .borderBtm{
 	font-weight: bold;
 	padding-left: 1em;
 	font-size: x-large;
-	height: 5em;
+	word-break: break-all;
 }
 .taskHierarchy{
 	font-weight: bold;
 	padding-left: 3em;
 	font-size: large;
+	word-break: break-all;
 }
 span {
 	color: #F8854E;
