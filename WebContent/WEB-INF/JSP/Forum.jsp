@@ -90,6 +90,11 @@
 		</script>
 	</c:if>
 	
+	<c:if test="${sessionScope.user == null && sessionScope.topic != null}">
+		<script type="text/javascript">
+		<%@include file="Task.js"%>
+		</script>
+	</c:if>
 	<c:if test="${user.role=='admin' && changePassword == 1}">
 		<script type="text/javascript">
 		<%@include file="PasswordChange.js"%>
