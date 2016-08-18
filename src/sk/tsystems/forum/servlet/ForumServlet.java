@@ -33,9 +33,6 @@ import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
 import sk.tsystems.forum.services.UsersTopicsServices;
 
-/**
- * Main Forum servlet, responible for deciding based on node requests
- */
 @WebServlet("/Forum")
 @MultipartConfig(maxFileSize = 16177215)
 public class ForumServlet extends HttpServlet {
@@ -308,6 +305,15 @@ public class ForumServlet extends HttpServlet {
 		forwardToList(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+	
 	private void getUserRoles(HttpServletRequest request) {
 		request.setAttribute("listUserRoles", 1);
 		request.setAttribute("users", new UserServices().getUsers());
@@ -378,8 +384,6 @@ public class ForumServlet extends HttpServlet {
 		new CommentServices().removeComment(Integer.parseInt(request.getParameter("CommentToRemove")));
 	}
 
-	
-
 	private void showTasksForTopic(HttpServletRequest request) {
 		if (session.getAttribute("taskID") != null) {
 			session.removeAttribute("taskID");
@@ -400,15 +404,6 @@ public class ForumServlet extends HttpServlet {
 		if (session.getAttribute("task") != null) {
 			session.removeAttribute("task");
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 	private void lenghtenPasswordChange(HttpServletRequest request) {
