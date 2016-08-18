@@ -60,7 +60,7 @@
 							<td class="subscribedTopicsTableCell"></td>
 							<td class="text-left paddingHorizontal subscribedTopicsTableCell"><input
 								type="hidden" name="action" value="changeTopics">
-								<button class="buttonStyle" type="submit">Change topics</button></td>
+								<button class="buttonStyle" type="submit">Subscribe</button></td>
 						</tr>
 					</table>
 				</form>
