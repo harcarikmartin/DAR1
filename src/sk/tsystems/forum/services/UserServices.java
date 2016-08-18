@@ -124,7 +124,7 @@ public class UserServices {
 
 	public List<User> getUsers() {
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("SELECT u FROM User u");
+		Query query = em.createQuery("SELECT u FROM User u order by u.userName asc");
 		return query.getResultList();
 	}
 

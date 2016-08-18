@@ -1,8 +1,13 @@
 package sk.tsystems.forum.services;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.jpahelper.JpaHelper;
 
 public class StatisticsServices {
@@ -185,5 +190,25 @@ public class StatisticsServices {
 		} else {
 			return Math.toIntExact((long) query.getResultList().get(0));
 		}
+	}
+
+	public User getLatestUser() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select u from User u order by u.registeredOn desc");
+		if(query.getResultList().isEmpty()) {
+			em.close();
+			return null;
+		} else {
+			return (User) query.getResultList().get(0);
+		}
+		
+	}
+
+	public List<User> getRegisteredLastWeek() {
+		Date cal = new Date(System.currentTimeMillis() - 7*24*60*60*1000);
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.registeredOn > :date");
+		query.setParameter("date", cal);
+		return query.getResultList();
 	}
 }

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -33,6 +34,16 @@
 									Not Approved: <span>${notApprovedCount}</span></li>
 							</ul>
 							<hr>
+							<li class="stats">Last registered user is <span>${latestUser.userName}</span>, 
+							registered on <span><fmt:formatDate value="${latestUser.registeredOn}" pattern="dd/MM/yyyy" /></span>
+							</li>
+							<c:if test="${registeredLastWeek != null}">
+								<li class="stats">Users registered last week - 
+									<c:forEach items="${registeredLastWeek}" var="userRegisteredLastWeek">
+									<span>${userRegisteredLastWeek.userName}&nbsp;&nbsp;</span>
+									</c:forEach>	
+							</li>
+							</c:if>
 							<li class="stats">Most active user is <span>${mostActiveUser}</span>
 								with <span>${commentsForMostActiveUser}</span> comments.
 							</li>
