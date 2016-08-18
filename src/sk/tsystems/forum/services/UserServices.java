@@ -89,7 +89,6 @@ public class UserServices {
 	public List<User> getPendingUsers() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT userName FROM User u WHERE u.status='pending' ");
-
 		return query.getResultList();
 
 	}
@@ -121,6 +120,20 @@ public class UserServices {
 		JpaHelper.beginTransaction();
 		user.setProfileImage(profileImage);
 		JpaHelper.commitTransaction();
+	}
+
+	public List<User> getUsers() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT u FROM User u");
+		return query.getResultList();
+	}
+
+	public void toggleUserRole(String userName, String newRole) {
+		User user = setPresentUser(userName);
+		JpaHelper.beginTransaction();
+		user.setRole(newRole);
+		JpaHelper.commitTransaction();
+		
 	}
 
 

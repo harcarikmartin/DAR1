@@ -292,9 +292,21 @@ public class ForumServlet extends HttpServlet {
 		} else if ("showTasks".equals(action)) {
 			// shows all tasks for topic
 			showTasksForTopic(request);
+		} else if ("userRoles".equals(action)) {
+			// show form with list of users, can change roles of users
+			getUserRoles(request);
+		} else if ("toggleUserRole".equals(action)) {
+			// toggle user role (admin->user || user->admin)
+			new UserServices().toggleUserRole(request.getParameter("userForToggle"), request.getParameter("newRole"));
+			getUserRoles(request);
 		}
 		// forwarding response back to node
 		forwardToList(request, response);
+	}
+
+	private void getUserRoles(HttpServletRequest request) {
+		request.setAttribute("listUserRoles", 1);
+		request.setAttribute("users", new UserServices().getUsers());
 	}
 
 	private void addTopicToDB(HttpServletRequest request) {
@@ -539,7 +551,7 @@ public class ForumServlet extends HttpServlet {
 			inputStream = filePart.getInputStream();
 			image = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 			image = ImageIO.read(inputStream);
-			f = new File("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+			f = new File("C:\\Users\\ï¿½tudent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
 //			f = new File("/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
 			ImageIO.write(image, "jpg", f);
 			System.out.println("Reading complete.");
@@ -566,7 +578,7 @@ public class ForumServlet extends HttpServlet {
 	private void testGetImage() {
 		byte[] bAvatar = getUser().getProfileImage();
 		try {
-			FileOutputStream fos = new FileOutputStream("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\ï¿½tudent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
 //			FileOutputStream fos = new FileOutputStream("/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
 			fos.write(bAvatar);
 

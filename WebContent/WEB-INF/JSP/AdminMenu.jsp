@@ -21,6 +21,11 @@
 						type="submit">Approve Users</button>
 				</form>
 				<form class="userMenu" method="post">
+					<input type="hidden" name="action" value="userRoles">
+					<button class="marginHorizontalLeft buttonStyle" id="ApproveUsers"
+						type="submit">User roles</button>
+				</form>
+				<form class="userMenu" method="post">
 					<input type="hidden" name="action" value="addTopic">
 					<button class="marginHorizontalLeft buttonStyle" id="addTopic"
 						type="submit">Add topic</button>
@@ -78,7 +83,7 @@
 		<div class="row col-lg-12">
 			<div
 				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground text-center">
-				<p class="simpleText">There is no one, who can be approved.</p>
+				<p class="simpleText">There is no one awaiting to be approved.</p>
 			</div>
 		</div>
 	</c:if>
@@ -156,6 +161,53 @@
 						<button class="buttonStyle" type="submit">Edit topic</button>
 					</div>
 				</form>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${listUserRoles == 1}">
+		<div class="row col-lg-12">
+			<div
+				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
+				<table
+					class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
+					<tr>
+						<th colspan="3" class="approveHeadStyle text-center">New
+							users</th>
+					</tr>
+					<c:forEach items="${users}" var="user">
+						<c:if test="${user.userName != 'jozko'}">
+							<tr>
+								<td><p class="approveCellStyle paddingHorizontal">${user.userName}</p></td>
+								<td>
+									<c:if test="${user.role == 'user'}">
+									<form method="post">
+										<input type="hidden" name="userForToggle"
+											value="${user.userName}"> 
+										<input type="hidden"
+											name="action" value="toggleUserRole">
+										<input type="hidden" name="newRole"
+											value="admin">	
+										<button class="btn-block buttonStyle" type="submit">Promote to Admin</button>
+									</form>
+									</c:if>
+								</td>
+								<td>
+									<c:if test="${user.role == 'admin'}">
+									<form method="post">
+										<input type="hidden" name="userForToggle"
+											value="${user.userName}"> 
+										<input type="hidden"
+											name="action" value="toggleUserRole">
+										<input type="hidden" name="newRole"
+											value="user">
+										<button class="btn-block buttonStyle" type="submit">Degrade to user</button>
+									</form>
+									</c:if>
+								</td>
+							</tr>
+						</c:if>
+					</c:forEach>
+				</table>
 			</div>
 		</div>
 	</c:if>
