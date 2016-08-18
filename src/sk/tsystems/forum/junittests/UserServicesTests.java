@@ -2,11 +2,7 @@ package sk.tsystems.forum.junittests;
 
 import static org.junit.Assert.*;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -19,83 +15,65 @@ import sk.tsystems.forum.services.UserServices;
 public class UserServicesTests {
 
 	private UserServices userServices = new UserServices();
-	private String nameOfTester = "tester";
-	private User testedUser = new User();
-
-	public Date parseDate() {
-		String dateString = "2016-08-18";
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = null;
-		try {
-			date = df.parse(dateString);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return date;
-	}
+	private CreatingTestingSamples sample = new CreatingTestingSamples();
 
 	@Before
 	public void createTesterUserAndTestingTopic() {
-		testedUser.setUserName(nameOfTester);
-		testedUser.setUserPassword("tester");
-		testedUser.setBirthDate(parseDate());
-		testedUser.setRole("user");
-		testedUser.setStatus("pending");
-		userServices.addUser(testedUser);
+		sample.createTestedUser();
 	}
 
 	@After
 	public void dropUser() {
-		userServices.dropUser(nameOfTester);
+		userServices.dropUser(sample.getNameOfTester());
 	}
 
 	@Test
 	public void doesMethodAddUserWork() {
 		// Checks if user "tester" is in database
-		assertEquals("tester", userServices.setPresentUser(nameOfTester).getUserName());
+		assertEquals("tester", userServices.setPresentUser(sample.getNameOfTester()).getUserName());
 	}
 
 	@Test
 	public void doesMethodApproveUserWork() {
 		// Compares users status before and after approveUser method.
-		String statusBeforeUpdate = userServices.setPresentUser(nameOfTester).getStatus();
-		userServices.approveUser(nameOfTester);
-		String statusAfterUpdate = userServices.setPresentUser(nameOfTester).getStatus();
+		String statusBeforeUpdate = userServices.setPresentUser(sample.getNameOfTester()).getStatus();
+		userServices.approveUser(sample.getNameOfTester());
+		String statusAfterUpdate = userServices.setPresentUser(sample.getNameOfTester()).getStatus();
 		assertNotEquals(statusBeforeUpdate, statusAfterUpdate);
 	}
 
 	@Test
 	public void doesMethodChangePasswordWorks() {
-		String passwordBeforeChange = userServices.setPresentUser(nameOfTester).getUserPassword();
-		userServices.changePassword(nameOfTester, "anotherTestingPassowrd");
-		String passwordAfterChange = userServices.setPresentUser(nameOfTester).getUserPassword();
+		String passwordBeforeChange = userServices.setPresentUser(sample.getNameOfTester()).getUserPassword();
+		userServices.changePassword(sample.getNameOfTester(), "anotherTestingPassowrd");
+		String passwordAfterChange = userServices.setPresentUser(sample.getNameOfTester()).getUserPassword();
 		assertNotEquals(passwordBeforeChange, passwordAfterChange);
 	}
 
 	@Test
 	public void doesMethodIsPasswordCorrectWork() {
 		// Good password
-		assertTrue(userServices.isPasswordCorrect(nameOfTester, "tester"));
+		assertTrue(userServices.isPasswordCorrect(sample.getNameOfTester(), "tester"));
 		// bad password
-		assertFalse(userServices.isPasswordCorrect(nameOfTester, "testerios"));
+		assertFalse(userServices.isPasswordCorrect(sample.getNameOfTester(), "testerios"));
 	}
 
 	@Test
 	public void deosMethodIsUserApprovedWork() {
 		// Checks if is user "tester" approved
-		assertFalse(userServices.isUserApproved(nameOfTester));
+		assertFalse(userServices.isUserApproved(sample.getNameOfTester()));
 	}
 
 	@Test
 	public void doesMethodGetUserIDWork() {
 		// Checks if user "tester" was created
-		assertNotEquals(0, userServices.getUserID(nameOfTester));
+		assertNotEquals(0, userServices.getUserID(sample.getNameOfTester()));
 	}
 
 	@Test
 	public void doesMethodGetUserIDWorkAnotherTry() {
 		// Compares two different ids, get by getUserID
-		assertNotEquals("0", userServices.getUserID(nameOfTester));
+		assertNotEquals("0", userServices.getUserID(sample.getNameOfTester()));
 		// int userIDBeforeChange =
 		// userServices.setPresentUser(nameOfTester).getUserID();
 		// userServices.setPresentUser(nameOfTester).setUserID(99999);
@@ -107,7 +85,7 @@ public class UserServicesTests {
 	@Test
 	public void doesMethodSetPresentUserWork() {
 		// Checks if user "tester" is in database
-		assertEquals("tester", userServices.setPresentUser(nameOfTester).getUserName());
+		assertEquals("tester", userServices.setPresentUser(sample.getNameOfTester()).getUserName());
 	}
 
 	@Test
@@ -115,7 +93,8 @@ public class UserServicesTests {
 		// Checks two different lists
 		List<User> lisOfPendingUsersBeforeAddingAnother = new ArrayList<>();
 		lisOfPendingUsersBeforeAddingAnother = userServices.getPendingUsers();
-		userServices.addUser(new User("testingDummy", "testingDummy", parseDate(), "user", "pending"));
+		userServices.addUser(
+				new User("testingDummy", "testingDummy", sample.parseDate(), "user", "pending", sample.parseDate()));
 		List<User> lisOfPendingUsersAfterAddingAnother = new ArrayList<>();
 		lisOfPendingUsersAfterAddingAnother = userServices.getPendingUsers();
 		assertNotEquals(lisOfPendingUsersAfterAddingAnother, lisOfPendingUsersBeforeAddingAnother);
@@ -126,7 +105,8 @@ public class UserServicesTests {
 	public void doesMethodDropUserWork() {
 		// Checks if user "testingDummy" is in table after calling dropUser
 		// method
-		userServices.addUser(new User("testingDummy", "testingDummy", parseDate(), "user", "pending"));
+		userServices.addUser(
+				new User("testingDummy", "testingDummy", sample.parseDate(), "user", "pending", sample.parseDate()));
 		userServices.dropUser("testingDummy");
 		assertNull(userServices.setPresentUser("testingDummy"));
 	}
