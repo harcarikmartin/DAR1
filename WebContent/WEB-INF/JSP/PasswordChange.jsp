@@ -12,7 +12,7 @@
 					<td class="passwordCellStyle">
 						<input id="OldPassword" class="passwordForm" type="password" name="userPasswordOld"
 							pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" oninvalid="alert('Old password is not valid')" placeholder="password"
-							autofocus maxlength="100">
+							required="autofocus" maxlength="100">
 					</td>
 					<td class="passwordCellStyle text-center">
 						<p id="opRequired" class="requiredField">Required field</p>

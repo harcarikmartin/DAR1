@@ -9,7 +9,7 @@
 			</div>
 			<div class="row text-center">
 				<textarea class="inputForNewStuff" id="editedComment" name="editComment" spellcheck="true" lang="en" cols="50" rows="5" placeholder="comment ..."
-					autofocus maxlength="500">${commentUpdating.comment}</textarea>
+					required="autofocus" maxlength="500">${commentUpdating.comment}</textarea>
 			</div>
 			<div class="row text-center">
 				<p id="commentRequired" class="requiredField ">Comment is required</p>

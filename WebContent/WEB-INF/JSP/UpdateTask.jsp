@@ -9,7 +9,7 @@
 			</div>
 			<div class="row text-center">
 				<input class="inputForNewStuff" id="nameOfEditedTask" type="text" name="editNameTask" value="${taskUpdating.taskName}"
-					placeholder="name of task ..." autofocus maxlength="100">
+					placeholder="name of task ..." required="autofocus" maxlength="100">
 			</div>
 			<div class="row text-center">
 				<p id="taskNameRequired" class="requiredField ">Task name is required</p>

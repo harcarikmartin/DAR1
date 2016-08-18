@@ -48,7 +48,7 @@
 	</div>
 </body>
 
-	<c:if test="${user.role=='admin'}">
+<c:if test="${user.role=='admin'}">
 		<script type="text/javascript">
 		<%@include file="DataTablesAdmin.js"%>
 		</script>

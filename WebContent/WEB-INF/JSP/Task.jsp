@@ -71,7 +71,7 @@
 											<form method="post" onsubmit="return mustLogin()">
 												<input type="hidden" name="action" value="openTask">
 												<input type="hidden" name="idOfTask" value="${topicTask.taskID}">
-												<button class="btn-block-left2 taskStyle"  type="submit">${topicTask.taskName}</button>
+												<button class="btn-block-left2 taskStyle" type="submit">${topicTask.taskName}</button>
 											</form>
 										</c:if>
 									</td>

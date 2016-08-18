@@ -45,7 +45,7 @@
 						<tbody>
 							<c:forEach items="${taskComments}" var="taskComment">
 								<tr class="commentTR">
-								<td class="commentImage text-center taskNoButton">
+									<td class="commentImage text-center taskNoButton">
 										<c:if test="${taskComment.user.profileImage == null}">
 											<img src="images/default.jpg" height="200" alt="Default profile image" class="commentIMG">
 										</c:if>

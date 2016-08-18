@@ -7,7 +7,7 @@
 				<label class="simpleText" for="nameOfTask">Write name of task:</label>
 			</div>
 			<div class="row text-center">
-				<input class="inputForNewStuff" id="nameOfTask" type="text" name="nameOfTask" placeholder="name of task ..." autofocus maxlength="100">
+				<input class="inputForNewStuff" id="nameOfTask" type="text" name="nameOfTask" placeholder="name of task ..." required="autofocus" maxlength="100">
 			</div>
 			<div class="row text-center">
 				<p id="taskNameRequired" class="requiredField ">Task name is required</p>
