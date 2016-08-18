@@ -164,18 +164,17 @@
 			</div>
 		</div>
 	</c:if>
-	<c:if test="${listUserRoles == 1}">
+	<c:if test="${listUserRoles == 1 && fn:length(users) > 1}">
 		<div class="row col-lg-12">
 			<div
 				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
 				<table
 					class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
 					<tr>
-						<th colspan="3" class="approveHeadStyle text-center">New
-							users</th>
+						<th colspan="3" class="approveHeadStyle text-center">Users role</th>
 					</tr>
 					<c:forEach items="${users}" var="user">
-						<c:if test="${user.userName != 'jozko'}">
+						<c:if test="${user.userName != 'jozko' || user.userName != sessionScope.user.userName}">
 							<tr>
 								<td><p class="approveCellStyle paddingHorizontal">${user.userName}</p></td>
 								<td>
@@ -200,7 +199,7 @@
 											name="action" value="toggleUserRole">
 										<input type="hidden" name="newRole"
 											value="user">
-										<button class="btn-block buttonStyle" type="submit">Degrade to user</button>
+										<button class="btn-block buttonStyle" type="submit">Degrade to User</button>
 									</form>
 									</c:if>
 								</td>
@@ -208,6 +207,14 @@
 						</c:if>
 					</c:forEach>
 				</table>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${listUserRoles == 1 && fn:length(users) == 1}">
+		<div class="row col-lg-12">
+			<div
+				class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground text-center">
+				<p class="simpleText">No users found.</p>
 			</div>
 		</div>
 	</c:if>
