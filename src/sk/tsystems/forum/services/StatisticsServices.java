@@ -9,7 +9,15 @@ import sk.tsystems.forum.entities.Task;
 import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.jpahelper.JpaHelper;
+import sk.tsystems.forum.servlet.ForumStatsServlet;
 
+/**
+ * StatisticsServices is the class, that contains methods for getting the statistics 
+ * needed in {@link ForumStatsServlet} web application.
+ * 
+ * @author martinharcarik
+ * 
+ */
 public class StatisticsServices {
 	
 	/**
