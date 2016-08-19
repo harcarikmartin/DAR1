@@ -1,10 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; utf-8" pageEncoding="utf-8"%>
-	
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ page language="java" contentType="text/html" pageEncoding="utf-8"%>
+
+<!DOCTYPE html >
+<html lang="${language}">
 <head>
-<meta http-equiv="Content-Type" content="text/html; utf-8">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Forum</title>
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script> 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
@@ -17,6 +17,8 @@
 <body>
 	<div class="wrapper">
 
+  		
+        
 		<jsp:include page="Header.jsp" />
 		<jsp:include page="RegisterForm.jsp" />
 		<c:if test="${user.role == 'admin'}">

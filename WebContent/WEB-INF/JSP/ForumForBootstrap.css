@@ -104,6 +104,9 @@ label, .labels, .simpleText{
 .marginHorizontalLeft {
 	margin-left: 1em;
 }
+.marginHorizontalright {
+	margin-right: 1em;
+}
 .marginHorizontal {
 	margin-left: 1em;
 	margin-right: 1em;
@@ -114,6 +117,9 @@ label, .labels, .simpleText{
 }
 .marginVerticalTop{
 	margin-top: 1em;
+}
+.marginVerticalBottom{
+	margin-bottom: 1em;
 }
 .paddingHeavy{
 	padding-bottom: 3em;

@@ -14,7 +14,7 @@
 	<c:if test="${user == null  && registerForm == null}">
 		<div id="login" class="col-lg-offset-1 col-lg-10 rowBackground">
 			<div class="row">
-				<div class="text-left col-lg-10 col-md-10 col-sm-10 col-xs-12">
+				<div class="text-left col-lg-9 col-md-9 col-sm-8 col-xs-12">
 					<form method="post" onsubmit="return checkRequiredLog()" action="">
 						<table class="loginTable">
 							<tr>
@@ -73,10 +73,16 @@
 						</c:if>
 					</form>
 				</div>
-				<div class="text-right  col-lg-2 col-md-2 col-sm-2 col-xs-12">
-					<form method="post" action="">
+				<div class="text-right  col-lg-3 col-md-3 col-sm-4 col-xs-12">
+					<form method="post" class="userMenu">
 						<input type="hidden" name="action" value="register">
-						<button class="marginHorizontal buttonStyle" type="submit">Registration</button>
+						<button class="marginHorizontal  buttonStyle" type="submit">Registration</button>
+					</form>
+					<form method="post" class="userMenu">
+						<select class="marginHorizontal buttonStyle" id="language" name="language" onchange="submit()">
+							<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+							<option value="sk" ${language == 'sk' ? 'selected' : ''}>Slovak</option>
+						</select>
 					</form>
 				</div>
 			</div>
@@ -90,9 +96,15 @@
 					<h4 class="simpleText">Logged as: ${user.userName}</h4>
 				</div>
 				<div class="text-right text-center-xs col-lg-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<form method="post" action="">
+					<form method="post" class="userMenu">
 						<input type="hidden" name="action" value="logout">
 						<button class="marginHorizontal buttonStyle" type="submit">Logout</button>
+					</form>
+					<form method="post" class="userMenu">
+						<select class="marginHorizontal buttonStyle" id="language" name="language" onchange="submit()">
+							<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+							<option value="sk" ${language == 'sk' ? 'selected' : ''}>Slovak</option>
+						</select>
 					</form>
 				</div>
 			</div>

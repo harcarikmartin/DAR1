@@ -1,5 +1,11 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="languages.text" />
+
 
 <c:if test="${user == null && registerForm != null}">
 	<div class="row">
@@ -10,11 +16,13 @@
 					<input type="hidden" name="status" value="pending">
 					<table>
 						<tr>
-							<th colspan="3" class="registerHeadStyle text-center">Registration form</th>
+							<th colspan="3" class="registerHeadStyle text-center"><fmt:message key="register.label.head" /></th>
 						</tr>
 						<tr>
 							<td class="registerCellStyle text-center">
-								<label for="userNameReg">Username:</label>
+								<label for="username">
+									<fmt:message key="register.label.username" />:
+								</label>
 							</td>
 							<td class="registerCellStyle text-left">
 								<input id="userNameReg" class="registrationForm" type="text" name="userName" placeholder="name" required="autofocus" maxlength="100">
