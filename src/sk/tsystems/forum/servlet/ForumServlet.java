@@ -159,7 +159,7 @@ public class ForumServlet extends HttpServlet {
 			}
 		} else if ("logout".equals(action)) {
 			// logout case
-			logout(request);
+			logout();
 			clearSession();
 		} else if ("showMyTopics".equals(action)) {
 			// list topics that user subscribed for
@@ -358,39 +358,72 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
+	 * Gets the instance of the {@link Task} class, add this instance as an attribute to the instance request of the 
+	 * {@link HttpServletRequest}
 	 * 
-	 * 
-	 * @param request
+	 * @param request contains the instance of the Task class, which will be updated
 	 */
 	private void getTaskToUpdate(HttpServletRequest request) {
 		request.setAttribute("taskUpdating",
 				new TaskServices().getTask(Integer.parseInt(request.getParameter("taskToUpdate"))));
 		request.setAttribute("taskToUpdate", 1);
 	}
-
+	
+	/**
+	 * Creates new instance of the {@link Task} class and then triggers the method addTaskToDatabase, which 
+	 * stores this instance into the database
+	 * 
+	 * @param request provides the information needed to specify the details of the instance of the Task class
+	 */
 	private void addTaskToDB(HttpServletRequest request) {
 		Task task = new Task(request.getParameter("nameOfTask").trim(),
 				request.getParameter("bodyOfTask").trim(), (Topic) session.getAttribute("topic"),
 				(User) session.getAttribute("user"));
 		new TaskServices().addTaskToDatabase(task);
 	}
-
+	
+	/**
+	 * Triggers the method removeTask, which removes selected instance of the class Task from the database
+	 * 
+	 * @param request provides the information needed to specify which instance of the Task class will be 
+	 * removed from the database. Parameter 'taskToRemove' is the value of the property 'taskID' of the 
+	 * Task class
+	 */
 	private void removeTaskFromDB(HttpServletRequest request) {
 		new TaskServices().removeTask(Integer.parseInt(request.getParameter("taskToRemove")));
 	}
-
+	
+	/**
+	 * Gets the list of instances of the {@link Task} class for specified intance of the {@link Topic} class. 
+	 * The list is stored as an attribute 'topicTasks' of instance request of the {@link HttpServletRequest} 
+	 * class.
+	 * 
+	 * @param request contains the list of instances of the Task class for specified instance of the Topic class
+	 */
 	private void getTasksForTopic(HttpServletRequest request) {
 		Topic topic = (Topic) session.getAttribute("topic");
 		request.setAttribute("topicTasks", new TaskServices().printTasks(topic.getTopicID()));
 		request.setAttribute("topicOpened", 1);
 	}
-
+	
+	/**
+	 * Gets the instance of the {@link Task} class by calling method getTask, and then stores the result as 
+	 * an attribute 'task' of instance request of the {@link HttpServletRequest} class.
+	 * 
+	 * @param request contains the instance of the Task class
+	 */
 	private void openTask(HttpServletRequest request) {
 		session.setAttribute("taskID", request.getParameter("idOfTask"));
 		session.setAttribute("task",
 				new TaskServices().getTask(Integer.parseInt(request.getParameter("idOfTask"))));
 	}
-
+	
+	/**
+	 * Adds the specified instance of the {@link Comment} class into database.
+	 * 
+	 * @param request provides the information needed to specify which instance of the Comment class will be 
+	 * added to the database.
+	 */
 	private void addCommentToDB(HttpServletRequest request) {
 		Date date = new Date(System.currentTimeMillis());
 		Comment comment = new Comment(request.getParameter("comment").trim(),
@@ -398,22 +431,45 @@ public class ForumServlet extends HttpServlet {
 				(User) session.getAttribute("user"), date);
 		new CommentServices().addCommentToDatabase(comment);
 	}
-
+	
+	/**
+	 * Gets the list of the instances of the {@link Comment} class for specified instance of the {@link Task} class. 
+	 * Property 'taskID' is retrieved from the attribute of instance of {@link HttpSession} class session.
+	 * 
+	 * @param request parameter 'taskOpened' contains the value 1
+	 */
 	private void showCommentsForTask(HttpServletRequest request) {
 		session.setAttribute("taskComments",
 				new CommentServices().printComments(Integer.parseInt((String) session.getAttribute("taskID"))));
 		request.setAttribute("taskOpened", 1);
 	}
-
+	
+	/**
+	 * Triggers the method updateComment.
+	 * 
+	 * @param request provides the information needed to specify which instance of the Comment class will be 
+	 * updated in the database.
+	 */
 	private void updateComment(HttpServletRequest request) {
 		new CommentServices().updateComment(Integer.parseInt(request.getParameter("commentID")),
 				request.getParameter("editComment").trim());
 	}
-
+	
+	/**
+	 * Triggers the method removeComment.
+	 * 
+	 * @param request provides the information needed to specify which instance of the Comment class will be 
+	 * removed from the database.
+	 */
 	private void removeCommentFromDB(HttpServletRequest request) {
 		new CommentServices().removeComment(Integer.parseInt(request.getParameter("CommentToRemove")));
 	}
-
+	
+	/**
+	 * Triggers the method getTasksForTopic.
+	 * 
+	 * @param request provides information needed as a field of the method getTasksForTopic.
+	 */
 	private void showTasksForTopic(HttpServletRequest request) {
 		if (session.getAttribute("taskID") != null) {
 			session.removeAttribute("taskID");
@@ -423,7 +479,10 @@ public class ForumServlet extends HttpServlet {
 		}
 		getTasksForTopic(request);
 	}
-
+	
+	/**
+	 * Removes attributes 'topic', 'taskID', 'task' from the instance of the {@link HttpSession} class
+	 */
 	private void clearSession() {
 		if (session.getAttribute("topic") != null) {
 			session.removeAttribute("topic");
@@ -435,62 +494,110 @@ public class ForumServlet extends HttpServlet {
 			session.removeAttribute("task");
 		}
 	}
-
+	
+	/**
+	 * Sets the attributes of the instance of the {@link HttpServletRequest} class request
+	 * 
+	 * @param request instance of the {@link HttpServletRequest} class
+	 */
 	private void lenghtenPasswordChange(HttpServletRequest request) {
 		request.setAttribute("changePassword", 1);
 		request.setAttribute("error", 2);
 		request.setAttribute("passChanged", 0);
 	}
-
+	
+	/**
+	 * Sets the attributes of the instance of the {@link HttpServletRequest} class request
+	 * 
+	 * @param request instance of the {@link HttpServletRequest} class
+	 */
 	private void wrongOldPass(HttpServletRequest request) {
 		request.setAttribute("changePassword", 1);
 		request.setAttribute("error", 7);
 		request.setAttribute("passChanged", 0);
-
 	}
-
+	
+	/**
+	 * Sets the attributes of the instance of the {@link HttpServletRequest} class request
+	 * 
+	 * @param request instance of the {@link HttpServletRequest} class
+	 */
 	private void matchPasswordsChange(HttpServletRequest request) {
 		request.setAttribute("changePassword", 1);
 		request.setAttribute("error", 8);
 		request.setAttribute("passChanged", 0);
-
 	}
-
+	
+	/**
+	 * Triggers the method changePassword. Sets the attributes of the instance of the {@link HttpServletRequest} 
+	 * class request.
+	 * 
+	 * @param request
+	 */
 	private void changePassword(HttpServletRequest request) {
 		new UserServices().changePassword(user.getUserName(), request.getParameter("userPasswordNew"));
 		request.setAttribute("changePassword", 1);
 		request.setAttribute("passChanged", 1);
 	}
-
-	private void logout(HttpServletRequest request) {
+	
+	/**
+	 * Removes attributes 'user' from the instance of the {@link HttpSession} class
+	 */
+	private void logout() {
 		if (session.getAttribute("user") != null) {
 			session.removeAttribute("user");
 		}
 	}
-
+	
+	/**
+	 * Sets the attributes of the instance of the {@link HttpServletRequest} class request
+	 * 
+	 * @param request instance of the {@link HttpServletRequest} class
+	 */
 	private void existingUser(HttpServletRequest request) {
 		request.setAttribute("error", 3);
 		request.setAttribute("registerForm", 1);
 		request.setAttribute("regWrong", "registerFcn()");
 	}
-
+	
+	/**
+	 * Sets the attributes of the instance of the {@link HttpServletRequest} class request
+	 * 
+	 * @param request instance of the {@link HttpServletRequest} class
+	 */
 	private void lenghtenPassword(HttpServletRequest request) {
 		request.setAttribute("error", 2);
 		request.setAttribute("registerForm", 1);
 		request.setAttribute("regWrong", "registerFcn()");
 	}
-
+	
+	/**
+	 * Sets the attributes of the instance of the {@link HttpServletRequest} class request
+	 * 
+	 * @param request instance of the {@link HttpServletRequest} class
+	 */
 	private void matchPasswords(HttpServletRequest request) {
 		request.setAttribute("error", 1);
 		request.setAttribute("registerForm", 1);
 		request.setAttribute("regWrong", "registerFcn()");
 	}
-
+	
+	/**
+	 * Triggers the method setPresentUser, then sets returned instance of the {@link User} class as 
+	 * the attribute of the instance of the {@link HttpSession} class session.
+	 * 
+	 * @param request provides information needed to retrieve property 'userName' of the User classs
+	 */
 	private void doLogin(HttpServletRequest request) {
 		user = new UserServices().setPresentUser(request.getParameter("userName"));
 		session.setAttribute("user", user);
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 */
 	private void doRegister(HttpServletRequest request) {
 		user = null;
 		String dateString = request.getParameter("birthdate");
@@ -512,11 +619,21 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("error", 9);
 		}
 	}
-
+	
+	/**
+	 * Sets the attribute of the instance of the {@link HttpServletRequest} class request
+	 * 
+	 * @param request instance of the {@link HttpServletRequest} class
+	 */
 	private void incorrectPassword(HttpServletRequest request) {
 		request.setAttribute("error", 5);
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 */
 	private void addUserSubscriptions(HttpServletRequest request) {
 		updateUserSubscriptions(request);
 		String[] topicsId = request.getParameterValues("topic");
@@ -528,13 +645,23 @@ public class ForumServlet extends HttpServlet {
 			}
 		}
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 */
 	private void updateUserSubscriptions(HttpServletRequest request) {
 		for (Topic topic : new TopicServices().printTopics()) {
 			new TopicServices().removeSubscriber(topic, user);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 */
 	private void updateTopicSubscriptions(HttpServletRequest request) {
 		Topic topic = new TopicServices().setPresentTopic(request.getParameter("original"));
 		if (topic.getVisibility().equals("private") && request.getParameter("visibility1").equals("public")) {
@@ -545,7 +672,15 @@ public class ForumServlet extends HttpServlet {
 			topic.setUsers(list);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// adds admin to DB if empty
@@ -571,7 +706,12 @@ public class ForumServlet extends HttpServlet {
 		request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 */
 	private void testSaveImage(HttpServletRequest request) {
 		byte[] bFile = null;
 		try {
@@ -596,7 +736,11 @@ public class ForumServlet extends HttpServlet {
 		UserServices ur = new UserServices();
 		ur.updateImage(getUser(), bFile);
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void testGetImage() {
 		byte[] bAvatar = getUser().getProfileImage();
 		try {
@@ -607,10 +751,18 @@ public class ForumServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Gets the instance of the {@link User} class that is stored as an attribute of the instance of the {@link HttpSession} 
+	 * class session.
+	 * 
+	 * @return instance of the User class
+	 */
 	private User getUser() {
 		User user = new User();
-		user = (User) session.getAttribute("user");
+		if(session.getAttribute("user") != null) {
+			user = (User) session.getAttribute("user");
+		}
 		return user;
 	}
 }
