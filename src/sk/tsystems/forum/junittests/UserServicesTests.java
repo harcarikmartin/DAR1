@@ -41,9 +41,9 @@ public class UserServicesTests {
 		String statusAfterUpdate = userServices.setPresentUser(sample.getNameOfTester()).getStatus();
 		assertNotEquals(statusBeforeUpdate, statusAfterUpdate);
 	}
-	
+
 	@Test
-	public void doesMethodIsDBEmptyWork(){
+	public void doesMethodIsDBEmptyWork() {
 		assertEquals(false, userServices.isDBEmpty());
 	}
 
@@ -104,4 +104,31 @@ public class UserServicesTests {
 		assertNull(userServices.setPresentUser("testingDummy"));
 	}
 
+	@Test
+	public void doesMethodUpdateImageWork() {
+		assertNull(userServices.setPresentUser(sample.getNameOfTester()).getProfileImage());
+		byte[] randomByteArray = new byte[] { 87, 79 };
+		userServices.updateImage(sample.getTestedUser(), randomByteArray);
+		assertNotNull(userServices.setPresentUser(sample.getNameOfTester()).getProfileImage());
+	}
+
+	@Test
+	public void doesMethodGetUsersWork() {
+		List<User> lisOfConfirmedUsersBeforeAddingAnother = new ArrayList<>();
+		lisOfConfirmedUsersBeforeAddingAnother = userServices.getUsers();
+		userServices.addUser(
+				new User("testingDummy", "testingDummy", sample.parseDate(), "user", "confirmed", sample.parseDate()));
+		List<User> lisOfConfirmedUsersAfterAddingAnother = new ArrayList<>();
+		lisOfConfirmedUsersAfterAddingAnother = userServices.getPendingUsers();
+		assertNotEquals(lisOfConfirmedUsersAfterAddingAnother, lisOfConfirmedUsersBeforeAddingAnother);
+		userServices.dropUser("testingDummy");
+	}
+
+	@Test
+	public void doesMethodToggleUserRole() {
+		String userRoleBeforeTogglingUsersRole = userServices.setPresentUser(sample.getNameOfTester()).getRole();
+		userServices.toggleUserRole(sample.getNameOfTester(), "admin");
+		String userRoleAfterTogglingUsersRole = userServices.setPresentUser(sample.getNameOfTester()).getRole();
+		assertNotEquals(userRoleAfterTogglingUsersRole, userRoleBeforeTogglingUsersRole);
+	}
 }

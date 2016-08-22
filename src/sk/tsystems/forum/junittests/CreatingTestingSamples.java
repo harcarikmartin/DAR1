@@ -26,7 +26,6 @@ public class CreatingTestingSamples {
 	private Comment concreteComment = new Comment();
 	private Comment testedCommentNumberTwo = new Comment();
 	private User testedUser = new User();
-	private User testedUser2 = new User();
 
 	
 	private TopicServices topicServices = new TopicServices();
@@ -38,8 +37,6 @@ public class CreatingTestingSamples {
 	private String nameOfTestingTopic = "testing topic";
 	private String nameOfTestingTask = "testing task";
 	private String nameOfTestingComment = "testing comment";
-
-	private List<User> listOfTestedUsers = new ArrayList<>();
 
 	public Date parseDate() {
 		String dateString = "2016-08-18";
