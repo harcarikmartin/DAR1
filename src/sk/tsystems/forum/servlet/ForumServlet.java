@@ -637,7 +637,7 @@ public class ForumServlet extends HttpServlet {
 	 * {@link Topic} class whose value of property 'topicID' is equal to the value of variable 
 	 * topicsId.
 	 * 
-	 * @param request
+	 * @param request provides values of parameter 'topic'
 	 */
 	private void addUserSubscriptions(HttpServletRequest request) {
 		updateUserSubscriptions();
@@ -662,9 +662,10 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
+	 * Clears the list of instances of {@link User} class for specified instance of {@link Topic} class, if the visibility 
+	 * of the topic changes from 'private' to 'public'.
 	 * 
-	 * 
-	 * @param request
+	 * @param request provides parameters needed to identify the instance of the {@link Topic} class, that will be updated
 	 */
 	private void updateTopicSubscriptions(HttpServletRequest request) {
 		Topic topic = new TopicServices().setPresentTopic(request.getParameter("original"));
@@ -716,9 +717,9 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
+	 * Prepares and stores the property 'profileImage' of the instance of the {@link User} class in the database.
 	 * 
-	 * 
-	 * @param request
+	 * @param request provides the image needed to be stored for specified instance of User class
 	 */
 	private void testSaveImage(HttpServletRequest request) {
 		byte[] bFile = null;
