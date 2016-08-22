@@ -564,31 +564,22 @@ public class ForumServlet extends HttpServlet {
 	}
 
 	private void testSaveImage(HttpServletRequest request) {
-		Part filePart = null;
-		BufferedImage image = null;
-		InputStream inputStream = null;
-		File f = null;
+		byte[] bFile = null;
 		try {
-			filePart = request.getPart("fileToUpload");
-			inputStream = filePart.getInputStream();
-			image = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
+			Part filePart = request.getPart("fileToUpload");
+			InputStream inputStream = filePart.getInputStream();
+			BufferedImage image = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 			image = ImageIO.read(inputStream);
-			f = new File("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
-//			f = new File("/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
+			File f = new File("C:\\Users\\�tudent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
 			ImageIO.write(image, "jpg", f);
-			System.out.println("Reading complete.");
+			bFile = new byte[(int) f.length()];
+			FileInputStream fileInputStream = new FileInputStream(f);
+			fileInputStream.read(bFile);
+			fileInputStream.close();
 		} catch (IOException e) {
 			System.err.println("IO Exception occured with message " + e.getMessage());
 		} catch (ServletException e) {
 			System.err.println("Servlet Exceptionn occured with message " + e.getMessage());
-		}
-
-		byte[] bFile = new byte[(int) f.length()];
-
-		try {
-			FileInputStream fileInputStream = new FileInputStream(f);
-			fileInputStream.read(bFile);
-			fileInputStream.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -601,9 +592,7 @@ public class ForumServlet extends HttpServlet {
 		byte[] bAvatar = getUser().getProfileImage();
 		try {
 			FileOutputStream fos = new FileOutputStream("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
-//			FileOutputStream fos = new FileOutputStream("/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
 			fos.write(bAvatar);
-
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
