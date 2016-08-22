@@ -45,9 +45,9 @@ public class TaskServicesTests {
 		taskServices.removeTask(idIfTestedTaskNumberTwo);
 		assertNull(taskServices.getTask(idIfTestedTaskNumberTwo));
 	}
-	
+
 	@Test
-	public void doesMethodGetTopicWork(){
+	public void doesMethodGetTopicWork() {
 		assertEquals(sample.getNameOfTestingTopic(), sample.getTestedTopic().getTopic());
 	}
 

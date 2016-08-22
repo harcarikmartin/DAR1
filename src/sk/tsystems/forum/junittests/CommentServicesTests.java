@@ -11,6 +11,14 @@ import sk.tsystems.forum.services.TaskServices;
 import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
 
+/**
+ * This class contains JUnit Tests which check if all methods in
+ * {@link CommentServices} work correctly.
+ * 
+ * @author karolklescinsky
+ *
+ */
+
 public class CommentServicesTests {
 
 	private TopicServices topicServices = new TopicServices();
@@ -19,6 +27,11 @@ public class CommentServicesTests {
 	private UserServices userServices = new UserServices();
 	private CreatingTestingSamples sample = new CreatingTestingSamples();
 
+	/**
+	 * This method is called before each test.
+	 * 
+	 * 
+	 */
 	@Before
 	public void createTestedUserAndTestedTopicAndTestedTaskAndTestedComment() {
 		sample.createTestedUser();
@@ -27,6 +40,11 @@ public class CommentServicesTests {
 		sample.createTestedComment();
 	}
 
+	/**
+	 * This method is called after each test.
+	 * 
+	 * 
+	 */
 	@After
 	public void dropTestedUserAndTestedTopicAndTestedTaskAndTestedComment() {
 		commentServices.removeComment(sample.getCommentID());
@@ -35,6 +53,11 @@ public class CommentServicesTests {
 		userServices.dropUser(sample.getNameOfTester());
 	}
 
+	/**
+	 * Checks return value of method getComment
+	 * 
+	 * 
+	 */
 	@Test
 	public void doesMethodAddCommentToDatabaseWork() {
 		assertNotNull(commentServices.getComment(sample.getCommentID()));
@@ -65,9 +88,9 @@ public class CommentServicesTests {
 		String commentBodyAfterUpdate = commentServices.getComment(sample.getCommentID()).getComment();
 		assertNotEquals(commentBodyAfterUpdate, commentBodyBeforeUpdate);
 	}
-	
+
 	@Test
-	public void doesMethodGetTaskWork(){
+	public void doesMethodGetTaskWork() {
 		assertEquals(sample.getNameOfTestingTask(), taskServices.getTask(sample.getTaskID()).getTaskName());
 	}
 

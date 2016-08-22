@@ -26,7 +26,6 @@ public class CreatingTestingSamples {
 	private Comment concreteComment = new Comment();
 	private Comment testedCommentNumberTwo = new Comment();
 	private User testedUser = new User();
-
 	
 	private TopicServices topicServices = new TopicServices();
 	private TaskServices taskServices = new TaskServices();
@@ -37,6 +36,9 @@ public class CreatingTestingSamples {
 	private String nameOfTestingTopic = "testing topic";
 	private String nameOfTestingTask = "testing task";
 	private String nameOfTestingComment = "testing comment";
+
+	private List<User> listOfTestedUsers = new ArrayList<>();
+	private List<Topic> listOfTopics = new ArrayList<>();
 
 	public Date parseDate() {
 		String dateString = "2016-08-18";
@@ -74,6 +76,7 @@ public class CreatingTestingSamples {
 		testedUser.setBirthDate(parseDate());
 		testedUser.setRole("user");
 		testedUser.setStatus("pending");
+		testedUser.setTopics(listOfTopics);
 		return testedUser;
 	}
 	
@@ -81,8 +84,8 @@ public class CreatingTestingSamples {
 		testedTopic.setTopic(nameOfTestingTopic);
 		testedTopic.setVisibility("private");
 		testedTopic.setCreator(testedUser);
-//		listOfTestedUsers.add(0, getTestedUser());
-//		testedTopic.setUsers(listOfTestedUsers);
+		listOfTestedUsers.add(0, getTestedUser());
+		testedTopic.setUsers(listOfTestedUsers);
 		return testedTopic;
 	}
 

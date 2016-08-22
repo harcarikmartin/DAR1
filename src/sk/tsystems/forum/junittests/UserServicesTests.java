@@ -48,6 +48,12 @@ public class UserServicesTests {
 	}
 
 	@Test
+	public void doesMethodRegisterUserWork() {
+		doesMethodAddUserWork();
+		doesMethodSetPresentUserWork();
+	}
+
+	@Test
 	public void doesMethodChangePasswordWorks() {
 		String passwordBeforeChange = userServices.setPresentUser(sample.getNameOfTester()).getUserPassword();
 		userServices.changePassword(sample.getNameOfTester(), "anotherTestingPassowrd");

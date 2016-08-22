@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sk.tsystems.forum.entities.Topic;
-import sk.tsystems.forum.entities.User;
 import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
 import sk.tsystems.forum.services.UsersTopicsServices;
@@ -21,10 +20,15 @@ public class TopicServicesTests {
 	private UserServices userServices = new UserServices();
 	private CreatingTestingSamples sample = new CreatingTestingSamples();
 	private UsersTopicsServices usersTopicsServices = new UsersTopicsServices();
-	private User presentUserTester = new User();
 
 	@Before
 	public void createTesterUserAndTestingTopic() {
+		if (topicServices.setPresentTopic(sample.getNameOfTestingTopic()) != null) {
+			topicServices.removeTopic(sample.getNameOfTestingTopic());
+		}
+		if (userServices.setPresentUser(sample.getNameOfTester()) != null) {
+			userServices.dropUser(sample.getNameOfTester());
+		}
 		sample.createTestedUser();
 		sample.createTestedTopic();
 	}
@@ -69,7 +73,8 @@ public class TopicServicesTests {
 	@Test
 	public void doesMethodSetPresentTopicWork() {
 		// Checks if topic "testing Topic" is in database
-		assertEquals(sample.getNameOfTestingTopic(), topicServices.setPresentTopic(sample.getNameOfTestingTopic()).getTopic());
+		assertEquals(sample.getNameOfTestingTopic(),
+				topicServices.setPresentTopic(sample.getNameOfTestingTopic()).getTopic());
 	}
 
 	@Test
@@ -93,24 +98,24 @@ public class TopicServicesTests {
 		String vissibilityAfterUpdate = topicServices.setPresentTopic(sample.getNameOfTestingTopic()).getVisibility();
 		assertNotEquals(vissibilityBeforeUpdate, vissibilityAfterUpdate);
 	}
+
+	@Test
+	public void doesMethodSetSubscriberWork() {
+		int sizeOfListBeforeCallingSetSubscriber = usersTopicsServices.getUsersTopics().size();
+		new TopicServices().setSubscriber(topicServices.setPresentTopic("testing topic"),
+				userServices.setPresentUser("tester"));
+		int sizeOfListAfterCallingSetSubscriber = usersTopicsServices.getUsersTopics().size();
+		assertNotEquals(sizeOfListBeforeCallingSetSubscriber, sizeOfListAfterCallingSetSubscriber);
+	}
 	
-//	@Test
-//	public void doesMethodSetSubscriberWork(){
-//		
-//		int sizeOfListBeforeCallingSetSubscriber = usersTopicsServices.getUsersTopics().size();
-//		System.out.println(sizeOfListBeforeCallingSetSubscriber);
-//		
-//		System.out.println(topicServices.setPresentTopic(sample.getNameOfTestingTopic()));
-//		System.out.println(userServices.setPresentUser(sample.getNameOfTester()));
-//		
-//		topicServices.setSubscriber(topicServices.setPresentTopic(sample.getNameOfTestingTopic()),userServices.setPresentUser(sample.getNameOfTester()));
-//		
-//		System.out.println(topicServices.setPresentTopic(sample.getNameOfTestingTopic()));
-//		System.out.println(userServices.setPresentUser(sample.getNameOfTester()));
-//		
-//		int sizeOfListAfterCallingSetSubscriber = usersTopicsServices.getUsersTopics().size();
-//		System.out.println(sizeOfListAfterCallingSetSubscriber);
-//		assertNotEquals(sizeOfListBeforeCallingSetSubscriber, sizeOfListAfterCallingSetSubscriber);
-//		
-//	}
+	@Test
+	public void doesMethodrRemoveSubscriberWork(){
+		int sizeOfListBeforeCallingRemoveSubscriber = usersTopicsServices.getUsersTopics().size();
+		new TopicServices().setSubscriber(topicServices.setPresentTopic("testing topic"),
+				userServices.setPresentUser("tester"));
+		new TopicServices().removeSubscriber(topicServices.setPresentTopic("testing topic"),
+				userServices.setPresentUser("tester"));
+		int sizeOfListAfterCallingRemoveSubscriber = usersTopicsServices.getUsersTopics().size();
+		assertEquals(sizeOfListBeforeCallingRemoveSubscriber, sizeOfListAfterCallingRemoveSubscriber);
+	}
 }
