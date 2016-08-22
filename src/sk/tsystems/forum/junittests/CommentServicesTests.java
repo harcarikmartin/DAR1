@@ -16,7 +16,6 @@ import sk.tsystems.forum.services.UserServices;
  * {@link CommentServices} work correctly.
  * 
  * @author karolklescinsky
- *
  */
 
 public class CommentServicesTests {
@@ -28,9 +27,11 @@ public class CommentServicesTests {
 	private CreatingTestingSamples sample = new CreatingTestingSamples();
 
 	/**
-	 * This method is called before each test.
-	 * 
-	 * 
+	 * This method is called before each test. Calls method createTestedUser
+	 * which adds testedUser into the database. Calls method createTestedTopic
+	 * which adds testedTopic into the database. Calls method createTestedTask
+	 * which adds testedTask into the database. Calls method createTestedComment
+	 * which adds testedComment the into database.
 	 */
 	@Before
 	public void createTestedUserAndTestedTopicAndTestedTaskAndTestedComment() {
@@ -41,9 +42,11 @@ public class CommentServicesTests {
 	}
 
 	/**
-	 * This method is called after each test.
-	 * 
-	 * 
+	 * This method is called after each test. Calls method removeComment which
+	 * drops testedComment from database. Calls method removeTask which drops
+	 * testedTask from database. Calls method removeTopic which drops
+	 * testedTopic from database. Calls method dropUser which drops testedUser
+	 * from database.
 	 */
 	@After
 	public void dropTestedUserAndTestedTopicAndTestedTaskAndTestedComment() {
@@ -54,20 +57,26 @@ public class CommentServicesTests {
 	}
 
 	/**
-	 * Checks return value of method getComment
-	 * 
-	 * 
+	 * Checks if specific comment was created earlier under "@Before"
+	 * annotation. Checks if value after calling getComment method is not null.
 	 */
 	@Test
 	public void doesMethodAddCommentToDatabaseWork() {
 		assertNotNull(commentServices.getComment(sample.getCommentID()));
 	}
 
+	/**
+	 * Checks if list of comments in specific task is not null.
+	 */
 	@Test
 	public void doesMethodPrintComments() {
 		assertNotNull(commentServices.printComments(sample.getTaskID()));
 	}
 
+	/**
+	 * Creates specific comment, then this test removes that specific comment
+	 * and checks if that specifi comment is in database. Null expected.
+	 */
 	@Test
 	public void doesMethodRemoveCommentWork() {
 		sample.createTestedCommentNumberTwo();
@@ -76,11 +85,20 @@ public class CommentServicesTests {
 		assertNull(commentServices.getComment(idOfTestedCommentNumberTwo));
 	}
 
+	/**
+	 * Checks two comments of type String, one stored as String in class
+	 * {@link CreatingTestingSamples} and another stored in database.
+	 */
 	@Test
 	public void doesMethodGetComment() {
 		assertEquals(sample.getNameOfTestingComment(), commentServices.getComment(sample.getCommentID()).getComment());
 	}
 
+	/**
+	 * Checks two Strings, one string before calling method updateComment and
+	 * another one after calling method updateComment. Value should change from
+	 * "testing comment" to "new comment".
+	 */
 	@Test
 	public void doesMethodUpdateCommentWork() {
 		String commentBodyBeforeUpdate = commentServices.getComment(sample.getCommentID()).getComment();
@@ -89,6 +107,10 @@ public class CommentServicesTests {
 		assertNotEquals(commentBodyAfterUpdate, commentBodyBeforeUpdate);
 	}
 
+	/**
+	 * Checks two task names of type String, one stored as String in class
+	 * {@link CreatingTestingSamples} and another stored in database.
+	 */
 	@Test
 	public void doesMethodGetTaskWork() {
 		assertEquals(sample.getNameOfTestingTask(), taskServices.getTask(sample.getTaskID()).getTaskName());
