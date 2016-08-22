@@ -47,6 +47,19 @@
 	</div>
 </body>
 
+<script>
+	$(document).ready(function() {
+	    $("#language").val(localStorage.language);
+	});
+
+	$("#language").change(function() {
+	    localStorage.language = $(this).val();
+	});
+
+
+
+</script>
+
 <c:if test="${user.role=='admin'}">
 		<script type="text/javascript">
 		<%@include file="js/DataTablesAdmin.js"%>
