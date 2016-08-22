@@ -8,7 +8,7 @@
 <title>Forum Statistics</title>
 <style>
 <%@include file="bootstrap/css/bootstrap.min.css"%>
-<%@include file="ForumForBootstrap.css"%>
+<%@include file="css/ForumForBootstrap.css"%>
 </style>
 </head>
 <body>

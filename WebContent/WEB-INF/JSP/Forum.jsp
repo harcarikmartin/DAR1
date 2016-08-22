@@ -10,15 +10,12 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
 <style type="text/css">
 <%@include file="bootstrap/css/bootstrap.min.css"%>
-<%@include file="ForumForBootstrap.css"%>
+<%@include file="css/ForumForBootstrap.css"%>
 </style>
 </head>
 
 <body>
 	<div class="wrapper">
-
-  		
-        
 		<jsp:include page="Header.jsp" />
 		<jsp:include page="RegisterForm.jsp" />
 		<c:if test="${user.role == 'admin'}">
@@ -52,84 +49,84 @@
 
 <c:if test="${user.role=='admin'}">
 		<script type="text/javascript">
-		<%@include file="DataTablesAdmin.js"%>
+		<%@include file="js/DataTablesAdmin.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${user.role=='user'}">
 		<script type="text/javascript">
-		<%@include file="DataTablesUserGuest.js"%>
+		<%@include file="js/DataTablesUserGuest.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${user.role==null}">
 		<script type="text/javascript">
-		<%@include file="DataTablesUserGuest.js"%>
+		<%@include file="js/DataTablesUserGuest.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${registerForm != null}">
 		<script type="text/javascript">
-		<%@include file="RegisterForm.js"%>
+		<%@include file="js/RegisterForm.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${user == null  && registerForm == null}">
 		<script type="text/javascript">
-		<%@include file="LoginForm.js"%>
+		<%@include file="js/LoginForm.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${user.role=='admin' && topicAdding != null}">
 		<script type="text/javascript">
-		<%@include file="AddTopic.js"%>
+		<%@include file="js/AddTopic.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${topicUpdating != null}">
 		<script type="text/javascript">
-		<%@include file="UpdateTopic.js"%>
+		<%@include file="js/UpdateTopic.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${sessionScope.user == null && sessionScope.topic != null}">
 		<script type="text/javascript">
-		<%@include file="Task.js"%>
+		<%@include file="js/Task.js"%>
 		</script>
 	</c:if>
 	<c:if test="${user.role=='admin' && changePassword == 1}">
 		<script type="text/javascript">
-		<%@include file="PasswordChange.js"%>
+		<%@include file="js/PasswordChange.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${user.role=='user' && changePassword == 1}">
 		<script type="text/javascript">
-		<%@include file="PasswordChange.js"%>
+		<%@include file="js/PasswordChange.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${sessionScope.topic != null && taskAdding != null}">
 		<script type="text/javascript">
-		<%@ include file="AddTask.js"%>
+		<%@ include file="js/AddTask.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${sessionScope.topic != null && taskToUpdate != null}">
 		<script type="text/javascript">
-		<%@ include file="UpdateTask.js"%>
+		<%@ include file="js/UpdateTask.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${sessionScope.task != null && commentToUpdate == null}">
 		<script type="text/javascript">
-		<%@ include file="AddComment.js"%>
+		<%@ include file="js/AddComment.js"%>
 		</script>
 	</c:if>
 	
 	<c:if test="${sessionScope.task != null && commentToUpdate != null && commentToUpdate != null}">
 		<script type="text/javascript">
-		<%@ include file="UpdateComment.js"%>
+		<%@ include file="js/UpdateComment.js"%>
 		</script>
 	</c:if>
 </html>
