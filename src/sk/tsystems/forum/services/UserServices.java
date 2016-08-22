@@ -14,7 +14,7 @@ import sk.tsystems.forum.servlet.ForumServlet;
 
 /**
  * This class contains methods needed for retrieving information about stored data of {@link User} class from 
- * the database. Retrieved data are necessary for {@link ForumServlet} web application.
+ * the database.
  * 
  * @author martinharcarik
  *
@@ -33,7 +33,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * adds the instance of the {@link User} class into database and returns it. Contains of two methods. First method adds 
+	 * Adds the instance of the {@link User} class into database and returns it. Contains of two methods. First method adds 
 	 * the user into database, and second returns the user by property userName. 
 	 * 
 	 * @param userName represents the name of user
@@ -50,7 +50,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * sets the property 'status' of instance of {@link User} class to 'confirmed'. 
+	 * Sets the property 'status' of instance of {@link User} class to 'confirmed'. 
 	 * 
 	 * @param userName represents value of 'userName' property, needed for getting the instance of User class to change it's 'status'
 	 * property
@@ -63,7 +63,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * checks whether the database contains any instances of the {@link User} class.
+	 * Checks whether the database contains any instances of the {@link User} class.
 	 * 
 	 * @return true if the database contains 0 instances of the User class, false if it contains
 	 * at least one instance of the User class
@@ -80,7 +80,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * sets the property 'userPassword' of instance of {@link User} class. Method first gets the instance of class User
+	 * Sets the property 'userPassword' of instance of {@link User} class. Method first gets the instance of class User
 	 * by method setPresentUser and then sets it's property 'userPassword' to value of parameter newPassword.
 	 * 
 	 * @param userName is value of 'userName' property needed as parameter for method setPresentUser to get the instance of User class
@@ -94,7 +94,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * gets the instance of {@link User} class. Method contains of getting id property of User class, then returning the found 
+	 * Gets the instance of {@link User} class. Method contains of getting id property of User class, then returning the found 
 	 * instance of User class. 
 	 * 
 	 * @param userName represents value of 'userName' property, needed to get 'userID' property of User class, passed as parameter of method 
@@ -113,7 +113,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * gets the integer value of the property 'userID' of the instance of the {@link User} class.
+	 * Gets the integer value of the property 'userID' of the instance of the {@link User} class.
 	 * 
 	 * @param userName represents value of 'userName' property of User class, used to select the needed instance of User class
 	 * @return integer value of userID property of the instance of User class, or 0 if there is no instance of User class
@@ -133,7 +133,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * checks if the specified 'userPassword' property of the instance of {@link User} class has the same value than 
+	 * Checks if the specified 'userPassword' property of the instance of {@link User} class has the same value than 
 	 * the value of stored 'userPassword' property for this instance of User class.
 	 * 
 	 * @param userName is value of 'userName' property of the User class
@@ -157,7 +157,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * returns the list of instances of the {@link User} class with property 'status' set to value 'pending'.
+	 * Returns the list of instances of the {@link User} class with property 'status' set to value 'pending'.
 	 * 
 	 * @return list of instances of User class
 	 */
@@ -169,7 +169,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * removes the instance of the {@link User} class with specified property 'userName' from database
+	 * Removes the instance of the {@link User} class with specified property 'userName' from database
 	 * 
 	 * @param userName is value of 'userName' property of the User class
 	 */
@@ -183,7 +183,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * checks whether the instance of the {@link User} class with specified property 'userName' has it's property
+	 * Checks whether the instance of the {@link User} class with specified property 'userName' has it's property
 	 * 'status' set to 'confirmed'
 	 * 
 	 * @param userName is value of 'userName' property of the User class
@@ -205,7 +205,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * sets the property 'profileImage' of specified instance of {@link User} class.
+	 * Sets the property 'profileImage' of specified instance of {@link User} class.
 	 * 
 	 * @param user represents the instance of User class to set the 'profileImage' property of
 	 * @param profileImage is the value of 'profileImage' property of User class that is set to this instance of User class
@@ -217,7 +217,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * gets the list of instances of {@link User} class that have their 'status' property set to value 'confirmed'.
+	 * Gets the list of instances of {@link User} class that have their 'status' property set to value 'confirmed'.
 	 * 
 	 * @return list of confirmed users
 	 */
@@ -228,7 +228,7 @@ public class UserServices {
 	}
 	
 	/**
-	 * sets the 'role' property of specified instance of the {@link User} class to value of the parameter 'newRole'.
+	 * Sets the 'role' property of specified instance of the {@link User} class to value of the parameter 'newRole'.
 	 * Method first gets the instance of the class User using the method setPresentUser, then sets it's property 'role'.
 	 * 
 	 * @param userName is value of 'userName' property of the User class
