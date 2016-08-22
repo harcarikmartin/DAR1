@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.eclipse.jdt.internal.compiler.ast.Argument;
+
 import sk.tsystems.forum.entities.Comment;
 import sk.tsystems.forum.entities.Task;
 import sk.tsystems.forum.entities.Topic;
@@ -594,14 +596,15 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
+	 * Triggers the method registerUser of the {@link UserServices} class or sets the attribute 'error' 
+	 * of the instance of the {@link HttpServletRequest} class request to value 9
 	 * 
-	 * 
-	 * @param request
+	 * @param request provides information needed for the method registerUser. Contains messages of 
+	 * successful registration or error, if the registration was not successful.
 	 */
 	private void doRegister(HttpServletRequest request) {
 		user = null;
 		String dateString = request.getParameter("birthdate");
-		System.out.println(request.getParameter("birthdate"));
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		try {
@@ -738,7 +741,9 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Retrieves the property 'profileImage' of the instance of the {@link User} class and stores 
+	 * it as an image file at the location defined by the argument of the instance of the 
+	 * {@link FileOutputStream} class.
 	 * 
 	 */
 	private void testGetImage() {
