@@ -45,6 +45,11 @@ public class TaskServicesTests {
 		taskServices.removeTask(idIfTestedTaskNumberTwo);
 		assertNull(taskServices.getTask(idIfTestedTaskNumberTwo));
 	}
+	
+	@Test
+	public void doesMethodGetTopicWork(){
+		assertEquals(sample.getNameOfTestingTopic(), sample.getTestedTopic().getTopic());
+	}
 
 	@Test
 	public void doesMethodPrintTasksWork() {
@@ -54,7 +59,7 @@ public class TaskServicesTests {
 	}
 
 	@Test
-	public void doesMethodGetTask() {
+	public void doesMethodGetTaskWork() {
 		// Checks name in tasks using getTask method
 		assertEquals(sample.getNameOfTestingTask(), taskServices.getTask(sample.getTaskID()).getTaskName());
 	}

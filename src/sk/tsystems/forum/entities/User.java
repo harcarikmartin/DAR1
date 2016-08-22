@@ -1,5 +1,6 @@
 package sk.tsystems.forum.entities;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -140,7 +141,10 @@ public class User {
 		this.profileImage = profileImage;
 	}
 
-
-	
-
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", topics=" + topics + ", userName=" + userName + ", userPassword="
+				+ userPassword + ", birthDate=" + birthDate + ", role=" + role + ", status=" + status
+				+ ", registeredOn=" + registeredOn + ", profileImage=" + Arrays.toString(profileImage) + "]";
+	}
 }

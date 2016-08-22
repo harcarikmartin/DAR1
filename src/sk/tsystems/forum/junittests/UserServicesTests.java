@@ -41,6 +41,11 @@ public class UserServicesTests {
 		String statusAfterUpdate = userServices.setPresentUser(sample.getNameOfTester()).getStatus();
 		assertNotEquals(statusBeforeUpdate, statusAfterUpdate);
 	}
+	
+	@Test
+	public void doesMethodIsDBEmptyWork(){
+		assertEquals(false, userServices.isDBEmpty());
+	}
 
 	@Test
 	public void doesMethodChangePasswordWorks() {
@@ -68,18 +73,6 @@ public class UserServicesTests {
 	public void doesMethodGetUserIDWork() {
 		// Checks if user "tester" was created
 		assertNotEquals(0, userServices.getUserID(sample.getNameOfTester()));
-	}
-
-	@Test
-	public void doesMethodGetUserIDWorkAnotherTry() {
-		// Compares two different ids, get by getUserID
-		assertNotEquals("0", userServices.getUserID(sample.getNameOfTester()));
-		// int userIDBeforeChange =
-		// userServices.setPresentUser(nameOfTester).getUserID();
-		// userServices.setPresentUser(nameOfTester).setUserID(99999);
-		// int userIDAfterChange =
-		// userServices.setPresentUser(nameOfTester).getUserID();
-		// assertNotEquals(userIDAfterChange, userIDBeforeChange);
 	}
 
 	@Test

@@ -65,5 +65,10 @@ public class CommentServicesTests {
 		String commentBodyAfterUpdate = commentServices.getComment(sample.getCommentID()).getComment();
 		assertNotEquals(commentBodyAfterUpdate, commentBodyBeforeUpdate);
 	}
+	
+	@Test
+	public void doesMethodGetTaskWork(){
+		assertEquals(sample.getNameOfTestingTask(), taskServices.getTask(sample.getTaskID()).getTaskName());
+	}
 
 }
