@@ -8,7 +8,6 @@ import javax.persistence.Query;
 
 import sk.tsystems.forum.entities.Comment;
 import sk.tsystems.forum.entities.Task;
-import sk.tsystems.forum.entities.Topic;
 import sk.tsystems.forum.services.jpahelper.JpaHelper;
 
 /**

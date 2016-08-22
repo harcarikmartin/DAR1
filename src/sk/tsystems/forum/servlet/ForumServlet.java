@@ -45,13 +45,10 @@ import sk.tsystems.forum.services.UsersTopicsServices;
 @MultipartConfig(maxFileSize = 16177215)
 public class ForumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	List<User> list = new ArrayList<>();
 	HttpSession session;
-
 	User admin = new User();
 	List<Topic> topics = new ArrayList<>();
-
 	User user = new User();
 	User user1 = new User();
 
@@ -325,10 +322,12 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
-	 * gets the ordered list of instances of {@link User} class with their property userName set to 'confirmed'. 
-	 * The list is ordered by the property userName. Method forwards the list to JSP.
+	 * Gets the ordered list of instances of {@link User} class with their property 'userName' set to 'confirmed'. 
+	 * The list is ordered by the property userName. Method sets the list as an attribute of the request with name
+	 * 'users'.
 	 * 
-	 * @param request
+	 * @param request contains the list of all instances of the User class, which have their property 'userName' equal to 
+	 * 'confirmed'
 	 */
 	private void getUserRoles(HttpServletRequest request) {
 		request.setAttribute("listUserRoles", 1);
@@ -336,9 +335,9 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
+	 * Triggers the method for adding specified instance of the {@link Topic} class into database.
 	 * 
-	 * 
-	 * @param request
+	 * @param request provides the information needed to specify the details of the instance of the Topic class
 	 */
 	private void addTopicToDB(HttpServletRequest request) {
 		Topic topic = new Topic();
@@ -347,12 +346,22 @@ public class ForumServlet extends HttpServlet {
 		topic.setVisibility(request.getParameter("visibility"));
 		new TopicServices().addTopicToDatabase(topic);
 	}
-
+	
+	/**
+	 * Triggers the method updateTask of {@link TaskServices} class for updating specified task.
+	 * 
+	 * @param request provides the information needed to specify the details of the instance of the Task class
+	 */
 	private void updateTaskInDB(HttpServletRequest request) {
 		new TaskServices().updateTask(Integer.parseInt(request.getParameter("taskID")),
 				request.getParameter("editNameTask").trim(), request.getParameter("editBodyTask").trim());
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 */
 	private void getTaskToUpdate(HttpServletRequest request) {
 		request.setAttribute("taskUpdating",
 				new TaskServices().getTask(Integer.parseInt(request.getParameter("taskToUpdate"))));
@@ -570,7 +579,7 @@ public class ForumServlet extends HttpServlet {
 			InputStream inputStream = filePart.getInputStream();
 			BufferedImage image = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 			image = ImageIO.read(inputStream);
-			File f = new File("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+			File f = new File("C:\\Users\\ï¿½tudent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
 			ImageIO.write(image, "jpg", f);
 			bFile = new byte[(int) f.length()];
 			FileInputStream fileInputStream = new FileInputStream(f);
