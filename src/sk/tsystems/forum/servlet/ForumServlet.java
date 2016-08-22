@@ -33,6 +33,14 @@ import sk.tsystems.forum.services.TopicServices;
 import sk.tsystems.forum.services.UserServices;
 import sk.tsystems.forum.services.UsersTopicsServices;
 
+/**
+ * Main servlet responsible for processing and forwarding the requests from and back to 
+ * JSP file. Represents a controller part in MVC architecture implemented for this web 
+ * application.
+ * 
+ * @author martinharcarik
+ *
+ */
 @WebServlet("/Forum")
 @MultipartConfig(maxFileSize = 16177215)
 public class ForumServlet extends HttpServlet {
@@ -314,11 +322,22 @@ public class ForumServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
+	/**
+	 * gets the ordered list of instances of {@link User} class with their property userName set to 'confirmed'. 
+	 * The list is ordered by the property userName. Method forwards the list to JSP.
+	 * 
+	 * @param request
+	 */
 	private void getUserRoles(HttpServletRequest request) {
 		request.setAttribute("listUserRoles", 1);
 		request.setAttribute("users", new UserServices().getUsers());
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 */
 	private void addTopicToDB(HttpServletRequest request) {
 		Topic topic = new Topic();
 		topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
@@ -552,7 +571,7 @@ public class ForumServlet extends HttpServlet {
 			inputStream = filePart.getInputStream();
 			image = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 			image = ImageIO.read(inputStream);
-			f = new File("C:\\Users\\�tudent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+			f = new File("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
 //			f = new File("/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
 			ImageIO.write(image, "jpg", f);
 			System.out.println("Reading complete.");
@@ -579,7 +598,7 @@ public class ForumServlet extends HttpServlet {
 	private void testGetImage() {
 		byte[] bAvatar = getUser().getProfileImage();
 		try {
-			FileOutputStream fos = new FileOutputStream("C:\\Users\\�tudent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\Študent\\git\\DAR1\\WebContent\\images\\" + getUser().getUserID() + ".jpg");
 //			FileOutputStream fos = new FileOutputStream("/Users/martinharcarik/git/DAR1/WebContent/images/" + getUser().getUserID() + ".jpg");
 			fos.write(bAvatar);
 
