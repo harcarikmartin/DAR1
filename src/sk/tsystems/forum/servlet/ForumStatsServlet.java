@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import sk.tsystems.forum.services.StatisticsServices;
 
-
 /**
  * Servlet implementation class ForumStatsServlet
  */
