@@ -79,9 +79,10 @@
 						<button class="marginHorizontal  buttonStyle" type="submit">Registration</button>
 					</form>
 					<form method="post" class="userMenu">
-						<select class="marginHorizontal buttonStyle" id="language" name="language" onchange="submit()">
+						<select class="marginHorizontal buttonStyle" id="language" name="language" onchange="this.form.submit();">
 							<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
 							<option value="sk" ${language == 'sk' ? 'selected' : ''}>Slovak</option>
+							<option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
 						</select>
 					</form>
 				</div>
@@ -104,6 +105,7 @@
 						<select class="marginHorizontal buttonStyle" id="language" name="language" onchange="submit()">
 							<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
 							<option value="sk" ${language == 'sk' ? 'selected' : ''}>Slovak</option>
+							<option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
 						</select>
 					</form>
 				</div>

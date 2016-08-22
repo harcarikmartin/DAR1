@@ -40,6 +40,9 @@ function checkDate() {
 		} else if (userLang == "en"){
 			alert("Selected date of birth must be in past");
 			birthdate.value = '';
+		} else if (userLang == "ru"){
+			alert("Выбранная дата рождения должна быть в прошлом");
+			birthdate.value = '';
 		}
 		
 		

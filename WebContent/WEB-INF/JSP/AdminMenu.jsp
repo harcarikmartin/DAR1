@@ -84,9 +84,7 @@
 	<div class="row">
 		<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
 			<form method="post" onsubmit="return checkRequiredAddTopic()">
-				<c:if test="${existingTopic != null}">
-					<p class="simpleText">Topic with this name already exist!</p>
-				</c:if>
+		
 				<div class="row text-center">
 					<label class="simpleText" for="addTheTopic">Add new Topic:</label>
 				</div>
