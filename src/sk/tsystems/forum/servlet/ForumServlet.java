@@ -213,7 +213,7 @@ public class ForumServlet extends HttpServlet {
 			if (request.getParameterValues("topic") != null) {
 				addUserSubscriptions(request);
 			} else {
-				updateUserSubscriptions(request);
+				updateUserSubscriptions();
 			}
 		} else if ("openTopic".equals(action)) {
 			// open the topic
@@ -633,12 +633,14 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Triggers method setSubscriber of the {@link TopicServices} class for each instance of the 
+	 * {@link Topic} class whose value of property 'topicID' is equal to the value of variable 
+	 * topicsId.
 	 * 
 	 * @param request
 	 */
 	private void addUserSubscriptions(HttpServletRequest request) {
-		updateUserSubscriptions(request);
+		updateUserSubscriptions();
 		String[] topicsId = request.getParameterValues("topic");
 		for (int i = 0; i <= topicsId.length - 1; i++) {
 			for (Topic topic : new TopicServices().printTopics()) {
@@ -650,11 +652,10 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
-	 * 
-	 * 
-	 * @param request
+	 * Triggers method removeSubscriber of the {@link TopicServices} class for each instance of the 
+	 * {@link Topic} class that are stored in the database
 	 */
-	private void updateUserSubscriptions(HttpServletRequest request) {
+	private void updateUserSubscriptions() {
 		for (Topic topic : new TopicServices().printTopics()) {
 			new TopicServices().removeSubscriber(topic, user);
 		}
@@ -677,7 +678,11 @@ public class ForumServlet extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Ensures creation of a single user in case of an empty database and storing it in database. 
+	 * Sets the attributes 'topics' and 'userTopics' of the instance of {@link HttpServletRequest} class 
+	 * request. Attribute 'topics' contains the list of all instances of the {@link Topic} class stored 
+	 * in the database. Attribute 'userTopics' contains the list of all instances of the Topic class 
+	 * for current instance of the {@link User} class stored in the database. 
 	 * 
 	 * @param request
 	 * @param response
