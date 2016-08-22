@@ -55,9 +55,6 @@
 	$("#language").change(function() {
 	    localStorage.language = $(this).val();
 	});
-
-
-
 </script>
 
 <c:if test="${user.role=='admin'}">
