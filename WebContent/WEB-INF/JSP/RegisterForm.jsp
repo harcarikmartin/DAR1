@@ -21,19 +21,19 @@
 						<tr>
 							<td class="registerCellStyle text-center">
 								<label for="username">
-									<fmt:message key="register.label.username" />:
+									<fmt:message key="register.label.username" />
 								</label>
 							</td>
 							<td class="registerCellStyle text-left">
 								<input id="userNameReg" class="registrationForm" type="text" name="userName" placeholder="name" required="autofocus" maxlength="100">
 							</td>
 							<td class="registerCellStyle text-center">
-								<p id="rfName" class="requiredField">Required field</p>
+								<p id="rfName" class="requiredField"><fmt:message key="all.label.requiredField" /></p>
 							</td>
 						</tr>
 						<tr>
 							<td class="registerCellStyle text-center">
-								<label for="userPassReg">Password:</label>
+								<label for="userPassReg"><fmt:message key="register.label.password" /></label>
 							</td>
 							<td class="registerCellStyle text-left">
 								<input id="userPassReg" class="registrationForm" type="password" name="userPassword"
@@ -41,62 +41,58 @@
 									maxlength="100">
 							</td>
 							<td class="registerCellStyle text-center">
-								<p id="rfPass" class="requiredField">Required field</p>
+								<p id="rfPass" class="requiredField"><fmt:message key="all.label.requiredField" /></p>
 							</td>
 						</tr>
 						<tr>
 							<td class="registerCellStyle text-center"></td>
 							<td class="registerCellStyle text-left">
-								<p class="registerInfoStyle">* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1
-									Special Character [!@#$%^&*_=+-]</p>
+								<p class="registerInfoStyle"><fmt:message key="register.label.passwordRegex" /></p>
 							</td>
 							<td class="registerCellStyle text-center"></td>
 						</tr>
 						<tr>
 							<td class="registerCellStyle text-center">
-								<label for="userPassRegCheck">Confirm password:</label>
+								<label for="userPassRegCheck"><fmt:message key="register.label.confirmPassword" /></label>
 							</td>
 							<td class="registerCellStyle text-left">
 								<input id="userPassRegCheck" class="registrationForm" type="password" name="userPasswordCheck" placeholder="password" maxlength="100">
 							</td>
 							<td class="registerCellStyle text-center">
-								<p id="rfPassCheck" class="requiredField">Required field</p>
+								<p id="rfPassCheck" class="requiredField"><fmt:message key="all.label.requiredField" /></p>
 							</td>
 						</tr>
 						<tr>
 							<td class="registerCellStyle text-center">
-								<label for="birthdate">Date of birth:</label>
+								<label for="birthdate"><fmt:message key="register.label.dateOfBirth" /></label>
 							</td>
 							<td class="registerCellStyle text-left">
 								<input id="birthdate" class="registrationForm" type="date" name="birthdate" onchange="checkDate()" maxlength="10">
 							</td>
 							<td class="registerCellStyle text-center">
-								<p id="rfBirthdate" class="requiredField">Required field</p>
+								<p id="rfBirthdate" class="requiredField"><fmt:message key="all.label.requiredField" /></p>
 							</td>
 						</tr>
 						<tr>
 							<td class="registerCellStyle text-center"></td>
 							<td class="registerCellStyle text-left">
-								<p class="registerInfoStyle">* yyyy-mm-dd</p>
+								<p class="registerInfoStyle"><fmt:message key="register.label.dateFormat" /></p>
 							</td>
 							<td class="registerCellStyle text-center"></td>
 						</tr>
 						<tr>
 							<td colspan="3" class="registerCellStyle text-center">
 								<c:if test="${error == '1'}">
-									<p class="warning">Passwords must match!</p>
+									<p class="warning"><fmt:message key="register.label.passMatch" /></p>
 								</c:if>
 								<c:if test="${error == '2'}">
-									<p class="warning">Password must be at least 8 digits long!</p>
+									<p class="warning"><fmt:message key="register.label.passLegth" /></p>
 								</c:if>
 								<c:if test="${error == '3'}">
-									<p class="warning">Username already exists!</p>
-								</c:if>
-								<c:if test="${error == '4'}">
-									<p class="warning">Not registered yet!</p>
+									<p class="warning"><fmt:message key="register.label.usernameExists" /></p>
 								</c:if>
 								<c:if test="${error == '9'}">
-									<p class="warning">Date of birth is not in proper format!</p>
+									<p class="warning"><fmt:message key="register.label.dateOfBirthValid" /></p>
 								</c:if>
 							</td>
 						</tr>
@@ -104,7 +100,7 @@
 							<td class="registerCellStyle text-center"></td>
 							<td class="registerCellStyle text-left">
 								<input type="hidden" name="action" value="registration">
-								<button class="btn-block topicStyle" type="submit">Register</button>
+								<button class="btn-block topicStyle" type="submit"><fmt:message key="register.label.register" /></button>
 							</td>
 							<td class="registerCellStyle text-center"></td>
 						</tr>

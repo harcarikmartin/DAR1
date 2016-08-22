@@ -34,8 +34,8 @@
 				<tr>
 					<td class="passwordCellStyle"></td>
 					<td class="passwordCellStyle">
-						<p class="topicInfoStyle">* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1
-							Special Character [!@#$%^&*_=+-]</p>
+						<p class="topicInfoStyle">* Password must contain minimum 8 characters, at least 1 Uppercase letter, 1 Number and 1 Special Character
+							[!@#$%^&*_=+-]</p>
 					</td>
 					<td></td>
 				</tr>

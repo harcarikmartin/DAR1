@@ -1,4 +1,4 @@
-rfName.style.display = "none";
+﻿rfName.style.display = "none";
 	rfPass.style.display = "none";
 	rfPassCheck.style.display = "none";
 	rfBirthdate.style.display = "none";
@@ -25,6 +25,7 @@ rfName.style.display = "none";
 function checkDate() {
 	var selectedDate = document.getElementById('birthdate').value;
 	var now = new Date();
+	var userLang = document.documentElement.lang; 
 	month = '' + (now.getMonth() + 1), day = '' + now.getDate(), year = now
 			.getFullYear();
 	if (month.length < 2)
@@ -33,8 +34,15 @@ function checkDate() {
 		day = '0' + day;
 
 	if (selectedDate > [ year, month, day ].join('-')) {
-		alert("Selected date of birth must be in past");
-		birthdate.value = '';
+		if (userLang == "sk"){
+			alert("D\u00E1tum narodenia sa mus\u00ED nach\u00E1dza\u0165 v minulosti");
+			birthdate.value = '';
+		} else if (userLang == "en"){
+			alert("Selected date of birth must be in past");
+			birthdate.value = '';
+		}
+		
+		
 	}
 }
 	 
