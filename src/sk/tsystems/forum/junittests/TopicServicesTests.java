@@ -112,7 +112,7 @@ public class TopicServicesTests {
 	 * Checks if topic "testing Topic" is in database
 	 */
 	@Test
-	public void doesMethodSetPresentTopicWork() {
+	public void doesMethodGetPresentTopicWork() {
 		// Checks if topic "testing Topic" is in database
 		assertEquals(sample.getNameOfTestingTopic(),
 				topicServices.getPresentTopic(sample.getNameOfTestingTopic()).getTopic());

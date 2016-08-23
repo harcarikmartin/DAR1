@@ -71,14 +71,19 @@ public class UserServicesTests {
 		assertEquals(false, userServices.isDBEmpty());
 	}
 	
-	
+	/**
+	 * Calling methods doesMethodAddUserWork and doesMethodSetPresentUserWork, asserting returning true both.
+	 */
 	@Test
 	public void doesMethodRegisterUserWork() {
 		doesMethodAddUserWork();
-		doesMethodSetPresentUserWork();
+		doesMethodGetPresentUserWork();
 	}
 	
-	
+	/**
+	 * Checks two Strings, one string before calling method changePassword and
+	 * another one after calling method changePassword. Values should not be the same when compared.
+	 */
 	@Test
 	public void doesMethodChangePasswordWorks() {
 		String passwordBeforeChange = userServices.getPresentUser(sample.getNameOfTester()).getUserPassword();
@@ -86,7 +91,12 @@ public class UserServicesTests {
 		String passwordAfterChange = userServices.getPresentUser(sample.getNameOfTester()).getUserPassword();
 		assertNotEquals(passwordBeforeChange, passwordAfterChange);
 	}
-
+	
+	/**
+	 * Compares two String values with the value of password stored in the database for specified user. 
+	 * First compared same String as stored, asserting true, second compared different String as stored, 
+	 * asserting false.
+	 */
 	@Test
 	public void doesMethodIsPasswordCorrectWork() {
 		// Good password
@@ -94,25 +104,41 @@ public class UserServicesTests {
 		// bad password
 		assertFalse(userServices.isPasswordCorrect(sample.getNameOfTester(), "testerios"));
 	}
-
+	
+	/**
+	 * Checks if is user "tester" has status equal to "confirmed", asserting not true.
+	 */
 	@Test
 	public void deosMethodIsUserApprovedWork() {
 		// Checks if is user "tester" approved
 		assertFalse(userServices.isUserApproved(sample.getNameOfTester()));
 	}
-
+	
+	/**
+	 * Checks two userID of type integer, one stored as 0 and another stored in database, 
+	 * asserting that they do not equal.
+	 */
 	@Test
 	public void doesMethodGetUserIDWork() {
 		// Checks if user "tester" was created
 		assertNotEquals(0, userServices.getUserID(sample.getNameOfTester()));
 	}
-
+	
+	/**
+	 * Checks two userName of type String, one stored as "tester" and another stored in database, 
+	 * retrieved by calling method getPresentUser, asserting that they do equal.
+	 */
 	@Test
-	public void doesMethodSetPresentUserWork() {
+	public void doesMethodGetPresentUserWork() {
 		// Checks if user "tester" is in database
 		assertEquals("tester", userServices.getPresentUser(sample.getNameOfTester()).getUserName());
 	}
-
+	
+	/**
+	 * Comparing two lists, one created by calling method getPendingUsers before adding user "testingDummy" 
+	 * into database and second created by calling the same method after adding the user. Expecting that lists 
+	 * do not equal. Calling method dropUser on user "testingDummy" at the end.
+	 */
 	@Test
 	public void doesMethodGetPendingUsersWork() {
 		// Checks two different lists
@@ -125,7 +151,10 @@ public class UserServicesTests {
 		assertNotEquals(lisOfPendingUsersAfterAddingAnother, lisOfPendingUsersBeforeAddingAnother);
 		userServices.dropUser("testingDummy");
 	}
-
+	
+	/**
+	 * Checks if user "testingDummy" is in table after calling dropUse method, expecting null
+	 */
 	@Test
 	public void doesMethodDropUserWork() {
 		// Checks if user "testingDummy" is in table after calling dropUser
@@ -135,7 +164,11 @@ public class UserServicesTests {
 		userServices.dropUser("testingDummy");
 		assertNull(userServices.getPresentUser("testingDummy"));
 	}
-
+	
+	/**
+	 * Checks the profileImage of selected user before and after calling method updateImage. Before expecting null, 
+	 * as no image was set yet. After calling the method expecting not null.
+	 */
 	@Test
 	public void doesMethodUpdateImageWork() {
 		assertNull(userServices.getPresentUser(sample.getNameOfTester()).getProfileImage());
@@ -143,7 +176,14 @@ public class UserServicesTests {
 		userServices.updateImage(sample.getTestedUser(), randomByteArray);
 		assertNotNull(userServices.getPresentUser(sample.getNameOfTester()).getProfileImage());
 	}
-
+	
+	/**
+	 *
+	 * Comparing two lists, one created by calling method getUsers before adding user "testingDummy" 
+	 * into database and second created by calling the same method after adding the user. Expecting that lists 
+	 * do not equal.
+	 * Calling method dropUser on user "testingDummy" at the end.
+	 */
 	@Test
 	public void doesMethodGetUsersWork() {
 		List<User> lisOfConfirmedUsersBeforeAddingAnother = new ArrayList<>();
@@ -151,11 +191,15 @@ public class UserServicesTests {
 		userServices.addUser(
 				new User("testingDummy", "testingDummy", sample.parseDate(), "user", "confirmed", sample.parseDate()));
 		List<User> lisOfConfirmedUsersAfterAddingAnother = new ArrayList<>();
-		lisOfConfirmedUsersAfterAddingAnother = userServices.getPendingUsers();
-		assertNotEquals(lisOfConfirmedUsersAfterAddingAnother, lisOfConfirmedUsersBeforeAddingAnother);
+		lisOfConfirmedUsersAfterAddingAnother = userServices.getUsers();
+		assertNotEquals(lisOfConfirmedUsersAfterAddingAnother.size(), lisOfConfirmedUsersBeforeAddingAnother.size());
 		userServices.dropUser("testingDummy");
 	}
-
+	
+	/**
+	 * Checks two String values of user's roles, one String before calling method toggleUserRole and
+	 * another one after calling method toggleUserRole. Values should not equal when compared.
+	 */
 	@Test
 	public void doesMethodToggleUserRole() {
 		String userRoleBeforeTogglingUsersRole = userServices.getPresentUser(sample.getNameOfTester()).getRole();
