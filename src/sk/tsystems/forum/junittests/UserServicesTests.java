@@ -148,7 +148,7 @@ public class UserServicesTests {
 		List<User> lisOfPendingUsersBeforeAddingAnother = new ArrayList<>();
 		lisOfPendingUsersBeforeAddingAnother = userServices.getPendingUsers();
 		userServices.addUser(
-				new User("testingDummy", "testingDummy", sample.parseDate(), "user", "pending", sample.parseDate()));
+				new User("testingDummy", "testingDummy", sample.currentDate(), "user", "pending", sample.currentDate()));
 		List<User> lisOfPendingUsersAfterAddingAnother = new ArrayList<>();
 		lisOfPendingUsersAfterAddingAnother = userServices.getPendingUsers();
 		assertNotEquals(lisOfPendingUsersAfterAddingAnother, lisOfPendingUsersBeforeAddingAnother);
@@ -163,7 +163,7 @@ public class UserServicesTests {
 		// Checks if user "testingDummy" is in table after calling dropUser
 		// method
 		userServices.addUser(
-				new User("testingDummy", "testingDummy", sample.parseDate(), "user", "pending", sample.parseDate()));
+				new User("testingDummy", "testingDummy", sample.currentDate(), "user", "pending", sample.currentDate()));
 		userServices.dropUser("testingDummy");
 		assertNull(userServices.getPresentUser("testingDummy"));
 	}
@@ -192,7 +192,7 @@ public class UserServicesTests {
 		List<User> lisOfConfirmedUsersBeforeAddingAnother = new ArrayList<>();
 		lisOfConfirmedUsersBeforeAddingAnother = userServices.getUsers();
 		userServices.addUser(
-				new User("testingDummy", "testingDummy", sample.parseDate(), "user", "confirmed", sample.parseDate()));
+				new User("testingDummy", "testingDummy", sample.currentDate(), "user", "confirmed", sample.currentDate()));
 		List<User> lisOfConfirmedUsersAfterAddingAnother = new ArrayList<>();
 		lisOfConfirmedUsersAfterAddingAnother = userServices.getUsers();
 		assertNotEquals(lisOfConfirmedUsersAfterAddingAnother.size(), lisOfConfirmedUsersBeforeAddingAnother.size());
