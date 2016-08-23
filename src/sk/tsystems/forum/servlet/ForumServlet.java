@@ -307,6 +307,8 @@ public class ForumServlet extends HttpServlet {
 			// drop user
 			new UserServices().dropUser(request.getParameter("userToDelete"));
 			getUserRoles(request);
+		} else if ("color".equals(action)){
+			session.setAttribute("color", request.getParameter("color"));
 		}
 		// forwarding response back to node
 		forwardToList(request, response);
