@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -22,9 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
-import org.eclipse.jdt.internal.compiler.ast.Argument;
-
 import sk.tsystems.forum.entities.Comment;
 import sk.tsystems.forum.entities.Task;
 import sk.tsystems.forum.entities.Topic;
@@ -309,7 +305,12 @@ public class ForumServlet extends HttpServlet {
 			getUserRoles(request);
 		} else if ("color".equals(action)){
 			session.setAttribute("color", request.getParameter("color"));
-		}
+		} else if ("language".equals(action)){
+			session.setAttribute("language", request.getParameter("language"));
+			session.removeAttribute("topic");
+			session.removeAttribute("taskID");
+			session.removeAttribute("task");
+		} 
 		// forwarding response back to node
 		forwardToList(request, response);
 	}

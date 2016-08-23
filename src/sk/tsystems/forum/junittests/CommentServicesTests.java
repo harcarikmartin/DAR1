@@ -17,7 +17,6 @@ import sk.tsystems.forum.services.UserServices;
  * 
  * @author karolklescinsky
  */
-
 public class CommentServicesTests {
 
 	private TopicServices topicServices = new TopicServices();
@@ -69,13 +68,13 @@ public class CommentServicesTests {
 	 * Checks if list of comments in specific task is not null.
 	 */
 	@Test
-	public void doesMethodPrintComments() {
+	public void doesMethodPrintCommentsWork() {
 		assertNotNull(commentServices.printComments(sample.getTaskID()));
 	}
 
 	/**
 	 * Creates specific comment, then this test removes that specific comment
-	 * and checks if that specifi comment is in database. Null expected.
+	 * and checks if that specific comment is in database. Null expected.
 	 */
 	@Test
 	public void doesMethodRemoveCommentWork() {
@@ -90,7 +89,7 @@ public class CommentServicesTests {
 	 * {@link CreatingTestingSamples} and another stored in database.
 	 */
 	@Test
-	public void doesMethodGetComment() {
+	public void doesMethodGetCommentWork() {
 		assertEquals(sample.getNameOfTestingComment(), commentServices.getComment(sample.getCommentID()).getComment());
 	}
 
@@ -106,14 +105,4 @@ public class CommentServicesTests {
 		String commentBodyAfterUpdate = commentServices.getComment(sample.getCommentID()).getComment();
 		assertNotEquals(commentBodyAfterUpdate, commentBodyBeforeUpdate);
 	}
-
-	/**
-	 * Checks two task names of type String, one stored as String in class
-	 * {@link CreatingTestingSamples} and another stored in database.
-	 */
-	@Test
-	public void doesMethodGetTaskWork() {
-		assertEquals(sample.getNameOfTestingTask(), taskServices.getTask(sample.getTaskID()).getTaskName());
-	}
-
 }
