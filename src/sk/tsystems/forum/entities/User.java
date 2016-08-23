@@ -148,7 +148,7 @@ public class User {
 	}
 	
 	/**
-	 * Gets the list of instances of the {@link Topic} class for the instance of the {@link User} class
+	 * Gets the list of instances of the {@link Topic} class for this instance of the {@link User} class
 	 * 
 	 * @return list of subscribed private topics
 	 */
@@ -157,7 +157,7 @@ public class User {
 	}
 	
 	/**
-	 * Sets the list of instances of the {@link Topic} class for the instance of the {@link User} class
+	 * Sets the list of instances of the {@link Topic} class for this instance of the {@link User} class
 	 * 
 	 * @param topics list of private topics to be added to user's list
 	 */
