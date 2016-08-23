@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 
 /**
- * This class represents the entity required for creation of the structure in the database using JPA connection. 
+ * This class represents the {@link Entity} required for creation of the structure in the database using JPA connection. 
  * Class is equivalent to the table in database. Encloses fields that are represented as a columns in this table, 
  * instances of the class represent rows in the table in the database.
  * 
