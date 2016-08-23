@@ -167,22 +167,22 @@ public class ForumServlet extends HttpServlet {
 		} else if ("updateTopic".equals(action)) {
 			// show form for updating the topic
 			request.setAttribute("topicUpdating",
-					new TopicServices().setPresentTopic(request.getParameter("topicToUpdate")));
+					new TopicServices().getPresentTopic(request.getParameter("topicToUpdate")));
 			request.setAttribute("topicToUpdate", 1);
 		} else if ("updateTheTopic".equals(action)) {
 			// update of topic, rename, chenge of visibility
 			// subscriptions for topic are removed from subscriptions table
 			// after changing its state from private to public
 			if (request.getParameter("original").equals(request.getParameter("editTopic"))
-					&& !(new TopicServices().setPresentTopic(request.getParameter("original")).getVisibility()
+					&& !(new TopicServices().getPresentTopic(request.getParameter("original")).getVisibility()
 							.equals(request.getParameter("visibility1")))
 					|| !request.getParameter("original").equals(request.getParameter("editTopic"))
-							&& new TopicServices().setPresentTopic(request.getParameter("editTopic")) == null) {
+							&& new TopicServices().getPresentTopic(request.getParameter("editTopic")) == null) {
 				updateTopicSubscriptions(request);
 				new TopicServices().updateTopic(request.getParameter("original"),
 						request.getParameter("editTopic").trim(), request.getParameter("visibility1"));
 				request.setAttribute("listTopics", 1);
-			} else if (new TopicServices().setPresentTopic(request.getParameter("editTopic")) != null) {
+			} else if (new TopicServices().getPresentTopic(request.getParameter("editTopic")) != null) {
 				// topic already exists
 				request.setAttribute("topicToUpdate", 1);
 				request.setAttribute("existingTopic", 1);
@@ -196,10 +196,10 @@ public class ForumServlet extends HttpServlet {
 			request.setAttribute("topicAdding", 1);
 		} else if ("addTheTopic".equals(action)) {
 			// adding topic to database
-			if (new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) == null) {
+			if (new TopicServices().getPresentTopic(request.getParameter("addTheTopic")) == null) {
 				addTopicToDB(request);
 				request.setAttribute("listTopics", 1);
-			} else if (new TopicServices().setPresentTopic(request.getParameter("addTheTopic")) != null) {
+			} else if (new TopicServices().getPresentTopic(request.getParameter("addTheTopic")) != null) {
 				// topic already exists
 				request.setAttribute("topicAdding", 1);
 				request.setAttribute("existingTopic", 1);
@@ -213,7 +213,7 @@ public class ForumServlet extends HttpServlet {
 			}
 		} else if ("openTopic".equals(action)) {
 			// open the topic
-			session.setAttribute("topic", new TopicServices().setPresentTopic(request.getParameter("topic")));
+			session.setAttribute("topic", new TopicServices().getPresentTopic(request.getParameter("topic")));
 			getTasksForTopic(request);
 		} else if ("addTask".equals(action)) {
 			getTasksForTopic(request);
@@ -307,10 +307,8 @@ public class ForumServlet extends HttpServlet {
 			session.setAttribute("color", request.getParameter("color"));
 		} else if ("language".equals(action)){
 			session.setAttribute("language", request.getParameter("language"));
-			session.removeAttribute("topic");
-			session.removeAttribute("taskID");
-			session.removeAttribute("task");
-		} 
+			clearSession();
+		}
 		// forwarding response back to node
 		forwardToList(request, response);
 	}
@@ -346,7 +344,7 @@ public class ForumServlet extends HttpServlet {
 	 */
 	private void addTopicToDB(HttpServletRequest request) {
 		Topic topic = new Topic();
-		topic.setCreator(new UserServices().setPresentUser(user.getUserName()));
+		topic.setCreator(new UserServices().getPresentUser(user.getUserName()));
 		topic.setTopic(request.getParameter("addTheTopic").trim());
 		topic.setVisibility(request.getParameter("visibility"));
 		new TopicServices().addTopicToDatabase(topic);
@@ -594,7 +592,7 @@ public class ForumServlet extends HttpServlet {
 	 * @param request provides information needed to retrieve property 'userName' of the User classs
 	 */
 	private void doLogin(HttpServletRequest request) {
-		user = new UserServices().setPresentUser(request.getParameter("userName"));
+		user = new UserServices().getPresentUser(request.getParameter("userName"));
 		session.setAttribute("user", user);
 	}
 	
@@ -671,7 +669,7 @@ public class ForumServlet extends HttpServlet {
 	 * @param request provides parameters needed to identify the instance of the {@link Topic} class, that will be updated
 	 */
 	private void updateTopicSubscriptions(HttpServletRequest request) {
-		Topic topic = new TopicServices().setPresentTopic(request.getParameter("original"));
+		Topic topic = new TopicServices().getPresentTopic(request.getParameter("original"));
 		if (topic.getVisibility().equals("private") && request.getParameter("visibility1").equals("public")) {
 			List<User> list = topic.getUsers();
 			if(!list.isEmpty()) {
@@ -713,7 +711,9 @@ public class ForumServlet extends HttpServlet {
 			admin.setBirthDate(date);
 			new UserServices().addUser(admin);
 		}
-
+		if(session.getAttribute("language") == null) {
+			session.setAttribute("language", "en");
+		}
 		request.setAttribute("topics", new TopicServices().printTopics());
 		request.setAttribute("userTopics", new UsersTopicsServices().getUsersTopics());
 		request.getRequestDispatcher("/WEB-INF/JSP/Forum.jsp").forward(request, response);

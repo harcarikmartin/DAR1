@@ -71,7 +71,7 @@ public class TopicServices {
 	 * @return the instance of Topic class or null, if there is no instance of Topic class with this 'topic' property
 	 * stored in the database 
 	 */
-	public Topic setPresentTopic(String topic) {
+	public Topic getPresentTopic(String topic) {
 		int topicID = getTopicID(topic);
 		if (topicID > 0) {
 			EntityManager em = JpaHelper.getEntityManager();
@@ -104,7 +104,7 @@ public class TopicServices {
 	 * @param topicName is value of 'topic' property of the Topic class
 	 */
 	public void removeTopic(String topicName) {
-		Topic topic = setPresentTopic(topicName);
+		Topic topic = getPresentTopic(topicName);
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		em.remove(topic);
@@ -121,7 +121,7 @@ public class TopicServices {
 	 * @param newVisibility new value of the property 'topic' of the Topic class to be stored in the database
 	 */
 	public void updateTopic(String origTopic, String newTopic, String newVisibility) {
-		Topic topic = new TopicServices().setPresentTopic(origTopic);
+		Topic topic = new TopicServices().getPresentTopic(origTopic);
 		JpaHelper.beginTransaction();
 		topic.setTopic(newTopic);
 		topic.setVisibility(newVisibility);

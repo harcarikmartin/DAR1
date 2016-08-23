@@ -46,7 +46,7 @@ public class UserServices {
 	 */
 	public User registerUser(String userName, String userPassword, Date birthDate, String role, String status,Date registeredOn) {
 		addUser(new User(userName, userPassword, birthDate, role, status,registeredOn));
-		return setPresentUser(userName);
+		return getPresentUser(userName);
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class UserServices {
 	 * property
 	 */
 	public void approveUser(String userName) {
-		User user = setPresentUser(userName);
+		User user = getPresentUser(userName);
 		JpaHelper.beginTransaction();
 		user.setStatus("confirmed");
 		JpaHelper.commitTransaction();
@@ -87,7 +87,7 @@ public class UserServices {
 	 * @param newPassword represents the value of userPassword property to be set in the instance of User class
 	 */
 	public void changePassword(String userName, String newPassword) {
-		User user = setPresentUser(userName);
+		User user = getPresentUser(userName);
 		JpaHelper.beginTransaction();
 		user.setUserPassword(newPassword);
 		JpaHelper.commitTransaction();
@@ -102,7 +102,7 @@ public class UserServices {
 	 * @return the instance of User class or null, if there is no instance of User class with this 'userName' property
 	 * stored in the database 
 	 */
-	public User setPresentUser(String userName) {
+	public User getPresentUser(String userName) {
 		int userID = getUserID(userName);
 		if (userID > 0) {
 			EntityManager em = JpaHelper.getEntityManager();
@@ -235,7 +235,7 @@ public class UserServices {
 	 * @param newRole is value of 'role' property of the User class
 	 */
 	public void toggleUserRole(String userName, String newRole) {
-		User user = setPresentUser(userName);
+		User user = getPresentUser(userName);
 		JpaHelper.beginTransaction();
 		user.setRole(newRole);
 		JpaHelper.commitTransaction();
