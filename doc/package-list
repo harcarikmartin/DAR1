@@ -1,0 +1,6 @@
+sk.tsystems.forum.entities
+sk.tsystems.forum.entities.dto
+sk.tsystems.forum.junittests
+sk.tsystems.forum.services
+sk.tsystems.forum.services.jpahelper
+sk.tsystems.forum.servlet
