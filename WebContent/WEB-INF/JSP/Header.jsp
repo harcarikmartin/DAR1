@@ -3,9 +3,6 @@
 
 <div class="row col-lg-12">
 	<div class="col-lg-offset-1 col-lg-10 text-center rowBackground">
-		<div class="text-left marginHorizontal rowBackground">
-			<jsp:include page="ColorSelect.jsp" />
-		</div>
 		<form method="post">
 			<input type="hidden" name="action" value="mainPage">
 			<button class=" fullWidth mainPage" type="submit">FORUM</button>
@@ -15,6 +12,16 @@
 
 <div class="row col-lg-12">
 	<c:if test="${user == null  && registerForm == null}">
+		<div class="col-lg-offset-1 col-lg-10 rowBackground">
+		<div class="row">
+			<div class="text-left paddingHorizontal text-center-xs col-lg-8  col-md-8 col-sm-8 col-xs-12">
+				<jsp:include page="ColorSelect.jsp" />
+			</div>
+			<div class="text-right text-center-xs col-lg-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<jsp:include page="SelectLanguages.jsp" />
+			</div>
+		</div>
+	</div>
 		<div id="login" class="col-lg-offset-1 col-lg-10 rowBackground">
 			<div class="row">
 				<div class="text-left col-lg-9 col-md-9 col-sm-8 col-xs-12">
@@ -81,13 +88,22 @@
 						<input type="hidden" name="action" value="register">
 						<button class="marginHorizontal  buttonStyle" type="submit">Registration</button>
 					</form>
-					<jsp:include page="SelectLanguages.jsp" />
 				</div>
 			</div>
 		</div>
 	</c:if>
 
 	<c:if test="${user != null  && registerForm == null}">
+		<div class="col-lg-offset-1 col-lg-10 rowBackground">
+		<div class="row">
+			<div class="text-left paddingHorizontal text-center-xs col-lg-8  col-md-8 col-sm-8 col-xs-12">
+				<jsp:include page="ColorSelect.jsp" />
+			</div>
+			<div class="text-right text-center-xs col-lg-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<jsp:include page="SelectLanguages.jsp" />
+			</div>
+		</div>
+	</div>
 		<div class="col-lg-offset-1 col-lg-10 rowBackground">
 			<div class="row">
 				<div class="text-left text-center-xs col-lg-8  col-md-8 col-sm-8 col-xs-12">
@@ -98,7 +114,6 @@
 						<input type="hidden" name="action" value="logout">
 						<button class="marginHorizontal buttonStyle" type="submit">Logout</button>
 					</form>
-					<jsp:include page="SelectLanguages.jsp" />
 				</div>
 			</div>
 		</div>
