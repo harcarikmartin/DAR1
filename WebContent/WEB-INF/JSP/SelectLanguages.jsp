@@ -1,22 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+	scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="languages.text" />
 
 <form method="post" class="userMenu">
 	<input type="hidden" name="action" value="language">
 	<select class="marginHorizontal buttonStyle" id="language" name="language" onchange="this.form.submit();">
 		<c:if test="${language == 'en' || language == null}">
-			<option value="en" selected>English</option>
-			<option value="sk">Slovak</option>
-			<option value="ru">Russian</option>
+			<option value="en" selected><fmt:message key="lang.label.english" /></option>
+			<option value="sk"><fmt:message key="lang.label.slovak" /></option>
 		</c:if>
 		<c:if test="${language == 'sk'}">
-			<option value="en">English</option>
-			<option value="sk" selected>Slovak</option>
-			<option value="ru">Russian</option>
-		</c:if>
-		<c:if test="${language == 'ru'}">
-			<option value="en">English</option>
-			<option value="sk">Slovak</option>
-			<option value="ru" selected>Russian</option>
+			<option value="en"><fmt:message key="lang.label.english" /></option>
+			<option value="sk" selected><fmt:message key="lang.label.slovak" /></option>
 		</c:if>
 	</select>
 </form>

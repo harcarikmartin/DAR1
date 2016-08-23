@@ -1,5 +1,11 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+	scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="languages.text" />
 
 <!DOCTYPE html >
 <c:if test="${language == null}">
@@ -46,7 +52,7 @@
 		<div class="row">
 			<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 footerBCG text-center">
 				<p>
-					<a href="/Forum/ForumStatsServlet">Statistics</a>
+					<a href="/Forum/ForumStatsServlet"><fmt:message key="all.label.stats" /></a>
 				</p>
 			</div>
 		</div>
