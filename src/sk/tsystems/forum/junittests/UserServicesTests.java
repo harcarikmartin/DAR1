@@ -26,6 +26,9 @@ public class UserServicesTests {
 	 */
 	@Before
 	public void createTesterUserAndTestingTopic() {
+		if (userServices.getPresentUser(sample.getNameOfTester()) != null) {
+			userServices.dropUser(sample.getNameOfTester());
+		}
 		sample.createTestedUser();
 	}
 	

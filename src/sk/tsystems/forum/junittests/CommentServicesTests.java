@@ -34,6 +34,12 @@ public class CommentServicesTests {
 	 */
 	@Before
 	public void createTestedUserAndTestedTopicAndTestedTaskAndTestedComment() {
+		if (topicServices.getPresentTopic(sample.getNameOfTestingTopic()) != null) {
+			topicServices.removeTopic(sample.getNameOfTestingTopic());
+		}
+		if (userServices.getPresentUser(sample.getNameOfTester()) != null) {
+			userServices.dropUser(sample.getNameOfTester());
+		}
 		sample.createTestedUser();
 		sample.createTestedTopic();
 		sample.createTestedTask();

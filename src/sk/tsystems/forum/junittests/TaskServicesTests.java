@@ -30,6 +30,12 @@ public class TaskServicesTests {
 	 */
 	@Before
 	public void createTesterUserAndTestingTopic() {
+		if (topicServices.getPresentTopic(sample.getNameOfTestingTopic()) != null) {
+			topicServices.removeTopic(sample.getNameOfTestingTopic());
+		}
+		if (userServices.getPresentUser(sample.getNameOfTester()) != null) {
+			userServices.dropUser(sample.getNameOfTester());
+		}
 		sample.createTestedUser();
 		sample.createTestedTopic();
 		sample.createTestedTask();
