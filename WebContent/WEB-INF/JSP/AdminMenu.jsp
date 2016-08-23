@@ -29,7 +29,6 @@
 	</div>
 </div>
 
-
 <c:if test="${listProfile != null }">
 	<jsp:include page="Profile.jsp" />
 </c:if>
@@ -37,7 +36,6 @@
 <c:if test="${changePassword == 1}">
 	<jsp:include page="PasswordChange.jsp" />
 </c:if>
-
 
 <c:if test="${listUsersForApproval == 1 && fn:length(pendingUsers) > 0}">
 	<div class="row col-lg-12">
@@ -79,12 +77,11 @@
 	</div>
 </c:if>
 
-
 <c:if test="${topicAdding != null}">
 	<div class="row">
 		<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 rowBackground">
 			<form method="post" onsubmit="return checkRequiredAddTopic()">
-		
+
 				<div class="row text-center">
 					<label class="simpleText" for="addTheTopic">Add new Topic:</label>
 				</div>
@@ -219,5 +216,3 @@
 		</div>
 	</div>
 </c:if>
-
-

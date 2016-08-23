@@ -7,7 +7,6 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="languages.text" />
 
-
 <c:if test="${user == null && registerForm != null}">
 	<div class="row">
 		<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 rowBackground">

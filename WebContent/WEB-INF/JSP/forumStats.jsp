@@ -6,10 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Forum Statistics</title>
-<style>
+<style type="text/css">
 <%@include file="bootstrap/css/bootstrap.min.css"%>
-<%@include file="css/ForumForBootstrap.css"%>
 </style>
+<style type="text/css">
+<%@include file="bootstrap/css/bootstrap.min.css"%>
+</style>
+<jsp:include page="ColorCssInclude.jsp" />
 </head>
 <body>
 	<div class="wrapper">

@@ -12,7 +12,6 @@
 					<button class="marginHorizontalLeft marginVertical buttonStyle" type="submit">Go to topics</button>
 				</form>
 			</div>
-
 			<div class="row rowBackground col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-7">
 					<span class="topicHierarchy">${topic.topic}</span>
@@ -43,7 +42,6 @@
 		</c:if>
 
 		<c:if test="${fn:length(topicTasks) > 0}">
-
 			<div class="row">
 				<div class="rowBackground ">
 					<table id="tasksTable" class="rowBackground">

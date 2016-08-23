@@ -2,7 +2,12 @@
 <%@ page language="java" contentType="text/html" pageEncoding="utf-8"%>
 
 <!DOCTYPE html >
-<html lang="${language}">
+<c:if test="${language == null}">
+	<html lang="en">
+</c:if>
+<c:if test="${language != null}">
+	<html lang="${language}">
+</c:if>
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Forum</title>
@@ -10,10 +15,12 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
 <style type="text/css">
 <%@include file="bootstrap/css/bootstrap.min.css"%>
-<%@include file="css/ForumForBootstrap.css"%>
 </style>
+<style type="text/css">
+<%@include file="bootstrap/css/bootstrap.min.css"%>
+</style>
+<jsp:include page="ColorCssInclude.jsp" />
 </head>
-
 <body>
 	<div class="wrapper">
 		<jsp:include page="Header.jsp" />
@@ -36,7 +43,6 @@
 		<div class="push"></div>
 	</div>
 	<div class="footer">
-
 		<div class="row">
 			<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 footerBCG text-center">
 				<p>
@@ -47,17 +53,7 @@
 	</div>
 </body>
 
-<script>
-	$(document).ready(function() {
-	    $("#language").val(localStorage.language);
-	});
-
-	$("#language").change(function() {
-	    localStorage.language = $(this).val();
-	});
-</script>
-
-<c:if test="${user.role=='admin'}">
+	<c:if test="${user.role=='admin'}">
 		<script type="text/javascript">
 		<%@include file="js/DataTablesAdmin.js"%>
 		</script>

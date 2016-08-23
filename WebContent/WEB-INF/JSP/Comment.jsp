@@ -32,7 +32,6 @@
 					${task.task}
 				</p>
 			</div>
-
 			<c:if test="${commentToUpdate != null}">
 				<jsp:include page="UpdateComment.jsp" />
 			</c:if>
@@ -67,9 +66,7 @@
 											</span>
 										</p>
 										${taskComment.comment}
-
 									</td>
-
 									<td class="commentBtn text-center taskNoButton">
 										<c:if test="${taskComment.user.userID == sessionScope.user.userID || sessionScope.user.role == 'admin'}">
 											<form method="post">
@@ -79,7 +76,6 @@
 											</form>
 										</c:if>
 									</td>
-
 									<td class="commentBtn text-center taskNoButton">
 										<c:if test="${taskComment.user.userID == sessionScope.user.userID || sessionScope.user.role == 'admin'}">
 											<form method="post">

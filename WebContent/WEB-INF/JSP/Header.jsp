@@ -2,7 +2,10 @@
 <%@ page language="java" contentType="text/html; utf-8" pageEncoding="utf-8"%>
 
 <div class="row col-lg-12">
-	<div class="col-lg-offset-1 col-lg-10 text-center">
+	<div class="col-lg-offset-1 col-lg-10 text-center rowBackground">
+		<div class="text-left marginHorizontal rowBackground">
+			<jsp:include page="ColorSelect.jsp" />
+		</div>
 		<form method="post">
 			<input type="hidden" name="action" value="mainPage">
 			<button class=" fullWidth mainPage" type="submit">FORUM</button>
@@ -78,13 +81,7 @@
 						<input type="hidden" name="action" value="register">
 						<button class="marginHorizontal  buttonStyle" type="submit">Registration</button>
 					</form>
-					<form method="post" class="userMenu">
-						<select class="marginHorizontal buttonStyle" id="language" name="language" onchange="this.form.submit();">
-							<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-							<option value="sk" ${language == 'sk' ? 'selected' : ''}>Slovak</option>
-							<option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
-						</select>
-					</form>
+					<jsp:include page="SelectLanguages.jsp" />
 				</div>
 			</div>
 		</div>
@@ -101,13 +98,7 @@
 						<input type="hidden" name="action" value="logout">
 						<button class="marginHorizontal buttonStyle" type="submit">Logout</button>
 					</form>
-					<form method="post" class="userMenu">
-						<select class="marginHorizontal buttonStyle" id="language" name="language" onchange="submit()">
-							<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-							<option value="sk" ${language == 'sk' ? 'selected' : ''}>Slovak</option>
-							<option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
-						</select>
-					</form>
+					<jsp:include page="SelectLanguages.jsp" />
 				</div>
 			</div>
 		</div>
