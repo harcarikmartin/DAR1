@@ -41,14 +41,7 @@ public class CreatingTestingSamples {
 	private List<Topic> listOfTopics = new ArrayList<>();
 
 	public Date parseDate() {
-		String dateString = "2016-08-18";
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = null;
-		try {
-			date = df.parse(dateString);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		Date date = new Date();
 		return date;
 	}
 
