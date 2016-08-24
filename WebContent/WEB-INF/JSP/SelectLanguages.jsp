@@ -11,12 +11,12 @@
 	<input type="hidden" name="action" value="language">
 	<select class="marginHorizontal buttonStyle" id="language" name="language" onchange="this.form.submit();">
 		<c:if test="${language == 'en' || language == null}">
-			<option value="en" selected><fmt:message key="lang.label.english" /></option>
-			<option value="sk"><fmt:message key="lang.label.slovak" /></option>
+			<option value="en" selected>EN</option>
+			<option value="sk">SK</option>
 		</c:if>
 		<c:if test="${language == 'sk'}">
-			<option value="en"><fmt:message key="lang.label.english" /></option>
-			<option value="sk" selected><fmt:message key="lang.label.slovak" /></option>
+			<option value="en">EN</option>
+			<option value="sk" selected>SK</option>
 		</c:if>
 	</select>
 </form>
