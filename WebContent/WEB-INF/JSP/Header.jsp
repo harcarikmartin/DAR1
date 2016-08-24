@@ -46,7 +46,7 @@
 								<td>
 									<label class="labels" for="userName">
 										<fmt:message key="header.label.userName" />
-										<input id="userName" class="loginForm" type="text" name="userName" placeholder="<fmt:message key="header.label.passPlaceholder" />"
+										<input id="userName" class="loginForm" type="text" name="userName" placeholder="<fmt:message key="header.label.userNamePlaceholder" />"
 											required="autofocus" maxlength="100">
 									</label>
 								</td>
@@ -66,7 +66,7 @@
 									<label class="labels" for="userPassword">
 										<fmt:message key="header.label.pass" />
 										<input id="userPassword" class="loginForm" type="password" name="userPassword"
-											placeholder="<fmt:message key="header.label.userNamePlaceholder" />" maxlength="100">
+											placeholder="<fmt:message key="header.label.passPlaceholder" />" maxlength="100">
 									</label>
 								</td>
 							</tr>
