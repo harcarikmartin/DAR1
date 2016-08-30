@@ -116,7 +116,7 @@
 			<div class="row">
 				<div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 footerBCG text-center">
 					<p>
-						<a href="/Forum">Forum</a>
+						<a href="/Forum_Dar1">Forum</a>
 					</p>
 				</div>
 			</div>
