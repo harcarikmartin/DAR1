@@ -15,8 +15,8 @@
           	-->
           	
 			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@//localhost:1521/XE" />
-			<property name="hibernate.connection.username" value="forum" />
-			<property name="hibernate.connection.password" value="forum" />
+			<property name="hibernate.connection.username" value="FORUM_Dar1" />
+			<property name="hibernate.connection.password" value="FORUM_Dar1" />
 			
 			<!-- 
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/forum"/>
@@ -33,7 +33,7 @@
 				but also drops tables when Hibernate closes; value="validate" makes no changes 
 				to the database -->
 
-<!--  <property name="hibernate.hbm2ddl.auto" value="create-drop"/>	   -->
+<!-- --> 	<property name="hibernate.hbm2ddl.auto" value="create"/>	   
 
 
 			<property name="hibernate.show_sql" value="true" />
