@@ -39,7 +39,7 @@ import sk.tsystems.forum.services.UsersTopicsServices;
  * @author martinharcarik
  *
  */
-@WebServlet("/Forum")
+@WebServlet("")
 @MultipartConfig(maxFileSize = 16177215)
 public class ForumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
